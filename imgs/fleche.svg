@@ -1,0 +1,6 @@
+<svg id="fleche" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 430 350" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+    <g id="fleche-g1" transform="matrix(1.240815 0 0 1.240815 -250.652181 -118.576344)">
+        <path id="fleche-path1" d="M171.132983,151.613641C440.302129,69.214922,483.624566,128.906602,472.162967,290.043488" transform="matrix(0.810718 0 0 1 92.411148 3.000001)" fill="none" stroke="rgb(255,255,255)" stroke-width="20" stroke-linecap="round"/>
+        <path id="fleche-path2" d="M422.723735,290.043489C461.174315,295.742251,460.605566,444.527073,519.404898,273.563745" transform="matrix(1 0 0 1 0.000001 0)" fill="none" stroke="rgb(255,255,255)" stroke-width="20" stroke-linecap="round"/>
+    </g>
+</svg>
