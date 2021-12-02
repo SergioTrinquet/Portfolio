@@ -497,7 +497,7 @@ body.noscroll {
 
 
 /*#region -  Animations sur visage */
-.eyes { 
+/* .eyes { 
   animation: blink 4s steps(3) 0ms infinite;
   animation-fill-mode: both;
   transform-origin: 0% 40%;
@@ -505,20 +505,28 @@ body.noscroll {
 @keyframes blink {
   0%, 95%, 100% { transform: scaleY(1); }
   97% { transform: scaleY(0.1); }
-}
-
-
-/* .pupille {
-  animation-name: blink, moveeyes;
-  animation-timing-function: steps(3), unset;
-  animation-duration: 4s, 6s;
-  animation-iteration-count: infinite;
-}
-@keyframes moveeyes {
-  0%, 20%, 40%, 100% { transform: translate(0, 0); }
-  25% { transform: translate(-5px, 0); }
-  30% { transform: translate(5px, 0); }
 } */
+
+
+#eyesMovingZone {
+  position: absolute;
+  z-index: 3;
+  border-radius: 50%;
+  width: 130%;
+  height: 130%;
+}
+.pupille {
+  transition: all 0.3s ease;
+}
+#cacheYeux {
+  animation: eyesBlink 4s steps(3) 0ms infinite;
+  animation-fill-mode: both;
+  transform-origin: 0% 39%;
+}
+@keyframes eyesBlink {
+  0%, 95%, 100% { transform: scaleY(1); }
+  97% { /* transform: scaleY(0.3); */ transform: scaleY(0.2) translateY(-9px); }
+}
 
 
 .mouth {
@@ -1165,9 +1173,8 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   fill:#e8b894;
   fill-opacity:1;
 }
-#SVGs .bras {
+#SVGs .skin {
   fill:#ffd5b5;
-  fill-opacity:1;
 }
 /*#endregion - SVGs */
 
