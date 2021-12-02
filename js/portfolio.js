@@ -580,7 +580,7 @@ function generateProjectsNavigation() {
 /// Yeux qui bougent et suivent la souris
 const pupilles = document.querySelectorAll(".pupille");
 const eyesMovingZone = document.querySelector("#eyesMovingZone");
-eyesMovingZone.addEventListener("mousemove", (e) => { eyeball(e) });
+eyesMovingZone.addEventListener("mousemove", (e) => eyeball(e) );
 function eyeball(event) {
     pupilles.forEach(pupille => {
         // 1. Calcul de l'angle d'orientation des pupilles
@@ -588,7 +588,6 @@ function eyeball(event) {
         let y = (pupille.getBoundingClientRect().top) + (pupille.getBoundingClientRect().height / 2);
         let radian = Math.atan2(event.clientX - x, event.clientY - y);
         let rot = (radian * (180 / Math.PI) * -1) + 180;
-        //console.log("rot", rot,  pupille.classList.contains("droit") ? "oeil droit" : "oeil gauche"); //TEST
 
         // 2. Passage de l'angle en coordonnées x, y dans un rayon de 5
         const movementAmount = 5;
@@ -601,5 +600,5 @@ function eyeball(event) {
 }
 // Yeux qui reviennent à la position initiale qd curseur sort de la zone à l'origine du mvmt des pupilles
 eyesMovingZone.addEventListener("mouseleave", () => { 
-    pupilles.forEach(pupille => pupille.style = "" );
+    pupilles.forEach(pupille => pupille.style = "");
 });
