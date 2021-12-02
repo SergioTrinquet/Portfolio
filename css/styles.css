@@ -497,17 +497,6 @@ body.noscroll {
 
 
 /*#region -  Animations sur visage */
-/* .eyes { 
-  animation: blink 4s steps(3) 0ms infinite;
-  animation-fill-mode: both;
-  transform-origin: 0% 40%;
-}
-@keyframes blink {
-  0%, 95%, 100% { transform: scaleY(1); }
-  97% { transform: scaleY(0.1); }
-} */
-
-
 #eyesMovingZone {
   position: absolute;
   z-index: 3;
@@ -1140,12 +1129,6 @@ body.noscroll {
 
 
 
-/* Prends le dessus sur les attributs "stroke-width" dans les balises "path" en question (mais ne les prendraient pas s'il s'agissait d'inline styles) : 
-Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage qui se déssine */
-#SVGvisageVIVUS path {
-  stroke-width: 1.3px;
-}
-
 
 /*#region - SVGs */
 #SVGs path#pantalon {
@@ -1175,6 +1158,23 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
 }
 #SVGs .skin {
   fill:#ffd5b5;
+}
+#SVGs .cils {
+  fill:#502d16;
+}
+#SVG_elementsVisage path {
+  fill-rule: evenodd;
+}
+
+/* Prendrait le dessus sur les attributs "stroke-width" dans les balises "path" en question (mais ne les prendraient pas s'il s'agissait d'inline styles) : 
+Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage qui se déssine */
+#SVGvisageVIVUS path {
+  stroke-width: 1.3px;
+  stroke: #fff;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+  fill: none;
+  fill-rule: evenodd;
 }
 /*#endregion - SVGs */
 
