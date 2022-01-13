@@ -12,11 +12,12 @@
 :root {
   --deg-bg1: -8;
   --inclinaison-bg1: calc(var(--deg-bg1) * 1deg);
-  --color-header: #f1507d;
+  --color-gradient-1-ruban: #ffb3cc;
   --color-green: #27f43d;   /* --color-green: #ffe300; */
-  --color-degr-1-screen4: rgb(103, 108, 198);
-  --color-degr-2-screen4: rgb(168, 103, 198);
   --font-color-screen2: #505388;
+  --color-degr-1-screen4: rgb(103, 108, 198);
+  --color-degr-2-screen4: rgb(232, 70, 255);
+  --bgcolor-screenEnd: #2b2b2b;
 }
 
 html, body {
@@ -160,14 +161,97 @@ body.noscroll {
   background-color: rgba(255, 255, 255, 0.5);
 }
 
+#content_screen3 #shadows {
+  opacity: 0;
+}
+#content_screen3 #shadows > div {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  background: radial-gradient(farthest-side at bottom left, #4A4E74AB 0%, #40436500 90%);
+  transform: skew(0deg, -8deg);
+  opacity: 0.3;
+}
+#content_screen3 #shadows > div:nth-child(1) {
+  top: 16vh;
+  left: 0;
+  width: 45vw;
+  height: 50px;
+}
+#content_screen3 #shadows > div:nth-child(2) {
+  top: 22vh;
+  left: 0;
+  width: 25vw;
+  opacity: 0.2;
+  height: 100px;
+}
+#content_screen3 #shadows > div:nth-child(3) {
+  background: radial-gradient(farthest-side at bottom center, #4A4E74 0%, #40436500 90%);
+  top: 28vh;
+  width: 55vw;
+  left: 36vw;
+  height: 50px;
+  opacity: 0.15;
+}
+#content_screen3 #shadows > div:nth-child(4) {
+  background: radial-gradient(farthest-side at bottom center, #4A4E74 0%, #40436500 90%);
+  top: 80vh;
+  width: 35vw;
+  right: 21vw;
+  height: 50px;
+  opacity: 0.15;
+}
+#content_screen3 #shadows > div:nth-child(5) {
+  background: radial-gradient(farthest-side at bottom center, #4A4E74 0%, #40436500 90%);
+  top: 90vh;
+  width: 35vw;
+  left: 15vw;
+  height: 50px;
+  opacity: 0.15;
+}
+
+/* 
+#content_screen3 #shadows > div:nth-child(0) {
+  left: 0;
+  width: 25vw;
+  opacity: 0.2;
+  background-color: #fff;
+  height: 3px;
+  top: 29vh;
+}
+#content_screen3 #shadows > div:nth-child(1) {
+  opacity: 0.15;
+  background-color: #fff;
+  opacity: 0.05;
+  height: 5px;
+  top: 34vh;
+  width: 28vw;
+  left: 46vw;
+}
+#content_screen3 #shadows > div:nth-child(2) {
+  background-color: #fff;
+  opacity: 0.1;
+  height: 3px;
+  width: 15vw;
+  top: 29vh;
+  left: 67vw;
+}
+#content_screen3 #shadows > div:nth-child(3) {
+  background-color: #fff;
+  opacity: 0.1;
+  height: 4px;
+  top: 4vh;
+  width: 28vw;
+  left: 56vw;
+} */
+
+
 .backgroundHalfScreen {
   position: absolute;
   z-index: 2;
   width: 140vw;
   height: 80vh;
   background-color: #d5d7f9;  
-  background: linear-gradient(-171deg, #d5d7f9 0%, #fff 60%);
-  background: linear-gradient(-351deg, #d5d7f9 40%, #fff 100%);
   background: linear-gradient(-1deg, #dcddf9 0%, #fff 100%);
   top: 52vh;  
   left: -20vw; /* 140vw pour la largeur de cette élément - 100vw pour la largeur de l'écran  / 2 pour centrer l'élément */
@@ -176,6 +260,7 @@ body.noscroll {
 
   top: 45vh;
   height: 36vh;
+  opacity: 0.7;
 }
 
 #content_screen4 {
@@ -203,7 +288,7 @@ body.noscroll {
 #background_screen5 > #margeRight {
   position: absolute;
   z-index: 2;
-  background: linear-gradient(20deg, var(--color-degr-1-screen4) 10%, var(--color-degr-2-screen4) 30%);
+  background: linear-gradient(20deg, var(--color-degr-1-screen4) 10%, var(--color-degr-2-screen4) 40%);
   width: 16vmax;
   height: 100vmax;
   right: 0;
@@ -280,17 +365,6 @@ body.noscroll {
   }
 }
 .texteQuiSuisJe.display { opacity: 1; }
-/* .texteQuiSuisJe.animation { animation: txtAppear 1.3s ease-out forwards; }
-@keyframes txtAppear {
-  0% {
-    opacity: 0;
-    transform: translateY(25vh) scale(0.2);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0vh) scale(1);
-  }
-} */
 .texteQuiSuisJe.animation { animation: txtAppear 1.3s cubic-bezier(0.015, 0.835, 0.440, 1.000) forwards; }
 @keyframes txtAppear {
   0% {
@@ -325,7 +399,6 @@ body.noscroll {
   min-width: 160px;
   border: none;
   transition: all 0.3s ease;
-
   opacity: 0;
   display: none;
 }
@@ -458,7 +531,7 @@ body.noscroll {
 #SVGvisageVIVUS.display {
   opacity: 1;
 }
-/*#endregion*/
+/*#endregion - Gestion de l'apparition du SVG en haut de page au chargement*/
 
 
 .halo {
@@ -579,31 +652,13 @@ body.noscroll {
 }
 
 .sectionTitle {
-  font-size: 22px;
-  font-size: clamp(17px, 5vmin, 23px);
+  font-size: 27px;
+  font-size: clamp(17px, 5vmin, 27px);
   opacity: 0;
   display: none;
+  text-shadow: -3px 2px #4d4d4d8c;
 }
-.sectionTitle:before,
-.sectionTitle:after {
-  content: "__________\a__________\a__________\a__________";
-  white-space: pre-wrap; /* Pour éviter les retours à la ligne intempestifs */  
-  position: absolute;
-  z-index: 2;
-  line-height: 6px; line-height: clamp(5px, 1.4vw, 6px);
-  font-size: 12px; font-size: clamp(8px, 2.2vw, 12px);
-  transition: opacity 0.5s ease;
-}
-.sectionTitle:before {
-  right: 100%;
-  text-align: right;
-  margin: -3px 10px 0 0;
-}
-.sectionTitle:after {
-  left: 100%;
-  text-align: left;
-  margin: -3px 0 0 10px;
-}
+
 
 
 /*#region - Rubrique "Mes compétences" */
@@ -619,7 +674,7 @@ body.noscroll {
 
 #skills .domain {
   font-size: clamp(15px, 2vw, 19px);
-  box-shadow: 0 15px 25px rgba(0,0,0,0.5);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.3);
   background-color: #fff;
   color: var(--font-color-screen2);
   width: 23%;
@@ -628,10 +683,38 @@ body.noscroll {
   padding-right: 3vmin;
   padding-bottom: 3vmin;
   padding-left: 3vmin;
-  border-bottom: solid 0.8vmin var(--font-color-screen2);
   min-height: 40vh;
+  border-radius: 7px;
 }
 #skills .domain:first-child {  width: 40%; }
+
+/* ESSAI */
+/* #skills .domain::before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f121";
+  background-color: #f45783;
+  width: 5vw;
+  height: 5vw;
+  position: absolute;
+  display: flex;
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 2vw;
+  text-shadow: -5px 4px rgba(2, 2, 2, 0.22);
+  border-radius: 50%;
+  top: -45px;
+  left: calc(50% - 2.5vw);
+  box-shadow: -2px 1px 1px rgba(0,0,0,0.3);
+}
+#skills .domain:nth-child(2)::before { 
+  content: "\f1c0";
+}
+#skills .domain:nth-child(3)::before { 
+  content: "\f55b";
+} */
+/* FIN ESSAI */
 
 
 @media screen and (max-width: 768px) {
@@ -657,7 +740,7 @@ body.noscroll {
 }
 
 .title {
-  background-color: var(--color-header);
+  background: linear-gradient(90deg, var(--color-gradient-1-ruban) 0%, #fd7298 5%, #f1507d 70%);
   display: inline-block;
   color: #fff;
   padding: 8px 18px 8px 15px;
@@ -668,29 +751,40 @@ body.noscroll {
   margin-bottom: 0px;
   margin-left: calc(-10px - 3vmin);
   box-shadow: 2px 3px 0 rgba(0,0,0,0.2);
+  border-top-left-radius: 10px;
 }
 .domain .title {
-  clip-path: polygon(0 0, calc(100% - 7px) 0%, 100% calc(100% + 5px), 0% 135%);
+  clip-path: polygon(0 0, calc(100% - 7px) 0%, 100% calc(100% + 5px), 0% 160%);
 }
-.title:before {
+.title::before {
   content: "";
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 10px 10px 0;
-  border-color: transparent #c8403e transparent transparent;
+  position: absolute;
+  z-index: 2;
+  width: 10px;
+  height: 14px;
+  left: 0;
+  top: 100%;
+  background: #d74f75;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.title::after {
+  content: "";
   position: absolute;
   left: 0;
   top: 100%;
+  width: 10px;
+  height: 10px;
+  background: var(--color-gradient-1-ruban);
 }
 
 .domain .categorie {
-  /* text-decoration: underline 2px dotted; */
   background: linear-gradient(180deg, rgba(255,255,255,0) 60%, var(--color-green) 60%);
   padding: 0 4px;
 }
 .domain .categorie + span {
   display: block;
+  font-weight: normal;
 }
 .domainContent > div {
   margin-bottom: clamp(4px, 0.5vh, 7px);
@@ -712,10 +806,12 @@ body.noscroll {
   position: relative;
   background-color: #fff;
   height: 45vh;
-  font-size: 1.9vmax;   font-size: clamp(15px, 2vmax, 18px);
+  font-size: 1.9vmax;   
+  font-size: clamp(15px, 3vmin, 18px);
   color: rgb(73, 77, 140);
   width: 40vw;
   margin: 0 30vw;
+  border-radius: 10px;
 }
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   #projects .projectCard { 
@@ -755,23 +851,39 @@ body.noscroll {
 
 #projects .technos {
   color: var(--color-green);
-  padding: 12px 2vmax 0 2vmax;
+  padding: 2px 2vmax 0 2vmax;
+  margin: -50px 0 0 0;
+  z-index: 1;
 }
 #projects .technos > span {
   border-radius: 5px;
   background-color: var(--color-green);
+  font-size: clamp(14px, 2vmax, 16px);
   color: #fff;
   padding: 2px 5px;
  }
 #projects .img {
-  min-height: 30%;
   background-color: rgba(0,0,0,0.2);
-  margin-top: 4vh;
   transition: all 0.3s ease-in-out;
+  min-height: 45%;
+  overflow: hidden;
+  position: relative;
+  border-radius: 10px 10px 0 0;
 }
 #projects .img > div { 
-  background-color: rgba(0,0,0,0.35);
   height: 100%;
+  background-color: rgba(113, 130, 170, 0.35);
+}
+#projects .img > div::after {
+  content: "";
+  background: #fff;
+  height: 200px;
+  position: absolute;
+  z-index: 1;
+  width: 120%;
+  transform: rotate(8deg);
+  margin: 0 0 0 -10%;
+  top: 65%; top: 50%;
 }
 #projects .img[data-project="citiesSample"] {
  background-image: url("../imgs/projet_liste_villes.png");
@@ -800,21 +912,31 @@ body.noscroll {
  }
 
 #projects .title {
-  margin: -22px 0 0 -10px;
-  clip-path: polygon(0 0, 100% 0%, calc(100% - 7px) calc(100% + 5px), 0% 135%);
+  margin: -21px 0 0 -10px;
+  clip-path: polygon(0 0, 100% 0%, calc(100% - 7px) calc(100% + 5px), 0% 160%);
+  z-index: 2;
+}
+@media screen and (max-height: 600px) {
+    #projects .title {
+      margin: -15px 0 0 -10px;
+    }
 }
 #projects .projectCard ul li { margin: 0 0 0 12px; }
 #projects .details {
   overflow-y: auto;
   margin: 1vmax 2vmax 3vmax 2vmax;
   flex-grow: 1;
+  z-index: 1;
+}
+:root {
+  --padding-x: 20%;
 }
 #projects a.projectLink {
   border-radius: 50px;
   background-color: rgb(118, 133, 219);
   background: linear-gradient(270deg, rgb(118, 133, 219) 0%, #7c65c1 100%);
   color: #fff;
-  padding: 5px 20%;
+  padding: 7px var(--padding-x);
   cursor: pointer;
   transition: all 0.4s ease;
   overflow: hidden;
@@ -825,8 +947,7 @@ body.noscroll {
   transform: translate(-50%, 50%);
   text-decoration: none;
   font-size: max(12px, 2.5vmin);
-  border-bottom: solid 1px rgba(255,255,255,0.5);
-  border-top: solid 1px rgba(70, 70, 70, 0.5);
+  border-bottom: solid 1px rgb(100, 82, 138);
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
   #projects a.projectLink {  
@@ -838,10 +959,15 @@ body.noscroll {
     font-size: clamp(16px, 4vmin, 18px);
   }
 }
+@media screen and (max-height: 600px) {
+  #projects a.projectLink {
+    padding: 5px var(--padding-x);
+  }
+}
 
 #projects .projectCard,
 #projects a.projectLink {
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
 }
 @media screen and (max-width: 480px) {
   #projects .projectCard,
@@ -941,9 +1067,9 @@ body.noscroll {
 
 .msgRemerciements > span {
   background: #676CC6;
-  background: -webkit-linear-gradient(to right, #676CC6 0%, #A867C6 100%);
-  background: -moz-linear-gradient(to right, #676CC6 0%, #A867C6 100%);
-  background: linear-gradient(to right, #676CC6 0%, #A867C6 100%);
+  background: -webkit-linear-gradient(to right, #676CC6 0%, #B754E9 100%);
+  background: -moz-linear-gradient(to right, #676CC6 0%, #B754E9 100%);
+  background: linear-gradient(to right, #676CC6 0%, #B754E9 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
@@ -1034,8 +1160,7 @@ body.noscroll {
 
 
 .transitionalBackground {
-  /* background: linear-gradient(20deg, rgb(91, 96, 200) 40%, rgb(204, 107, 249) 65%); */
-  background: linear-gradient(20deg, var(--color-degr-1-screen4) 40%, var(--color-degr-2-screen4) 70%);
+  background: linear-gradient(1deg, var(--color-degr-1-screen4) 40%, var(--color-degr-2-screen4) 60%);
   position: absolute;
   z-index: 2;
   width: 200vmax;
@@ -1043,7 +1168,6 @@ body.noscroll {
   transform: translate(110%, 0%) rotate(30deg);
   transform-origin: 100% 50%;
   opacity: 0;
-  /* box-shadow: -20px 0 20px rgba(0,0,0,0.3); */
   box-shadow: 0 0 0 rgba(255, 255, 255, 0.5);
 }
 
@@ -1055,7 +1179,7 @@ body.noscroll {
   z-index: 5;
   height: 100vh;
   width: 100vw;
-  background-color: #2b2b2b;
+  background-color: var(--bgcolor-screenEnd);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1068,10 +1192,9 @@ body.noscroll {
   z-index: 2;
   color: #fff;
   font-size: clamp(40px, 8vmin, 80px);
-  background-color: rgb(43, 43, 43);
+  background-color: var(--bgcolor-screenEnd);
   padding: 0px 2vmin;
 }
-
 
 #background_screenEnd #mot > span {
   display: inline-block;
@@ -1086,16 +1209,9 @@ body.noscroll {
   z-index: 1;
   border-bottom: solid 3px #fff;
   width: 0;
-  /* height: 10px;
-  border-top: solid 2px #fff; */
+  /* height: 10px; border-top: solid 2px #fff; */
   margin-top: 10px;
 }
-/* #background_screenEnd .motTrait:nth-child(3) {
-  margin-top: 10px;
-}
-#background_screenEnd .motTrait:nth-child(4) {
-  margin-top: 20px;
-} */
 
 #background_screenEnd #linkbackToTop {
   font-size: clamp(15px, 1.6vw, 17px);
@@ -1333,4 +1449,3 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   transform: scale(1.2, 1.2);
 }
 /*#endregion - Navigation entre projets dans rubrique "Projets perso" */
-
