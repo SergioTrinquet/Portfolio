@@ -357,20 +357,13 @@ function generate_timeline() {
 
 // Pour regénérer la timeline à chaque redimensionnement de la fenetre, sinon décalages se produisent car les prop. CSS de 
 // dimensions relatives (en vw, vh, %,...) sont interprétées une seule fois à l'initialisation de la timeline avec GSAP)
-//var progress = 0;   // Probablement pas utile ici !!
 ScrollTrigger.addEventListener("refreshInit", () => {
-    /* let scrollTop = getScrollTop();
-    progress = scrollTop / ScrollTrigger.maxScroll(window); // Probablement pas utile ici !!
-    //console.log("progress qd redim", progress); //TEST */
-
     mm = getMedia();
     if(tl !== null) tl.clear(); // Prise en compte 1er déclenchement de l'evenement 'refreshInit' au chargement de la pg ou tl est = à null
     tl = generate_timeline();
     if(!flagAnimationIntro) setNavigation(); // Ici ajouté car qd redimension de la fenêtre, les valeurs des labels utilisés dans cette fonction changent, donc foncton rappelée ici pour avoir les valeurs à jour, sinon décalage entre vrais positions des labels et positions calculées
 });
-/* ScrollTrigger.addEventListener("refresh", () => {
-    document.documentElement.scrollTop = progress * ScrollTrigger.maxScroll(window); // Probablement pas utile ici !!
-}); */
+
 
 
 
@@ -442,7 +435,7 @@ function setProjectCards(nbProjectCards) {
         coordX -= units;
         tl_scrollTriggerBody
             .addLabel(`${prefixNomLabelProjets}_${i}|Mes projets`, ">") 
-            .to(".projectCard", { x: `${coordX}vw`, duration: 40, stagger: 10 })
+            .to(".projectCard", { x: `${coordX}vw`, duration: 80, stagger: 10 })
             .to(".projectCard", { duration: 50 }) // Pour que l'on reste sur un projet qd on scroll, sinon effet d'inertie et passe au label suivant
     }
     return tl_scrollTriggerBody;
