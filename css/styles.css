@@ -872,7 +872,7 @@ body.noscroll {
 }
 #projects .img > div { 
   height: 100%;
-  background-color: rgba(113, 130, 170, 0.35);
+  background-color: rgba(113, 130, 170, 0.4);
 }
 #projects .img > div::after {
   content: "";
