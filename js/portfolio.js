@@ -212,7 +212,7 @@ function generate_timeline() {
     }
 
     tl_scrollTriggerBody  
-        .to(".halo", { zIndex: 2, width: "115%", height: "115%", autoAlpha:1, duration: 20 })    // Halo rendu à nouveau visible + chgmt css
+        .to(".halo", { zIndex: 2, width: "115%", height: "115%", boxShadow: "-3px 2px 1px #4d4d4d91", autoAlpha:1, duration: 20 })    // Halo rendu à nouveau visible + chgmt css
         .to("#SVGs", { filter: "drop-shadow( 1px 0px 0px rgba(77, 81, 120, 0.7)" }, "<")   // Ajout ombre sur visage
         .to(".wrapperSVGsAndTexts", { keyframes: [
             { position: "absolute", duration: 0 },
@@ -236,6 +236,7 @@ function generate_timeline() {
 
     tl_scrollTriggerBody
         .to(".backgroundHalfScreen", { transform: `rotate(${deg_inclinaison_asc}deg) skew(${deg_inclinaison_asc}deg, 0) translateX(0vh)`, duration: 30 })  // Apparition partie médiane background clair
+        .to("#shadows", {autoAlpha:1, duration: 20})
         .to("#skills .domain", { transform:`translateY(0vw)`, autoAlpha:1, duration: 30, stagger:10 })      // Animation arrivée encarts "compétences"    
         .addLabel("step_2|Compétences", ">")      
         .to("#skills", { duration: 100 })    // Pour faire une pause dans l'animation le temps de pouvoir lire le contenu de la page
@@ -254,6 +255,7 @@ function generate_timeline() {
         .fromTo("#content_screen3", 
             { background: "linear-gradient(29deg, #959ADD 30%, #292C45 80%)" },
             { background: "linear-gradient(-29deg, rgb(122, 221, 212) 0%, rgb(111, 85, 151) 100%)", duration: 80 }
+            //{ background: "linear-gradient(-45deg, rgb(255, 243, 58) 0%, rgb(151, 47, 181) 100%)", duration: 80 }
         , "<")
         .to("#intituleJob", { color: "rgb(114, 122, 167)" }, "<")
         .fromTo(".projectCard", 
