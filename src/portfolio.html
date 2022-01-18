@@ -6,17 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta name="description" content="Serge Trinquet - Développeur javascript">
     <title>Serge Trinquet</title>
-
-    <!-- build:css css/styles.min.css -->
-    <link rel="stylesheet" href="css/styles.css" media="all">
+    <!-- build:css assets/css/styles.min.css -->
+    <link rel="stylesheet" href="assets/css/styles.css" media="all">
     <!-- endbuild -->
-
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/ScrollToPlugin.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/ScrollTrigger.min.js"></script>
-    <!-- build:js js/bundle.min.js defer -->
-    <script defer src="js/lib/vivus.min.js"></script>
-    <script defer src="js/portfolio.js"></script>
+    <!-- build:js assets/js/bundle.min.js defer -->
+    <script defer src="assets/js/lib/vivus.js"></script>
+    <script defer src="assets/js/portfolio.js"></script>
    <!-- endbuild -->
   </head>
 
@@ -171,7 +169,7 @@
       <!-- msg to scroll down -->
       <div class="texteScrollDown">
         <span>Descendez pour le savoir</span>
-        <object id="svg_fleche" type="image/svg+xml" data="./imgs/fleche.svg"></object>
+        <object id="svg_fleche" type="image/svg+xml" data="./assets/imgs/fleche.svg"></object>
       </div>
 
 
@@ -261,65 +259,57 @@
             <!-- Eléments chaise -->
             <g id="SVG_chaise">
                <circle
-                  id="roue_2B"
-                  r="14.914671" cx="-38.74102" cy="1158.9254"
-                  style="opacity:1;fill:#6f6f6f;fill-opacity:1;stroke:#000000;stroke-width:0.8;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                  id="roue_2B" class="roue" style="fill:#6f6f6f;"
+                  r="14.914671" cx="-38.74102" cy="1158.9254" />
                <ellipse
-                  id="roue_1B"
-                  ry="14.973147" rx="10.830183" cx="-42.331589" cy="1097.6096"
-                  style="opacity:1;fill:#6f6f6f;fill-opacity:1;stroke:#000000;stroke-width:0.8;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                  id="roue_1B" class="roue" style="fill:#6f6f6f;""
+                  ry="14.973147" rx="10.830183" cx="-42.331589" cy="1097.6096" />
                <ellipse
                   ry="14.973147" rx="10.830183" cx="-50.607784" cy="1098.4479"
-                  id="roue_1A"
-                  style="opacity:1;fill:#5a5857;fill-opacity:1;stroke:#000000;stroke-width:0.8;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                  id="roue_1A" class="roue" style="fill:#5a5857;" />
                <circle
                   r="14.914671" cx="309.16336" cy="1109.8705"
-                  id="roue_4B"
-                  style="opacity:1;fill:#949494;fill-opacity:1;stroke:#000000;stroke-width:0.8;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                  id="roue_4B" class="roue" style="fill:#949494;" />
                <circle
                   r="14.914671" cx="305.49408" cy="1111.318"
-                  id="roue_4A"
-                  style="opacity:1;fill:#5a5857;fill-opacity:1;stroke:#000000;stroke-width:0.8;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                  id="roue_4A" class="roue" style="fill:#5a5857;" />
                <circle
                   r="14.914671" cx="-35.004341" cy="1160.2577"
-                  id="roue_2A"
-                  style="opacity:1;fill:#5a5857;fill-opacity:1;stroke:#000000;stroke-width:0.8;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                  id="roue_2A" class="roue" style="fill:#5a5857;" />
                <ellipse
                   ry="14.960661" rx="11.64629" cx="206.65569" cy="1171.4211"
-                  id="roue_3B"
-                  style="opacity:1;fill:#5a5857;fill-opacity:1;stroke:#000000;stroke-width:0.8;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                  id="roue_3B" class="roue" style="fill:#5a5857;" />
                <ellipse
                   ry="14.960661" rx="11.64629" cx="201.06511" cy="1173.3542"
-                  id="roue_3A"
-                  style="opacity:1;fill:#5a5857;fill-opacity:1;stroke:#000000;stroke-width:0.8;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                  id="roue_3A" class="roue" style="fill:#5a5857;" />
                <path
                   id="chaise_pieds_part2"
                   d="m 104.98226,1100.6948 -156.538688,41.9394 c 0,0 -0.172824,-4.5507 0.195301,-19.8747 -0.104126,-6.7357 6.073589,-8.2097 12.625681,-10.43 15.163877,-4.6997 72.358196,-23.0062 72.358196,-23.0062 l -91.907181,-12.1527 c 0,0 -0.13583,-6.0282 -0.01763,-10.9916 0.194344,-8.1607 3.462286,-8.962 12.80618,-8.2417 14.445054,1.1136 158.608021,4.2381 158.608021,4.2381 0,0 21.10205,-11.0507 27.14489,-13.9859 5.2674,-2.4442 6.62603,-0.258 6.39182,5.5893 -0.19938,4.9775 -0.14217,10.1343 -0.14217,10.1343 0,0 156.56181,5.4774 163.70131,5.8476 7.1395,0.3702 10.73582,2.1981 11.07903,9.1324 0.34322,6.9344 -0.33746,11.535 -0.33746,11.535 l -163.45218,3.3144 c 0,0 41.58538,26.5651 49.43937,31.801 4.97155,3.3144 7.18114,6.6288 7.18114,13.3956 0,6.7668 -0.4143,15.1525 -0.4143,15.1525 0,0 -76.18307,-42.986 -88.80239,-50.4203 -15.74414,5.065 -19.91894,-2.9765 -19.91894,-2.9765 z"
-                  style="fill:#949494;fill-opacity:1;" />
+                  style="fill:#949494;" />
                <path
                   id="chaise_pieds_part2_ombre"
                   d="m 213.86551,1148.7678 c 0.23932,-8.8758 2.24832,-17.2945 -6.76684,-23.6839 l -79.96408,-55.8254 c 0,0 -4.27619,-2.6378 5.94312,-2.0854 10.21931,0.5524 180.63323,4.295 180.63323,4.295 0,0 4.35011,0.8621 6.0073,3.9002 1.65718,3.0382 1.72623,-5.4549 -7.94068,-5.7311 -9.66692,-0.2762 -182.84282,-6.3525 -182.84282,-6.3525 0,0 -12.15269,0.2071 -6.62874,-3.3834 5.52395,-3.5906 20.51011,-12.636 20.51011,-12.636 l -13.32897,6.2834 c 0,0 -11.3241,7.4574 -16.01946,8.0097 -2.34768,0.2762 -163.189942,-4.7717 -165.251312,-3.4437 -1.030685,0.664 114.582526,5.2655 153.504732,7.3575 38.92221,2.0919 1.15342,1.6743 1.15342,1.6743 0,0 -137.979718,43.7152 -144.175151,46.125 -3.930812,1.529 -10.121659,2.1455 -10.121659,11.26 0,9.1145 2.76197,-0.3265 2.76197,-0.3265 0,0 -1.785464,-5.8978 9.424234,-9.0642 11.69795,-3.6547 147.556126,-43.9963 147.556126,-43.9963 0,0 7.24282,-3.2335 12.49057,0.3571 5.24775,3.5905 84.04497,54.4109 84.04497,54.4109 11.49129,7.971 4.48902,22.7672 9.00993,22.8553 z"
-                  style="display:inline;fill:#5a5857;fill-opacity:1;" />
+                  style="display:inline;fill:#5a5857;" />
                <path
                   id="chaise_pieds_part1"
                   d="m 96.19146,891.63437 -0.35677,60.71642 6.42214,9.93542 c 0,0 0,74.04139 0,106.39659 12.56699,6.6315 25.68859,-0.552 25.68859,-0.552 V 962.28621 l 6.42215,-9.93542 v -60.9924 z"
-                  style="opacity:1;fill:url(#linearGradient7708);fill-opacity:1;" />
+                  style="fill:url(#linearGradient7708);" />
                <path
                   id="chaise_jonction"
                   d="m 7.10778,655.14072 c 0,0 8.83833,86.17365 -15.46706,136.99401 -24.305391,50.82036 55.23952,8.83832 55.23952,8.83832 0,0 30.93413,-81.75449 14.36227,-148.04191 -16.57185,-66.28743 -54.13473,2.20958 -54.13473,2.20958 z"
-                  style="opacity:1;fill:#5a5857;fill-opacity:1;" />
+                  style="opacity:1;fill:#5a5857;" />
                <path
                id="chaise_assise"
-                  style="fill:#949494;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                  style="fill:#949494;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;"
                   d="m -91.701067,794.76555 c -10.057093,18.67347 -13.863093,77.81019 157.590287,95.69553 63.59669,6.63416 129.03294,0 136.76647,0 7.73353,0 127.0509,-6.62874 124.84132,-80.6497 -35.3533,-41.98204 -304.453961,-42.16702 -419.198077,-15.04583 z" />
                <path
                   id="chaise_assise_coque"
                   d="m 87.75748,892.67066 c 129.22401,4.39263 233.48704,-6.3288 239.73953,-76.85928 -66.62843,29.96058 -81.28589,30.59114 -226.98118,34.16591 -52.370093,2.63705 -163.367312,-11.22853 -192.372463,-54.94749 -26.760527,60.42235 84.158377,92.27323 179.614113,97.64086 z"
-                  style="fill:#676666;fill-opacity:1;" />
+                  style="fill:#676666;" />
                <path
                   id="chaise_dossier"
                   d="m -111.56241,375.24964 c -18.07483,21.90046 -33.98892,160.24571 21.873735,271.85927 27.110567,26.52286 259.759315,11.51224 275.609635,-7.73353 C 201.77128,620.12961 206.59737,494.40673 136.98698,376.56241 27.017129,323.0479 -93.487582,353.34918 -111.56241,375.24964 Z"
-                  style="fill:#949494;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+                  style="fill:#949494;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;" />
                <path
                   id="chaise_dossier_coque"
                   d="m -94.589844,364.07031 c -8.131896,3.67744 -13.971506,7.54333 -16.972656,11.17969 -18.07483,21.90046 -33.98961,160.24582 21.873047,271.85938 2.854963,2.79307 8.013099,5.11972 14.933594,7.03515 C -112.37427,501.6936 -103.48883,407.39371 -94.589844,364.07031 Z"
@@ -340,7 +330,7 @@
             <g id="SVG_corps">
                <path
                   id="chaussure_droite"
-                  style="fill:url(#linearGradient7947);fill-opacity:1;stroke:#73746f;stroke-width:1.8;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+                  style="fill:url(#linearGradient7947);stroke:#73746f;stroke-width:1.8;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;"
                   d="m 204.29341,1141.6276 c 0,0 -7.13166,29.9096 -4.41916,45.2965 0.45187,15.6623 0.89521,18.7814 0.89521,18.7814 0,0 19.82934,25.6766 64.02096,25.6766 44.19162,0 53.02994,-14.3622 53.02994,-14.3622 0,0 7.73354,-21.5435 -28.72455,-34.2485 -23.2006,-3.3144 -30.93413,-57.7156 -30.93413,-57.7156 l -45.02994,-8.8383 z"
                   />
                <path
@@ -350,22 +340,22 @@
                <path
                   id="chaussure_droite_lacet3"
                   d="m 243.81361,1183.6405 c 12.07281,-5.893 19.9985,-7.4171 31.69095,-9.4399"
-                  style="fill:none;stroke:#ffffff;stroke-width:4;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                  style="fill:none;stroke:#ffffff;stroke-width:4;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;" />
                <path
                   id="chaussure_droite_lacet2"
                   d="m 239.65227,1170.0393 c 12.59343,-3.8518 20.63588,-5.4118 32.36522,-6.0685"
-                  style="fill:none;stroke:#ffffff;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                  style="fill:none;stroke:#ffffff;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1" />
                <path
                   id="chaussure_droite_lacet1"
                   d="m 235.60661,1155.8796 c 7.28729,-1.0685 20.70835,-4.0865 27.30816,-4.3828"
-                  style="fill:none;stroke:#ffffff;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                  style="fill:none;stroke:#ffffff;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1" />
                <path
                   id="chaussure_droite_lacet4"
                   d="m 251.51036,1190.9263 c 9.37571,-3.1959 23.36988,-7.4171 35.06233,-9.4399"
-                  style="display:inline;fill:none;stroke:#ffffff;stroke-width:4;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                  style="display:inline;fill:none;stroke:#ffffff;stroke-width:4;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1" />
                <path
                   id="chaussure_gauche"
-                  style="fill:url(#linearGradient6827);fill-opacity:1;stroke:#73746f;stroke-width:1.79999995;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+                  style="fill:url(#linearGradient6827);stroke:#73746f;stroke-width:1.79999995;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1"
                   d="m 405.0342,1108.0198 c 0,0 -7.81205,62.4964 -4.68723,76.558 3.12482,14.0617 93.74458,18.749 124.99277,18.749 31.24819,0 48.4347,-7.8121 48.4347,-7.8121 0,0 17.73832,-33.3066 -46.32048,-42.6811 -64.05879,-9.3744 -60.57054,-41.689 -60.57054,-41.689 l -0.69779,-30.2804 z" />
                <path
                   id="chaussure_gauche_rouge"  class="chaussures"
@@ -374,19 +364,19 @@
                <path
                   id="chaussure_gauche_lacet4"
                   d="m 516.62293,1161.3077 c 5.23025,-7.3315 13.89164,-6.7358 19.4383,-6.4974"
-                  style="fill:none;stroke:#fffafa;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                  style="fill:none;stroke:#fffafa;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1" />
                <path
                   id="chaussure_gauche_lacet3"
                   d="m 492.58038,1156.6696 c 10.09276,-7.4887 16.37523,-7.8476 22.01972,-7.9277"
-                  style="fill:none;stroke:#fffafa;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                  style="fill:none;stroke:#fffafa;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1" />
                <path
                   id="chaussure_gauche_lacet2"
                   d="m 469.58023,1149.1368 c 7.43251,-5.3378 10.08566,-6.0444 20.73893,-7.3761"
-                  style="fill:none;stroke:#fffafa;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                  style="fill:none;stroke:#fffafa;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1" />
                <path
                   id="chaussure_gauche_lacet1"
                   d="m 456.76899,1134.3028 c 6.37759,-2.4555 11.65887,-2.9997 15.59014,-3.51"
-                  style="fill:none;stroke:#fffafa;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                  style="fill:none;stroke:#fffafa;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1" />
                <path
                   id="pantalon"
                   d="m -24.341317,683.04433 c 0,0 -27.824686,106.30877 26.51497,134.87968 71.126687,37.39725 176.233537,15.04791 176.233537,15.04791 0,0 -14.30539,43.54491 10,151.81434 24.30538,108.26954 13.48989,161.76374 13.48989,161.76374 0,0 3.90894,-18.4964 56.93888,-14.0772 13.33695,-235.41068 13.63111,-301.08172 13.63111,-301.08172 l 111.96407,-4.62874 c 0,0 -9.04791,76.80239 8.62874,147.50898 17.67665,70.70658 8.86115,142.01888 8.86115,142.01888 0,0 23.65673,-10.201 65.0458,-10.7483 8.01112,-169.78954 7.80111,-331.81247 8.05712,-342.85741 0.7812,-33.70284 -17.67665,-53.02994 -48.61078,-55.23952 -30.93413,-2.20958 -166.2547,-6.24964 -230.33254,-1.83048 -3.14354,-31.16341 -2.75293,-31.16341 -2.75293,-31.16341 l -19.07481,8.59325 h -187.546303 -4.419162"
@@ -404,17 +394,17 @@
                   d="m 384.59417,826.63406 c 0,0 -99.14517,4.75368 -99.69018,3.99054 -0.54502,-0.76314 97.51013,-7.0431 100.9472,-7.65507 0.55674,-2.17751 0.96994,-7.04552 0.39578,-9.80749 -1.14831,-5.52396 2.29662,10.28592 2.29662,10.28592 0,0 5.34046,-1.60364 10.04417,-9.24239 1.25279,-4.12334 -1.63482,8.81828 -6.59922,11.45198 2.3434,1.26658 7.77286,1.70422 11.46402,-0.5524 1.62035,-0.99062 -5.78558,8.10002 -12.54653,5.04331 -4.46123,30.45928 1.1023,128.81291 -0.75977,128.26359 -1.86207,-0.54932 -12.04669,-88.67924 -5.55209,-131.77799 z"
                   />
                <path
-                  style="fill:#ffffff;fill-opacity:1;stroke:#dcdcdc;stroke-width:2.29763722;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+                  style="fill:#ffffff;stroke:#dcdcdc;stroke-width:2.29763722;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1"
                   d="m 49.8042,300.66406 c 0,0 -118.425045,37.55286 -124.646189,73.70687 -6.221144,36.15401 -18.720421,108.75571 -18.720421,108.75571 0,0 19.139518,24.14705 68.746022,19.84143 -10.155662,24.79428 -13.092529,32.15848 -13.092529,32.15848 0,0 9.943114,75.22971 3.961542,166.32011 C -35.359137,722.9457 97.23951,689.29397 97.23951,689.29397 h 101.55662 c 0,0 -8.16524,-115.23696 4.0784,-186.5212 38.4668,-11.20936 41.63259,2.34586 61.54281,-9.04391 C 261.67263,451.0909 259.29252,400.84569 238.19999,364.83228 226.01214,343.7745 149.8042,300.66406 149.8042,300.66406 Z"
                   id="tee-shirt" />
                <path
                   id="tee-shirt_ombre_g"
                   d="m 203.47728,495.38186 c 0,0 11.54004,-31.20733 6.61716,-69.58252 -1.89253,41.81537 -6.61716,69.58252 -6.61716,69.58252 z"
-                  style="fill:#dcdcdc;fill-opacity:1;" />
+                  style="fill:#dcdcdc;" />
                <path
                   id="tee-shirt_ombre_d"
                   d="m -24.878683,500.59261 8.582127,-3.81428 10.489266,-41.67848 c 0,0 2.860709,-8.58213 -5.721418,-16.21068 -8.582127,-7.62856 7.628557,3.81427 7.628557,3.81427 V 428.3999 l 0.95357,16.21068 c 0,0 3.814278,-1.90714 3.814278,-9.53569 0,-7.62856 -3.0920833,14.13001 -5.894949,26.53634 -1.694175,7.49893 -6.000711,22.75085 -9.978596,37.0164 -6.674988,3.81428 -9.872835,1.96498 -9.872835,1.96498 z"
-                  style="fill:#dcdcdc;fill-opacity:1;" />
+                  style="fill:#dcdcdc;" />
             </g>
 
 
@@ -433,17 +423,17 @@
                   d="m 810.24699,666.95621 v 542.07109 c 0,0 -7.33467,4.3021 -20.95618,0 C 788.7669,1189.7171 765.1912,671.25836 765.1912,671.25836 Z"
                    />
                <path
-                  style="fill:#d46721;fill-opacity:1;stroke:#710000;stroke-width:0.87;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+                  style="fill:#d46721;stroke:#710000;stroke-width:0.87;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
                   d="m -380.74862,630.92503 832.60002,0.64128 421.75488,33.44693 -903.96687,11.4659 z"
                   id="table_plateau" />
                <path
                   id="table_tranche_court"
                   d="m -380.52555,630.94459 v 20 l 350.38803,46.29502 V 676.4987 Z"
-                  style="opacity:1;fill:#79360a;fill-opacity:1;" />
+                  style="fill:#79360a;" />
                <path
                   id="table_tranche_long"
                   d="m 873.60633,665.01324 v 19.25909 l -903.96692,12.94772 0.22307,-20.72135 z"
-                  style="opacity:1;fill:#e3884d;fill-opacity:1;" />
+                  style="fill:#e3884d;" />
             </g>
 
             <!-- bras -->
@@ -488,28 +478,28 @@
                   id="lampe_lumiere"
                   transform="matrix(1.0222829,-0.05821363,0.08836429,1.5517551,-53.595676,-215.92768)"
                   r="22.885672" cy="454.82126" cx="601.61658"
-                  style="fill:#ffff00;fill-opacity:1;filter:url(#filter9032)" />
+                  style="fill:#ffff00;filter:url(#filter9032)" />
                <ellipse
-                  style="fill:#c6b5b5;fill-opacity:1;"
+                  style="fill:#c6b5b5;"
                   id="lampe_socle_top"
                   cx="680.71326" cy="640.745" rx="70.203194" ry="5.2390447" />
                <path
                   id="lampe_socle_tranche"
                   d="m 610.59996,640.61388 c 0.18602,4.41216 -0.006,11.33266 0,15.73746 -0.006,7.75699 140.26194,8.17454 140.26194,-0.052 v -15.6855 c 0,7.73504 -140.26771,7.73504 -140.26194,0 z"
-                  style="fill:#fff6f4;fill-opacity:1;stroke:#807878;stroke-width:1.05905426;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                  style="fill:#fff6f4;stroke:#807878;stroke-width:1.05905426;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
                <path
                   id="lampe_haut_1"
                   d="m 604.52826,403.23155 c -13.2962,3.48301 -18.99098,28.45567 -12.81767,55.23403 6.194,26.81281 22.01111,46.14912 35.49531,43.39414 27.09747,-11.35479 55.08334,-25.04188 78.1288,-35.77486 l -14.82584,-64.25313 c -14.51087,0.37105 -83.99585,1.51215 -85.9806,1.39982 z"
-                  style="fill:url(#linearGradient8202);fill-opacity:1;stroke:#807878;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                  style="fill:url(#linearGradient8202);stroke:#807878;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
                <ellipse
                   id="lampe_haut_2"
                   transform="rotate(-12.993087)"
-                  style="fill:#c6b5b5;fill-opacity:1;stroke:#807878;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+                  style="fill:#c6b5b5;stroke:#807878;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
                   cx="582.72498" cy="579.76367" rx="12.764548" ry="32.725571" />
                <path
                   id="lampe_jonction"
                   d="m 675.90855,640.05877 c -1.66016,-41.94708 -9.52065,-105.56478 53.60491,-135.52938 54.07104,-29.34342 27.80184,-88.42694 -27.98244,-64.39332 -4.41884,-4.11879 -5.8506,-7.40432 -5.73134,-14.15979 74.97448,-32.55969 119.50469,55.61694 33.37664,97.09568 -50.75238,24.44204 -37.75943,116.98681 -37.75943,116.98681 z"
-                  style="fill:#ededed;fill-opacity:1;stroke:#5b5b5b;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                  style="fill:#ededed;stroke:#5b5b5b;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
             </g>
 
             <!-- Visage -->
