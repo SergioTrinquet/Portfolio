@@ -138,8 +138,8 @@ const tl_scrollTriggerBody = gsap.timeline({
         onToggle: self => console.log("toggled, isActive:", self.isActive),
         onUpdate: self => { console.log("progress:", self.progress.toFixed(3), "direction:", self.direction, "velocity", self.getVelocity()); } */
     },
-    //onUpdate: () => { console.log("évènement update !!!") },
-    onComplete: () => { console.log("animation terminée !!!"); },
+    /* onUpdate: () => { console.log("évènement update !") },
+    onComplete: () => { console.log("animation terminée !"); }, */
 });
 
 
@@ -188,7 +188,6 @@ function generate_timeline() {
         .to("#content_screen3", { left:"0vw", duration: 80 }, "<+=30");    // Transition arrivée fond bleu marine
 
     // Transition seulement qd écran moyen ou petit      
-    //ScrollTrigger.saveStyles(".textePresentation");
     if(mm == "m" || mm == "s" || mm == "xs") {
         tl_scrollTriggerBody.to(".textePresentation", { width:"0vw", height: "0vw", margin: 0, duration: 20 }); 
     }
