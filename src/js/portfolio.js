@@ -152,16 +152,9 @@ function generate_timeline() {
     // On supprime le CSS dans les balises styles ajouté par GSAP
     tl_scrollTriggerBody
         .set(`.wrapperSVGsAndTexts, .rayons, .textePresentation, #background_screen1and2 > .ray, 
-        #content_screen3, .PreScreen3,
-        .halo, 
-        .backgroundHalfScreen, #skills .domain, .domain .title,
-        #SVGs, #intituleJob, 
-        #content_screen4, 
-        #sectionTitles .sectionTitle, 
-        #skills, 
+        #content_screen3, .PreScreen3, #content_screen3 #shadows > div, .halo, .backgroundHalfScreen, #skills .domain, .domain .title, #SVGs, #intituleJob, #content_screen4, #sectionTitles .sectionTitle, #skills, 
         #background_screen5, #SVG_chaise, #SVG_tableSansPiedBG, #SVG_tablePiedBG, #SVG_corps, #SVG_bras,#SVG_laptop, #SVG_lampe, #SVG_tasse, #SVG_ombre, .msgRemerciements, .msgRemerciements > *, #margeRight,
-        #background_screenEnd, #background_screenEnd #mot span, #background_screenEnd .motTrait,
-        .transitionalBackground, .SVGsAndAnnexes
+        #background_screenEnd, #background_screenEnd #mot span, #background_screenEnd .motTrait, .transitionalBackground, .SVGsAndAnnexes
         `, {clearProps: "all"});
             
 
@@ -504,7 +497,7 @@ function generateMenu(m, isMenuSmall) {
     // Ajout évènement sur points/sections pour scroller jusqu'au label choisi
     m.querySelectorAll(".link").forEach(l => {
         l.addEventListener("click", () => {
-            gsap.to(window, {duration: 6, scrollTo: (ratio * parseInt(l.id.substring(1))), ease: /* "sine" */ "slow" });     // Fonctionne grace au plugin 'ScrollToPlugin'
+            gsap.to(window, {duration: 6, scrollTo: (ratio * parseFloat(l.id.substring(1))), ease: /* "sine" */ "slow" });     // Fonctionne grace au plugin 'ScrollToPlugin'
             if(isMenuSmall) displaySmallMenu(); // Pour menu sur ecran small
         })
     })
