@@ -16,6 +16,10 @@ const paths = {
     imgs: {
         src: 'src/assets/imgs/*.*',
         dest: 'dist/assets/imgs/'
+    },
+    docs: {
+        src: 'src/assets/docs/*.*',
+        dest: 'dist/assets/docs/'
     }
 };
 
@@ -35,13 +39,17 @@ function generateHtmlFile() {
         .pipe(gulp.dest(paths.html.dest));
 }
 
-function transfertImgs() {
-    return gulp.src(paths.imgs.src)
-        .pipe(gulp.dest(paths.imgs.dest));
+function transfertFiles(directory) {
+        return gulp.src(paths[directory].src)
+            .pipe(gulp.dest(paths[directory].dest));
 }
 
+const transfertImgs = () => transfertFiles("imgs");
+const transfertDocs = () => transfertFiles("docs");
 
-const build = gulp.series(clean, gulp.parallel(generateHtmlFile, transfertImgs));
+
+const build = gulp.series(clean, gulp.parallel(generateHtmlFile, transfertImgs, transfertDocs));
+
 
 exports.clean = clean; // pour supprimer le répertoire 'dist': Juste utile en dev.
 
