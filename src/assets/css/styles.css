@@ -24,14 +24,20 @@ html, body {
   width: 100%;
   height: 100%;
   min-height: 100vh;
-
-  min-height: -webkit-fill-available;
 }
+
+
+html {
+  height: -webkit-fill-available;
+}
+
 body {
   overflow-x: hidden;
   position: static; 
   overflow-y: auto;
   height: 17000px;
+
+  min-height: -webkit-fill-available;
 }
 /* Pour empecher quand on est en haut de page de scroller vers le bas avant la fin de l'animation */
 body.noscroll { 
