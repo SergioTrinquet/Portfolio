@@ -20,13 +20,14 @@
   --bgcolor-screenEnd: #2b2b2b;
 }
 
-html, body {
+/* Retiré suite à correct° bug des 100vh sur Chrome pour mobile */
+/* html, body {
   width: 100%;
   height: 100%;
   min-height: 100vh;
-}
+} */
 
-
+/* Ajouté pour corriger le bug des 100vh sur Chrome pour mobile */
 html {
   height: -webkit-fill-available;
 }
@@ -37,6 +38,8 @@ body {
   overflow-y: auto;
   height: 17000px;
 
+  /* Ajouté pour corriger le bug des 100vh sur Chrome pour mobile */
+  min-height: 100vh;
   min-height: -webkit-fill-available;
 }
 /* Pour empecher quand on est en haut de page de scroller vers le bas avant la fin de l'animation */
