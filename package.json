@@ -2,7 +2,7 @@
   "name": "version_finale",
   "version": "1.0.0",
   "description": "Portfolio",
-  "main": "portfolio.html",
+  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "gulp"
