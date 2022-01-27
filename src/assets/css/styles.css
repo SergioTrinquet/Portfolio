@@ -49,10 +49,16 @@ body.noscroll {
 }
 
 
-#background_screen1and2 {
+#background_screen1and2,
+#content_screen3,
+.PreScreen3,
+#content_screen4 {
   position: fixed;
-  width: 100vw;
   height: 100vh;
+}
+
+#background_screen1and2 {
+  width: 100vw;
   background: rgb(102,209,234);
   background: linear-gradient(29deg, rgba(102, 209, 234,1) 0%, rgba(0, 118, 166,1) 100%);
 }
@@ -155,10 +161,8 @@ body.noscroll {
 
 #content_screen3,
 .PreScreen3 {
-  position: fixed;
   z-index: 2;
   width: calc(100vw + 400px);
-  height: 100vh;
   left: calc(-100vw - 400px);
   clip-path: polygon(0 0, 100% 0, calc(100% - 400px) 100%, 0% 100%);
 }
@@ -275,9 +279,7 @@ body.noscroll {
 }
 
 #content_screen4 {
-  position: fixed;
   z-index: 2;
-  height: 100vh;
   width: 100vw;
   top: 100vh;
   display: flex;
@@ -1148,7 +1150,7 @@ body.noscroll {
   letter-spacing: 0.15vw;
   font-weight: 800;
 }
-/* Media query qui permet de Lfiltrer les devices qui peuvent survoler les éléments simplement: Ici les ordimais pas les mobiles et tablettes */
+/* Media query qui permet de filtrer les devices qui peuvent survoler les éléments simplement: Ici les ordimais pas les mobiles et tablettes */
 @media (hover: hover) {
   .msgRemerciements a:hover {
     box-shadow: 0 4px 0 #ffa09c;
