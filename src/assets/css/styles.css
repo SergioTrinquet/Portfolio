@@ -29,6 +29,7 @@
 
 /* Ajouté pour corriger le bug des 100vh sur Chrome pour mobile */
 html {
+  height: 100%;
   height: -webkit-fill-available;
 }
 
