@@ -1121,6 +1121,12 @@ body.noscroll {
   overflow: hidden;
   box-shadow: 0 0 0 #ffa09c;
 }
+
+/* @media (hover: hover) { */
+@media (not(hover)) {
+  .msgRemerciements a { font-style: italic !important;}
+}
+
 .msgRemerciements a:before {
   content: "";
   background: rgba(255,255,255,0.3);
