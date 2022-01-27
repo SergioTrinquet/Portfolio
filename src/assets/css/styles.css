@@ -1122,8 +1122,8 @@ body.noscroll {
   box-shadow: 0 0 0 #ffa09c;
 }
 
-/* @media (hover: hover) { */
-@media (not(hover)) {
+/* @media (not(hover)) { */
+@media (hover: hover) {
   .msgRemerciements a { font-style: italic !important;}
 }
 
