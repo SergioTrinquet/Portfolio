@@ -40,7 +40,7 @@ body {
   height: 17000px;
 
   /* Ajouté pour corriger le bug des 100vh sur Chrome pour mobile */
-  min-height: 100vh;  min-height: 100%;
+  min-height: 100vh;
   min-height: -webkit-fill-available;
 }
 /* Pour empecher quand on est en haut de page de scroller vers le bas avant la fin de l'animation */
