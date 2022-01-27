@@ -852,7 +852,7 @@ body.noscroll {
   #projects .projectCard { 
     width: 74vw; 
     margin: 0 13vw;
-    height: 48vh;
+    /* height: 48vh; */ height: calc(var(--vh, 1vh) * 48);
   }
 }
 @media screen and (max-width: 300px) {
