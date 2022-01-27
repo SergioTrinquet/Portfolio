@@ -55,7 +55,7 @@ body.noscroll {
 .PreScreen3,
 #content_screen4 {
   position: fixed;
-  height: 100vh;  height: 100%;
+  height: 100vh;
 }
 
 #background_screen1and2 {
