@@ -130,10 +130,11 @@ const tl_scrollTriggerBody = gsap.timeline({
             duration: {min: 0.5, max: 4.5},
             delay: 0
             /* , ease: "slow" */, ease: "none"
-            //, inertia: false
+            , inertia: false
         },
         // markers: true,
         invalidateOnRefresh: true
+        //, onEnter: ({progress, direction, isActive}) => console.log(progress, direction, isActive), onEnterBack: ({progress, direction, isActive}) => console.log(progress, direction, isActive),
         /* , onRefresh: () => { console.log("Refreshed !!") },
         onToggle: self => console.log("toggled, isActive:", self.isActive),
         onUpdate: self => { console.log("progress:", self.progress.toFixed(3), "direction:", self.direction, "velocity", self.getVelocity()); } */
@@ -521,7 +522,7 @@ function generateProjectsNavigation() {
     
     
     const index = (`${prefixNomLabelProjets}_`).length;
-    const duree = 2;
+    const duree = 1;
     const easing = "power1"; /* "linear" */;
     let i = 0;
     document.querySelectorAll(".projectCard").forEach(p => {
