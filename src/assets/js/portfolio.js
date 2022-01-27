@@ -36,6 +36,7 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ||
         document.documentElement.style.setProperty('--vh', `${h/100}px`);
         document.documentElement.style.setProperty('--vmax', `${max/100}px`);
         document.documentElement.style.setProperty('--vmin', `${min/100}px`);
+        document.querySelector("#toto").innerText = `${h/100}px`; //TEST
     };
     window.addEventListener('resize', setDocHeight);
     window.addEventListener('orientationchange', setDocHeight);
