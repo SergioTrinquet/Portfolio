@@ -822,7 +822,7 @@ body.noscroll {
   flex-direction: column;
   position: relative;
   background-color: #fff;
-  height: 45vh;
+  /* height: 45vh; */   height: calc(var(--vh, 1vh) * 45);
   font-size: 1.9vmax;   
   font-size: clamp(15px, 3vmin, 18px);
   color: rgb(73, 77, 140);
