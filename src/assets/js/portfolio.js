@@ -24,6 +24,26 @@ let flagAnimationIntro = false;
 let isScrolling = null;
 const margeErreurEnPx = 15;
 
+
+//////// Code suivant juste pour mobile : Correct° du bug sur mobile et tablets avec unité du type vh, vmax, vmin,... ////////
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ||
+   (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.platform))) {
+    function setDocHeight() {
+        let h = window.innerHeight;
+        let w = window.innerWidth;
+        let max = (h - w > 0) ? h : w;
+        let min = (h - w < 0) ? h : w;
+        document.documentElement.style.setProperty('--vh', `${h/100}px`);
+        document.documentElement.style.setProperty('--vmax', `${max/100}px`);
+        document.documentElement.style.setProperty('--vmin', `${min/100}px`);
+    };
+    window.addEventListener('resize', setDocHeight);
+    window.addEventListener('orientationchange', setDocHeight);
+    setDocHeight();
+}
+////////////////
+
+
 // Si on est en haut de page, ajout de la transition pour l'apparition du visage
 if(getScrollTop() == 0) {
     

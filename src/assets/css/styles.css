@@ -48,7 +48,6 @@ body.noscroll {
   overflow-y: scroll;
 }
 
-
 #background_screen1and2,
 #content_screen3,
 .PreScreen3,
@@ -334,7 +333,7 @@ body.noscroll {
 
 .wrapperSVGsAndTexts {
   width: 50%;
-  height: 70vmin;
+  /* height: 70vmin; */   height: calc(var(--vmin, 1vmin) * 70);
   max-width: 900px;
   display: flex;
   justify-content: center;
