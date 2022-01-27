@@ -815,7 +815,7 @@ body.noscroll {
   display: flex;
   transform-origin: 5% 0%;
   align-self: flex-start;
-  margin: 28vh 0 0 0;
+  /* margin: 28vh 0 0 0; */   margin: calc(var(--vh, 1vh) * 28) 0 0 0;
 }
 #projects .projectCard {
   display: flex;
