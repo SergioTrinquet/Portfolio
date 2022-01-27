@@ -337,10 +337,10 @@ function generate_timeline() {
     tl_scrollTriggerBody 
         .to(".msgRemerciements > *", { autoAlpha:1, y: 0, duration: 50, stagger: 25 })
         .addLabel("step_4|Mon CV", ">")  
-        .to("#background_screenEnd", { clipPath: "circle(100vmax)", duration: 160 })
-        .to("#background_screenEnd #mot span", { autoAlpha:1, scale:1, duration: 40, stagger: 40 }, "<+=20")
-        .to("#background_screenEnd .motTrait", { width: "clamp(135px, 30vmin, 220px)", duration: 30 })
-        .fromTo("#linkbackToTop", { autoAlpha: 0, y:20  }, { autoAlpha:1, y:0, duration: 1, delay: 20 })    
+        .to("#background_screenEnd", { clipPath: "circle(100vmax)", duration: 120 })
+        .to("#background_screenEnd #mot span", { autoAlpha:1, scale:1, duration: 20, stagger: 20 }, "<+=20")
+        .to("#background_screenEnd .motTrait", { width: "clamp(135px, 30vmin, 220px)", duration: 20 })
+        .fromTo("#linkbackToTop", { autoAlpha: 0, y:20  }, { autoAlpha:1, y:0, duration: 1, delay: 10 })    
         .addLabel("step_final|Fin", ">");  
 
     return tl_scrollTriggerBody;
