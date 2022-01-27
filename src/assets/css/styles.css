@@ -847,7 +847,7 @@ body.noscroll {
 @media screen and (max-width: 480px) {
   #projects { 
     transform-origin: 0% 0%; 
-    margin: 30vh 0 0 0;
+    /* margin: 30vh 0 0 0; */ margin: calc(var(--vh, 1vh) * 30) 0 0 0;
   }
   #projects .projectCard { 
     width: 74vw; 
