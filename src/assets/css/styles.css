@@ -1121,12 +1121,6 @@ body.noscroll {
   overflow: hidden;
   box-shadow: 0 0 0 #ffa09c;
 }
-
-/* @media (not(hover)) { */
-@media (hover: hover) {
-  .msgRemerciements a { font-style: italic !important;}
-}
-
 .msgRemerciements a:before {
   content: "";
   background: rgba(255,255,255,0.3);
@@ -1154,11 +1148,14 @@ body.noscroll {
   letter-spacing: 0.15vw;
   font-weight: 800;
 }
-.msgRemerciements a:hover {
-  box-shadow: 0 4px 0 #ffa09c;
-  transform: translateY(-4px) !important;
+/* Media query qui permet de Lfiltrer les devices qui peuvent survoler les éléments simplement: Ici les ordimais pas les mobiles et tablettes */
+@media (hover: hover) {
+  .msgRemerciements a:hover {
+    box-shadow: 0 4px 0 #ffa09c;
+    transform: translateY(-4px) !important;
+  }
+  .msgRemerciements a:hover > i { opacity: 1; }
 }
-.msgRemerciements a:hover > i { opacity: 1; }
 
 /* Gestion petit écran (taille 's' coté js) */
 @media screen and (max-width: 480px) {
