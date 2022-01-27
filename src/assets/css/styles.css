@@ -314,7 +314,12 @@ body.noscroll {
 @media screen and (min-width: 481px) and (max-width: 768px) {
   #background_screen5 > #margeRight { width: 24vmax; }
 }
-
+/* Gestion très petit écran (taille 's' coté js) */
+@media screen and (max-width: 480px) {
+  #background_screen5 > #margeRight {
+    background: linear-gradient(20deg, var(--color-degr-1-screen4) 0%, var(--color-degr-2-screen4) 100%);
+  } 
+}
 
 #container {
   display: flex;
@@ -1186,7 +1191,12 @@ body.noscroll {
   opacity: 0;
   box-shadow: 0 0 0 rgba(255, 255, 255, 0.5);
 }
-
+/* Gestion très petit écran (taille 's' coté js) */
+@media screen and (max-width: 480px) {
+  .transitionalBackground {
+    background: linear-gradient(1deg, var(--color-degr-1-screen4) 40%, var(--color-degr-2-screen4) 70%);
+  } 
+}
 
 
 /*#region - écran de fin */
