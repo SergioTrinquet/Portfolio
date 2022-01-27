@@ -30,7 +30,7 @@
 /* Ajouté pour corriger le bug des 100vh sur Chrome pour mobile */
 html {
   height: 100%;
-  height: -webkit-fill-available;
+  /* height: -webkit-fill-available; */
 }
 
 body {
@@ -41,7 +41,7 @@ body {
 
   /* Ajouté pour corriger le bug des 100vh sur Chrome pour mobile */
   min-height: 100vh;
-  min-height: -webkit-fill-available;
+  /* min-height: -webkit-fill-available; */
 }
 /* Pour empecher quand on est en haut de page de scroller vers le bas avant la fin de l'animation */
 body.noscroll { 
