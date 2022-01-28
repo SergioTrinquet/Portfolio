@@ -28,7 +28,7 @@ const margeErreurEnPx = 15;
 //////// Code suivant juste pour mobile : Correct° du bug sur mobile et tablets avec unité du type vh, vmax, vmin,... ////////
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ||
    (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.platform))) {
-    function setDocHeight() {
+    function setCSSunits() {
         let h = window.innerHeight;
         let w = window.innerWidth;
         let max = (h - w > 0) ? h : w;
@@ -38,10 +38,12 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ||
         document.documentElement.style.setProperty('--vmin', `${min/100}px`);
         document.querySelector("#toto").innerText = `${h/100}px`; //TEST
     };
-    window.addEventListener('resize', setDocHeight);
-    window.addEventListener('orientationchange', setDocHeight);
-    setDocHeight();
+    window.addEventListener('resize', setCSSunits);
+    window.addEventListener('orientationchange', setCSSunits);
+    setCSSunits();
 }
+//document.documentElement.style.setProperty('--vh', "42em");
+//var TEST = document.documentElement.style.getPropertyValue("--vh"); console.log("TEST", TEST);
 ////////////////
 
 
@@ -243,7 +245,7 @@ function generate_timeline() {
 
         // En gérant du coté JS "flex-direction", on évite un bug d'affichage: Le SVG changeait brusquement de position
         if( mm == "xs" || mm == "s" || mm == "m") {
-            tl_scrollTriggerBody.to("#skills", { zIndex: 3, autoAlpha: 1, flexDirection:"column", marginTop: "30vh" });
+            tl_scrollTriggerBody.to("#skills", { zIndex: 3, autoAlpha: 1, flexDirection:"column", /* marginTop: "30vh", */ marginTop: "calc(var(--vh, 1vh) * 30)" });
         } else {
             tl_scrollTriggerBody.to("#skills", { zIndex: 3, autoAlpha: 1 });
         }
