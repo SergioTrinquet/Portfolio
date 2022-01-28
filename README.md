@@ -16,7 +16,9 @@ Voici comment j'ai procédé :
 
 2 - Maintenant il faut que Vercel utilise cette commande "build" lors du déploiement. C'est ce qu'il fait lorsqu'il détecte un framework, mais ici, nous n'en avons pas utilisé.   
 Nous devons donc dire explicitement à Vercel de le faire : Sur le site de Vercel, dans les settings du projet (menu "Settings > General > Build & Development Settings"), on signifie dans le champ de saisie quelle est la commande de build à executer lors de la mise en ligne : Ici donc "npm run build" qui déclenchera la commande "gulp". 
+
 Enfin, toujours au même endoit dans les settings, on va aussi spécifier le répertoire à déployer (champ de saisie "Output directory"): Ici le répertoire "dist".  
+
 NOTE: Dans les 2 cas, ne pas oublier de cocher l'option "override" à coté des champs de saisie
 
 Et voilà!
