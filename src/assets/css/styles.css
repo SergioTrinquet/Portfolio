@@ -687,7 +687,6 @@ body.noscroll {
   max-width: 900px;
   transform: translateX(-200px); /* Car est centré dans un conteneur (#content_screen3) qui fait plus que 100vw de large (100vw + 400px) */
   /* margin-top: 25vh; */ margin-top: calc(var(--vh, 1vh) * 25); /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
-  transition: margin-top 0.2s ease;
 }
 
 #skills .domain {
