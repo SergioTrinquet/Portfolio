@@ -36,7 +36,7 @@ body {
   overflow-x: hidden;
   position: static; 
   overflow-y: auto;
-  height: 17000px;  height: 37000px;
+  height: 17000px;   height: 37000px;
 
   /* Ajouté pour corriger le bug des 100vh sur Chrome pour mobile */
   min-height: 100vh;
