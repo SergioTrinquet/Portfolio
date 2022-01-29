@@ -147,7 +147,7 @@ const tl_scrollTriggerBody = gsap.timeline({
         trigger: "body",
         start: "top top",
         end: `bottom bottom`,
-        scrub: 0,
+        scrub: /* 1 */ 0.1,
         snap: { 
             snapTo: "labelsDirectional", 
             duration: /* {min: 0.5, max: 4.5} */ {min: 0.2, max: 2.5},
