@@ -25,7 +25,8 @@ let isScrolling = null;
 const margeErreurEnPx = 15;
 
 
-//////// Code suivant juste pour mobile : Correct° du bug sur mobile et tablets avec unité du type vh, vmax, vmin,... ////////
+//*** Code suivant juste pour mobile : Correct° du bug sur mobile et tablettes => unité du type vh, vmax, vmin,... sont faussées à cause de la barre d'adresse qui coulisse ***//
+let scrubValue = 1;
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ||
    (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.platform))) {
     function setCSSunits() {
@@ -41,10 +42,12 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ||
     window.addEventListener('resize', setCSSunits);
     window.addEventListener('orientationchange', setCSSunits);
     setCSSunits();
+
+    scrubValue = 0.1;
 }
 //document.documentElement.style.setProperty('--vh', "42em");
 //var TEST = document.documentElement.style.getPropertyValue("--vh"); console.log("TEST", TEST);
-////////////////
+//*** Fin ***//
 
 
 // Si on est en haut de page, ajout de la transition pour l'apparition du visage
@@ -147,7 +150,7 @@ const tl_scrollTriggerBody = gsap.timeline({
         trigger: "body",
         start: "top top",
         end: `bottom bottom`,
-        scrub: /* 1 */ 0.1,
+        scrub: scrubValue, // Valeur 0.1 si mobile/tablette, sinon 1
         snap: { 
             snapTo: "labelsDirectional", 
             duration: /* {min: 0.5, max: 4.5} */ {min: 0.2, max: 2.5},
@@ -450,9 +453,11 @@ function setProjectCards(nbProjectCards) {
     for(var i = 1; i <= nbProjectCards; i++) {
         coordX -= units;
         tl_scrollTriggerBody
+            .to(".projectCard", { duration: 25 })   //AJOUT
             .addLabel(`${prefixNomLabelProjets}_${i}|Mes projets`, ">") 
             .to(".projectCard", { x: `${coordX}vw`, duration: 80, stagger: 10 })
-            .to(".projectCard", { duration: 50 }) // Pour que l'on reste sur un projet qd on scroll, sinon effet d'inertie et passe au label suivant
+            //.to(".projectCard", { duration: 50 }) // Pour que l'on reste sur un projet qd on scroll, sinon effet d'inertie et passe au label suivant
+            .to(".projectCard", { duration: 25 }) // Pour que l'on reste sur un projet qd on scroll, sinon effet d'inertie et passe au label suivant
     }
     return tl_scrollTriggerBody;
 }
@@ -566,7 +571,7 @@ function generateProjectsNavigation() {
             const totalTimePreviousLabel = tl_scrollTriggerBody.labels[nomPreviousLabel.toString()];
 
             leftArrow.addEventListener("click", () => {
-                gsap.to(window, {duration: duree, scrollTo: {y: (ratio * totalTimePreviousLabel), autoKill: true}, ease: easing }); 
+                gsap.to(window, {duration: duree, scrollTo: {y: (ratio * parseFloat(totalTimePreviousLabel)), autoKill: true}, ease: easing }); 
             })
         }
 
@@ -579,7 +584,7 @@ function generateProjectsNavigation() {
             const totalTimeNextLabel = tl_scrollTriggerBody.labels[nomNextLabel.toString()];
 
             rightArrow.addEventListener("click", () => {
-                gsap.to(window, {duration: duree, scrollTo: {y: (ratio * totalTimeNextLabel), autoKill: true}, ease: easing });
+                gsap.to(window, {duration: duree, scrollTo: {y: (ratio * parseFloat(totalTimeNextLabel)), autoKill: true}, ease: easing });
             })
         }
         
