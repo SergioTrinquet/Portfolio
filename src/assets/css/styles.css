@@ -163,6 +163,7 @@ body.noscroll {
   z-index: 2;
   width: calc(100vw + 400px);
   left: calc(-100vw - 400px);
+  -webkit-clip-path: polygon(0 0, 100% 0, calc(100% - 400px) 100%, 0% 100%);
   clip-path: polygon(0 0, 100% 0, calc(100% - 400px) 100%, 0% 100%);
 }
 #content_screen3 {
@@ -771,6 +772,7 @@ body.noscroll {
   border-top-left-radius: 10px;
 }
 .domain .title {
+  -webkit-clip-path: polygon(0 0, calc(100% - 7px) 0%, 100% calc(100% + 5px), 0% 160%);
   clip-path: polygon(0 0, calc(100% - 7px) 0%, 100% calc(100% + 5px), 0% 160%);
 }
 .title::before {
@@ -930,6 +932,7 @@ body.noscroll {
 
 #projects .title {
   margin: -21px 0 0 -10px;
+  -webkit-clip-path: polygon(0 0, 100% 0%, calc(100% - 7px) calc(100% + 5px), 0% 160%);
   clip-path: polygon(0 0, 100% 0%, calc(100% - 7px) calc(100% + 5px), 0% 160%);
   z-index: 2;
 }
