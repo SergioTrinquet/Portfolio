@@ -150,14 +150,14 @@ const tl_scrollTriggerBody = gsap.timeline({
         scrub: 1,
         snap: { 
             snapTo: "labelsDirectional", 
-            duration: {min: 0.5, max: 4.5},
-            delay: 0
-            /* , ease: "slow" */, ease: "none"
-            , inertia: false
+            duration: /* {min: 0.5, max: 4.5} */ {min: 0.2, max: 2.5},
+            delay: 0,
+            //ease: "slow",
+            ease: "none",
+            inertia: false
         },
         // markers: true,
         invalidateOnRefresh: true
-        //, onEnter: ({progress, direction, isActive}) => console.log(progress, direction, isActive), onEnterBack: ({progress, direction, isActive}) => console.log(progress, direction, isActive),
         /* , onRefresh: () => { console.log("Refreshed !!") },
         onToggle: self => console.log("toggled, isActive:", self.isActive),
         onUpdate: self => { console.log("progress:", self.progress.toFixed(3), "direction:", self.direction, "velocity", self.getVelocity()); } */
@@ -245,7 +245,7 @@ function generate_timeline() {
 
         // En gérant du coté JS "flex-direction", on évite un bug d'affichage: Le SVG changeait brusquement de position
         if( mm == "xs" || mm == "s" || mm == "m") {
-            tl_scrollTriggerBody.to("#skills", { zIndex: 3, autoAlpha: 1, flexDirection:"column", /* marginTop: "30vh", */ marginTop: "calc(var(--vh, 1vh) * 30)" });
+            tl_scrollTriggerBody.to("#skills", { zIndex: 3, autoAlpha: 1, flexDirection:"column", marginTop: "calc(var(--vh, 1vh) * 30)" });
         } else {
             tl_scrollTriggerBody.to("#skills", { zIndex: 3, autoAlpha: 1 });
         }
@@ -372,12 +372,12 @@ function generate_timeline() {
 
 
 // Pour regénérer la timeline à chaque redimensionnement de la fenetre, sinon décalages se produisent car les prop. CSS de 
-// dimensions relatives (en vw, vh, %,...) sont interprétées une seule fois à l'initialisation de la timeline avec GSAP)
+// dimensions relatives (en vw, vh, %,...) sont interprétées une seule fois à l'initialisation de la timeline avec GSAP
 ScrollTrigger.addEventListener("refreshInit", () => {
     mm = getMedia();
     if(tl !== null) tl.clear(); // Prise en compte 1er déclenchement de l'evenement 'refreshInit' au chargement de la pg ou tl est = à null
     tl = generate_timeline();
-    if(!flagAnimationIntro) setNavigation(); // Ici ajouté car qd redimension de la fenêtre, les valeurs des labels utilisés dans cette fonction changent, donc foncton rappelée ici pour avoir les valeurs à jour, sinon décalage entre vrais positions des labels et positions calculées
+    if(!flagAnimationIntro) setNavigation(); // Ici ajouté car qd redimension de la fenêtre, les valeurs des labels utilisés dans cette fonction changent, donc fonction rappelée ici pour avoir les valeurs à jour, sinon décalage entre vrais positions des labels et positions calculées
 });
 
 
