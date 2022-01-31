@@ -617,3 +617,7 @@ function eyeball(event) {
 eyesMovingZone.addEventListener("mouseleave", () => { 
     pupilles.forEach(pupille => pupille.style = "");
 });
+
+eyesMovingZone.addEventListener("touchend", () => { 
+    pupilles.forEach(pupille => pupille.style = "");
+});
