@@ -614,10 +614,16 @@ function eyeball(event) {
     })
 }
 // Yeux qui reviennent à la position initiale qd curseur sort de la zone à l'origine du mvmt des pupilles
-eyesMovingZone.addEventListener("mouseleave", () => { 
+/* eyesMovingZone.addEventListener("mouseleave", () => { 
     pupilles.forEach(pupille => pupille.style = "");
 });
 
 eyesMovingZone.addEventListener("touchend", () => { 
     pupilles.forEach(pupille => pupille.style = "");
-});
+}); */
+
+["mouseleave", "touchend"].forEach(function(e) {
+    eyesMovingZone.addEventListener(e, () => { 
+        pupilles.forEach(pupille => pupille.style = "");
+    });
+})
