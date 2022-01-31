@@ -23,10 +23,9 @@ let mm = null;
 let flagAnimationIntro = false;
 let isScrolling = null;
 const margeErreurEnPx = 15;
-
+let scrubValue = 1;
 
 //*** Code suivant juste pour mobile : Correct° du bug sur mobile et tablettes => unité du type vh, vmax, vmin,... sont faussées à cause de la barre d'adresse qui coulisse ***//
-let scrubValue = 1;
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ||
    (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.platform))) {
     function setCSSunits() {
