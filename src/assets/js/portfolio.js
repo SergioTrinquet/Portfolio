@@ -160,14 +160,14 @@ const tl_scrollTriggerBody = gsap.timeline({
         start: "top top",
         end: `bottom bottom`,
         scrub: scrubValue, // Valeur 0.1 si mobile/tablette, sinon 1
-        /* snap: { 
+        snap: { 
             snapTo: "labelsDirectional", 
             duration: {min: 0.2, max: 2.5},
             delay: 0,
             //ease: "slow",
             ease: "none",
             inertia: false
-        }, */
+        },
         // markers: true,
         invalidateOnRefresh: true
         /* , onRefresh: () => { console.log("Refreshed !!") },
@@ -192,6 +192,11 @@ const tl_scrollTriggerBody = gsap.timeline({
             document.querySelector('#startScroll').innerText = startScroll; //TEST
         },
         //onSnapComplete: ({progress, direction, isActive}) => console.log("onSnapComplete", progress, direction, isActive)
+        /* ,onSnapComplete: () => { 
+            startScroll = false; 
+            console.warn("onSnapComplete"); //TEST
+            document.querySelector('#startScroll').innerText = startScroll; //TEST
+        } */
     },
     /* 
     onUpdate: () => { console.log("évènement update !") },
@@ -204,7 +209,6 @@ const tl_scrollTriggerBody = gsap.timeline({
 /////////// 31/01/21 - Autre methode de scroll qd Mobile/tablette ///////////
 function goToLabel(progress, direction) {
     const dureeEntreLabels = [1.5, 2, 2, 0.6, 0.6, 4, 1];
-    //const dureeEntreLabels = [1, 2, 3, 4, 5, 6, 7];
     
     const totalDuration = tl_scrollTriggerBody.totalDuration(); // Ici 2520,5 soit le maximum
     let instantDuration = totalDuration * progress; // Pour savoir ou on en est qd on commence à toucher au scroll
@@ -235,7 +239,7 @@ function goToLabel(progress, direction) {
     console.log("On est après label ", keyJustBefore, "On est avant label ", keyJustAfter, " | On va vers => ", labelToGoTo, " | durée transition => ", durationBetweenLabels); //TEST
     
     //gsap.to(window, {duration: 1, scrollTo: (ratio * parseFloat(labelToGoTo)), ease: /* "sine" */ "slow" });     // Fonctionne grace au plugin 'ScrollToPlugin'              
-    gsap.to(window, {duration: durationBetweenLabels, scrollTo: (ratio * parseFloat(labelToGoTo)), ease: /* "sine" */ "slow" });     // Fonctionne grace au plugin 'ScrollToPlugin'              
+    gsap.to(window, {duration: durationBetweenLabels, scrollTo: {y: (ratio * parseFloat(labelToGoTo)), autokill: false }, ease: /* "sine" */ "slow" });     // Fonctionne grace au plugin 'ScrollToPlugin'              
 }
 /////////// FIN 31/01/21 - Autre methode de scroll qd Mobile/tablette ///////////
 
