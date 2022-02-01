@@ -340,6 +340,8 @@ body.noscroll {
   justify-content: center;
   align-items: center;
   position: relative; /* Pour que SVGvisageVIVUS en position:absolute ne déborde pas de son conteneur */
+
+  will-change: transform;
 }
 @media screen and (max-width: 768px) {
   .wrapperSVGsAndTexts.columnDirection {
