@@ -44,7 +44,7 @@ if (IsMobileOrTablette) {
     window.addEventListener('orientationchange', setCSSunits);
     setCSSunits();
 
-    //scrubValue = 0.1;
+    scrubValue = 0.1;
 }
 //document.documentElement.style.setProperty('--vh', "42em");
 //var TEST = document.documentElement.style.getPropertyValue("--vh"); console.log("TEST", TEST);
@@ -165,34 +165,6 @@ const scrollTriggerForPC = {
     invalidateOnRefresh: true
     /* , onToggle: self => console.log("toggled, isActive:", self.isActive, "toggled, direction:", self.direction),
     onUpdate: self => { console.log("progress:", self.progress.toFixed(3), "direction:", self.direction, "velocity", self.getVelocity()); } */
-    /* , onUpdate: self => {
-        console.log("onUpdate => disableGoToLabelWithManualScroll", disableGoToLabelWithManualScroll, "self.direction", self.direction); //TEST
-        // Conditions successives pour n'executer qu'une fois en début de scroll la fct° 'goToLabel' et seulement qd scroll car sinon s'execute au chargement de la page
-        if(!disableGoToLabelWithManualScroll) {
-            if (ScrollTrigger.isScrolling()) {
-                goToLabel(self.progress.toFixed(3), self.direction);
-                disableGoToLabelWithManualScroll = true;
-            }
-        }
-        
-        //document.querySelector('#startScroll').innerText = disableGoToLabelWithManualScroll; // TEST
-    },
-    onScrubComplete: () => { 
-        disableGoToLabelWithManualScroll = false; 
-        console.warn("onScrubComplete"); //TESTs
-        //document.querySelector('#startScroll').innerText = disableGoToLabelWithManualScroll; //TEST
-    } */
-};
-
-const scrollTriggerForMobile = {
-    trigger: "body",
-    start: "top top",
-    end: `bottom bottom`,
-    scrub: scrubValue, // Valeur 0.1 si mobile/tablette, sinon 1
-    // markers: true,
-    invalidateOnRefresh: true
-    /* ,onToggle: self => console.log("toggled, isActive:", self.isActive, "toggled, direction:", self.direction),
-    onUpdate: self => { console.log("progress:", self.progress.toFixed(3), "direction:", self.direction, "velocity", self.getVelocity()); } */
     , onUpdate: self => {
         console.log("onUpdate => disableGoToLabelWithManualScroll", disableGoToLabelWithManualScroll, "self.direction", self.direction); //TEST
         // Conditions successives pour n'executer qu'une fois en début de scroll la fct° 'goToLabel' et seulement qd scroll car sinon s'execute au chargement de la page
@@ -210,6 +182,25 @@ const scrollTriggerForMobile = {
         console.warn("onScrubComplete"); //TESTs
         //document.querySelector('#startScroll').innerText = disableGoToLabelWithManualScroll; //TEST
     }
+};
+
+const scrollTriggerForMobile = {
+    trigger: "body",
+    start: "top top",
+    end: `bottom bottom`,
+    scrub: scrubValue, // Valeur 0.1 si mobile/tablette, sinon 1
+    snap: { 
+        snapTo: "labelsDirectional", 
+        duration: {min: 0.2, max: 2.5},
+        delay: 0,
+        //ease: "slow",
+        ease: "none",
+        inertia: false
+    },
+    // markers: true,
+    invalidateOnRefresh: true
+    /* ,onToggle: self => console.log("toggled, isActive:", self.isActive, "toggled, direction:", self.direction),
+    onUpdate: self => { console.log("progress:", self.progress.toFixed(3), "direction:", self.direction, "velocity", self.getVelocity()); } */
 };
 /////////// FIN 31/01/21 - Autre methode de scroll qd Mobile/tablette ///////////
 
