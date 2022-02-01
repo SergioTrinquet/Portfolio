@@ -24,10 +24,12 @@ let flagAnimationIntro = false;
 let isScrolling = null;
 const margeErreurEnPx = 15;
 let scrubValue = 1;
+let disableGoToLabelWithManualScroll = false;
 
 //*** Code suivant juste pour mobile : Correct° du bug sur mobile et tablettes => unité du type vh, vmax, vmin,... sont faussées à cause de la barre d'adresse qui coulisse ***//
-if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ||
-   (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.platform))) {
+const IsMobileOrTablette = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) || (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.platform));
+
+if (IsMobileOrTablette) {
     function setCSSunits() {
         let h = window.innerHeight;
         let w = window.innerWidth;
@@ -146,13 +148,75 @@ window.addEventListener('scroll', () => {
 
 
 /////////// 31/01/21 - Autre methode de scroll qd Mobile/tablette ///////////
-let disableGoToLabelWithManualScroll = false;
+const scrollTriggerForPC = {
+    trigger: "body",
+    start: "top top",
+    end: `bottom bottom`,
+    scrub: scrubValue, // Valeur 0.1 si mobile/tablette, sinon 1
+    snap: { 
+        snapTo: "labelsDirectional", 
+        duration: {min: 0.2, max: 2.5},
+        delay: 0,
+        //ease: "slow",
+        ease: "none",
+        inertia: false
+    },
+    // markers: true,
+    invalidateOnRefresh: true
+    /* , onToggle: self => console.log("toggled, isActive:", self.isActive, "toggled, direction:", self.direction),
+    onUpdate: self => { console.log("progress:", self.progress.toFixed(3), "direction:", self.direction, "velocity", self.getVelocity()); } */
+    /* , onUpdate: self => {
+        console.log("onUpdate => disableGoToLabelWithManualScroll", disableGoToLabelWithManualScroll, "self.direction", self.direction); //TEST
+        // Conditions successives pour n'executer qu'une fois en début de scroll la fct° 'goToLabel' et seulement qd scroll car sinon s'execute au chargement de la page
+        if(!disableGoToLabelWithManualScroll) {
+            if (ScrollTrigger.isScrolling()) {
+                goToLabel(self.progress.toFixed(3), self.direction);
+                disableGoToLabelWithManualScroll = true;
+            }
+        }
+        
+        //document.querySelector('#startScroll').innerText = disableGoToLabelWithManualScroll; // TEST
+    },
+    onScrubComplete: () => { 
+        disableGoToLabelWithManualScroll = false; 
+        console.warn("onScrubComplete"); //TESTs
+        //document.querySelector('#startScroll').innerText = disableGoToLabelWithManualScroll; //TEST
+    } */
+};
+
+const scrollTriggerForMobile = {
+    trigger: "body",
+    start: "top top",
+    end: `bottom bottom`,
+    scrub: scrubValue, // Valeur 0.1 si mobile/tablette, sinon 1
+    // markers: true,
+    invalidateOnRefresh: true
+    /* ,onToggle: self => console.log("toggled, isActive:", self.isActive, "toggled, direction:", self.direction),
+    onUpdate: self => { console.log("progress:", self.progress.toFixed(3), "direction:", self.direction, "velocity", self.getVelocity()); } */
+    , onUpdate: self => {
+        console.log("onUpdate => disableGoToLabelWithManualScroll", disableGoToLabelWithManualScroll, "self.direction", self.direction); //TEST
+        // Conditions successives pour n'executer qu'une fois en début de scroll la fct° 'goToLabel' et seulement qd scroll car sinon s'execute au chargement de la page
+        if(!disableGoToLabelWithManualScroll) {
+            if (ScrollTrigger.isScrolling()) {
+                goToLabel(self.progress.toFixed(3), self.direction);
+                disableGoToLabelWithManualScroll = true;
+            }
+        }
+        
+        //document.querySelector('#startScroll').innerText = disableGoToLabelWithManualScroll; // TEST
+    },
+    onScrubComplete: () => { 
+        disableGoToLabelWithManualScroll = false; 
+        console.warn("onScrubComplete"); //TESTs
+        //document.querySelector('#startScroll').innerText = disableGoToLabelWithManualScroll; //TEST
+    }
+};
 /////////// FIN 31/01/21 - Autre methode de scroll qd Mobile/tablette ///////////
 
 
 
 
-
+/*
 // GSAP : Création de la timeline
 const tl_scrollTriggerBody = gsap.timeline({
     scrollTrigger: {
@@ -169,11 +233,10 @@ const tl_scrollTriggerBody = gsap.timeline({
             inertia: false
         },
         // markers: true,
-        invalidateOnRefresh: true
-        /* , onRefresh: () => { console.log("Refreshed !!") },
-        onToggle: self => console.log("toggled, isActive:", self.isActive, "toggled, direction:", self.direction),
-        onUpdate: self => { console.log("progress:", self.progress.toFixed(3), "direction:", self.direction, "velocity", self.getVelocity()); } */
-        , onUpdate: self => {
+        invalidateOnRefresh: true,
+        //, onToggle: self => console.log("toggled, isActive:", self.isActive, "toggled, direction:", self.direction),
+        //onUpdate: self => { console.log("progress:", self.progress.toFixed(3), "direction:", self.direction, "velocity", self.getVelocity()); }
+        onUpdate: self => {
             console.log("onUpdate => disableGoToLabelWithManualScroll", disableGoToLabelWithManualScroll, "self.direction", self.direction); //TEST
             // Conditions successives pour n'executer qu'une fois en début de scroll la fct° 'goToLabel' et seulement qd scroll car sinon s'execute au chargement de la page
             if(!disableGoToLabelWithManualScroll) {
@@ -191,10 +254,14 @@ const tl_scrollTriggerBody = gsap.timeline({
             document.querySelector('#startScroll').innerText = disableGoToLabelWithManualScroll; //TEST
         },
     },
-    /* 
-    onUpdate: () => { console.log("évènement update !") },
-    onComplete: () => { console.log("animation terminée !"); }, 
-    */
+    //onComplete: () => { console.log("animation terminée !"); }
+});
+*/
+
+// GSAP : Création de la timeline
+const tl_scrollTriggerBody = gsap.timeline({
+    scrollTrigger: (IsMobileOrTablette ? scrollTriggerForMobile : scrollTriggerForPC),
+    //onComplete: () => { console.log("animation terminée !"); }
 });
 
 
