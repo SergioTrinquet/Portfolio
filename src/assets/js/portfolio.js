@@ -160,14 +160,14 @@ const tl_scrollTriggerBody = gsap.timeline({
         start: "top top",
         end: `bottom bottom`,
         scrub: scrubValue, // Valeur 0.1 si mobile/tablette, sinon 1
-        snap: { 
+        /* snap: { 
             snapTo: "labelsDirectional", 
             duration: {min: 0.2, max: 2.5},
             delay: 0,
             //ease: "slow",
             ease: "none",
             inertia: false
-        },
+        }, */
         // markers: true,
         invalidateOnRefresh: true
         /* , onRefresh: () => { console.log("Refreshed !!") },
