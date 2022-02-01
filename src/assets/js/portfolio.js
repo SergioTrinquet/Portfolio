@@ -186,17 +186,17 @@ const tl_scrollTriggerBody = gsap.timeline({
             document.querySelector('#startScroll').innerText = startScroll; // TEST
         }
 
-        ,onScrubComplete: () => { 
+        /* ,onScrubComplete: () => { 
             startScroll = false; 
             console.warn("onScrubComplete"); //TEST
             document.querySelector('#startScroll').innerText = startScroll; //TEST
-        },
+        }, */
         //onSnapComplete: ({progress, direction, isActive}) => console.log("onSnapComplete", progress, direction, isActive)
-        /* ,onSnapComplete: () => { 
+        ,onSnapComplete: () => { 
             startScroll = false; 
             console.warn("onSnapComplete"); //TEST
             document.querySelector('#startScroll').innerText = startScroll; //TEST
-        } */
+        }
     },
     /* 
     onUpdate: () => { console.log("évènement update !") },
