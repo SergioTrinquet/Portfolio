@@ -143,6 +143,16 @@ window.addEventListener('scroll', () => {
 
 
 
+
+
+/////////// 31/01/21 - Autre methode de scroll qd Mobile/tablette ///////////
+let startScroll = false;
+/////////// FIN 31/01/21 - Autre methode de scroll qd Mobile/tablette ///////////
+
+
+
+
+
 // GSAP : Création de la timeline
 const tl_scrollTriggerBody = gsap.timeline({
     scrollTrigger: {
@@ -152,7 +162,7 @@ const tl_scrollTriggerBody = gsap.timeline({
         scrub: scrubValue, // Valeur 0.1 si mobile/tablette, sinon 1
         snap: { 
             snapTo: "labelsDirectional", 
-            duration: /* {min: 0.5, max: 4.5} */ {min: 0.2, max: 2.5},
+            duration: {min: 0.2, max: 2.5},
             delay: 0,
             //ease: "slow",
             ease: "none",
@@ -161,13 +171,73 @@ const tl_scrollTriggerBody = gsap.timeline({
         // markers: true,
         invalidateOnRefresh: true
         /* , onRefresh: () => { console.log("Refreshed !!") },
-        onToggle: self => console.log("toggled, isActive:", self.isActive),
+        onToggle: self => console.log("toggled, isActive:", self.isActive, "toggled, direction:", self.direction),
         onUpdate: self => { console.log("progress:", self.progress.toFixed(3), "direction:", self.direction, "velocity", self.getVelocity()); } */
+        , onUpdate: self => {
+             console.log("onUpdate => startScroll", startScroll, "self.direction", self.direction); //TEST
+            // Conditions successives pour n'executer qu'une fois en début de scroll la fct° 'goToLabel' et seulement qd scroll car sinon s'execute au chargement de la page
+            if(!startScroll) {
+                if (ScrollTrigger.isScrolling()) {
+                    goToLabel(self.progress.toFixed(3), self.direction);
+                    startScroll = true;
+                }
+            }
+            
+            document.querySelector('#startScroll').innerText = startScroll; // TEST
+        }
+
+        ,onScrubComplete: () => { 
+            startScroll = false; 
+            console.warn("onScrubComplete"); //TEST
+            document.querySelector('#startScroll').innerText = startScroll; //TEST
+        },
+        //onSnapComplete: ({progress, direction, isActive}) => console.log("onSnapComplete", progress, direction, isActive)
     },
-    /* onUpdate: () => { console.log("évènement update !") },
-    onComplete: () => { console.log("animation terminée !"); }, */
+    /* 
+    onUpdate: () => { console.log("évènement update !") },
+    onComplete: () => { console.log("animation terminée !"); }, 
+    */
 });
 
+
+
+/////////// 31/01/21 - Autre methode de scroll qd Mobile/tablette ///////////
+function goToLabel(progress, direction) {
+    const dureeEntreLabels = [1.5, 2, 2, 0.6, 0.6, 4, 1];
+    //const dureeEntreLabels = [1, 2, 3, 4, 5, 6, 7];
+    
+    const totalDuration = tl_scrollTriggerBody.totalDuration(); // Ici 2520,5 soit le maximum
+    let instantDuration = totalDuration * progress; // Pour savoir ou on en est qd on commence à toucher au scroll
+    console.log("instantDuration", instantDuration); //TEST
+    // Ajout marge de sécurité pour le test car ne s'arrete pas exactement au niveau du label : Manque de précision pris en compte de cette façon pour le test qui suit 
+    var marge = 50;
+    instantDuration = (direction == 1) ? instantDuration += marge : instantDuration -= marge;
+
+    let valueJustBefore = null, valueJustAfter = null;
+    let keyJustBefore = null, keyJustAfter = null; //Inutile
+    let durationBetweenLabels = null, i = 0;
+    for (const [key, value] of Object.entries(tl_scrollTriggerBody.labels)) {
+        if(instantDuration > value) {
+            valueJustBefore = value;
+            keyJustBefore = key; //Inutile
+            durationBetweenLabels = dureeEntreLabels[i];
+        }
+        if(instantDuration < value) {
+            valueJustAfter = value;
+            keyJustAfter = key; //Inutile
+            durationBetweenLabels = dureeEntreLabels[i - 1];
+            break;
+        }
+        i++;
+    }
+    
+    const labelToGoTo = (direction == 1) ? valueJustAfter : valueJustBefore;
+    console.log("On est après label ", keyJustBefore, "On est avant label ", keyJustAfter, " | On va vers => ", labelToGoTo, " | durée transition => ", durationBetweenLabels); //TEST
+    
+    //gsap.to(window, {duration: 1, scrollTo: (ratio * parseFloat(labelToGoTo)), ease: /* "sine" */ "slow" });     // Fonctionne grace au plugin 'ScrollToPlugin'              
+    gsap.to(window, {duration: durationBetweenLabels, scrollTo: (ratio * parseFloat(labelToGoTo)), ease: /* "sine" */ "slow" });     // Fonctionne grace au plugin 'ScrollToPlugin'              
+}
+/////////// FIN 31/01/21 - Autre methode de scroll qd Mobile/tablette ///////////
 
 
 
@@ -614,16 +684,14 @@ function eyeball(event) {
     })
 }
 // Yeux qui reviennent à la position initiale qd curseur sort de la zone à l'origine du mvmt des pupilles
-/* eyesMovingZone.addEventListener("mouseleave", () => { 
-    pupilles.forEach(pupille => pupille.style = "");
-});
-
-eyesMovingZone.addEventListener("touchend", () => { 
-    pupilles.forEach(pupille => pupille.style = "");
-}); */
-
 ["mouseleave", "touchend"].forEach(function(e) {
     eyesMovingZone.addEventListener(e, () => { 
         pupilles.forEach(pupille => pupille.style = "");
     });
 })
+
+
+
+
+
+console.log("tl_scrollTriggerBody.labels", tl_scrollTriggerBody.labels); //TEST
