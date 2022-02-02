@@ -181,10 +181,10 @@ const scrollTriggerForPC = {
         //console.log("onUpdate => progress: ", self.progress.toFixed(3), "self.direction: ", self.direction); //TEST
         progressOnUpdateEvent = self.progress.toFixed(3);
     },
-    onScrubComplete: () => { 
+    /* onScrubComplete: () => { 
         disableGoToLabelWithManualScroll = false; 
         console.warn("onScrubComplete"); //TESTs
-    }
+    } */
 };
 
 const scrollTriggerForMobile = {
