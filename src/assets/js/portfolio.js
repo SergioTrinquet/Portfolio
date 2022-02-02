@@ -503,14 +503,14 @@ function generate_timeline() {
 
     if(mm == "s" || mm == "xs") {  
         tl_scrollTriggerBody      
-            .to(".wrapperSVGsAndTexts", { marginTop: (mm == "s" ? "10vmin" : "30vmin"), duration: 150, delay: 100 }) // SVG visage qui descend en bas de l'écran
-            /* .to(".transitionalBackground", { x:"-55%", rotation: 80, duration: 80 }, "<+=80") // Décalage fond oblique bleu/violet
+            //.to(".wrapperSVGsAndTexts", { marginTop: (mm == "s" ? "10vmin" : "30vmin"), duration: 150, delay: 100 }) // SVG visage qui descend en bas de l'écran
+            .to(".transitionalBackground", { x:"-55%", rotation: 80, duration: 80 }, "<+=80") // Décalage fond oblique bleu/violet
             .to(".msgRemerciements", { keyframes: [
                 { display: "flex"}, 
                 { autoAlpha:0, flexGrow: "1", width: "auto", duration: 25 },
                 { autoAlpha:1, duration: 25, delay: 80 }
             ] }, "<") // Apparition message "A bientôt" 
-            .to("#margeRight", { keyframes: [ {display: "initial", rotation: 80}, { x: "-10vw", y:0 , left: 0, duration: 80 } ] }); */
+            .to("#margeRight", { keyframes: [ {display: "initial", rotation: 80}, { x: "-10vw", y:0 , left: 0, duration: 80 } ] });
     } else {
         tl_scrollTriggerBody
             .to(".transitionalBackground", { x:"-45%", duration: 100, delay: 100 }) // Décalage fond oblique bleu/violet
