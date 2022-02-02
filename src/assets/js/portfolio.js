@@ -270,7 +270,7 @@ const tl_scrollTriggerBody = gsap.timeline({
 
 
 function goToLabel(progress, direction) {
-    const dureeEntreLabels = [1.5, 2, 2, 0.6, 0.6, 4, 1];
+    const dureeEntreLabels = [1.5, 2, 2, 0.6, 0.6, 8, 1];
     
     const totalDuration = tl_scrollTriggerBody.totalDuration(); // Ici 2520,5 soit le maximum
     let instantDuration = totalDuration * progress; // Pour savoir ou on en est qd on commence à toucher au scroll
@@ -323,8 +323,8 @@ window.addEventListener('scroll', () => {
     const actualScroll = getScrollTop();  
     
     if(nbExec == 0 && tweenOnComplete == true) {  
-        theDirection = (oldScroll < actualScroll) ? 1 : -1;// Direction
-        console.log("Direction", oldScroll < actualScroll, oldScroll + " < " + actualScroll);
+        theDirection = (oldScroll < actualScroll) ? 1 : -1;
+        console.log("Direction", oldScroll < actualScroll, oldScroll + " < " + actualScroll); //TEST
          
         console.warn("Event scroll: ", progressOnUpdateEvent, theDirection); //TEST
         goToLabel(progressOnUpdateEvent, theDirection);
