@@ -176,7 +176,6 @@ const scrollTriggerForPC = {
                 disableGoToLabelWithManualScroll = true;
             }
         }
-        //document.querySelector('#startScroll').innerText = disableGoToLabelWithManualScroll; // TEST
         */
 
         //console.log("onUpdate => progress: ", self.progress.toFixed(3), "self.direction: ", self.direction); //TEST
@@ -185,7 +184,6 @@ const scrollTriggerForPC = {
     onScrubComplete: () => { 
         disableGoToLabelWithManualScroll = false; 
         console.warn("onScrubComplete"); //TESTs
-        //document.querySelector('#startScroll').innerText = disableGoToLabelWithManualScroll; //TEST
     }
 };
 
@@ -242,12 +240,10 @@ const tl_scrollTriggerBody = gsap.timeline({
                 }
             }
             
-            document.querySelector('#startScroll').innerText = disableGoToLabelWithManualScroll; // TEST
         },
         onScrubComplete: () => { 
             disableGoToLabelWithManualScroll = false; 
             console.warn("onScrubComplete"); //TESTs
-            document.querySelector('#startScroll').innerText = disableGoToLabelWithManualScroll; //TEST
         },
     },
     //onComplete: () => { console.log("animation terminée !"); }
@@ -267,10 +263,15 @@ const tl_scrollTriggerBody = gsap.timeline({
 
 
 /////////// 31/01/21 - Autre methode de scroll qd Mobile/tablette ///////////
-function goToLabel(progress, direction) {
+function goToLabel(progress, direction) {       
+    
+    ////
+    document.querySelector("#titi").innerText = JSON.stringify(tl_scrollTriggerBody.labels); //TEST
+    ////
+    
     const dureeEntreLabels = [1.5, 2, 2, 0.6, 0.6, 6, 1];
     
-    const totalDuration = tl_scrollTriggerBody.totalDuration(); // Ici 2520,5 soit le maximum
+    const totalDuration = tl_scrollTriggerBody.totalDuration();
     let instantDuration = totalDuration * progress; // Pour savoir ou on en est qd on commence à toucher au scroll
     console.log("instantDuration", instantDuration, "totalDuration", totalDuration); //TEST
     // Ajout marge de sécurité pour le test car ne s'arrete pas exactement au niveau du label : Manque de précision pris en compte de cette façon pour le test qui suit 
@@ -278,17 +279,14 @@ function goToLabel(progress, direction) {
     instantDuration = (direction == 1) ? instantDuration += marge : instantDuration -= marge;
 
     let valueJustBefore = null, valueJustAfter = null;
-    //let keyJustBefore = null, keyJustAfter = null; //Inutile
     let durationBetweenLabels = null, i = 0;
     for (const [key, value] of Object.entries(tl_scrollTriggerBody.labels)) {
         if(instantDuration > value) {
             valueJustBefore = value;
-            //keyJustBefore = key; //Inutile
             durationBetweenLabels = dureeEntreLabels[i];
         }
         if(instantDuration < value) {
             valueJustAfter = value;
-            //keyJustAfter = key; //Inutile
             durationBetweenLabels = dureeEntreLabels[i - 1];
             break;
         }
@@ -296,9 +294,7 @@ function goToLabel(progress, direction) {
     }
     
     const labelToGoTo = (direction == 1) ? valueJustAfter : valueJustBefore;
-    //console.log("On est après label ", keyJustBefore, "On est avant label ", keyJustAfter, " | On va vers => ", labelToGoTo, " | durée transition => ", durationBetweenLabels); //TEST
     
-      
     tweenOnComplete = false;
     // Fonctionne avec plugin 'ScrollToPlugin' 
     gsap.to(window, {
