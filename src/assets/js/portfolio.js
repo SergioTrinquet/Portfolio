@@ -503,7 +503,7 @@ function generate_timeline() {
 
     if(mm == "s" || mm == "xs") {  
         tl_scrollTriggerBody      
-            //.to(".wrapperSVGsAndTexts", { marginTop: (mm == "s" ? "10vmin" : "30vmin"), duration: 150, delay: 100 }) // SVG visage qui descend en bas de l'écran
+            .to(".wrapperSVGsAndTexts", { marginTop: (mm == "s" ? "10vmin" : "30vmin"), duration: 150, delay: 100 }) // SVG visage qui descend en bas de l'écran
             .to(".transitionalBackground", { x:"-55%", rotation: 80, duration: 80 }, "<+=80") // Décalage fond oblique bleu/violet
             .to(".msgRemerciements", { keyframes: [
                 { display: "flex"}, 
