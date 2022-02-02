@@ -508,7 +508,7 @@ function generate_timeline() {
             .to(".msgRemerciements", { keyframes: [
                 { display: "flex"}, 
                 { autoAlpha:0, flexGrow: "1", width: "auto", duration: 25 },
-                { autoAlpha:1, duration: 25, delay: 100 }
+                { autoAlpha:1, duration: 25, delay: 80 }
             ] }, "<") // Apparition message "A bientôt" 
             .to("#margeRight", { keyframes: [ {display: "initial", rotation: 80}, { x: "-10vw", y:0 , left: 0, duration: 80 } ] });
     } else {
