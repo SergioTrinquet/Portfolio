@@ -267,14 +267,13 @@ const tl_scrollTriggerBody = gsap.timeline({
 
 
 /////////// 31/01/21 - Autre methode de scroll qd Mobile/tablette ///////////
-
-
+let totalDuration;
 function goToLabel(progress, direction) {
-    const dureeEntreLabels = [1.5, 2, 2, 0.6, 0.6, 8, 1];
+    const dureeEntreLabels = [1.5, 2, 2, 0.6, 0.6, 6, 1];
     
-    const totalDuration = tl_scrollTriggerBody.totalDuration(); // Ici 2520,5 soit le maximum
+    //const totalDuration = tl_scrollTriggerBody.totalDuration();
     let instantDuration = totalDuration * progress; // Pour savoir ou on en est qd on commence à toucher au scroll
-    console.log("instantDuration", instantDuration); //TEST
+    console.log("instantDuration", instantDuration, "totalDuration", totalDuration); //TEST
     // Ajout marge de sécurité pour le test car ne s'arrete pas exactement au niveau du label : Manque de précision pris en compte de cette façon pour le test qui suit 
     var marge = 50;
     instantDuration = (direction == 1) ? instantDuration += marge : instantDuration -= marge;
@@ -300,8 +299,9 @@ function goToLabel(progress, direction) {
     const labelToGoTo = (direction == 1) ? valueJustAfter : valueJustBefore;
     //console.log("On est après label ", keyJustBefore, "On est avant label ", keyJustAfter, " | On va vers => ", labelToGoTo, " | durée transition => ", durationBetweenLabels); //TEST
     
-    // Fonctionne avec plugin 'ScrollToPlugin'  
-    tweenOnComplete = false;            
+      
+    tweenOnComplete = false;
+    // Fonctionne avec plugin 'ScrollToPlugin' 
     gsap.to(window, {
         duration: durationBetweenLabels, 
         scrollTo: { y: (ratio * parseFloat(labelToGoTo)), autokill: false }, 
@@ -325,9 +325,8 @@ window.addEventListener('scroll', () => {
     if(nbExec == 0 && tweenOnComplete == true) {  
         theDirection = (oldScroll < actualScroll) ? 1 : -1;
         console.log("Direction", oldScroll < actualScroll, oldScroll + " < " + actualScroll); //TEST
-         
         console.warn("Event scroll: ", progressOnUpdateEvent, theDirection); //TEST
-        goToLabel(progressOnUpdateEvent, theDirection);
+        goToLabel(progressOnUpdateEvent, theDirection); // Appel fct° pour aller au label suivant/prédent que : 1. Si début de scroll exclusivement ET 2. tween précédent dû au scroll pour se rendre vers un label, est terminé    
     }
     nbExec++;               
     oldScroll = actualScroll;
@@ -552,7 +551,11 @@ ScrollTrigger.addEventListener("refreshInit", () => {
     mm = getMedia();
     if(tl !== null) tl.clear(); // Prise en compte 1er déclenchement de l'evenement 'refreshInit' au chargement de la pg ou tl est = à null
     tl = generate_timeline();
-    if(!flagAnimationIntro) setNavigation(); // Ici ajouté car qd redimension de la fenêtre, les valeurs des labels utilisés dans cette fonction changent, donc fonction rappelée ici pour avoir les valeurs à jour, sinon décalage entre vrais positions des labels et positions calculées
+    if(!flagAnimationIntro) { 
+        setNavigation(); // Ici ajouté car qd redimension de la fenêtre, les valeurs des labels utilisés dans cette fonction changent, donc fonction rappelée ici pour avoir les valeurs à jour, sinon décalage entre vrais positions des labels et positions calculées
+    
+        totalDuration = tl_scrollTriggerBody.totalDuration(); //
+    }
 });
 
 
@@ -625,7 +628,7 @@ function setProjectCards(nbProjectCards) {
     for(var i = 1; i <= nbProjectCards; i++) {
         coordX -= units;
         tl_scrollTriggerBody
-            .to(".projectCard", { duration: 25 })   //AJOUT
+            .to(".projectCard", { duration: 25 })
             .addLabel(`${prefixNomLabelProjets}_${i}|Mes projets`, ">") 
             .to(".projectCard", { x: `${coordX}vw`, duration: 80, stagger: 10 })
             .to(".projectCard", { duration: 25 }) // Pour que l'on reste sur un projet qd on scroll, sinon effet d'inertie et passe au label suivant
@@ -645,7 +648,7 @@ function displaySmallMenu() {
 
 
 // Création bon menu de navigation selon la taille de l'écran
-function setNavigation() {
+function setNavigation() {              
     if(ratio == null) ratio = getRatio(); // Calcul juste 1 fois au chargement, pas besoin d'être appelé plus
     
     // Génération du bon menu en fonction de la taille de l'écran
@@ -794,9 +797,3 @@ function eyeball(event) {
         pupilles.forEach(pupille => pupille.style = "");
     });
 })
-
-
-
-
-
-console.log("tl_scrollTriggerBody.labels", tl_scrollTriggerBody.labels); //TEST
