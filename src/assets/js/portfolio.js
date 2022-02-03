@@ -24,7 +24,7 @@ let flagAnimationIntro = false;
 let isScrolling = null;
 const margeErreurEnPx = 15;
 let scrubValue = 1;
-//let disableGoToLabelWithManualScroll = false;
+const dureeEntreLabels = [1.7, 2.5, 2.5, 0.8, 0.8, 6, 1.5];
 
 //*** Code suivant juste pour mobile : Correct° du bug sur mobile et tablettes => unité du type vh, vmax, vmin,... sont faussées à cause de la barre d'adresse qui coulisse ***//
 const IsMobileOrTablette = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) || (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.platform));
@@ -150,12 +150,13 @@ window.addEventListener('scroll', () => {
 var tweenOnComplete = true;
 var progressOnUpdateEvent = null;
 
-
-const scrollTriggerForPC = {
+// GSAP : Config du ScrollTrigger
+const st = {
     trigger: "body",
     start: "top top",
     end: `bottom bottom`,
     scrub: scrubValue, // Valeur 0.1 si mobile/tablette, sinon 1
+    // Option snap retirée au profit de méthode 'scrollTo' qui est plus réactive
     /* snap: { 
         snapTo: "labelsDirectional", 
         duration: {min: 0.2, max: 2.5},
@@ -169,95 +170,22 @@ const scrollTriggerForPC = {
     onUpdate: self => {     //console.log("onUpdate => progress: ", self.progress.toFixed(3), "self.direction: ", self.direction); //TEST
         progressOnUpdateEvent = self.progress.toFixed(3);
     },
-    //onScrubComplete: () => { console.warn("onScrubComplete"); } // TEST
+    //onScrubComplete: () => { console.warn("onScrubComplete"); }
 };
 
-const scrollTriggerForMobile = {
-    trigger: "body",
-    start: "top top",
-    end: `bottom bottom`,
-    scrub: scrubValue, // Valeur 0.1 si mobile/tablette, sinon 1
-    snap: { 
-        snapTo: "labelsDirectional", 
-        duration: {min: 0.2, max: 2.5},
-        delay: 0,
-        //ease: "slow",
-        ease: "none",
-        inertia: false
-    },
-    // markers: true,
-    invalidateOnRefresh: true
-    /* ,onToggle: self => console.log("toggled, isActive:", self.isActive, "toggled, direction:", self.direction),
-    onUpdate: self => { console.log("progress:", self.progress.toFixed(3), "direction:", self.direction, "velocity", self.getVelocity()); } */
-};
-/////////// FIN 31/01/21 - Autre methode de scroll qd Mobile/tablette ///////////
-
-
-
-
-/*
 // GSAP : Création de la timeline
 const tl_scrollTriggerBody = gsap.timeline({
-    scrollTrigger: {
-        trigger: "body",
-        start: "top top",
-        end: `bottom bottom`,
-        scrub: scrubValue, // Valeur 0.1 si mobile/tablette, sinon 1
-        snap: { 
-            snapTo: "labelsDirectional", 
-            duration: {min: 0.2, max: 2.5},
-            delay: 0,
-            //ease: "slow",
-            ease: "none",
-            inertia: false
-        },
-        // markers: true,
-        invalidateOnRefresh: true,
-        //, onToggle: self => console.log("toggled, isActive:", self.isActive, "toggled, direction:", self.direction),
-        //onUpdate: self => { console.log("progress:", self.progress.toFixed(3), "direction:", self.direction, "velocity", self.getVelocity()); }
-        onUpdate: self => {
-            console.log("onUpdate => disableGoToLabelWithManualScroll", disableGoToLabelWithManualScroll, "self.direction", self.direction); //TEST
-            // Conditions successives pour n'executer qu'une fois en début de scroll la fct° 'goToLabel' et seulement qd scroll car sinon s'execute au chargement de la page
-            if(!disableGoToLabelWithManualScroll) {
-                if (ScrollTrigger.isScrolling()) {
-                    goToLabel(self.progress.toFixed(3), self.direction);
-                    disableGoToLabelWithManualScroll = true;
-                }
-            }
-            
-        },
-        onScrubComplete: () => { 
-            disableGoToLabelWithManualScroll = false; 
-            console.warn("onScrubComplete"); //TESTs
-        },
-    },
-    //onComplete: () => { console.log("animation terminée !"); }
-});
-*/
-
-// GSAP : Création de la timeline
-/* const tl_scrollTriggerBody = gsap.timeline({
-    scrollTrigger: (IsMobileOrTablette ? scrollTriggerForMobile : scrollTriggerForPC),
-    //onComplete: () => { console.log("animation terminée !"); }
-}); */
-
-const tl_scrollTriggerBody = gsap.timeline({
-    scrollTrigger: scrollTriggerForPC
-    //onComplete: () => { console.log("animation terminée !"); }
+    scrollTrigger: st
+    //, onComplete: () => { console.log("animation terminée !"); }
 });
 
 
-/////////// 31/01/21 - Autre methode de scroll qd Mobile/tablette ///////////
-const dureeEntreLabels = [1.7, 2.5, 2.5, 0.6, 0.6, 6, 1.5];
-function goToLabel(progress, direction) {  
-    console.warn("progressOnUpdateEvent: ", progressOnUpdateEvent, "progress: ", progress); //TEST
-             
-    ////
+/////////// Methode avec 'ScrollTo' ///////////
+function goToLabel(direction) {  
     //document.querySelector("#titi").innerText = JSON.stringify(tl_scrollTriggerBody.labels); //TEST
-    ////
     
     const totalDuration = tl_scrollTriggerBody.totalDuration();
-    let instantDuration = totalDuration * progress; // Pour savoir ou on en est qd on commence à toucher au scroll
+    let instantDuration = totalDuration * progressOnUpdateEvent; // Pour savoir ou on en est qd on commence à toucher au scroll
     // Ajout marge de sécurité pour le test car ne s'arrete pas exactement au niveau du label : Manque de précision pris en compte de cette façon pour le test qui suit 
     const marge = 50;
     instantDuration = (direction == 1) ? instantDuration += marge : instantDuration -= marge;
@@ -286,7 +214,7 @@ function goToLabel(progress, direction) {
     const nomLabelToGo = (direction == 1) ? nomLabelAfter : nomLabelBefore; //console.log("nomLabelToGo", nomLabelToGo, "Position  Label: ", tl_scrollTriggerBody.scrollTrigger.labelToScroll(nomLabelToGo)) //TEST
     
     tweenOnComplete = false;
-    // Fonctionne avec plugin 'ScrollToPlugin' 
+    // Smooth scrolling vers le label précédent ou suivant
     gsap.to(window, {
         duration: durationBetweenLabels, 
         //scrollTo: { y: (ratio * parseFloat(labelToGoTo)), autokill: false },
@@ -315,8 +243,7 @@ window.addEventListener('scroll', () => {
     if(nbExecScrollEvent == 0 && tweenOnComplete == true && menuClicked == false) {  
         scrollDirection = (oldScroll < actualScroll) ? 1 : -1;
         console.log("Direction", oldScroll < actualScroll, oldScroll + " < " + actualScroll); //TEST
-        console.warn("Event scroll: ", progressOnUpdateEvent, scrollDirection); //TEST
-        goToLabel(progressOnUpdateEvent, scrollDirection);  
+        goToLabel(scrollDirection);  
     }
     nbExecScrollEvent++;               
     oldScroll = actualScroll;
@@ -324,11 +251,12 @@ window.addEventListener('scroll', () => {
     // On détermine qd le scrolling s'arrete
     window.clearTimeout( isScrolling_2 );
     isScrolling_2 = setTimeout(() => {
-        console.log('Scrolling has stopped.'); //TEST
         nbExecScrollEvent = 0; // Qd scrolling est terminé, réinitialisation de la variable qui 
+        console.log('Scrolling has stopped.'); //TEST
     }, 66);
 }, false);
-/////////// FIN 31/01/21 - Autre methode de scroll qd Mobile/tablette ///////////
+/////////// FIN - Methode avec 'ScrollTo' ///////////
+
 
 
 
