@@ -24,11 +24,10 @@ let flagAnimationIntro = false;
 let isScrolling = null;
 const margeErreurEnPx = 15;
 let scrubValue = 1;
-let disableGoToLabelWithManualScroll = false;
+//let disableGoToLabelWithManualScroll = false;
 
 //*** Code suivant juste pour mobile : Correct° du bug sur mobile et tablettes => unité du type vh, vmax, vmin,... sont faussées à cause de la barre d'adresse qui coulisse ***//
 const IsMobileOrTablette = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) || (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.platform));
-
 if (IsMobileOrTablette) {
     function setCSSunits() {
         let h = window.innerHeight;
@@ -38,7 +37,7 @@ if (IsMobileOrTablette) {
         document.documentElement.style.setProperty('--vh', `${h/100}px`);
         document.documentElement.style.setProperty('--vmax', `${max/100}px`);
         document.documentElement.style.setProperty('--vmin', `${min/100}px`);
-        document.querySelector("#toto").innerText = `${h/100}px`; //TEST
+        document.querySelector("#hauteurOneVh").innerText = `${h/100}px`; //TEST
     };
     window.addEventListener('resize', setCSSunits);
     window.addEventListener('orientationchange', setCSSunits);
@@ -167,24 +166,10 @@ const scrollTriggerForPC = {
     }, */
     // markers: true,
     invalidateOnRefresh: true, 
-    onUpdate: self => {
-        //console.log("onUpdate => disableGoToLabelWithManualScroll", disableGoToLabelWithManualScroll, "self.direction", self.direction); //TEST
-        // Conditions successives pour n'executer qu'une fois en début de scroll la fct° 'goToLabel' et seulement qd scroll car sinon s'execute au chargement de la page
-       /*  if(!disableGoToLabelWithManualScroll) {
-            if (ScrollTrigger.isScrolling()) {
-                goToLabel(self.progress.toFixed(3), self.direction);
-                disableGoToLabelWithManualScroll = true;
-            }
-        }
-        */
-
-        //console.log("onUpdate => progress: ", self.progress.toFixed(3), "self.direction: ", self.direction); //TEST
+    onUpdate: self => {     //console.log("onUpdate => progress: ", self.progress.toFixed(3), "self.direction: ", self.direction); //TEST
         progressOnUpdateEvent = self.progress.toFixed(3);
     },
-    /* onScrubComplete: () => { 
-        disableGoToLabelWithManualScroll = false; 
-        console.warn("onScrubComplete"); //TESTs
-    } */
+    //onScrubComplete: () => { console.warn("onScrubComplete"); } // TEST
 };
 
 const scrollTriggerForMobile = {
@@ -263,49 +248,54 @@ const tl_scrollTriggerBody = gsap.timeline({
 
 
 /////////// 31/01/21 - Autre methode de scroll qd Mobile/tablette ///////////
+const dureeEntreLabels = [1.5, 2, 2, 0.6, 0.6, 6, 1];
 function goToLabel(progress, direction) {       
     
     ////
     document.querySelector("#titi").innerText = JSON.stringify(tl_scrollTriggerBody.labels); //TEST
     ////
     
-    const dureeEntreLabels = [1.5, 2, 2, 0.6, 0.6, 6, 1];
-    
     const totalDuration = tl_scrollTriggerBody.totalDuration();
     let instantDuration = totalDuration * progress; // Pour savoir ou on en est qd on commence à toucher au scroll
     console.log("instantDuration", instantDuration, "totalDuration", totalDuration); //TEST
     // Ajout marge de sécurité pour le test car ne s'arrete pas exactement au niveau du label : Manque de précision pris en compte de cette façon pour le test qui suit 
-    var marge = 50;
+    const marge = 50;
     instantDuration = (direction == 1) ? instantDuration += marge : instantDuration -= marge;
 
     let valueJustBefore = null, valueJustAfter = null;
     let durationBetweenLabels = null, i = 0;
+    let nomLabelBefore = null, nomLabelAfter = null; //TEST
     for (const [key, value] of Object.entries(tl_scrollTriggerBody.labels)) {
         if(instantDuration > value) {
             valueJustBefore = value;
             durationBetweenLabels = dureeEntreLabels[i];
+            nomLabelBefore = key;//TEST
         }
         if(instantDuration < value) {
             valueJustAfter = value;
             durationBetweenLabels = dureeEntreLabels[i - 1];
+            nomLabelAfter = key;//TEST
+        
             break;
         }
         i++;
     }
     
     const labelToGoTo = (direction == 1) ? valueJustAfter : valueJustBefore;
+
+    const nomLabelToGo = (direction == 1) ? nomLabelAfter : nomLabelBefore; //console.log("nomLabelToGo", nomLabelToGo, "Position  Label: ", tl_scrollTriggerBody.scrollTrigger.labelToScroll(nomLabelToGo)) //TEST
     
     tweenOnComplete = false;
     // Fonctionne avec plugin 'ScrollToPlugin' 
     gsap.to(window, {
         duration: durationBetweenLabels, 
-        scrollTo: { y: (ratio * parseFloat(labelToGoTo)), autokill: false }, 
+        //scrollTo: { y: (ratio * parseFloat(labelToGoTo)), autokill: false },
+        scrollTo: { y: tl_scrollTriggerBody.scrollTrigger.labelToScroll(nomLabelToGo), autokill: false }, // ATTENTION: ".labelToScroll()" Ne fctionne qu'à partir de la version 3.9 de GSAP !!
         ease: "slow",
         onComplete:  () => { 
-            /* disableGoToLabelWithManualScroll = false; */ 
             tweenOnComplete = true; 
-            console.log("Tween finito !!!!");  
-        } // Fctionne bien avec FF mais pas avec Edge par ex. !!
+            console.log("Tween finito !!!!"); //TEST
+        }
     });             
 }
 
@@ -314,10 +304,11 @@ var isScrolling_2;
 var nbExec = -1;
 var theDirection = null; 
 var oldScroll = getScrollTop();
+var menuClicked = false;
 window.addEventListener('scroll', () => {
     const actualScroll = getScrollTop();  
     
-    if(nbExec == 0 && tweenOnComplete == true) {  
+    if(nbExec == 0 && tweenOnComplete == true && menuClicked == false) {  
         theDirection = (oldScroll < actualScroll) ? 1 : -1;
         console.log("Direction", oldScroll < actualScroll, oldScroll + " < " + actualScroll); //TEST
         console.warn("Event scroll: ", progressOnUpdateEvent, theDirection); //TEST
@@ -329,8 +320,7 @@ window.addEventListener('scroll', () => {
     // On détermine qd le scrolling s'arrete
     window.clearTimeout( isScrolling_2 );
     isScrolling_2 = setTimeout(() => {
-        console.log( 'Scrolling has stopped.' ); //TEST
-        disableGoToLabelWithManualScroll = false;
+        console.log('Scrolling has stopped.'); //TEST
         nbExec = 0; // Qd scrolling est terminé, réinitialisation de la variable
     }, 66);
 }, false);
@@ -440,7 +430,6 @@ function generate_timeline() {
         .fromTo("#content_screen3", 
             { background: "linear-gradient(29deg, #959ADD 30%, #292C45 80%)" },
             { background: "linear-gradient(-29deg, rgb(122, 221, 212) 0%, rgb(111, 85, 151) 100%)", duration: 80 }
-            //{ background: "linear-gradient(-45deg, rgb(255, 243, 58) 0%, rgb(151, 47, 181) 100%)", duration: 80 }
         , "<")
         .to("#intituleJob", { color: "rgb(114, 122, 167)" }, "<")
         .fromTo(".projectCard", 
@@ -692,8 +681,14 @@ function generateMenu(m, isMenuSmall) {
     // Ajout évènement sur points/sections pour scroller jusqu'au label choisi
     m.querySelectorAll(".link").forEach(l => {
         l.addEventListener("click", () => {
-            disableGoToLabelWithManualScroll = true; //
-            gsap.to(window, { duration: 6, scrollTo: (ratio * parseFloat(l.id.substring(1))), ease: /* "sine" */ "slow" });     // Fonctionne grace au plugin 'ScrollToPlugin'
+            //disableGoToLabelWithManualScroll = true; //
+            menuClicked = true;
+            gsap.to(window, { 
+                duration: 6, 
+                scrollTo: (ratio * parseFloat(l.id.substring(1))), 
+                ease: /* "sine" */ "slow",
+                onComplete:  () => { menuClicked = false }
+            });     // Fonctionne grace au plugin 'ScrollToPlugin'
             if(isMenuSmall) displaySmallMenu(); // Pour menu sur ecran small
         })
     })
@@ -739,7 +734,7 @@ function generateProjectsNavigation() {
             const totalTimePreviousLabel = tl_scrollTriggerBody.labels[nomPreviousLabel.toString()];
 
             leftArrow.addEventListener("click", () => {
-                disableGoToLabelWithManualScroll = true; //
+                //disableGoToLabelWithManualScroll = true; //
                 gsap.to(window, {duration: duree, scrollTo: {y: (ratio * parseFloat(totalTimePreviousLabel)), autoKill: true}, ease: easing }); 
             })
         }
@@ -753,7 +748,7 @@ function generateProjectsNavigation() {
             const totalTimeNextLabel = tl_scrollTriggerBody.labels[nomNextLabel.toString()];
 
             rightArrow.addEventListener("click", () => {
-                disableGoToLabelWithManualScroll = true; //s
+                //disableGoToLabelWithManualScroll = true; //s
                 gsap.to(window, {duration: duree, scrollTo: {y: (ratio * parseFloat(totalTimeNextLabel)), autoKill: true}, ease: easing });
             })
         }
