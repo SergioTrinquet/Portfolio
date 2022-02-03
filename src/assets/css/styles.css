@@ -1083,8 +1083,8 @@ body.noscroll {
   opacity: 0;
   width: 0;
   align-self: flex-start; /* Pour être aligné en haut de spn conteneur flex */
-  font-size: clamp(23px, 4.5vmax, 55px);  
-  font-size: max(23px, min(4.5vmax, 55px));
+  /* font-size: clamp(23px, 4.5vmax, 55px); */  /* Version non IOS compatible */
+  font-size: max(23px, min(4.5vmax, 55px)); /* Version IOS compatible */
   line-height: 4.2vmax;
   text-align: right;
   display: none;
@@ -1111,7 +1111,8 @@ body.noscroll {
   margin-right: 0px;
   margin-bottom: 0px;
   margin-left: auto;
-  font-size: clamp(16px, 1.8vmax, 21px);
+  /* font-size: clamp(16px, 1.8vmax, 21px); */  /* Version non IOS compatible */
+  font-size: max(16px, min(1.8vmax, 21px)); /* Version IOS compatible */
   background: none;
   opacity: 0;
   transform: translateY(5vh);
@@ -1226,7 +1227,8 @@ body.noscroll {
   position: absolute;
   z-index: 2;
   color: #fff;
-  font-size: clamp(40px, 8vmin, 80px);
+  /* font-size: clamp(40px, 8vmin, 80px); */  /* Version non IOS compatible */
+  font-size: max(40px, min(8vmin, 80px)); /* Version IOS compatible */
   background-color: var(--bgcolor-screenEnd);
   padding: 0px 2vmin;
 }
