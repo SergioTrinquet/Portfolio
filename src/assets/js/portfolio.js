@@ -43,7 +43,7 @@ if (IsMobileOrTablette) {
     window.addEventListener('orientationchange', setCSSunits);
     setCSSunits();
 
-    scrubValue = 0.1;
+    //scrubValue = 0.1;
 }
 //document.documentElement.style.setProperty('--vh', "42em");
 //var TEST = document.documentElement.style.getPropertyValue("--vh"); console.log("TEST", TEST);
