@@ -687,7 +687,7 @@ body.noscroll {
   width: 80vw;
   max-width: 900px;
   transform: translateX(-200px); /* Car est centré dans un conteneur (#content_screen3) qui fait plus que 100vw de large (100vw + 400px) */
-  /* margin-top: 25vh; */ margin-top: calc(var(--vh, 1vh) * 25); /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
+  margin-top: 25vh; /* margin-top: calc(var(--vh, 1vh) * 25); */ /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
 }
 
 #skills .domain {
@@ -817,14 +817,14 @@ body.noscroll {
   display: flex;
   transform-origin: 5% 0%;
   align-self: flex-start;
-  /* margin: 28vh 0 0 0; */   margin: calc(var(--vh, 1vh) * 28) 0 0 0;  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
+  margin: 28vh 0 0 0;   /* margin: calc(var(--vh, 1vh) * 28) 0 0 0; */  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
 }
 #projects .projectCard {
   display: flex;
   flex-direction: column;
   position: relative;
   background-color: #fff;
-  /* height: 45vh; */   height: calc(var(--vh, 1vh) * 45);  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
+  height: 45vh;   /* height: calc(var(--vh, 1vh) * 45); */  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
   font-size: 1.9vmax;   
   font-size: clamp(15px, 3vmin, 18px);
   color: rgb(73, 77, 140);
@@ -849,22 +849,22 @@ body.noscroll {
 @media screen and (max-width: 480px) {
   #projects { 
     transform-origin: 0% 0%; 
-    /* margin: 30vh 0 0 0; */ margin: calc(var(--vh, 1vh) * 30) 0 0 0;  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
+    margin: 30vh 0 0 0; /* margin: calc(var(--vh, 1vh) * 30) 0 0 0; */  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
   }
   #projects .projectCard { 
     width: 74vw; 
     margin: 0 13vw;
-    /* height: 48vh; */ height: calc(var(--vh, 1vh) * 48);  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
+    height: 48vh; /* height: calc(var(--vh, 1vh) * 48); */  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
   }
 }
 @media screen and (max-width: 300px) {
   #projects {
-    /* margin: 34vh 0 0 0; */  margin: calc(var(--vh, 1vh) * 34) 0 0 0; /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
+    margin: 34vh 0 0 0;  /* margin: calc(var(--vh, 1vh) * 34) 0 0 0; */ /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
   }
   #projects .projectCard { 
     width: 80vw; 
     margin: 0 10vw;
-    /* height: 50vh; */  height: calc(var(--vh, 1vh) * 50);  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
+    height: 50vh;  /* height: calc(var(--vh, 1vh) * 50); */  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
   }
 }
 
