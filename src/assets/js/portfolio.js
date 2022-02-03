@@ -248,16 +248,16 @@ const tl_scrollTriggerBody = gsap.timeline({
 
 
 /////////// 31/01/21 - Autre methode de scroll qd Mobile/tablette ///////////
-const dureeEntreLabels = [1.5, 2, 2, 0.6, 0.6, 6, 1];
-function goToLabel(progress, direction) {       
-    
+const dureeEntreLabels = [1.7, 2.5, 2.5, 0.6, 0.6, 6, 1.5];
+function goToLabel(progress, direction) {  
+    console.warn("progressOnUpdateEvent: ", progressOnUpdateEvent, "progress: ", progress); //TEST
+             
     ////
-    document.querySelector("#titi").innerText = JSON.stringify(tl_scrollTriggerBody.labels); //TEST
+    //document.querySelector("#titi").innerText = JSON.stringify(tl_scrollTriggerBody.labels); //TEST
     ////
     
     const totalDuration = tl_scrollTriggerBody.totalDuration();
     let instantDuration = totalDuration * progress; // Pour savoir ou on en est qd on commence à toucher au scroll
-    console.log("instantDuration", instantDuration, "totalDuration", totalDuration); //TEST
     // Ajout marge de sécurité pour le test car ne s'arrete pas exactement au niveau du label : Manque de précision pris en compte de cette façon pour le test qui suit 
     const marge = 50;
     instantDuration = (direction == 1) ? instantDuration += marge : instantDuration -= marge;
@@ -290,7 +290,7 @@ function goToLabel(progress, direction) {
     gsap.to(window, {
         duration: durationBetweenLabels, 
         //scrollTo: { y: (ratio * parseFloat(labelToGoTo)), autokill: false },
-        scrollTo: { y: tl_scrollTriggerBody.scrollTrigger.labelToScroll(nomLabelToGo), autokill: false }, // ATTENTION: ".labelToScroll()" Ne fctionne qu'à partir de la version 3.9 de GSAP !!
+        scrollTo: { y: tl_scrollTriggerBody.scrollTrigger.labelToScroll(nomLabelToGo), autokill: false }, // Autokill à 'false' pour empecher interrupt° du scroll vers le label en court de scroll en cas d'intervent° de l'utilisateur  // ATTENTION: ".labelToScroll()" Ne fctionne qu'à partir de la version 3.9 de GSAP !!
         ease: "slow",
         onComplete:  () => { 
             tweenOnComplete = true; 
@@ -301,27 +301,31 @@ function goToLabel(progress, direction) {
 
 
 var isScrolling_2;
-var nbExec = -1;
-var theDirection = null; 
+var nbExecScrollEvent = -1;
+var scrollDirection = null; 
 var oldScroll = getScrollTop();
 var menuClicked = false;
 window.addEventListener('scroll', () => {
     const actualScroll = getScrollTop();  
     
-    if(nbExec == 0 && tweenOnComplete == true && menuClicked == false) {  
-        theDirection = (oldScroll < actualScroll) ? 1 : -1;
+    // Appel fct° pour aller au label suivant/précédent qd : 
+    // 1. Début de scroll exclusivement 
+    // 2. Tween précédent dû au scroll pour se rendre vers un label, est terminé
+    // 3. Scroll n'est pas dçu à utilisat° du menu
+    if(nbExecScrollEvent == 0 && tweenOnComplete == true && menuClicked == false) {  
+        scrollDirection = (oldScroll < actualScroll) ? 1 : -1;
         console.log("Direction", oldScroll < actualScroll, oldScroll + " < " + actualScroll); //TEST
-        console.warn("Event scroll: ", progressOnUpdateEvent, theDirection); //TEST
-        goToLabel(progressOnUpdateEvent, theDirection); // Appel fct° pour aller au label suivant/prédent que : 1. Si début de scroll exclusivement ET 2. tween précédent dû au scroll pour se rendre vers un label, est terminé    
+        console.warn("Event scroll: ", progressOnUpdateEvent, scrollDirection); //TEST
+        goToLabel(progressOnUpdateEvent, scrollDirection);  
     }
-    nbExec++;               
+    nbExecScrollEvent++;               
     oldScroll = actualScroll;
 
     // On détermine qd le scrolling s'arrete
     window.clearTimeout( isScrolling_2 );
     isScrolling_2 = setTimeout(() => {
         console.log('Scrolling has stopped.'); //TEST
-        nbExec = 0; // Qd scrolling est terminé, réinitialisation de la variable
+        nbExecScrollEvent = 0; // Qd scrolling est terminé, réinitialisation de la variable qui 
     }, 66);
 }, false);
 /////////// FIN 31/01/21 - Autre methode de scroll qd Mobile/tablette ///////////
@@ -681,7 +685,6 @@ function generateMenu(m, isMenuSmall) {
     // Ajout évènement sur points/sections pour scroller jusqu'au label choisi
     m.querySelectorAll(".link").forEach(l => {
         l.addEventListener("click", () => {
-            //disableGoToLabelWithManualScroll = true; //
             menuClicked = true;
             gsap.to(window, { 
                 duration: 6, 
@@ -734,8 +737,8 @@ function generateProjectsNavigation() {
             const totalTimePreviousLabel = tl_scrollTriggerBody.labels[nomPreviousLabel.toString()];
 
             leftArrow.addEventListener("click", () => {
-                //disableGoToLabelWithManualScroll = true; //
-                gsap.to(window, {duration: duree, scrollTo: {y: (ratio * parseFloat(totalTimePreviousLabel)), autoKill: true}, ease: easing }); 
+                menuClicked = true;
+                gsap.to(window, {duration: duree, scrollTo: {y: (ratio * parseFloat(totalTimePreviousLabel)), autoKill: true}, ease: easing, onComplete: () => { menuClicked = false } }); 
             })
         }
 
@@ -748,8 +751,8 @@ function generateProjectsNavigation() {
             const totalTimeNextLabel = tl_scrollTriggerBody.labels[nomNextLabel.toString()];
 
             rightArrow.addEventListener("click", () => {
-                //disableGoToLabelWithManualScroll = true; //s
-                gsap.to(window, {duration: duree, scrollTo: {y: (ratio * parseFloat(totalTimeNextLabel)), autoKill: true}, ease: easing });
+                menuClicked = true;
+                gsap.to(window, {duration: duree, scrollTo: {y: (ratio * parseFloat(totalTimeNextLabel)), autoKill: true}, ease: easing, onComplete: () => { menuClicked = false } });
             })
         }
         
