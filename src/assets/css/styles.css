@@ -511,7 +511,6 @@ body.noscroll {
 @keyframes upAndDown {
   0%, 100% { transform: translateY(-5px); }
   50% { transform: translateY(5px); }
-  
 }
 
 @media screen and (max-width: 480px) {
@@ -1343,7 +1342,7 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   color: #fff;
   display: none;
 }
-.menu.display { display: flex; }
+.menu.display { display: flex; display: -webkit-flex;align-items: center; }
 .menu .link {
   width: clamp(8px, 1vw, 12px);
   height: clamp(8px, 1vw, 12px);
