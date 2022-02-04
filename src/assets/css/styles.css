@@ -509,9 +509,9 @@ body.noscroll {
   animation: upAndDown 1s infinite;
 }
 @keyframes upAndDown {
-  0% { transform: translateY(-5px); }
+  0%, 100% { transform: translateY(-5px); }
   50% { transform: translateY(5px); }
-  100% { transform: translateY(-5px); }
+  
 }
 
 @media screen and (max-width: 480px) {
