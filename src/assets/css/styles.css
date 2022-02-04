@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Dosis:wght@600;700;800&display=swap');
-/* @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Dosis:wght@600;700;800&family=Ubuntu+Mono:wght@400;700&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Dosis:wght@600;700;800&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Dosis:wght@600;700;800&family=Ubuntu+Mono:wght@700&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
 
 * {
@@ -473,8 +473,8 @@ body.noscroll {
   position: absolute;
   transform-origin: 0 10vh;
   font-size: 2vh;
-  font-family: 'consolas', cursive;
-  /* font-family: 'Ubuntu Mono', monospace; */
+  /* font-family: 'consolas', cursive; */
+  font-family: 'Ubuntu Mono', monospace;
 }
 /*#endregion - Texte "Serge Trinquet - Développeur Javascript" */
 
