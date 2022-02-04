@@ -388,10 +388,12 @@ body.noscroll {
 @keyframes txtAppear {
   0% {
     opacity: 0;
+    -webkit-transform: translateY(15vh) scale(0.2);
     transform: translateY(15vh) scale(0.2);
   }
   100% {
     opacity: 1;
+    -webkit-transform: translateY(0vh) scale(1);
     transform: translateY(0vh) scale(1);
   }
 }
