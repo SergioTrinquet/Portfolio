@@ -29,14 +29,14 @@ let scrollDirection = null,
     nbExecScrollEvent = -1,
     menuOrArrowClicked = false;
 const dureeEntreLabels = [1.7, 2.6, 2.7, 0.8, 0.8, 6, 1.5];
+const isMobileOrTablette = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) || (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.platform));
 
 let TOTO = 1;
 
 let scrubValue = 1;
 
 //*** Code suivant juste pour mobile : Correct° du bug sur mobile et tablettes => unité du type vh, vmax, vmin,... sont faussées à cause de la barre d'adresse qui coulisse ***//
-const IsMobileOrTablette = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) || (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.platform));
-if (IsMobileOrTablette) {
+if (isMobileOrTablette) {
     function setCSSunits() {
         let h = window.innerHeight;
         let w = window.innerWidth;
@@ -60,7 +60,6 @@ if (IsMobileOrTablette) {
 
 // Si on est en haut de page, ajout de la transition pour l'apparition du visage
 if(getScrollTop() == 0) {
-    
     body.classList.add("noscroll"); // On empeche l'utilisateur de scroller   
     flagAnimationIntro = true;
 
@@ -345,7 +344,7 @@ function generate_timeline() {
         .to("#SVGs", { filter: "drop-shadow( 1px 0px 0px rgba(77, 81, 120, 0.7)" }, "<")   // Ajout ombre sur visage
         .to(".wrapperSVGsAndTexts", { keyframes: [
             { position: "absolute", duration: 0 },
-            { height: "20vh", marginTop: "-70vh", duration: 50 }
+            /* { height: "20vh", marginTop: "-70vh", duration: 50 } */ { height: "20vh", top: "5vh", duration: 50 } // Test pour bug Safari Mobile
         ] }, "<")
         .to("#intituleJob", { display: "unset" }) // Pour activer l'animation
         .fromTo("#intituleJob", { zIndex: 3, scale: 0.5, autoAlpha:0 }, { zIndex: 3, scale: 1, autoAlpha: 1, duration: 10})   // Apparition "intitulé job"
