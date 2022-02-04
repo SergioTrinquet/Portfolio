@@ -309,8 +309,8 @@ function generate_timeline() {
         .to("#SVGs", { filter: "drop-shadow( 1px 0px 0px rgba(77, 81, 120, 0.7)" }, "<")   // Ajout ombre sur visage
         .to(".wrapperSVGsAndTexts", { keyframes: [
             { position: "absolute", duration: 0 },
-            /* { height: "20vh", marginTop: "-70vh", duration: 50 } */ 
-            (isIPadOrIPhone ? { height: "20vh", y: "5vh", duration: 50 } : { height: "20vh", marginTop: "-70vh", duration: 50 })    // !!!!! TEMPORAIRE :  Test pour bug Safari Mobile !!!!!!
+            { height: "20vh", marginTop: "-70vh", duration: 50 } 
+            /* (isIPadOrIPhone ? { height: "20vh", y: "5vh", duration: 50 } : { height: "20vh", marginTop: "-70vh", duration: 50 })  */   // !!!!! TEMPORAIRE :  Test pour bug Safari Mobile !!!!!!
         ] }, "<")
         .to("#intituleJob", { display: "unset" }) // Pour activer l'animation
         .fromTo("#intituleJob", { zIndex: 3, scale: 0.5, autoAlpha:0 }, { zIndex: 3, scale: 1, autoAlpha: 1, duration: 10})   // Apparition "intitulé job"
