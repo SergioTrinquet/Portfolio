@@ -309,8 +309,9 @@ function generate_timeline() {
         .to("#SVGs", { filter: "drop-shadow( 1px 0px 0px rgba(77, 81, 120, 0.7)" }, "<")   // Ajout ombre sur visage
         .to(".wrapperSVGsAndTexts", { keyframes: [
             { position: "absolute", duration: 0 },
-            { height: "20vh", marginTop: "-35vh", duration: 50 } 
-            /* (isIPadOrIPhone ? { height: "20vh", y: "5vh", duration: 50 } : { height: "20vh", marginTop: "-70vh", duration: 50 })  */   // !!!!! TEMPORAIRE :  Test pour bug Safari Mobile !!!!!!
+            //{ height: "20vh", marginTop: "-70vh", duration: 50 } // Version Originale
+            { height: "20vh", marginTop: isIPadOrIPhone ? "-35vh" : "-70vh", duration: 50 } // V1
+            //(isIPadOrIPhone ? { height: "20vh", y: "5vh", duration: 50 } : { height: "20vh", marginTop: "-70vh", duration: 50 }) // V2
         ] }, "<")
         .to("#intituleJob", { display: "unset" }) // Pour activer l'animation
         .fromTo("#intituleJob", { zIndex: 3, scale: 0.5, autoAlpha:0 }, { zIndex: 3, scale: 1, autoAlpha: 1, duration: 10})   // Apparition "intitulé job"
@@ -384,7 +385,8 @@ function generate_timeline() {
             .to(".wrapperSVGsAndTexts", 
             { 
                 height: (mm == "xl" ? "16vmin" : (mm == "l" || mm == "m" ? "14vmin" : "16vmin")), // 16vmin pour xl et xs, sinon 14vmin
-                marginTop: "-40vmin" /* top: "23vh" */, /* !!!!! TEMPORAIRE :  Test pour bug Safari Mobile !!!!!! */ // SVG visage qui remonte en haut de l'écran qd pas petit écran
+                //marginTop: "-40vmin",  // Version Originale
+                marginTop: isIPadOrIPhone ? "-15vmin" : "-40vmin", // V1
                 duration: 150 
             })
     }
