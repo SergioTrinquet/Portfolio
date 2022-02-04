@@ -385,27 +385,13 @@ body.noscroll {
 }
 .texteQuiSuisJe.display { opacity: 1; }
 .texteQuiSuisJe.animation { animation: txtAppear 1.3s cubic-bezier(0.015, 0.835, 0.440, 1.000) forwards; }
-@-webkit-keyframes txtAppear {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(15vh) scale(0.2);
-    transform: translateY(15vh) scale(0.2);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: translateY(0vh) scale(1);
-    transform: translateY(0vh) scale(1);
-  }
-}
 @keyframes txtAppear {
   0% {
     opacity: 0;
-    -webkit-transform: translateY(15vh) scale(0.2);
     transform: translateY(15vh) scale(0.2);
   }
   100% {
     opacity: 1;
-    -webkit-transform: translateY(0vh) scale(1);
     transform: translateY(0vh) scale(1);
   }
 }
