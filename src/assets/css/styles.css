@@ -473,8 +473,8 @@ body.noscroll {
   position: absolute;
   transform-origin: 0 10vh;
   font-size: 2vh;
-  font-family: 'consolas', cursive;
-  /* font-family: 'Ubuntu Mono', monospace; */
+  /* font-family: 'consolas', cursive; */
+  font-family: 'Ubuntu Mono', monospace;
 }
 /*#endregion - Texte "Serge Trinquet - Développeur Javascript" */
 
