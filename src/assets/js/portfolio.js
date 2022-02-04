@@ -177,26 +177,25 @@ function goToLabel() {
     const marge = 50;
     instantDuration = (direction == 1) ? instantDuration += marge : instantDuration -= marge;
 
-    let valueJustBefore = null, valueJustAfter = null;
+    //let valueJustBefore = null, valueJustAfter = null;
     let durationBetweenLabels = null, i = 0;
-    let nomLabelBefore = null, nomLabelAfter = null; //TEST
+    let nomLabelBefore = null, nomLabelAfter = null;
     for (const [key, value] of Object.entries(tl_scrollTriggerBody.labels)) {
         if(instantDuration > value) {
-            valueJustBefore = value;
+            //valueJustBefore = value;
             durationBetweenLabels = dureeEntreLabels[i];
-            nomLabelBefore = key;//TEST
+            nomLabelBefore = key;
         }
         if(instantDuration < value) {
-            valueJustAfter = value;
+            //valueJustAfter = value;
             durationBetweenLabels = dureeEntreLabels[i - 1];
-            nomLabelAfter = key;//TEST
-        
+            nomLabelAfter = key;
             break;
         }
         i++;
     }
     
-    const labelToGoTo = (direction == 1) ? valueJustAfter : valueJustBefore;
+    //const labelToGoTo = (direction == 1) ? valueJustAfter : valueJustBefore;
     const nomLabelToGo = (direction == 1) ? nomLabelAfter : nomLabelBefore; //console.log("nomLabelToGo", nomLabelToGo, "Position  Label: ", tl_scrollTriggerBody.scrollTrigger.labelToScroll(nomLabelToGo)) //TEST
     
     tweenScrollToLabelOnComplete = false;
@@ -310,7 +309,7 @@ function generate_timeline() {
         .to("#SVGs", { filter: "drop-shadow( 1px 0px 0px rgba(77, 81, 120, 0.7)" }, "<")   // Ajout ombre sur visage
         .to(".wrapperSVGsAndTexts", { keyframes: [
             { position: "absolute", duration: 0 },
-            { height: "20vh", marginTop: "-70vh", duration: 50 } /* { height: "20vh", top: "5vh", duration: 50 } */ // !!!!! TEMPORAIRE :  Test pour bug Safari Mobile !!!!!!
+            /* { height: "20vh", marginTop: "-70vh", duration: 50 } */ { height: "20vh",  top: isIPadOrIPhone ? "5vh" : "auto", marginTop: isIPadOrIPhone ? "auto" : "-70vh", duration: 50 } // !!!!! TEMPORAIRE :  Test pour bug Safari Mobile !!!!!!
         ] }, "<")
         .to("#intituleJob", { display: "unset" }) // Pour activer l'animation
         .fromTo("#intituleJob", { zIndex: 3, scale: 0.5, autoAlpha:0 }, { zIndex: 3, scale: 1, autoAlpha: 1, duration: 10})   // Apparition "intitulé job"
