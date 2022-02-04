@@ -24,18 +24,21 @@ let flagAnimationIntro = false;
 let isScrolling = null;
 const margeErreurEnPx = 15;
 let tweenScrollToLabelOnComplete = true;
-let progressOnUpdateEvent = null;
-let scrollDirection = null,
-    nbExecScrollEvent = -1,
+let scrolltriggerOnUpdate = {
+    progress: null,
+    direction: 1
+};
+let nbExecScrollEvent = -1,
     menuOrArrowClicked = false;
 const dureeEntreLabels = [1.7, 2.6, 2.7, 0.8, 0.8, 6, 1.5];
 const isMobileOrTablette = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) || (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.platform));
 
-let TOTO = 1;
+const isIPadOrIPhone = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (/iPhone|iPad|iPod/i.test(navigator.platform));
+document.querySelector("#titi").innerText = isIPadOrIPhone ? "iPhone/iPad" : "Autre"; //TEST
 
 let scrubValue = 1;
 
-//*** Code suivant juste pour mobile : Correct° du bug sur mobile et tablettes => unité du type vh, vmax, vmin,... sont faussées à cause de la barre d'adresse qui coulisse ***//
+// Code juste pour mobile : Correct° du bug sur mobile et tablettes => unité du type vh, vmax, vmin,... sont faussées à cause de la barre d'adresse qui coulisse
 if (isMobileOrTablette) {
     function setCSSunits() {
         let h = window.innerHeight;
@@ -55,7 +58,7 @@ if (isMobileOrTablette) {
 }
 //document.documentElement.style.setProperty('--vh', "42em");
 //var TEST = document.documentElement.style.getPropertyValue("--vh"); console.log("TEST", TEST);
-//*** Fin ***//
+
 
 
 // Si on est en haut de page, ajout de la transition pour l'apparition du visage
@@ -124,22 +127,15 @@ if(getScrollTop() == 0) {
 
 
 
-// Actions sur évènement 'scroll'
-var oldScroll = getScrollTop();
 window.addEventListener('scroll', () => {
-    var scrollValue = getScrollTop();
+    const scrollValue = getScrollTop();
 
     // Appel fct° pour aller au label suivant/précédent qd : 
     // 1. Début de scroll exclusivement 
     // 2. Tween précédent dû au scroll pour se rendre vers un label, est terminé
     // 3. Scroll n'est pas dû à utilisat° du menu ou des fleches de nav. ds sect° 'Projets perso'
-    if(nbExecScrollEvent == 0 && tweenScrollToLabelOnComplete == true && menuOrArrowClicked == false) {  
-        scrollDirection = (oldScroll < scrollValue) ? 1 : -1;
-        console.log("Direction", oldScroll < scrollValue, oldScroll + " < " + scrollValue); //TEST
-        goToLabel(scrollDirection);  
-    }
-    nbExecScrollEvent++;               
-    oldScroll = scrollValue;
+    if(nbExecScrollEvent == 0 && tweenScrollToLabelOnComplete == true && menuOrArrowClicked == false) goToLabel();
+    nbExecScrollEvent++;            
     
     // Pour supprimer class 'animation' dès que l'on scroll, car empeche le DOM de ne plus s'afficher!
     if(texteQuiSuisJe_classList.contains('animation')) {
@@ -161,7 +157,7 @@ window.addEventListener('scroll', () => {
             document.getElementById(`_${d.v}`).classList.toggle("selected", (differenceTime < margeErreurEnPx && differenceTime > (margeErreurEnPx * -1)) ? true : false);       
         }
 
-        // Réinitialisation de la variable
+        // Réinitialisation
         nbExecScrollEvent = 0; 
         console.log('Scrolling has stopped.'); //TEST
 	}, 66);
@@ -169,40 +165,14 @@ window.addEventListener('scroll', () => {
 
 
 
-/////////// Methode avec 'ScrollTo' ///////////
-/* var isScrolling_2;
-var oldScroll = getScrollTop();
-window.addEventListener('scroll', () => {
-    const scrollValue = getScrollTop();  
-    
-    // Appel fct° pour aller au label suivant/précédent qd : 
-    // 1. Début de scroll exclusivement 
-    // 2. Tween précédent dû au scroll pour se rendre vers un label, est terminé
-    // 3. Scroll n'est pas dçu à utilisat° du menu
-    if(nbExecScrollEvent == 0 && tweenScrollToLabelOnComplete == true && menuOrArrowClicked == false) {  
-        scrollDirection = (oldScroll < scrollValue) ? 1 : -1;
-        console.log("Direction", oldScroll < scrollValue, oldScroll + " < " + scrollValue); //TEST
-        goToLabel(scrollDirection);  
-    }
-    nbExecScrollEvent++;               
-    oldScroll = scrollValue;
-
-    // On détermine qd le scrolling s'arrete
-    window.clearTimeout( isScrolling_2 );
-    isScrolling_2 = setTimeout(() => {
-        nbExecScrollEvent = 0; // Qd scrolling est terminé, réinitialisation de la variable qui 
-        console.log('1 - Scrolling has stopped.'); //TEST
-    }, 66);
-}, false); */
-
-
-function goToLabel(direction) {  
+// Pour se déplacer d'un label à un autre avec la méthode '.scrollTo()'
+function goToLabel() {  
     //document.querySelector("#titi").innerText = JSON.stringify(tl_scrollTriggerBody.labels); //TEST
-    console.warn("direction from scrollTrigger Update => ", TOTO); //TEST
-    direction = TOTO;
-
+    const direction = scrolltriggerOnUpdate.direction;
+    console.warn("direction from scrollTrigger Update => ", direction); //TEST
+    
     const totalDuration = tl_scrollTriggerBody.totalDuration();
-    let instantDuration = totalDuration * progressOnUpdateEvent; // Pour savoir ou on en est qd on commence à toucher au scroll
+    let instantDuration = totalDuration * scrolltriggerOnUpdate.progress; // Pour savoir ou on en est qd on commence à toucher au scroll
     // Ajout marge de sécurité pour le test car ne s'arrete pas exactement au niveau du label : Manque de précision pris en compte de cette façon pour le test qui suit 
     const marge = 50;
     instantDuration = (direction == 1) ? instantDuration += marge : instantDuration -= marge;
@@ -227,7 +197,6 @@ function goToLabel(direction) {
     }
     
     const labelToGoTo = (direction == 1) ? valueJustAfter : valueJustBefore;
-
     const nomLabelToGo = (direction == 1) ? nomLabelAfter : nomLabelBefore; //console.log("nomLabelToGo", nomLabelToGo, "Position  Label: ", tl_scrollTriggerBody.scrollTrigger.labelToScroll(nomLabelToGo)) //TEST
     
     tweenScrollToLabelOnComplete = false;
@@ -238,12 +207,10 @@ function goToLabel(direction) {
         scrollTo: { y: tl_scrollTriggerBody.scrollTrigger.labelToScroll(nomLabelToGo), autokill: false }, // Autokill à 'false' pour empecher interrupt° du scroll vers le label en court de scroll en cas d'intervent° de l'utilisateur  // ATTENTION: ".labelToScroll()" Ne fctionne qu'à partir de la version 3.9 de GSAP !!
         ease: "slow",
         onComplete:  () => { 
-            tweenScrollToLabelOnComplete = true; 
-            console.log("Tween finito !!!!"); //TEST
+            tweenScrollToLabelOnComplete = true; console.log("Tween finito !!!!"); //TEST
         }
     });             
 }
-/////////// FIN - Methode avec 'ScrollTo' ///////////
 
 
 
@@ -265,9 +232,8 @@ const st = {
     // markers: true,
     invalidateOnRefresh: true, 
     onUpdate: self => {     //console.log("onUpdate => progress: ", self.progress.toFixed(3), "self.direction: ", self.direction); //TEST
-        progressOnUpdateEvent = self.progress.toFixed(3);
-
-        TOTO = self.direction;
+        scrolltriggerOnUpdate.progress = self.progress.toFixed(3);
+        scrolltriggerOnUpdate.direction = self.direction;
     },
     //onScrubComplete: () => { console.warn("onScrubComplete"); }
 };
@@ -344,7 +310,7 @@ function generate_timeline() {
         .to("#SVGs", { filter: "drop-shadow( 1px 0px 0px rgba(77, 81, 120, 0.7)" }, "<")   // Ajout ombre sur visage
         .to(".wrapperSVGsAndTexts", { keyframes: [
             { position: "absolute", duration: 0 },
-            /* { height: "20vh", marginTop: "-70vh", duration: 50 } */ { height: "20vh", top: "5vh", duration: 50 } // Test pour bug Safari Mobile
+            { height: "20vh", marginTop: "-70vh", duration: 50 } /* { height: "20vh", top: "5vh", duration: 50 } */ // !!!!! TEMPORAIRE :  Test pour bug Safari Mobile !!!!!!
         ] }, "<")
         .to("#intituleJob", { display: "unset" }) // Pour activer l'animation
         .fromTo("#intituleJob", { zIndex: 3, scale: 0.5, autoAlpha:0 }, { zIndex: 3, scale: 1, autoAlpha: 1, duration: 10})   // Apparition "intitulé job"
@@ -418,7 +384,7 @@ function generate_timeline() {
             .to(".wrapperSVGsAndTexts", 
             { 
                 height: (mm == "xl" ? "16vmin" : (mm == "l" || mm == "m" ? "14vmin" : "16vmin")), // 16vmin pour xl et xs, sinon 14vmin
-                marginTop: "-40vmin", // SVG visage qui remonte en haut de l'écran qd pas petit écran
+                marginTop: "-40vmin" /* top: "23vh" */, /* !!!!! TEMPORAIRE :  Test pour bug Safari Mobile !!!!!! */ // SVG visage qui remonte en haut de l'écran qd pas petit écran
                 duration: 150 
             })
     }
