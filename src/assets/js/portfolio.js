@@ -386,7 +386,7 @@ function generate_timeline() {
             { 
                 height: (mm == "xl" ? "16vmin" : (mm == "l" || mm == "m" ? "14vmin" : "16vmin")), // 16vmin pour xl et xs, sinon 14vmin
                 //marginTop: "-40vmin",  // Version Originale
-                marginTop: isIPadOrIPhone ? "-12vmin" : "-40vmin", // V1
+                marginTop: isIPadOrIPhone ? "-14vmin" : "-40vmin", // V1
                 duration: 150 
             })
     }
