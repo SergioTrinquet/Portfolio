@@ -146,7 +146,8 @@ window.addEventListener('scroll', () => {
     texteQuiSuisJe_classList.toggle('display', (scrollValue < 200));
 
     // Calcul largeur progress bar
-    progressBar.style.width = `${getProgress(scrollValue)}vw`;
+    //progressBar.style.width = `${getProgress(scrollValue)}vw`;
+    animateProgressBar(scrollValue);
 
     // Fonction ds le setTimeout exécutée que qd le scroll se termine
 	window.clearTimeout(isScrolling);
@@ -162,6 +163,11 @@ window.addEventListener('scroll', () => {
         console.log('Scrolling has stopped.'); //TEST
 	}, 66);
 }, false);
+
+// Calcul largeur progress bar
+function animateProgressBar(scrollVal) {
+    progressBar.style.width = `${getProgress(scrollVal)}vw`;
+}
 
 
 
