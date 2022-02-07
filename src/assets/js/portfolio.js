@@ -94,10 +94,10 @@ if(getScrollTop() == 0) {
         }, "+=7")
         .fromTo(".halo", {
                 width: "0%", 
-                height: "0%"
+                /* height: "0%" */ paddingTop: "0%"
             }, { 
                 width: "90%", 
-                height: "90%",
+                /* height: "90%", */    paddingTop: "90%",
                 ease: "elastic",
                 duration: 2,
                 clearProps: "width,height" // Retrait de ces inline styles car faussent après l'animation
