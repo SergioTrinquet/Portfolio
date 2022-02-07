@@ -164,10 +164,7 @@ window.addEventListener('scroll', () => {
 }, false);
 
 
-// Calcul largeur progress bar
-function animateProgressBar(scrollVal) {
-    progressBar.style.width = `${getProgress(scrollVal)}vw`;
-}
+
 
 
 
@@ -221,7 +218,7 @@ function goToLabel() {
 
 // GSAP : Config du ScrollTrigger
 const st = {
-    /* trigger: "body", */trigger: "#TEST_noScrollOnBody", /* TEST au 07/02/2022 */
+    trigger: "body",
     start: "top top",
     end: `bottom bottom`,
     scrub: scrubValue, // Valeur 0.1 si mobile/tablette, sinon 1
@@ -478,14 +475,15 @@ intituleJob.innerHTML = intituleJob.innerText.split("").map((char, i) =>
 
 
 
-// Pour calcul largeur de la progress bar
-function getProgress(scrollVal) {
-    let scrollHeight = Math.max(
-        body.scrollHeight, document.documentElement.scrollHeight,
-        body.offsetHeight, document.documentElement.offsetHeight,
-        body.clientHeight, document.documentElement.clientHeight
-      );
-    return  (scrollVal / (scrollHeight - window.innerHeight)) * 100;
+// Calcul largeur progress bar
+const scrollHeight = Math.max(
+    body.scrollHeight, document.documentElement.scrollHeight,
+    body.offsetHeight, document.documentElement.offsetHeight,
+    body.clientHeight, document.documentElement.clientHeight
+);
+function animateProgressBar(scrollVal) {
+    const widthProgressBar = (scrollVal / (scrollHeight - window.innerHeight)) * 100;
+    progressBar.style.width = `${widthProgressBar}vw`;
 }
 
 
