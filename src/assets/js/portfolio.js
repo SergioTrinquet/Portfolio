@@ -308,7 +308,8 @@ function generate_timeline() {
     }
 
     tl_scrollTriggerBody  
-        .to(".halo", { zIndex: 2, width: "115%", height: "115%", boxShadow: "-3px 2px 1px #4d4d4d91", autoAlpha:1, duration: 20 })    // Halo rendu à nouveau visible + chgmt css
+        //.to(".halo", { zIndex: 2, width: "115%", height: "115%", boxShadow: "-3px 2px 1px #4d4d4d91", autoAlpha:1, duration: 20 })    // Halo rendu à nouveau visible + chgmt css
+        .to(".halo", { zIndex: 2, width: "115%", paddingTop: "115%", boxShadow: "-3px 2px 1px #4d4d4d91", autoAlpha:1, duration: 20 })    // Halo rendu à nouveau visible + chgmt css
         .to("#SVGs", { filter: "drop-shadow( 1px 0px 0px rgba(77, 81, 120, 0.7)" }, "<")   // Ajout ombre sur visage
         .to(".wrapperSVGsAndTexts", { keyframes: [
             { position: "absolute", duration: 0 },
