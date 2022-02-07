@@ -520,6 +520,8 @@ body.noscroll {
 @media screen and (max-width: 480px) {
   .texteScrollDown {
     width: 50vmin;
+    height: 8vh;
+    align-items: center;
   }
   .texteScrollDown span {
     font-size: 5vmin;
