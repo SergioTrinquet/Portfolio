@@ -1487,3 +1487,19 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   transform: scale(1.2, 1.2);
 }
 /*#endregion - Navigation entre projets dans rubrique "Projets perso" */
+
+
+
+
+/* 07/02/02022 - TEST no scroll on body !!!! */
+#TEST_noScrollOnBody {
+  position: absolute;
+  overflow-y: auto;
+  height: 37000px;
+  width: 100%;
+}
+body {
+  width: 100%;
+  height: 100%;
+}
+/* FIN 07/02/02022 - TEST no scroll on body !!!! */

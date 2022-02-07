@@ -146,7 +146,6 @@ window.addEventListener('scroll', () => {
     texteQuiSuisJe_classList.toggle('display', (scrollValue < 200));
 
     // Calcul largeur progress bar
-    //progressBar.style.width = `${getProgress(scrollValue)}vw`;
     animateProgressBar(scrollValue);
 
     // Fonction ds le setTimeout exécutée que qd le scroll se termine
@@ -163,6 +162,7 @@ window.addEventListener('scroll', () => {
         console.log('Scrolling has stopped.'); //TEST
 	}, 66);
 }, false);
+
 
 // Calcul largeur progress bar
 function animateProgressBar(scrollVal) {
@@ -221,7 +221,7 @@ function goToLabel() {
 
 // GSAP : Config du ScrollTrigger
 const st = {
-    trigger: "body",
+    /* trigger: "body", */trigger: "#TEST_noScrollOnBody", /* TEST au 07/02/2022 */
     start: "top top",
     end: `bottom bottom`,
     scrub: scrubValue, // Valeur 0.1 si mobile/tablette, sinon 1
