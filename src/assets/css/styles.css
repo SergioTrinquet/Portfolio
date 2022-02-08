@@ -333,7 +333,7 @@ body.noscroll {
   height: 100vh;    /* test */ /* height: 100%; */
 }
 
-.wrapperSVGsAndTexts {
+.wrapperSVGsAndTexts {    border: solid 1px red; 
   width: 50%;
   /* height: 70vmin; */   height: calc(var(--vmin, 1vmin) * 70);
   max-width: 900px;
@@ -352,7 +352,7 @@ body.noscroll {
 
 
 /*#region - Container englobant SVGs et tout les éléments DOM qui doivent se positionner en fonction de ces SVGs */
-.SVGsAndAnnexes {
+.SVGsAndAnnexes {   border: dashed 2px purple;
   height: 100%;
   display: flex; 
   justify-content: center; 
@@ -410,7 +410,7 @@ body.noscroll {
   display: flex;
   flex-direction: column;
 
-  top: 106%;
+  top: calc(100% + 20px); /* TEST */
 }
 #buttonSkipIntro {
   cursor: pointer;
@@ -634,7 +634,7 @@ body.noscroll {
 
 
 /*#region -  Texte de présentation à la question "Qui suis-je ?" */
-.textePresentation {
+.textePresentation {    border: dashed 2px yellow;
   color: #fff;
   text-shadow: 0 1px 0 rgba(0,0,0,0.5);
   margin: 0;
