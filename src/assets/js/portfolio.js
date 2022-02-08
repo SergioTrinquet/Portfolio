@@ -291,11 +291,11 @@ function generate_timeline() {
     if(mm == "m" || mm == "s" || mm == "xs") {
         tl_scrollTriggerBody.to(".textePresentation", { keyframes: [
             { width:"70vw", height: 0, margin: "0", scale: 0.5, duration: 30 },
-            { autoAlpha: 1, scale: 1, height: "auto !important", duration: 30 }
+            { autoAlpha: 1, scale: 1, height: "auto", duration: 30 }
         ]});
     } else {
         tl_scrollTriggerBody.to(".textePresentation", { keyframes: [
-            { width:"70vw", height: "auto !important", margin: "0px 0px 0px 4vw", scale: 0.5, duration: 30 },
+            { width:"70vw", height: "auto", margin: "0px 0px 0px 4vw", scale: 0.5, duration: 30 },
             { autoAlpha: 1, scale: 1, duration: 30 }
         ]});
     }
