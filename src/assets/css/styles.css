@@ -410,7 +410,7 @@ body.noscroll {
   display: flex;
   flex-direction: column;
 }
-#buttonSkipIntro {
+#buttonSkipIntro {  border: solid 3p red;
   cursor: pointer;
   background: none;
   color: rgba(255,255,255,0.6);
@@ -450,7 +450,7 @@ body.noscroll {
 }
 #wrapperButtonSkipIntro #buttonSkipIntro.display {
   opacity: 1;
-  /* display: initial; */ display: block;
+  display: initial;
 } 
 /*#endregion - Bouton pour skipper l'anim d'intro */
 
