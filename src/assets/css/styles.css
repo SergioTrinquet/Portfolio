@@ -1342,7 +1342,7 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
 
 
 /*#region - Menu avec points en bas de page: Qd écran >= à taille Moyenne */
-.menu {
+.menu {   border: solid 1px red;
   position: fixed;
   z-index: 6;
   bottom: 20px;
