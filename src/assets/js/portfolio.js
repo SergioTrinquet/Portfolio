@@ -61,7 +61,7 @@ if (isMobileOrTablette) {
 
 
 
-function preventDefaultEvent(e) { e.preventDefault() };
+/* function preventDefaultEvent(e) { e.preventDefault() };
 function disableTouchMove() {
     ["touchstart", "touchmove"].forEach((e) => {
         document.addEventListener(e, preventDefaultEvent, { passive:false });
@@ -71,12 +71,12 @@ function enableTouchMove() {
     ["touchstart", "touchmove"].forEach((e) => {
         document.removeEventListener(e, preventDefaultEvent, { passive:false });
     });
-}
+} */
 
 // Si on est en haut de page, ajout de la transition pour l'apparition du visage
 if(getScrollTop() == 0) {
 
-    if (isMobileOrTablette) disableTouchMove(); // Pour les mobiles et tablettes
+    //if (isMobileOrTablette) disableTouchMove(); // Pour les mobiles et tablettes
     body.classList.add("noscroll"); // On empeche l'utilisateur de scroller   
     flagAnimationIntro = true;
 
@@ -125,7 +125,7 @@ if(getScrollTop() == 0) {
             texteQuiSuisJe_classList.add('animation');
         })
         .add(() => { 
-            if (isMobileOrTablette) enableTouchMove(); // Pour les mobiles et tablettes
+            //if (isMobileOrTablette) enableTouchMove(); // Pour les mobiles et tablettes
             body.classList.remove('noscroll'); // Retrait de la class qui empeche de scroller
             texteScrollDown.classList.add('display'); // Affichage txt 'Descendez pour le savoir'
         }, "+=2");
