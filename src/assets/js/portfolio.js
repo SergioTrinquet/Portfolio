@@ -64,16 +64,16 @@ if (isMobileOrTablette) {
         console.warn(e); //TEST
     });
 }); */
-//ocument.addEventListener('touchmove', function() { e.preventDefault(); }, { passive:false });
+//document.addEventListener('touchmove', function() { e.preventDefault(); }, { passive:false });
 function preventDefaultEvent(e) { e.preventDefault(); console.warn("zobi zoba") };
 function disableTouchMove() {
-    ["touchmove"].forEach((e) => {
-        document.addEventListener(e, preventDefaultEvent);
+    ["touchstart", "touchmove"].forEach((e) => {
+        document.addEventListener(e, preventDefaultEvent, { passive:false });
     });
 }
 function enableTouchMove() {
-    ["touchmove"].forEach((e) => {
-        document.removeEventListener(e, preventDefaultEvent);
+    ["touchstart", "touchmove"].forEach((e) => {
+        document.removeEventListener(e, preventDefaultEvent, { passive:false });
     });
 }
 
