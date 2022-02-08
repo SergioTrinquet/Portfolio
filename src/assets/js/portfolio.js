@@ -55,23 +55,23 @@ if (isMobileOrTablette) {
     setCSSunits();
 
     //scrubValue = 0.1;
-
-    function preventDefaultEvent(e) { e.preventDefault() };
-    function disableTouchMove() {
-        ["touchstart", "touchmove"].forEach((e) => {
-            document.addEventListener(e, preventDefaultEvent, { passive:false });
-        });
-    }
-    function enableTouchMove() {
-        ["touchstart", "touchmove"].forEach((e) => {
-            document.removeEventListener(e, preventDefaultEvent, { passive:false });
-        });
-    }
 }
 //document.documentElement.style.setProperty('--vh', "42em");
 //var TEST = document.documentElement.style.getPropertyValue("--vh"); console.log("TEST", TEST);
 
 
+
+function preventDefaultEvent(e) { e.preventDefault() };
+function disableTouchMove() {
+    ["touchstart", "touchmove"].forEach((e) => {
+        document.addEventListener(e, preventDefaultEvent, { passive:false });
+    });
+}
+function enableTouchMove() {
+    ["touchstart", "touchmove"].forEach((e) => {
+        document.removeEventListener(e, preventDefaultEvent, { passive:false });
+    });
+}
 
 // Si on est en haut de page, ajout de la transition pour l'apparition du visage
 if(getScrollTop() == 0) {
