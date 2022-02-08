@@ -410,7 +410,7 @@ body.noscroll {
   display: flex;
   flex-direction: column;
 
-  top: 95%;
+  top: 106%;
 }
 #buttonSkipIntro {
   cursor: pointer;
