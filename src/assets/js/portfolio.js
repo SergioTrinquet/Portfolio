@@ -59,10 +59,31 @@ if (isMobileOrTablette) {
 //document.documentElement.style.setProperty('--vh', "42em");
 //var TEST = document.documentElement.style.getPropertyValue("--vh"); console.log("TEST", TEST);
 
-
+/* ["click"].forEach((e) => {
+    document.addEventListener(e, () => { 
+        console.warn(e); //TEST
+    });
+}); */
+//ocument.addEventListener('touchmove', function() { e.preventDefault(); }, { passive:false });
+function preventDefaultEvent(e) { e.preventDefault(); console.warn("zobi zoba") };
+function disableTouchMove() {
+    ["touchmove"].forEach((e) => {
+        document.addEventListener(e, preventDefaultEvent);
+    });
+}
+function enableTouchMove() {
+    ["touchmove"].forEach((e) => {
+        document.removeEventListener(e, preventDefaultEvent);
+    });
+}
 
 // Si on est en haut de page, ajout de la transition pour l'apparition du visage
 if(getScrollTop() == 0) {
+
+    // Pour les mobiles et tablettes
+    disableTouchMove();
+    
+
     body.classList.add("noscroll"); // On empeche l'utilisateur de scroller   
     flagAnimationIntro = true;
 
@@ -97,7 +118,7 @@ if(getScrollTop() == 0) {
                 /* height: "0%" */ paddingTop: "0%"
             }, { 
                 width: "90%", 
-                /* height: "90%", */    paddingTop: "90%",
+                /* height: "90%", */ paddingTop: "90%",
                 ease: "elastic",
                 duration: 2,
                 clearProps: "width,height" // Retrait de ces inline styles car faussent après l'animation
@@ -111,6 +132,9 @@ if(getScrollTop() == 0) {
             texteQuiSuisJe_classList.add('animation');
         })
         .add(() => { 
+            // Pour les mobiles et tablettes
+            enableTouchMove();
+
             body.classList.remove('noscroll'); // Retrait de la class qui empeche de scroller
             texteScrollDown.classList.add('display'); // Affichage txt 'Descendez pour le savoir'
         }, "+=2");
