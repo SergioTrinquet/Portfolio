@@ -962,6 +962,8 @@ body.noscroll {
   margin: 1vmax 2vmax 3vmax 2vmax;
   flex-grow: 1;
   z-index: 1;
+
+  /* TEST */ position: relative;
 }
 :root {
   --padding-x: 20%;
