@@ -414,7 +414,8 @@ body.noscroll {
   cursor: pointer;
   background: none;
   color: rgba(255,255,255,0.6);
-  font-size: clamp(16px, 1.8vw, 20px);
+  /* font-size: clamp(16px, 1.8vw, 20px); */  /* Version non IOS compatible */
+  font-size: max(16px, min(1.8vw, 20px)); /* Version IOS compatible */
   line-height: 20px;
   padding: 6px 0px;
   min-width: 160px;
@@ -679,7 +680,8 @@ body.noscroll {
 
 .sectionTitle {
   font-size: 27px;
-  font-size: clamp(17px, 5vmin, 27px);
+  /* font-size: clamp(17px, 5vmin, 27px); */  /* Version non IOS compatible */
+  font-size: max(17px, min(5vmin, 27px)); /* Version IOS compatible */
   opacity: 0;
   display: none;
   text-shadow: -3px 2px #4d4d4d8c;
@@ -699,7 +701,8 @@ body.noscroll {
 }
 
 #skills .domain {
-  font-size: clamp(15px, 2vw, 19px);
+  /* font-size: clamp(15px, 2vw, 19px); */  /* Version non IOS compatible */
+  font-size: max(15px, min(2vw, 19px)); /* Version IOS compatible */
   box-shadow: 0 15px 25px rgba(0,0,0,0.3);
   background-color: #fff;
   color: var(--font-color-screen2);
@@ -815,7 +818,8 @@ body.noscroll {
   font-weight: normal;
 }
 .domainContent > div {
-  margin-bottom: clamp(4px, 0.5vh, 7px);
+  /* margin-bottom: clamp(4px, 0.5vh, 7px); */  /* Version non IOS compatible */
+  margin-bottom: max(4px, min(0.5vh, 7px)); /* Version IOS compatible */
 }
 /*#endregion - Rubrique "Mes compétences" */
 
@@ -835,7 +839,8 @@ body.noscroll {
   background-color: #fff;
   /* height: 45vh; */   height: calc(var(--vh, 1vh) * 45);  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
   font-size: 1.9vmax;   
-  font-size: clamp(15px, 3vmin, 18px);
+  /* font-size: clamp(15px, 3vmin, 18px); */  /* Version non IOS compatible */
+  font-size: max(15px, min(3vmin, 18px)); /* Version IOS compatible */
   color: rgb(73, 77, 140);
   width: 40vw;
   margin: 0 30vw;
@@ -886,7 +891,8 @@ body.noscroll {
 #projects .technos > span {
   border-radius: 5px;
   background-color: var(--color-green);
-  font-size: clamp(14px, 2vmax, 16px);
+  /* font-size: clamp(14px, 2vmax, 16px); */  /* Version non IOS compatible */
+  font-size: max(14px, min(2vmax, 16px)); /* Version IOS compatible */
   color: #fff;
   padding: 2px 5px;
  }
@@ -980,12 +986,14 @@ body.noscroll {
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
   #projects a.projectLink {  
-    font-size: clamp(16px, 3vmin, 18px);
+    /* font-size: clamp(16px, 3vmin, 18px); */ /* Version non IOS compatible */
+    font-size: max(16px, min(3vmin, 18px)); /* Version IOS compatible */
   }
 }
 @media screen and (max-width: 480px) {
   #projects a.projectLink { 
-    font-size: clamp(16px, 4vmin, 18px);
+    /* font-size: clamp(16px, 4vmin, 18px); */ /* Version non IOS compatible */
+    font-size: max(16px, min(4vmin, 18px)); /* Version IOS compatible */
   }
 }
 @media screen and (max-height: 600px) {
@@ -1260,7 +1268,8 @@ body.noscroll {
 }
 
 #background_screenEnd #linkbackToTop {
-  font-size: clamp(15px, 1.6vw, 17px);
+  /* font-size: clamp(15px, 1.6vw, 17px); */ /* Version non IOS compatible */
+  font-size: max(15px, min(1.6vw, 17px)); /* Version IOS compatible */
   color: rgba(255,255,255,0.4);
   cursor: pointer;
   margin: 20vh 0 0 0;
@@ -1342,7 +1351,7 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
 
 
 /*#region - Menu avec points en bas de page: Qd écran >= à taille Moyenne */
-.menu {   border: solid 1px red;
+.menu {
   position: fixed;
   z-index: 6;
   bottom: 20px;
@@ -1353,8 +1362,10 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
 }
 .menu.display { display: flex; }
 .menu .link {
-  width: clamp(8px, 1vw, 12px);
-  height: clamp(8px, 1vw, 12px);
+  /* width: clamp(8px, 1vw, 12px); */ /* Version non IOS compatible */
+  width: max(8px, min(1vw, 12px)); /* Version IOS compatible */
+  /* height: clamp(8px, 1vw, 12px); */ /* Version non IOS compatible */
+  height: max(8px, min(1vw, 12px)); /* Version IOS compatible */
   border-radius: 50px;
   background-color: #fff;
   margin: 0 min(1.5vw, 14px);
@@ -1376,7 +1387,8 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   margin: max(-30px,-3vh) 0 0 0;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
-  font-size: clamp(11px, 1.5vw, 14px);
+  /* font-size: clamp(11px, 1.5vw, 14px); */ /* Version non IOS compatible */
+  font-size: max(11px, min(1.5vw, 14px)); /* Version IOS compatible */
   display: block;
   width: 300px;
   text-align: center;
