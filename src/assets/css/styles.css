@@ -450,7 +450,7 @@ body.noscroll {
 }
 #wrapperButtonSkipIntro #buttonSkipIntro.display {
   opacity: 1;
-  display: initial;
+  /* display: initial; */ display: block;
 } 
 /*#endregion - Bouton pour skipper l'anim d'intro */
 
