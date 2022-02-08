@@ -1259,7 +1259,7 @@ body.noscroll {
   font-family: "Pacifico", cursive;
   margin: 0px 2px;
 
-  position: relative; /* TEST pour correct° bug avec iOS */
+  position: relative; z-index: 1; /* TEST pour correct° bug avec iOS */
 }
 
 #background_screenEnd .motTrait {
