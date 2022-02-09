@@ -1227,6 +1227,7 @@ body.noscroll {
     -webkit-perspective: 1000;
     -webkit-backface-visibility: hidden;
     z-index: 3;
+    box-shadow: none;
     /*  */
 }
 /* Gestion très petit écran (taille 's' coté js) */
