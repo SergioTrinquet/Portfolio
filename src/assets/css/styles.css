@@ -361,7 +361,7 @@ body.noscroll {
   transition: all 0.3s ease-in-out;
   min-height: 100%; /* Hack pour que Chrome et Edge aient le même rendu que FF: Sans cela, le contenu de cette balise déborde, en l'ocurrence la balise regroupant les SVGs */
 
-    /* width: 100%; */ /* TEST au 07/02/2022 */
+    width: auto; /* TEST au 09/02/2022 */
 }
 /*#endregion - Container englobant SVGs et tout les éléments DOM qui doivent se positionner en fonction de ces SVGs */
 
@@ -639,7 +639,7 @@ body.noscroll {
   text-shadow: 0 1px 0 rgba(0,0,0,0.5);
   margin: 0;
   opacity: 0;
-  width: 0vw; width: 0%;
+  width: 0vw;
   height: 0vh;
 }
 .textePresentation > p:first-child { 
