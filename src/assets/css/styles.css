@@ -1148,6 +1148,8 @@ body.noscroll {
   text-decoration: none;
   overflow: hidden;
   box-shadow: 0 0 0 #ffa09c;
+
+  position: relative; /* TEST */
 }
 .msgRemerciements a:before {
   content: "";
@@ -1220,10 +1222,7 @@ body.noscroll {
   transform: translate(110%, 0%) rotate(30deg);
   transform-origin: 100% 50%;
   opacity: 0;
-  /* box-shadow: 0 0 0 rgba(255, 255, 255, 0.5); */
-
-  -webkit-backface-visibility: hidden; /* TEST */
-  backface-visibility: hidden; /* TEST */
+  box-shadow: 0 0 0 rgba(255, 255, 255, 0.5);
 }
 /* Gestion très petit écran (taille 's' coté js) */
 @media screen and (max-width: 480px) {
