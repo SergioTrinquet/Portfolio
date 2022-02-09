@@ -417,15 +417,15 @@ function generate_timeline() {
         .to("#SVG_tableSansPiedBG, #SVG_tablePiedBG", { display: "initial", x:0, duration: 50 }, "<")
         .to("#SVG_corps, #SVG_bras", { display: "initial", autoAlpha:1, duration: 50 })
         .to("#SVG_laptop", { keyframes: [
-            { display: "initial", autoAlpha: 1, duration: 20 },
+            { display: "block", autoAlpha: 1, duration: 20 },
             { y:0, duration: 25 }
         ] })
         .to("#SVG_lampe", { keyframes: [
-            { display: "initial", autoAlpha: 1, duration: 20 },
+            { display: "block", autoAlpha: 1, duration: 20 },
             { y:0, duration: 25 }
         ] }, "<+=25")
         .to("#SVG_tasse", { keyframes: [
-            { display: "initial", autoAlpha: 1, duration: 20    ,display:"block" },
+            { display: "block", autoAlpha: 1, duration: 20 },
             { y:0, duration: 25 }
         ] }, "<+=25")
         .to("#SVG_ombre", { display: "initial", autoAlpha:1, duration: 25 });
