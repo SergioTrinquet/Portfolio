@@ -333,13 +333,6 @@ body.noscroll {
   height: 100vh;    /* test */ /* height: 100%; */
 }
 
- /* TEST 09/02/2022*/
- #container { top: -15vh }
-#container, #background_screen1and2, #content_screen3, .PreScreen3, #content_screen4 {
-height: 130vh;
-}
- /* FIN TEST */
-
 .wrapperSVGsAndTexts {    border: solid 1px red; 
   width: 50%;
   /* height: 70vmin; */   height: calc(var(--vmin, 1vmin) * 70);
