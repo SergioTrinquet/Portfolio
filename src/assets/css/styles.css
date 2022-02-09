@@ -639,7 +639,7 @@ body.noscroll {
   text-shadow: 0 1px 0 rgba(0,0,0,0.5);
   margin: 0;
   opacity: 0;
-  width: 0vw;
+  width: 0vw; width: 0%;
   height: 0vh;
 }
 .textePresentation > p:first-child { 
@@ -1537,4 +1537,28 @@ body {
   overflow: hidden;
 }
 #container {width: 97%;} */
+
+
+/* V2 */
+/* html {
+  overflow: hidden;
+}
+body {
+height: 100%;
+overflow-y: scroll;
+position: fixed;
+}
+#testScroller {
+  height: 100%;
+  position: fixed;
+  z-index: 100;
+  width: 50px;
+  border: solid 1px red;
+  top: 0;
+  right: 0;
+  overflow-y: scroll;
+}
+#testScroller > div {
+  height: 37000px;
+} */
 /* FIN 07/02/02022 - TEST no scroll on body !!!! */
