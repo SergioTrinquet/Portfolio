@@ -1097,10 +1097,6 @@ body.noscroll {
 }
 /*#endregion -transform sur les éléments SVG */
 
-#SVG_tasse {
-  position:relative;
-  z-index: 10;
-}
 
 /*#region - Dernier écran avant celui de fin: Texte à droite */
 .msgRemerciements {
