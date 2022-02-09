@@ -296,6 +296,11 @@ body.noscroll {
   height: 0vh;
   left: 0;
   background: linear-gradient(29deg, rgb(202, 202, 202) 0%, #fff 70%);
+
+        /*  */
+        -webkit-perspective: 1000;
+        -webkit-backface-visibility: hidden;
+        /*  */
 }
 
 
@@ -310,6 +315,11 @@ body.noscroll {
   transform: rotate(30deg) translateX(25vw); 
   transform-origin: 0% 100%;
   display: none;
+
+          /*  */
+          -webkit-perspective: 1000;
+          -webkit-backface-visibility: hidden;
+          /*  */
 }
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   #background_screen5 > #margeRight { width: 20vmax; }
@@ -1218,10 +1228,15 @@ body.noscroll {
   z-index: 2;
   width: 200vmax;
   height: 500vmax;
-  /* transform: translate(110%, 0%) rotate(30deg);
-  transform-origin: 100% 50%; */
+  transform: translate(110%, 0%) rotate(30deg);
+  transform-origin: 100% 50%;
   opacity: 0;
   box-shadow: 0 0 0 rgba(255, 255, 255, 0.5);
+
+      /*  */
+      -webkit-perspective: 1000;
+      -webkit-backface-visibility: hidden;
+      /*  */
 }
 /* Gestion très petit écran (taille 's' coté js) */
 @media screen and (max-width: 480px) {
