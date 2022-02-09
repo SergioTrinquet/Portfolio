@@ -363,9 +363,7 @@ body.noscroll {
 
     /* width: auto; */ /* TEST au 09/02/2022 */
     /*  */
-    -webkit-perspective: 1000;
     -webkit-backface-visibility: hidden;
-    perspective: 1000;
     backface-visibility: hidden;
     /*  */
 }
