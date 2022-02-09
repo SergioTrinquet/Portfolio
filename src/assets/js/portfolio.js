@@ -384,7 +384,7 @@ function generate_timeline() {
     tl_scrollTriggerBody
         .to(".transitionalBackground", { keyframes: [
             { autoAlpha: 1 }, 
-            { boxShadow: "-100vw 0 0 rgba(255,255,255,0.5)", duration: 60 }, 
+            /* { boxShadow: "-100vw 0 0 rgba(255,255,255,0.5)", duration: 60 },  */
             { x:"0%", duration: 80 }] 
         })
         .to("#intituleJob", { keyframes: [
