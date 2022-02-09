@@ -1100,9 +1100,6 @@ body.noscroll {
 #SVG_tasse {
   position:relative;
   z-index: 10;
-}@keyframes redraw {
-  0% {opacity: 1;}
-  100% {opacity: 0.99;}
 }
 
 /*#region - Dernier écran avant celui de fin: Texte à droite */
