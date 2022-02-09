@@ -1097,8 +1097,9 @@ body.noscroll {
 }
 /*#endregion -transform sur les éléments SVG */
 
-body * {
-  -webkit-transform: translate3d(0,0,0);
+#SVG_tasse {
+  transform: translate3d(0, -200vh, 0);
+  -webkit-transform: translate3d(0, -200vh, 0);
 }
 
 /*#region - Dernier écran avant celui de fin: Texte à droite */
