@@ -1097,9 +1097,9 @@ body.noscroll {
 }
 /*#endregion -transform sur les éléments SVG */
 
-svg {
+/* svg {
   -webkit-transform: translate3d(0,0,0);
-}
+} */
 
 /*#region - Dernier écran avant celui de fin: Texte à droite */
 .msgRemerciements {
