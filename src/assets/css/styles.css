@@ -1097,7 +1097,7 @@ body.noscroll {
 }
 /*#endregion -transform sur les éléments SVG */
 
-*:not(html) {
+svg {
   -webkit-transform: translate3d(0,0,0);
 }
 
