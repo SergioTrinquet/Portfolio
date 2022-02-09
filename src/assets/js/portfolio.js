@@ -426,7 +426,7 @@ function generate_timeline() {
         ] }, "<+=25")
         .to("#SVG_tasse", { keyframes: [
             { display: "initial", autoAlpha: 1, duration: 20 },
-            { y:0, duration: 25 }
+            { /* y:0, */y:"0vh", duration: 25 }
         ] }, "<+=25")
         .to("#SVG_ombre", { display: "initial", autoAlpha:1, duration: 25 });
 
