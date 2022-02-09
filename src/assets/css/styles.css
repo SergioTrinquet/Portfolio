@@ -54,7 +54,7 @@ body.noscroll {
 .PreScreen3,
 #content_screen4 {
   position: fixed;
-  height: 100vh;
+  height: 100vh;        height: 110vh; /* TEST */
 }
 
 #background_screen1and2 {
@@ -1148,8 +1148,7 @@ body.noscroll {
   text-decoration: none;
   overflow: hidden;
   box-shadow: 0 0 0 #ffa09c;
-
-  position: relative; /* TEST */
+  position: relative;
 }
 .msgRemerciements a:before {
   content: "";
