@@ -452,7 +452,7 @@ function generate_timeline() {
                 { autoAlpha:0, flexGrow: "1", width: "auto", duration: 25 },
                 { autoAlpha:1, duration: 25, delay:80 }
             ] }, "<") // Apparition message "A bientôt"  
-            .to("#margeRight", { display: "block", transform: "rotate(30deg) translateX(0vw)", duration: 80 });   
+            .to("#margeRight", { display: "initial", transform: "rotate(30deg) translateX(0vw)", duration: 80 });   
     }
     
         
