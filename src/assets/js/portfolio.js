@@ -392,7 +392,7 @@ function generate_timeline() {
             { display: "none" }] 
         })   // Disparition texte intitulé job et 'display: none' pour désactiver l'animation
         .to(".sectionTitle#myProjects, .halo", { autoAlpha:0 }) // Disparition halo et titre "Projets perso"
-        //.to("#SVGs", { filter: `drop-shadow( 0px 0px 1px rgba(0, 0, 0, ${mm == "s" || mm == "xs" ? .8 : .5}))` }, "<")   // Ajout ombre sur visage              
+        .to("#SVGs", { filter: `drop-shadow( 0px 0px 1px rgba(0, 0, 0, ${mm == "s" || mm == "xs" ? .8 : .5}))` }, "<")   // Ajout ombre sur visage              
         .to("#background_screen5", { height: "100vh" });    // Apparition fond degr. gris/blanc
 
     // Gestion animation selon taille écran
