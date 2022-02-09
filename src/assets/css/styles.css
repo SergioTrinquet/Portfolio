@@ -1097,7 +1097,9 @@ body.noscroll {
 }
 /*#endregion -transform sur les éléments SVG */
 
-
+*:not(html) {
+  -webkit-transform: translate3d(0,0,0);
+}
 
 /*#region - Dernier écran avant celui de fin: Texte à droite */
 .msgRemerciements {
@@ -1221,10 +1223,6 @@ body.noscroll {
   transform-origin: 100% 50%;
   opacity: 0;
   box-shadow: 0 0 0 rgba(255, 255, 255, 0.5);
-
-    /*
-    box-shadow: none;
-      */
 }
 /* Gestion très petit écran (taille 's' coté js) */
 @media screen and (max-width: 480px) {
