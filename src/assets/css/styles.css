@@ -362,6 +362,10 @@ body.noscroll {
   min-height: 100%; /* Hack pour que Chrome et Edge aient le même rendu que FF: Sans cela, le contenu de cette balise déborde, en l'ocurrence la balise regroupant les SVGs */
 
     /* width: auto; */ /* TEST au 09/02/2022 */
+    /*  */
+    -webkit-perspective: 1000;
+    -webkit-backface-visibility: hidden;
+    /*  */
 }
 /*#endregion - Container englobant SVGs et tout les éléments DOM qui doivent se positionner en fonction de ces SVGs */
 
@@ -1210,7 +1214,6 @@ body.noscroll {
 }
 /*#endregion - Dernier écran: Texte à droite */
 
-body {-webkit-transform:translate3d(0,0,0); transform:translate3d(0,0,0);  }
 
 .transitionalBackground {
   background: linear-gradient(1deg, var(--color-degr-1-screen4) 40%, var(--color-degr-2-screen4) 60%);
@@ -1224,9 +1227,6 @@ body {-webkit-transform:translate3d(0,0,0); transform:translate3d(0,0,0);  }
   box-shadow: 0 0 0 rgba(255, 255, 255, 0.5);
 
     /*  */
-    -webkit-perspective: 1000;
-    -webkit-backface-visibility: hidden;
-    z-index: 3;
     box-shadow: none;
     /*  */
 }
