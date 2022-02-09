@@ -300,6 +300,8 @@ body.noscroll {
         /*  */
         -webkit-perspective: 1000;
         -webkit-backface-visibility: hidden;
+        perspective: 1000;
+        backface-visibility: hidden;
         /*  */
 }
 
@@ -319,6 +321,8 @@ body.noscroll {
           /*  */
           -webkit-perspective: 1000;
           -webkit-backface-visibility: hidden;
+          perspective: 1000;
+          backface-visibility: hidden;
           /*  */
 }
 @media screen and (min-width: 769px) and (max-width: 1024px) {
@@ -1236,6 +1240,8 @@ body.noscroll {
       /*  */
       -webkit-perspective: 1000;
       -webkit-backface-visibility: hidden;
+      perspective: 1000;
+      backface-visibility: hidden;
       /*  */
 }
 /* Gestion très petit écran (taille 's' coté js) */
