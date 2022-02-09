@@ -363,8 +363,10 @@ body.noscroll {
 
     /* width: auto; */ /* TEST au 09/02/2022 */
     /*  */
-    /* -webkit-perspective: 1000;
-    -webkit-backface-visibility: hidden; */
+    -webkit-perspective: 1000;
+    -webkit-backface-visibility: hidden;
+    perspective: 1000;
+    backface-visibility: hidden;
     /*  */
 }
 /*#endregion - Container englobant SVGs et tout les éléments DOM qui doivent se positionner en fonction de ces SVGs */
