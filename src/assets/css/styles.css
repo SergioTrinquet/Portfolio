@@ -361,10 +361,11 @@ body.noscroll {
   transition: all 0.3s ease-in-out;
   min-height: 100%; /* Hack pour que Chrome et Edge aient le même rendu que FF: Sans cela, le contenu de cette balise déborde, en l'ocurrence la balise regroupant les SVGs */
 
-    width: initial; /* TEST au 09/02/2022 */
+    /* width: auto; */ /* TEST au 09/02/2022 */
 }
 /*#endregion - Container englobant SVGs et tout les éléments DOM qui doivent se positionner en fonction de ces SVGs */
 
+#container { resize: none; }
 
 
 /*#region - Texte "Qui suis-je ?" */
@@ -1220,6 +1221,9 @@ body.noscroll {
   transform-origin: 100% 50%;
   opacity: 0;
   box-shadow: 0 0 0 rgba(255, 255, 255, 0.5);
+
+  -webkit-backface-visibility: hidden; /* TEST */
+  backface-visibility: hidden; /* TEST */
 }
 /* Gestion très petit écran (taille 's' coté js) */
 @media screen and (max-width: 480px) {
