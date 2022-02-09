@@ -361,7 +361,7 @@ body.noscroll {
   transition: all 0.3s ease-in-out;
   min-height: 100%; /* Hack pour que Chrome et Edge aient le même rendu que FF: Sans cela, le contenu de cette balise déborde, en l'ocurrence la balise regroupant les SVGs */
 
-    width: 50%; /* TEST au 09/02/2022 */
+    width: initial; /* TEST au 09/02/2022 */
 }
 /*#endregion - Container englobant SVGs et tout les éléments DOM qui doivent se positionner en fonction de ces SVGs */
 
