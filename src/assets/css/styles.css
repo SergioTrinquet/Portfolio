@@ -1100,7 +1100,7 @@ body.noscroll {
 #SVG_tasse {
   transform: translate3d(0, -200vh, 0);
   -webkit-transform: translate3d(0, -200vh, 0);
-  position:relative;
+  position:absolute;
   z-index: 10;
 }
 
