@@ -1210,7 +1210,7 @@ body.noscroll {
 }
 /*#endregion - Dernier écran: Texte à droite */
 
-
+body {-webkit-transform:translate3d(0,0,0); transform:translate3d(0,0,0);  }
 
 .transitionalBackground {
   background: linear-gradient(1deg, var(--color-degr-1-screen4) 40%, var(--color-degr-2-screen4) 60%);
