@@ -610,7 +610,7 @@ function setNavigation() {
     menu.classList.toggle("display", !force);
 
     generateMenu(menuTag, force);  // Création navigation générale
-    if(!isIPadOrIPhone) generateProjectsNavigation(); // Création navigation entre projets perso
+    generateProjectsNavigation(); // Création navigation entre projets perso
 }
 
 
@@ -686,6 +686,11 @@ function generateProjectsNavigation() {
         const nomLabel = navigation_projects[i].nomLabel;
         const part1 = nomLabel.substring(0, index);
         const part2 = nomLabel.substring(index + 1);
+
+        
+    if(isIPadOrIPhone) {
+        navigation_projects[i].back = navigation_projects[i].forth = false;
+    }
 
         if(navigation_projects[i].back == false) { 
             leftArrow.classList.add("hidden"); // Gestion affichage des flèches de navigation
