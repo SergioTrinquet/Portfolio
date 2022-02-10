@@ -1234,7 +1234,9 @@ body.noscroll {
 /* CSS specific to iOS devices only */
 @supports (-webkit-touch-callout: none) {
   .transitionalBackground {
-    box-shadow: none; background-color: red;
+    /* Les propriétés 'box-shadow' et le fait d'avoir un background:gradient font scintiller l'animation avec les devices iOS, donc on les retire */
+    box-shadow: none; 
+    background-color: red;
   }
 }
 

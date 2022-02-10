@@ -386,7 +386,11 @@ function generate_timeline() {
             { autoAlpha: 1 }, 
             //{ boxShadow: "-100vw 0 0 rgba(255,255,255,0.5)", duration: 60 }, // Version Originale au 09/02/2022
             { boxShadow: isIPadOrIPhone ? "none" : "-100vw 0 0 rgba(255,255,255,0.5)", duration: 60 }, // V2
-            { x:"0%", duration: 80 }] 
+            { x:"0%", duration: 80 }
+        
+            /* TEST */, { background: "linear-gradient(1deg, var(--color-degr-1-screen4) 40%, var(--color-degr-2-screen4) 60%)", duration: 1 }
+
+            ] 
         })
         .to("#intituleJob", { keyframes: [
             {scale: 0.5, opacity: 0, duration: 20 }, 
