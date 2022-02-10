@@ -60,6 +60,13 @@ if (isMobileOrTablette) {
 //var TEST = document.documentElement.style.getPropertyValue("--vh"); console.log("TEST", TEST);
 
 
+///// Tentative pour empecher redim. body qd scroll sur mobile/tablette //////
+function getHeightScreen() {
+    document.querySelector("#titi").innerText = "window.innerHeight: " + window.innerHeight + " | document.documentElement.clientHeight: " + document.documentElement.clientHeight; //TEST
+}
+window.addEventListener("resize", getHeightScreen);
+getHeightScreen();
+///// FIN //////
 
 /* function preventDefaultEvent(e) { e.preventDefault() };
 function disableTouchMove() {
@@ -458,9 +465,10 @@ function generate_timeline() {
 
     
 //////// TEST /////////
+//Ici couleurs pas sous forme de variables CSS car sinon pas de transition
 tl_scrollTriggerBody.fromTo(".transitionalBackground", 
-{ background: "linear-gradient(1deg, rgb(103, 108, 198) 40%, rgb(103, 108, 198) 60%)" }, 
-{ background: "linear-gradient(1deg, rgb(103, 108, 198) 40%, rgb(232, 70, 255) 60%)", duration: 80});
+        { background: "linear-gradient(1deg, rgb(103, 108, 198) 40%, rgb(103, 108, 198) 60%)" }, 
+        { background: "linear-gradient(1deg, rgb(103, 108, 198) 40%, rgb(232, 70, 255) 60%)", duration: 80});
 //////// FIN TEST /////////
     
         
