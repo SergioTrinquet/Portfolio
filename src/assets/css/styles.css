@@ -37,7 +37,7 @@ body {
   min-height: 100vh;
   min-height: -webkit-fill-available;
 
-  touch-action: pan-y;
+  /* touch-action: pan-y; */
 }
 /* Pour empecher quand on est en haut de page de scroller vers le bas avant la fin de l'animation */
 body.noscroll { 
