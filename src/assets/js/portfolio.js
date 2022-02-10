@@ -67,10 +67,13 @@ function getHeightScreen() {
 //window.addEventListener("resize", getHeightScreen);
 getHeightScreen();
 
-var size = [window.width,window.innerHeight];  //public variable
+/* var size = [window.width,window.innerHeight];  //public variable
 window.addEventListener("resize", function(){
     window.resizeTo(size[0],size[1]);
-});
+}); */
+document.querySelector("html").style.overflowY = "scroll";
+document.querySelector("html").style.maxHeight = window.innerHeight;
+document.querySelector("body").style.overflowY = "hidden";
 ///// FIN //////
 
 /* function preventDefaultEvent(e) { e.preventDefault() };
