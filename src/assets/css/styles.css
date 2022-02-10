@@ -1219,11 +1219,10 @@ body.noscroll {
   transform: translate(110%, 0%) rotate(30deg);
   transform-origin: 100% 50%;
   opacity: 0;
-  /* box-shadow: 0 0 0 rgba(255, 255, 255, 0.5); */
+  box-shadow: 0 0 0 rgba(255, 255, 255, 0.5);
 
   
-  transform: translate3d(110%, 0%, 0) rotate(30deg); background: linear-gradient(10deg, var(--color-degr-1-screen4) 40%, var(--color-degr-2-screen4) 60%);
-  ;
+  transform: translate3d(110%, 0%, 0) rotate(30deg); background: green; box-shadow: none;
 }
 /* Gestion très petit écran (taille 's' coté js) */
 @media screen and (max-width: 480px) {
