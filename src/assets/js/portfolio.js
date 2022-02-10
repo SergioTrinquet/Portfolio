@@ -71,8 +71,9 @@ getHeightScreen();
 window.addEventListener("resize", function(){
     window.resizeTo(size[0],size[1]);
 }); */
+
+document.querySelector("html").style.maxHeight = window.innerHeight + "px";
 document.querySelector("html").style.overflowY = "scroll";
-document.querySelector("html").style.maxHeight = window.innerHeight;
 document.querySelector("body").style.overflowY = "hidden";
 ///// FIN //////
 
