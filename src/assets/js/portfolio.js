@@ -61,11 +61,11 @@ if (isMobileOrTablette) {
 
 
 ///// Tentative pour empecher redim. body qd scroll sur mobile/tablette //////
-function getHeightScreen() {
+/* function getHeightScreen() {
     document.querySelector("#titi").innerText = "window.innerHeight: " + window.innerHeight + " | document.documentElement.clientHeight: " + document.documentElement.clientHeight; //TEST
 }
 //window.addEventListener("resize", getHeightScreen);
-getHeightScreen();
+getHeightScreen(); */
 
 /* var size = [window.width,window.innerHeight];  //public variable
 window.addEventListener("resize", function(){
@@ -470,14 +470,12 @@ function generate_timeline() {
     }
 
     
-//////// TEST /////////
     if(isIPadOrIPhone) {
         //Ici couleurs pas sous forme de variables CSS car sinon pas de transition
         tl_scrollTriggerBody.fromTo(".transitionalBackground", 
                 { background: "linear-gradient(1deg, rgb(103, 108, 198) 40%, rgb(103, 108, 198) 60%)" }, 
                 { background: "linear-gradient(1deg, rgb(103, 108, 198) 40%, rgb(232, 70, 255) 60%)", duration: 80});
     }
-//////// FIN TEST /////////
     
         
     tl_scrollTriggerBody 
@@ -612,7 +610,7 @@ function setNavigation() {
     menu.classList.toggle("display", !force);
 
     generateMenu(menuTag, force);  // Création navigation générale
-    generateProjectsNavigation(); // Création navigation entre projets perso
+    if(!isIPadOrIPhone) generateProjectsNavigation(); // Création navigation entre projets perso
 }
 
 
