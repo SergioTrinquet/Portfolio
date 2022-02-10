@@ -432,11 +432,6 @@ function generate_timeline() {
         .to("#SVG_ombre", { display: "initial", autoAlpha:1, duration: 25 });
 
 
-//////// TEST /////////
-tl_scrollTriggerBody.to(".transitionalBackground", { background: "linear-gradient(1deg, var(--color-degr-1-screen4) 40%, var(--color-degr-2-screen4) 60%)", duration: 1, delay: 140 });
-//////// FIN TEST /////////
-
-
     if(mm == "s" || mm == "xs") {  
         tl_scrollTriggerBody      
             .to(".wrapperSVGsAndTexts", { marginTop: (mm == "s" ? "10vmin" : "30vmin"), duration: 150, delay: 100 }) // SVG visage qui descend en bas de l'écran
@@ -460,6 +455,11 @@ tl_scrollTriggerBody.to(".transitionalBackground", { background: "linear-gradien
             ] }, "<") // Apparition message "A bientôt"  
             .to("#margeRight", { display: "initial", transform: "rotate(30deg) translateX(0vw)", duration: 80 });   
     }
+
+    
+//////// TEST /////////
+tl_scrollTriggerBody.to(".transitionalBackground", { background: "linear-gradient(1deg, var(--color-degr-1-screen4) 40%, var(--color-degr-2-screen4) 60%)", duration: 50});
+//////// FIN TEST /////////
     
         
     tl_scrollTriggerBody 
