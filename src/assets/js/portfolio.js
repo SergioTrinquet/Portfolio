@@ -157,7 +157,7 @@ if(getScrollTop() == 0) {
 
 
 window.addEventListener('scroll', () => {
-    const scrollValue = getScrollTop();             /* A VIRER */ document.querySelector("#titi").innerText = scrollValue; 
+    const scrollValue = getScrollTop();             /* A VIRER */ //document.querySelector("#titi").innerText = scrollValue; 
 
     // Appel fct° pour aller au label suivant/précédent qd : 
     // 1. Début de scroll exclusivement 
