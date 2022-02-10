@@ -1222,7 +1222,7 @@ body.noscroll {
   box-shadow: 0 0 0 rgba(255, 255, 255, 0.5);
 
   
-  transform: translate3d(110%, 0%, 0) rotate(30deg); background: green; box-shadow: none;
+  transform: translate3d(110%, 0%, 0) rotate(30deg);  -webkit-backface-visibility: hidden; box-shadow: none;
 }
 /* Gestion très petit écran (taille 's' coté js) */
 @media screen and (max-width: 480px) {
