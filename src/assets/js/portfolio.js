@@ -61,7 +61,7 @@ if (isMobileOrTablette) {
 
 
 ///// Tentative pour empecher redim. body qd scroll sur mobile/tablette //////
-function getHeightScreen() {
+/* function getHeightScreen() {
     document.querySelector("#titi").innerText = "window.innerHeight: " + window.innerHeight + " | document.documentElement.clientHeight: " + document.documentElement.clientHeight; //TEST
 }
 window.addEventListener("resize", getHeightScreen);
@@ -70,7 +70,7 @@ getHeightScreen();
 var size = [document.documentElement.clientWidth, document.documentElement.clientHeight];  //public variable
 window.addEventListener("resize", function(){
     window.resizeTo(size[0],size[1]);
-});
+}); */
 ///// FIN //////
 
 
@@ -157,7 +157,7 @@ if(getScrollTop() == 0) {
 
 
 window.addEventListener('scroll', () => {
-    const scrollValue = getScrollTop();             /* A VIRER */ //document.querySelector("#titi").innerText = scrollValue; 
+    const scrollValue = getScrollTop();             /* A VIRER */ document.querySelector("#titi").innerText = scrollValue; 
 
     // Appel fct° pour aller au label suivant/précédent qd : 
     // 1. Début de scroll exclusivement 
