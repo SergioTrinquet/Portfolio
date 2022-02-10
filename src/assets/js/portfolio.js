@@ -74,6 +74,29 @@ window.addEventListener("resize", function(){
 ///// FIN //////
 
 
+////////// TEST simul overscroll-behavior pour iOS///////////
+window.addEventListener('scroll', async function() {
+    await new Promise(resolve => window.requestAnimationFrame(resolve));
+    const {
+      scrollTop,
+      scrollLeft,
+      scrollHeight,
+      clientHeight
+    } = window;
+    const atTop = scrollTop === 0;
+    const beforeTop = 1;
+    const atBottom = scrollTop === scrollHeight - clientHeight;
+    const beforeBottom = scrollHeight - clientHeight - 1;
+  
+    if (atTop) {
+        window.scrollTo(scrollLeft, beforeTop);
+    } else if (atBottom) {
+        window.scrollTo(scrollLeft, beforeBottom)
+    }
+  })
+////////// FIN TEST ///////////
+
+
 /* function preventDefaultEvent(e) { e.preventDefault() };
 function disableTouchMove() {
     ["touchstart", "touchmove"].forEach((e) => {
