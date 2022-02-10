@@ -32,9 +32,9 @@ let nbExecScrollEvent = -1,
     menuOrArrowClicked = false;
 const dureeEntreLabels = [1.7, 2.6, 2.7, 0.8, 0.8, 6, 1.5];
 const isMobileOrTablette = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) || (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.platform));
-
 const isIPadOrIPhone = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (/iPhone|iPad|iPod/i.test(navigator.platform));
-document.querySelector("#titi").innerText = isIPadOrIPhone ? "iPhone/iPad" : "Autre"; //TEST
+
+/* A VIRER */ document.querySelector("#titi").innerText = isIPadOrIPhone ? "iPhone/iPad" : "Autre"; //TEST
 
 let scrubValue = 1;
 
@@ -61,16 +61,16 @@ if (isMobileOrTablette) {
 
 
 ///// Tentative pour empecher redim. body qd scroll sur mobile/tablette //////
-/* function getHeightScreen() {
+function getHeightScreen() {
     document.querySelector("#titi").innerText = "window.innerHeight: " + window.innerHeight + " | document.documentElement.clientHeight: " + document.documentElement.clientHeight; //TEST
 }
 //window.addEventListener("resize", getHeightScreen);
-getHeightScreen(); */
+getHeightScreen();
 
-/* var size = [window.width,window.innerHeight];  //public variable
+var size = [document.documentElement.clientWidth, document.documentElement.clientHeight];  //public variable
 window.addEventListener("resize", function(){
     window.resizeTo(size[0],size[1]);
-}); */
+});
 ///// FIN //////
 
 
@@ -157,7 +157,7 @@ if(getScrollTop() == 0) {
 
 
 window.addEventListener('scroll', () => {
-    const scrollValue = getScrollTop();
+    const scrollValue = getScrollTop();             /* A VIRER */ document.querySelector("#titi").innerText = scrollValue; 
 
     // Appel fct° pour aller au label suivant/précédent qd : 
     // 1. Début de scroll exclusivement 
@@ -687,10 +687,9 @@ function generateProjectsNavigation() {
         const part1 = nomLabel.substring(0, index);
         const part2 = nomLabel.substring(index + 1);
 
-        
-    if(isIPadOrIPhone) {
-        navigation_projects[i].back = navigation_projects[i].forth = false;
-    }
+        // Pour empecher affichage fleches de navigation qd iOS (avec Safari ou autres) car ne fonctionnent pas et fait bugger reste de la navigation
+        if(isIPadOrIPhone) navigation_projects[i].back = navigation_projects[i].forth = false;
+
 
         if(navigation_projects[i].back == false) { 
             leftArrow.classList.add("hidden"); // Gestion affichage des flèches de navigation
