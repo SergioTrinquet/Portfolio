@@ -635,7 +635,7 @@ body.noscroll {
 
 
 /*#region -  Texte de présentation à la question "Qui suis-je ?" */
-.textePresentation {    border: dashed 2px yellow;position: relative;
+.textePresentation {    border: dashed 2px yellow;
   color: #fff;
   text-shadow: 0 1px 0 rgba(0,0,0,0.5);
   margin: 0;
@@ -1229,6 +1229,13 @@ body.noscroll {
   .transitionalBackground {
     background: linear-gradient(1deg, var(--color-degr-1-screen4) 40%, var(--color-degr-2-screen4) 70%);
   } 
+}
+
+/* CSS specific to iOS devices only */
+@supports (-webkit-touch-callout: none) {
+  .transitionalBackground {
+    box-shadow: none; color: red;
+  }
 }
 
 
