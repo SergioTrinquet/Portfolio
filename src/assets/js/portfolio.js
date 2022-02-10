@@ -460,7 +460,7 @@ function generate_timeline() {
 //////// TEST /////////
 tl_scrollTriggerBody.fromTo(".transitionalBackground", 
 { background: "linear-gradient(10deg, rgb(103, 108, 198) 40%, rgb(103, 108, 198) 60%)" }, 
-{ background: "linear-gradient(10deg, rgb(232, 70, 255) 40%, rgb(232, 70, 255) 60%)", duration: 80});
+{ background: "linear-gradient(10deg, rgb(103, 108, 198) 40%, rgb(232, 70, 255) 60%)", duration: 80});
 //////// FIN TEST /////////
     
         
