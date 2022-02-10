@@ -64,8 +64,13 @@ if (isMobileOrTablette) {
 function getHeightScreen() {
     document.querySelector("#titi").innerText = "window.innerHeight: " + window.innerHeight + " | document.documentElement.clientHeight: " + document.documentElement.clientHeight; //TEST
 }
-window.addEventListener("resize", getHeightScreen);
+//window.addEventListener("resize", getHeightScreen);
 getHeightScreen();
+
+var size = [window.width,window.innerHeight];  //public variable
+window.addEventListener("resize", function(){
+    window.resizeTo(size[0],size[1]);
+});
 ///// FIN //////
 
 /* function preventDefaultEvent(e) { e.preventDefault() };
