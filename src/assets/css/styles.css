@@ -635,7 +635,7 @@ body.noscroll {
 
 
 /*#region -  Texte de présentation à la question "Qui suis-je ?" */
-.textePresentation {    border: dashed 2px yellow;
+.textePresentation {    border: dashed 2px yellow;position: relative;
   color: #fff;
   text-shadow: 0 1px 0 rgba(0,0,0,0.5);
   margin: 0;
@@ -1222,7 +1222,7 @@ body.noscroll {
   box-shadow: 0 0 0 rgba(255, 255, 255, 0.5);
 
   
-  transform: translate3d(110%, 0%, 0) rotate(30deg); background: var(--color-degr-1-screen4); box-shadow: none;
+  transform: translate3d(110%, 0%, 0) rotate(30deg); background: var(--color-degr-1-screen4); /* box-shadow: none; */
 }
 /* Gestion très petit écran (taille 's' coté js) */
 @media screen and (max-width: 480px) {
