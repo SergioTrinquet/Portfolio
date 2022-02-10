@@ -458,7 +458,7 @@ function generate_timeline() {
 
     
 //////// TEST /////////
-tl_scrollTriggerBody.to(".transitionalBackground", { background: "linear-gradient(1deg, var(--color-degr-1-screen4) 40%, var(--color-degr-2-screen4) 60%)", duration: 50});
+//tl_scrollTriggerBody.to(".transitionalBackground", { background: "linear-gradient(1deg, var(--color-degr-1-screen4) 40%, var(--color-degr-2-screen4) 60%)", duration: 50});
 //////// FIN TEST /////////
     
         
