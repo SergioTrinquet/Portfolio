@@ -1222,7 +1222,7 @@ body.noscroll {
   box-shadow: 0 0 0 rgba(255, 255, 255, 0.5);
 
   
-  transform: translate3d(110%, 0%, 0) rotate(30deg); /* background: var(--color-degr-1-screen4); */background: red;
+  transform: translate3d(110%, 0%, 0) rotate(30deg);
 }
 /* Gestion très petit écran (taille 's' coté js) */
 @media screen and (max-width: 480px) {
@@ -1236,7 +1236,7 @@ body.noscroll {
   .transitionalBackground {
     /* Les propriétés 'box-shadow' et le fait d'avoir un background:gradient font scintiller l'animation avec les devices iOS, donc on les retire */
     box-shadow: none; 
-    background: red;
+    background: linear-gradient(1deg, var(--color-degr-1-screen4) 40%, var(--color-degr-1-screen4) 60%);
   }
 }
 
