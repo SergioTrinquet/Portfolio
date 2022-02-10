@@ -384,7 +384,9 @@ function generate_timeline() {
     tl_scrollTriggerBody
         .to(".transitionalBackground", { keyframes: [
             { autoAlpha: 1 }, 
-            { /* boxShadow: "-100vw 0 0 rgba(255,255,255,0.5)", */ duration: 60 }, 
+            //{ boxShadow: "-100vw 0 0 rgba(255,255,255,0.5)", duration: 60 }, // Version Originale au 09/02/2022
+            { boxShadow: isIPadOrIPhone ? "none" : "-100vw 0 0 rgba(255,255,255,0.5)", duration: 60 }, // V2
+            
             { x:"0%", duration: 80 }] 
         })
         .to("#intituleJob", { keyframes: [
