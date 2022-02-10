@@ -157,7 +157,23 @@ if(getScrollTop() == 0) {
 
 
 window.addEventListener('scroll', () => {
-    const scrollValue = getScrollTop();             /* A VIRER */ document.querySelector("#titi").innerText = scrollValue; 
+    const scrollValue = getScrollTop();             
+    
+    
+    /* TEST -  A VIRER */
+    document.querySelector("#titi").innerText = scrollValue; 
+
+    let Neg = document.querySelector("#scrollNeg");
+    let Pos = document.querySelector("#scrollPos"); 
+    if(scrollValue < 0) { 
+        Neg.style.backgroundColor = "yellow"; 
+    } else { Neg.style.backgroundColor = "none"; }
+    if(scrollValue > (body.scrollHeight - document.documentElement.clientHeight)) { 
+        Pos.style.backgroundColor = "yellow"; 
+    } else { Pos.style.backgroundColor = "none"; }
+    /* FIN TEST -  A VIRER */
+
+
 
     // Appel fct° pour aller au label suivant/précédent qd : 
     // 1. Début de scroll exclusivement 
