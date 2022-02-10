@@ -1234,7 +1234,7 @@ body.noscroll {
 /* CSS specific to iOS devices only */
 @supports (-webkit-touch-callout: none) {
   .transitionalBackground {
-    box-shadow: none; color: red;
+    box-shadow: none; background-color: red;
   }
 }
 
