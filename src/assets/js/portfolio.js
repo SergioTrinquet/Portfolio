@@ -102,10 +102,10 @@ window.addEventListener("resize", function(){
         //If we're at the top or the bottom of the containers scroll, push up or down one pixel.
         //
         //this prevents the scroll from "passing through" to the body.
-        if(scrollVal <= 0) {
+        if(scrollVal <= 0) {    document.querySelector("#flagIsScrolling").innerText += "| inf. à 0"; //TEST
             //window.scrollTo(0, 1);
             e.preventDefault();
-        } else if(scrollVal >= (totalScroll - document.documentElement.clientHeight)) { 
+        } else if(scrollVal >= (totalScroll - document.documentElement.clientHeight)) { document.querySelector("#flagIsScrolling").innerText += "| sup. à " + totalScroll - document.documentElement.clientHeight; //TEST
             //window.scrollTo(0, scrollVal - 1);
             e.preventDefault();
         }
