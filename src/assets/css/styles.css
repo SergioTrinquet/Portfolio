@@ -337,7 +337,8 @@ body.noscroll {
   align-items: center;
   position: relative; /* Pour que SVGvisageVIVUS en position:absolute ne déborde pas de son conteneur */
 }
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) { */
+@media screen and (max-width: 768px) and (hover: hover) {
   .wrapperSVGsAndTexts.columnDirection {
     flex-direction: column;
     text-align: center;
@@ -345,18 +346,18 @@ body.noscroll {
 
   /* TEST */
   #data::before {
-    content: "max-width: 768px";
+    content: "max-width: 768px + hover:hover";
   }
 }
 
 /* TEST */
-@media screen and (max-aspect-ratio: 9/13) {
+@media screen and (max-aspect-ratio: 9/13) and (pointer: coarse) {
   .wrapperSVGsAndTexts.columnDirection {
     flex-direction: column;
     text-align: center;
   }
   #flagIsScrolling::before {
-    content: "max-aspect-ratio: 9/13";
+    content: "max-aspect-ratio: 9/13 + pointer:coarse";
   }
 }
 /* FIN TEST */
