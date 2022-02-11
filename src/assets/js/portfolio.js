@@ -103,10 +103,10 @@ window.addEventListener("resize", function(){
         document.querySelector("#data").innerText = e.type;
 
         if(scrollVal <= 0) {    document.querySelector("#flagIsScrolling").innerText += "| inf. à 0"; //TEST
-            //window.scrollTo(0, 1);
+            window.scrollTo(0, 1);
             e.preventDefault();
         } else if(scrollVal >= (totalScroll - document.documentElement.clientHeight)) { document.querySelector("#flagIsScrolling").innerText += "| sup. à " + totalScroll - document.documentElement.clientHeight; //TEST
-            //window.scrollTo(0, scrollVal - 1);
+            window.scrollTo(0, scrollVal - 1);
             e.preventDefault();
         }
     }
