@@ -111,8 +111,8 @@ window.addEventListener("resize", function(){
         }
     }
    
-    window.addEventListener('touchstart', stopScrolling);
-    window.addEventListener('touchmove', stopScrolling);
+    window.addEventListener('touchstart', stopScrolling, false);
+    window.addEventListener('touchmove', stopScrolling, false);
     window.addEventListener('touchend', () => document.querySelector("#flagIsScrolling").innerText = "Plus d'evenements touch"); //TEST
    
 
