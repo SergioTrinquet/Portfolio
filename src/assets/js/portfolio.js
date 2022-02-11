@@ -99,7 +99,7 @@ window.addEventListener("resize", function(){
         await new Promise(resolve => window.requestAnimationFrame(resolve));    
         let scrollVal = getScrollTop();
         let totalScroll = body.scrollHeight;
-        document.querySelector("#data").innerText = totalScroll + " " + document.documentElement.clientHeight; //TEST
+        document.querySelector("#data").innerText = scrollVal + " " + totalScroll + " " + document.documentElement.clientHeight; //TEST
 
         if(scrollVal <= 0) {    document.querySelector("#flagIsScrolling").innerText += "| inf. à 0"; //TEST
             //window.scrollTo(0, 1);
