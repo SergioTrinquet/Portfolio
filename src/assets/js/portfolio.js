@@ -95,7 +95,7 @@ window.addEventListener("resize", function(){
     }
   }) */
 
-    async function stopScrolling() {  document.querySelector("#flagIsScrolling").innerText = "touchstart/touchmove"; //TEST
+    async function stopScrolling(e) {  document.querySelector("#flagIsScrolling").innerText = "touchstart/touchmove"; //TEST
         await new Promise(resolve => window.requestAnimationFrame(resolve));    
         let scrollVal = getScrollTop();
         let totalScroll = body.scrollHeight;
@@ -103,9 +103,11 @@ window.addEventListener("resize", function(){
         //
         //this prevents the scroll from "passing through" to the body.
         if(scrollVal <= 0) {
-            window.scrollTo(0, 1);
+            //window.scrollTo(0, 1);
+            e.preventDefault();
         } else if(scrollVal >= (totalScroll - document.documentElement.clientHeight)) { 
-            window.scrollTo(0, scrollVal - 1);
+            //window.scrollTo(0, scrollVal - 1);
+            e.preventDefault();
         }
     }
    
