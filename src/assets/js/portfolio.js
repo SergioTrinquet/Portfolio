@@ -112,10 +112,10 @@ window.addEventListener("resize", function(){
         }
     }
    
-    window.addEventListener('touchstart', stopScrolling, false);
-    window.addEventListener('touchmove', stopScrolling, false);
+    window.addEventListener('touchstart', stopScrolling, true);
+    window.addEventListener('touchmove', stopScrolling, true);
     window.addEventListener('touchend', () => document.querySelector("#flagIsScrolling").innerText = "Plus d'evenements touch"); //TEST
-    window.addEventListener('scroll', stopScrolling, false);
+    window.addEventListener('scroll', stopScrolling, true);
 
 
   /* body.addEventListener('touchmove', function(evt) {
