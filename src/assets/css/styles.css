@@ -342,6 +342,11 @@ body.noscroll {
     flex-direction: column;
     text-align: center;
   }
+
+  /* TEST */
+  #data::before {
+    content: "max-width: 768px";
+  }
 }
 
 
@@ -1519,6 +1524,9 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   transform: scale(1.2, 1.2);
 }
 /*#endregion - Navigation entre projets dans rubrique "Projets perso" */
+
+
+
 
 
 
