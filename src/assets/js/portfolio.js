@@ -95,7 +95,8 @@ window.addEventListener("resize", function(){
     }
   }) */
 
-    function stopScrolling() {  document.querySelector("#flagIsScrolling").innerText = "touchstart/touchmove"; //TEST
+    async function stopScrolling() {  document.querySelector("#flagIsScrolling").innerText = "touchstart/touchmove"; //TEST
+        await new Promise(resolve => window.requestAnimationFrame(resolve));    
         let scrollVal = getScrollTop();
         let totalScroll = body.scrollHeight;
         //If we're at the top or the bottom of the containers scroll, push up or down one pixel.
