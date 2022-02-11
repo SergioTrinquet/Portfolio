@@ -108,8 +108,8 @@ window.addEventListener("resize", function(){
         }
     }
    
-    body.addEventListener('touchstart', () => stopScrolling);
-    body.addEventListener('touchmove', () => stopScrolling);
+    body.addEventListener('touchstart', stopScrolling);
+    body.addEventListener('touchmove', stopScrolling);
     body.addEventListener('touchend', () => document.querySelector("#flagIsScrolling").innerText = "Plus d'evenements touch"); //TEST
    
 
