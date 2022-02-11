@@ -517,11 +517,11 @@ function generate_timeline() {
     return tl_scrollTriggerBody;
 }
 
-
+var num = 0; //TEST
 
 // Pour regénérer la timeline à chaque redimensionnement de la fenetre, sinon décalages se produisent car les prop. CSS de 
 // dimensions relatives (en vw, vh, %,...) sont interprétées une seule fois à l'initialisation de la timeline avec GSAP
-ScrollTrigger.addEventListener("refreshInit", () => {
+ScrollTrigger.addEventListener("refreshInit", () => {   document.querySelector("#data").innerText = "RefreshInit " + (num +=1);
     mm = getMedia();
     if(tl !== null) tl.clear(); // Prise en compte 1er déclenchement de l'evenement 'refreshInit' au chargement de la pg ou tl est = à null
     tl = generate_timeline();
@@ -529,13 +529,12 @@ ScrollTrigger.addEventListener("refreshInit", () => {
 });
 
 /* TEST */
-var num = 0;
-window.addEventListener('orientationchange', () => { document.querySelector("#data").innerText = "Cgmt orientation" + (num +=1);
+/* window.addEventListener('orientationchange', () => { document.querySelector("#data").innerText = "Cgmt orientation" + (num +=1);
     mm = getMedia();
     if(tl !== null) tl.clear(); // Prise en compte 1er déclenchement de l'evenement 'refreshInit' au chargement de la pg ou tl est = à null
     tl = generate_timeline();
     if(!flagAnimationIntro) setNavigation(); // Ici ajouté car qd redimension de la fenêtre, les valeurs des labels utilisés dans cette fonction changent, donc fonction rappelée ici pour avoir les valeurs à jour, sinon décalage entre vrais positions des labels et positions calculées
-});
+}); */
 /* FIN TEST */
 
 
