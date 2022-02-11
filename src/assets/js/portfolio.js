@@ -96,7 +96,7 @@ window.addEventListener("resize", function(){
   }) */
 
     async function stopScrolling(e) {  
-        //document.querySelector("#flagIsScrolling").innerText = "touchstart/touchmove"; //TEST
+        document.querySelector("#flagIsScrolling").innerText = "touchstart/touchmove"; //TEST
         await new Promise(resolve => window.requestAnimationFrame(resolve));    
         let scrollVal = getScrollTop();
         let totalScroll = body.scrollHeight;
@@ -115,7 +115,10 @@ window.addEventListener("resize", function(){
     //window.addEventListener('touchstart', stopScrolling, false);
     //window.addEventListener('touchmove', stopScrolling, false);
     //window.addEventListener('touchend', () => document.querySelector("#flagIsScrolling").innerText = "Plus d'evenements touch"); //TEST
-    window.addEventListener('scroll', stopScrolling, false);
+    //window.addEventListener('scroll', stopScrolling, false);
+    document.body.addEventListener('touchmove',function(e){
+        e.preventDefault();
+    });
 
 
   /* body.addEventListener('touchmove', function(evt) {
