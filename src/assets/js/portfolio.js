@@ -95,21 +95,23 @@ window.addEventListener("resize", function(){
     }
   }) */
 
-  var overscroll = function(el) {
-    el.addEventListener('touchmove', function() {
-      let scrollVal = getScrollTop(),
-        totalScroll = el.scrollHeight;
-      //If we're at the top or the bottom of the containers scroll, push up or down one pixel.
-      //
-      //this prevents the scroll from "passing through" to the body.
-      if(scrollVal <= 0) {
-        window.scrollTo(0, 1);
-      } else if(scrollValue >= (totalScroll - document.documentElement.clientHeight)) { 
-        window.scrollTo(0, scrollVal - 1);
-      }
-    })
-  }
-  overscroll(body);
+    function stopScrolling(el) {
+        let scrollVal = getScrollTop();
+        let totalScroll = el.scrollHeight;
+        //If we're at the top or the bottom of the containers scroll, push up or down one pixel.
+        //
+        //this prevents the scroll from "passing through" to the body.
+        if(scrollVal <= 0) {
+            window.scrollTo(0, 1);
+        } else if(scrollValue >= (totalScroll - document.documentElement.clientHeight)) { 
+            window.scrollTo(0, scrollVal - 1);
+        }
+    }
+    var overscroll = function(el) {
+        el.addEventListener('touchstart', stopScrolling(el));
+        el.addEventListener('touchmove', stopScrolling(el));
+    }
+    overscroll(body);
 
   /* body.addEventListener('touchmove', function(evt) {
     //In this case, the default behavior is scrolling the body, which
