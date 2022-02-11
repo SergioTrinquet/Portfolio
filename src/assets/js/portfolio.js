@@ -95,7 +95,8 @@ window.addEventListener("resize", function(){
     }
   }) */
 
-    async function stopScrolling(e) {  document.querySelector("#flagIsScrolling").innerText = "touchstart/touchmove"; //TEST
+    async function stopScrolling(e) {  
+        document.querySelector("#flagIsScrolling").innerText = "touchstart/touchmove"; //TEST
         await new Promise(resolve => window.requestAnimationFrame(resolve));    
         let scrollVal = getScrollTop();
         let totalScroll = body.scrollHeight;
@@ -103,10 +104,10 @@ window.addEventListener("resize", function(){
         document.querySelector("#data").innerText = e.type;
 
         if(scrollVal <= 0) {    document.querySelector("#flagIsScrolling").innerText += "| inf. à 0"; //TEST
-            window.scrollTo(0, 1);
+            //window.scrollTo(0, 1);
             e.preventDefault();
         } else if(scrollVal >= (totalScroll - document.documentElement.clientHeight)) { document.querySelector("#flagIsScrolling").innerText += "| sup. à " + totalScroll - document.documentElement.clientHeight; //TEST
-            window.scrollTo(0, scrollVal - 1);
+            //window.scrollTo(0, scrollVal - 1);
             e.preventDefault();
         }
     }
@@ -114,7 +115,8 @@ window.addEventListener("resize", function(){
     window.addEventListener('touchstart', stopScrolling, false);
     window.addEventListener('touchmove', stopScrolling, false);
     window.addEventListener('touchend', () => document.querySelector("#flagIsScrolling").innerText = "Plus d'evenements touch"); //TEST
-   
+    window.addEventListener('scroll', stopScrolling, false);
+
 
   /* body.addEventListener('touchmove', function(evt) {
     //In this case, the default behavior is scrolling the body, which
