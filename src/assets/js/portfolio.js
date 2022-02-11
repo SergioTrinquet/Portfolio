@@ -529,7 +529,8 @@ ScrollTrigger.addEventListener("refreshInit", () => {
 });
 
 /* TEST */
-window.addEventListener('orientationchange', () => {
+var num = 0;
+window.addEventListener('orientationchange', () => { document.querySelector("#data").innerText = "Cgmt orientation" + (num +=1);
     mm = getMedia();
     if(tl !== null) tl.clear(); // Prise en compte 1er déclenchement de l'evenement 'refreshInit' au chargement de la pg ou tl est = à null
     tl = generate_timeline();
