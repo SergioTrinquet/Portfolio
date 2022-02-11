@@ -356,7 +356,7 @@ body.noscroll {
     text-align: center;
   }
   #flagIsScrolling::before {
-    content: "max-aspect-ratio: 13/9";
+    content: "max-aspect-ratio: 9/13";
   }
 }
 /* FIN TEST */
