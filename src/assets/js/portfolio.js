@@ -95,9 +95,9 @@ window.addEventListener("resize", function(){
     }
   }) */
 
-    function stopScrolling(el) {
+    function stopScrolling() {  document.querySelector("#flagIsScrolling").innerText = "touchstart/touchmove"; //TEST
         let scrollVal = getScrollTop();
-        let totalScroll = el.scrollHeight;
+        let totalScroll = body.scrollHeight;
         //If we're at the top or the bottom of the containers scroll, push up or down one pixel.
         //
         //this prevents the scroll from "passing through" to the body.
@@ -107,11 +107,11 @@ window.addEventListener("resize", function(){
             window.scrollTo(0, scrollVal - 1);
         }
     }
-    var overscroll = function(el) {
-        el.addEventListener('touchstart', stopScrolling(el));
-        el.addEventListener('touchmove', stopScrolling(el));
-    }
-    overscroll(body);
+   
+    body.addEventListener('touchstart', () => stopScrolling);
+    body.addEventListener('touchmove', () => stopScrolling);
+    body.addEventListener('touchend', () => document.querySelector("#flagIsScrolling").innerText = "Plus d'evenements touch"); //TEST
+   
 
   /* body.addEventListener('touchmove', function(evt) {
     //In this case, the default behavior is scrolling the body, which
