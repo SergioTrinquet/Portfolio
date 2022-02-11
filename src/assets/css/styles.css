@@ -350,7 +350,7 @@ body.noscroll {
 }
 
 /* TEST */
-@media screen and (max-aspect-ratio: 13/9) {
+@media screen and (max-aspect-ratio: 9/13) {
   .wrapperSVGsAndTexts.columnDirection {
     flex-direction: column;
     text-align: center;
