@@ -99,9 +99,8 @@ window.addEventListener("resize", function(){
         await new Promise(resolve => window.requestAnimationFrame(resolve));    
         let scrollVal = getScrollTop();
         let totalScroll = body.scrollHeight;
-        //If we're at the top or the bottom of the containers scroll, push up or down one pixel.
-        //
-        //this prevents the scroll from "passing through" to the body.
+        document.querySelector("#data").innerText = totalScroll + " " + document.documentElement.clientHeight; //TEST
+
         if(scrollVal <= 0) {    document.querySelector("#flagIsScrolling").innerText += "| inf. à 0"; //TEST
             //window.scrollTo(0, 1);
             e.preventDefault();
