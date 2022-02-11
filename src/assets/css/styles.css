@@ -344,12 +344,22 @@ body.noscroll {
   }
 
   /* TEST */
-  #data::before {
+  /* #data::before {
     content: "max-width: 768px";
-  }
+  } */
 }
 
-
+/* TEST */
+@media screen and (max-aspect-ratio: 13/9) {
+  .wrapperSVGsAndTexts.columnDirection {
+    flex-direction: column;
+    text-align: center;
+  }
+  #flagIsScrolling::before {
+    content: "max-aspect-ratio: 13/9";
+  }
+}
+/* FIN TEST */
 
 /*#region - Container englobant SVGs et tout les éléments DOM qui doivent se positionner en fonction de ces SVGs */
 .SVGsAndAnnexes {   border: dashed 2px purple;
