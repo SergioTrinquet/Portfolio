@@ -37,8 +37,6 @@ body {
   /* Ajouté pour corriger le bug des 100vh sur Chrome pour mobile */
   min-height: 100vh;
   min-height: -webkit-fill-available;
-
-  -webkit-overflow-scrolling: touch;
 }
 /* Pour empecher quand on est en haut de page de scroller vers le bas avant la fin de l'animation */
 body.noscroll { 
