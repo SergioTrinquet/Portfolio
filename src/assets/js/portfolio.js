@@ -110,9 +110,9 @@ window.addEventListener("resize", function(){
         }
     }
    
-    body.addEventListener('touchstart', stopScrolling);
-    body.addEventListener('touchmove', stopScrolling);
-    body.addEventListener('touchend', () => document.querySelector("#flagIsScrolling").innerText = "Plus d'evenements touch"); //TEST
+    window.addEventListener('touchstart', stopScrolling);
+    window.addEventListener('touchmove', stopScrolling);
+    window.addEventListener('touchend', () => document.querySelector("#flagIsScrolling").innerText = "Plus d'evenements touch"); //TEST
    
 
   /* body.addEventListener('touchmove', function(evt) {
