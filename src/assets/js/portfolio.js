@@ -60,42 +60,10 @@ if (isMobileOrTablette) {
 //var TEST = document.documentElement.style.getPropertyValue("--vh"); console.log("TEST", TEST);
 
 
-///// Tentative pour empecher redim. body qd scroll sur mobile/tablette //////
-/* function getHeightScreen() {
-    document.querySelector("#titi").innerText = "window.innerHeight: " + window.innerHeight + " | document.documentElement.clientHeight: " + document.documentElement.clientHeight; //TEST
-}
-window.addEventListener("resize", getHeightScreen);
-getHeightScreen();
-
-var size = [document.documentElement.clientWidth, document.documentElement.clientHeight];  //public variable
-window.addEventListener("resize", function(){
-    window.resizeTo(size[0],size[1]);
-}); */
-///// FIN //////
 
 
 ////////// TEST simul overscroll-behavior pour iOS///////////
-/* window.addEventListener('scroll', async function() {
-    await new Promise(resolve => window.requestAnimationFrame(resolve));
-    const {
-      scrollTop,
-      scrollLeft,
-      scrollHeight,
-      clientHeight
-    } = window;
-    const atTop = scrollTop === 0;
-    const beforeTop = 1;
-    const atBottom = scrollTop === scrollHeight - clientHeight;
-    const beforeBottom = scrollHeight - clientHeight - 1;
-  
-    if (atTop) {
-        window.scrollTo(scrollLeft, beforeTop);
-    } else if (atBottom) {
-        window.scrollTo(scrollLeft, beforeBottom)
-    }
-  }) */
-
-    async function stopScrolling(e) {  
+/*     async function stopScrolling(e) {  
         document.querySelector("#flagIsScrolling").innerText = "touchstart/touchmove"; //TEST
         await new Promise(resolve => window.requestAnimationFrame(resolve));    
         let scrollVal = getScrollTop();
@@ -112,22 +80,9 @@ window.addEventListener("resize", function(){
         }
     }
    
-    //window.addEventListener('touchstart', stopScrolling, false);
-    //window.addEventListener('touchmove', stopScrolling, false);
-    //window.addEventListener('touchend', () => document.querySelector("#flagIsScrolling").innerText = "Plus d'evenements touch"); //TEST
-    //window.addEventListener('scroll', stopScrolling, false);
-    document.body.addEventListener('touchmove',function(e){
-        e.preventDefault();
-    });
-
-
-  /* body.addEventListener('touchmove', function(evt) {
-    //In this case, the default behavior is scrolling the body, which
-    //would result in an overflow.  Since we don't want that, we preventDefault.
-    if(!evt._isScroller) {
-      evt.preventDefault()
-    }
-  }) */
+    window.addEventListener('touchstart', stopScrolling, false);
+    window.addEventListener('touchmove', stopScrolling, false);
+    window.addEventListener('touchend', () => document.querySelector("#flagIsScrolling").innerText = "Plus d'evenements touch"); //TEST */
 ////////// FIN TEST ///////////
 
 
@@ -218,8 +173,7 @@ window.addEventListener('scroll', () => {
     
     
     /* TEST -  A VIRER */
-    document.querySelector("#titi").innerText = scrollValue; 
-
+    /* document.querySelector("#titi").innerText = scrollValue; 
     let Neg = document.querySelector("#scrollNeg");
     let Pos = document.querySelector("#scrollPos"); 
     if(scrollValue < 0) { 
@@ -227,7 +181,7 @@ window.addEventListener('scroll', () => {
     } else { Neg.style.backgroundColor = "none"; }
     if(scrollValue > (body.scrollHeight - document.documentElement.clientHeight)) { 
         Pos.style.backgroundColor = "yellow"; 
-    } else { Pos.style.backgroundColor = "none"; }
+    } else { Pos.style.backgroundColor = "none"; } */
     /* FIN TEST -  A VIRER */
 
 
@@ -574,8 +528,14 @@ ScrollTrigger.addEventListener("refreshInit", () => {
     if(!flagAnimationIntro) setNavigation(); // Ici ajouté car qd redimension de la fenêtre, les valeurs des labels utilisés dans cette fonction changent, donc fonction rappelée ici pour avoir les valeurs à jour, sinon décalage entre vrais positions des labels et positions calculées
 });
 
-
-
+/* TEST */
+window.addEventListener('orientationchange', () => {
+    mm = getMedia();
+    if(tl !== null) tl.clear(); // Prise en compte 1er déclenchement de l'evenement 'refreshInit' au chargement de la pg ou tl est = à null
+    tl = generate_timeline();
+    if(!flagAnimationIntro) setNavigation(); // Ici ajouté car qd redimension de la fenêtre, les valeurs des labels utilisés dans cette fonction changent, donc fonction rappelée ici pour avoir les valeurs à jour, sinon décalage entre vrais positions des labels et positions calculées
+});
+/* FIN TEST */
 
 
 // Pour afficher et animer sur un tracé circulaire l'intitulé du job
