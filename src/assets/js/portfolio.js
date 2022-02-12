@@ -85,6 +85,8 @@ if (isMobileOrTablette) {
     window.addEventListener('touchend', () => document.querySelector("#flagIsScrolling").innerText = "Plus d'evenements touch"); //TEST */
 ////////// FIN TEST ///////////
 
+document.querySelector("#avoidScroll").addEventListener("touchstart", (e) => {e.preventDefault()}, { passive:false });
+document.querySelector("#avoidScroll").addEventListener("touchmove", (e) => {e.preventDefault()}, { passive:false });
 
 /* function preventDefaultEvent(e) { e.preventDefault() };
 function disableTouchMove() {
@@ -356,7 +358,10 @@ function generate_timeline() {
         .set(".halo", { clearProps: "all" }) // Pour supprimer le style "background" écrit en dur ds la propriété style quand on a passé le tween juste après celui-ci et que l'on revient en arrière
         .to(".halo", { autoAlpha:0, background: "linear-gradient(29deg, rgb(255, 255, 255) 100%, rgb(255, 255, 255) 100%)" })
         //.call(() => { SVGsAndTextWrapper.classList.toggle("columnDirection") })
-        .add(() => { SVGsAndTextWrapper.classList.toggle("columnDirection") });    // Retrait class qui permet affichage en colonne pour small devices
+        .add(() => { 
+            // Pour bug qd chfgmt orientat° portable : Ici prévoir fct° qui s'execute que qd event 'orientationchange' et qui toggle 'columnDirection en fct° du progress et de sa posit° selon le point de bascle du toggle ds la tileline
+            SVGsAndTextWrapper.classList.toggle("columnDirection") 
+        });    // Retrait class qui permet affichage en colonne pour small devices
 
     // Gestion de la transition seulement qd écran est grand ou très grand
     if(mm !== "m" || mm !== "s" || mm !== "xs") {
@@ -517,11 +522,11 @@ function generate_timeline() {
     return tl_scrollTriggerBody;
 }
 
-var num = 0; //TEST
+//var num = 0; //TEST
 
 // Pour regénérer la timeline à chaque redimensionnement de la fenetre, sinon décalages se produisent car les prop. CSS de 
 // dimensions relatives (en vw, vh, %,...) sont interprétées une seule fois à l'initialisation de la timeline avec GSAP
-ScrollTrigger.addEventListener("refreshInit", () => {   document.querySelector("#data").innerText = "RefreshInit " + (num +=1);
+ScrollTrigger.addEventListener("refreshInit", () => {   //document.querySelector("#data").innerText = "RefreshInit " + (num +=1);
     mm = getMedia();
     if(tl !== null) tl.clear(); // Prise en compte 1er déclenchement de l'evenement 'refreshInit' au chargement de la pg ou tl est = à null
     tl = generate_timeline();
