@@ -85,8 +85,9 @@ if (isMobileOrTablette) {
     window.addEventListener('touchend', () => document.querySelector("#flagIsScrolling").innerText = "Plus d'evenements touch"); //TEST */
 ////////// FIN TEST ///////////
 
-document.querySelector("#avoidScroll").addEventListener("touchstart", (e) => {e.preventDefault()}, { passive:false });
+/* document.querySelector("#avoidScroll").addEventListener("touchstart", (e) => {e.preventDefault()}, { passive:false });
 document.querySelector("#avoidScroll").addEventListener("touchmove", (e) => {e.preventDefault()}, { passive:false });
+ */
 
 /* function preventDefaultEvent(e) { e.preventDefault() };
 function disableTouchMove() {
