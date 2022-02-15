@@ -61,7 +61,7 @@ if (isMobileOrTablette) {
 
 // Quand iOS devices, pour éviter d'over scroller au début et à la fin de l'animat°.
 // Au début parce que l'on pourrait scroller alors que l'on n'est pas sensé pouvoir le faire 
-//if (isIPadOrIPhone) {
+if (isIPadOrIPhone) {
     let idName = "avoidScroll";
     function createDomEl() {
         let avoidScroll = document.createElement("div");
@@ -82,7 +82,7 @@ if (isMobileOrTablette) {
         }
     }
     toggleDomElAvoidScroll(getScrollTop());
-//}
+}
 
 
 
