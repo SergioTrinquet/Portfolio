@@ -59,14 +59,28 @@ if (isMobileOrTablette) {
 //document.documentElement.style.setProperty('--vh', "42em");
 //var TEST = document.documentElement.style.getPropertyValue("--vh"); console.log("TEST", TEST);
 
-if (isIPadOrIPhone) {
+// Quand iOS devices, pour éviter d'over scroller au début et à la fin de l'animat°.
+// Au début parce que l'on pourrait scroller alors que l'on n'est pas sensé pouvoir le faire 
+//if (isIPadOrIPhone) {
+    let idName = "avoidScroll";
     function createDomEl() {
         let avoidScroll = document.createElement("div");
-        avoidScroll.id = "avoidScroll";
+        avoidScroll.id = idName;
         document.querySelector("#container").prepend(avoidScroll);
     }
     createDomEl();
-}
+    /* ["touchstart", "touchmove"].forEach(function(e) {
+        document.querySelector(`#${idName}`).addEventListener(e, () => { e.preventDefault() }, { passive:false });
+    } */
+    function toggleDomElAvoidScroll(scrollValue) {
+        if(scrollValue < 0 || scrollValue > (body.scrollHeight - document.documentElement.clientHeight)) { 
+            document.querySelector(`#${idName}`).classList.remove("hidden");
+        } else {
+            document.querySelector(`#${idName}`).classList.add("hidden");
+        }
+    }
+    toggleDomElAvoidScroll(getScrollTop());
+//}
 
 
 
@@ -195,11 +209,7 @@ window.addEventListener('scroll', () => {
         Pos.style.backgroundColor = "yellow"; 
     } else { Pos.style.backgroundColor = "none"; } */
 
-    if(scrollValue == 0 || scrollValue == (body.scrollHeight - document.documentElement.clientHeight)) { 
-        document.querySelector("#avoidScroll").classList.remove("hidden");
-    } else {
-        document.querySelector("#avoidScroll").classList.add("hidden");
-    }
+    toggleDomElAvoidScroll(scrollValue);
     /* FIN TEST -  A VIRER */
 
 
