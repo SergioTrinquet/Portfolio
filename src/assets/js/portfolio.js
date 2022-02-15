@@ -69,12 +69,10 @@ if (isIPadOrIPhone) {
         document.querySelector("#container").prepend(avoidScroll);
     }
     createDomEl();
-    /* ["touchstart", "touchmove"].forEach(function(e) {
+    ["touchstart", "touchmove"].forEach(function(e) {
         document.querySelector(`#${idName}`).addEventListener(e, () => { e.preventDefault() }, { passive:false });
-    }); */
-    document.querySelector("#avoidScroll").addEventListener("touchstart", (e) => {e.preventDefault()}, { passive:false });
-document.querySelector("#avoidScroll").addEventListener("touchmove", (e) => {e.preventDefault()}, { passive:false });
-
+    });
+    
     function toggleDomElAvoidScroll(scrollValue) {
         /* TEST */document.querySelector("#data").innerText = "getScrollTop() =>" + getScrollTop();
     
