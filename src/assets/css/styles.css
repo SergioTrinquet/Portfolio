@@ -1546,7 +1546,7 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   width: calc(100vw - 60px);
   background-color: #fff;
   color: #5a5a5a;
-  padding: 30px;
+  padding: 25px;
   margin: 3vmin;
   text-align: center;
   font-size: 17px;
@@ -1555,7 +1555,7 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   box-shadow: 0 0 0 100vmax rgba(0,0,0,0.4), 0 0 20px rgba(0,0,0,0.3);
   display: none;
 
-  /* display: block; */ /* A VIRER */
+  display: block; /* A VIRER */
 }
 #msgPortraitIsBetter button {
   background-color:rgba(0, 118, 166,1);
@@ -1566,20 +1566,20 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   border-radius: 50px;
   font-size: 18px;
 }
-@media screen and (min-aspect-ratio: 13/9) and (pointer: coarse) {
+#msgPortraitIsBetter.hidden { 
+  display: none;
+}
+@media screen and (min-aspect-ratio: 14/9) and (pointer: coarse) {
   #msgPortraitIsBetter { 
     display: block;
   }
-  #msgPortraitIsBetter.hidden { 
-    display: none;
-  }
 }
 
-/* @media screen and (min-aspect-ratio: 13/9) {
+@media screen and (min-aspect-ratio: 14/9) {
   #msgPortraitIsBetter {
     background-color: red !important;
   }
-} */
+}
 
 
 /* 07/02/02022 - TEST no scroll on body !!!! */
