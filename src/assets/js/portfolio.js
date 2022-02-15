@@ -61,7 +61,7 @@ if (isMobileOrTablette) {
 
 // Quand iOS devices, pour éviter d'over scroller au début et à la fin de l'animat°.
 // Au début parce que l'on pourrait scroller alors que l'on n'est pas sensé pouvoir le faire 
-/* if (isIPadOrIPhone) {
+if (isIPadOrIPhone) {
     let idName = "avoidScroll";
     function createDomEl() {
         let avoidScroll = document.createElement("div");
@@ -69,12 +69,14 @@ if (isMobileOrTablette) {
         document.querySelector("#container").prepend(avoidScroll);
     }
     createDomEl();
-    ["touchstart", "touchmove"].forEach(function(e) {
+    /* ["touchstart", "touchmove"].forEach(function(e) {
         document.querySelector(`#${idName}`).addEventListener(e, () => { e.preventDefault() }, { passive:false });
-    });
+    }); */
+    document.querySelector("#avoidScroll").addEventListener("touchstart", (e) => {e.preventDefault()}, { passive:false });
+document.querySelector("#avoidScroll").addEventListener("touchmove", (e) => {e.preventDefault()}, { passive:false });
+
     function toggleDomElAvoidScroll(scrollValue) {
-        // TEST
-        document.querySelector("#data").innerText = "getScrollTop() =>" + getScrollTop();
+        /* TEST */document.querySelector("#data").innerText = "getScrollTop() =>" + getScrollTop();
     
         if(scrollValue < 0 || scrollValue > (body.scrollHeight - document.documentElement.clientHeight)) { 
             document.querySelector(`#${idName}`).classList.remove("hidden");
@@ -83,7 +85,7 @@ if (isMobileOrTablette) {
         }
     }
     toggleDomElAvoidScroll(getScrollTop());
-} */
+}
 
 
 
@@ -110,10 +112,10 @@ if (isMobileOrTablette) {
     window.addEventListener('touchend', () => document.querySelector("#flagIsScrolling").innerText = "Plus d'evenements touch"); //TEST */
 ////////// FIN TEST ///////////
 
-
+/* 
 document.querySelector("#avoidScroll").addEventListener("touchstart", (e) => {e.preventDefault()}, { passive:false });
 document.querySelector("#avoidScroll").addEventListener("touchmove", (e) => {e.preventDefault()}, { passive:false });
-
+ */
 
 /* function preventDefaultEvent(e) { e.preventDefault() };
 function disableTouchMove() {
