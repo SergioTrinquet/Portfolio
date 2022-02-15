@@ -43,6 +43,8 @@ let msgPortraitIsBetter = document.querySelector("#msgPortraitIsBetter");
 document.querySelector("#msgPortraitIsBetter button").addEventListener("click", () => msgPortraitIsBetter.classList.add("hidden") );
 window.addEventListener('orientationchange', () => msgPortraitIsBetter.classList.remove("hidden") ); 
 
+window.addEventListener('orientationchange', () => console.log("orientationchange : progress " + scrolltriggerOnUpdate.progress) ); //TEST
+
 // Code juste pour mobile : Correct° du bug sur mobile et tablettes => unité du type vh, vmax, vmin,... sont faussées à cause de la barre d'adresse qui coulisse
 if (isMobileOrTablette) {
     function setCSSunits() {
@@ -137,10 +139,10 @@ if(getScrollTop() == 0) {
         }, "+=7")
         .fromTo(".halo", {
                 width: "0%", 
-                /* height: "0%" */ paddingTop: "0%"
+                paddingTop: "0%"
             }, { 
                 width: "90%", 
-                /* height: "90%", */ paddingTop: "90%",
+                paddingTop: "90%",
                 ease: "elastic",
                 duration: 2,
                 clearProps: "width,height" // Retrait de ces inline styles car faussent après l'animation
@@ -359,8 +361,8 @@ function generate_timeline() {
         .set(".halo", { clearProps: "all" }) // Pour supprimer le style "background" écrit en dur ds la propriété style quand on a passé le tween juste après celui-ci et que l'on revient en arrière
         .to(".halo", { autoAlpha:0, background: "linear-gradient(29deg, rgb(255, 255, 255) 100%, rgb(255, 255, 255) 100%)" })
         //.call(() => { SVGsAndTextWrapper.classList.toggle("columnDirection") })
-        .add(() => { 
-            // Pour bug qd chfgmt orientat° portable : Ici prévoir fct° qui s'execute que qd event 'orientationchange' et qui toggle 'columnDirection en fct° du progress et de sa posit° selon le point de bascle du toggle ds la tileline
+        .add(() => {    console.log("=>>> " + scrolltriggerOnUpdate.progress); //TEST
+            // Pour bug qd chgmt orientat° portable : Ici prévoir fct° qui s'execute que qd event 'orientationchange' et qui toggle 'columnDirection en fct° du progress et de sa posit° selon le point de bascle du toggle ds la tileline
             SVGsAndTextWrapper.classList.toggle("columnDirection") 
         });    // Retrait class qui permet affichage en colonne pour small devices
 
@@ -533,15 +535,6 @@ ScrollTrigger.addEventListener("refreshInit", () => {   //document.querySelector
     tl = generate_timeline();
     if(!flagAnimationIntro) setNavigation(); // Ici ajouté car qd redimension de la fenêtre, les valeurs des labels utilisés dans cette fonction changent, donc fonction rappelée ici pour avoir les valeurs à jour, sinon décalage entre vrais positions des labels et positions calculées
 });
-
-/* TEST */
-/* window.addEventListener('orientationchange', () => { document.querySelector("#data").innerText = "Cgmt orientation" + (num +=1);
-    mm = getMedia();
-    if(tl !== null) tl.clear(); // Prise en compte 1er déclenchement de l'evenement 'refreshInit' au chargement de la pg ou tl est = à null
-    tl = generate_timeline();
-    if(!flagAnimationIntro) setNavigation(); // Ici ajouté car qd redimension de la fenêtre, les valeurs des labels utilisés dans cette fonction changent, donc fonction rappelée ici pour avoir les valeurs à jour, sinon décalage entre vrais positions des labels et positions calculées
-}); */
-/* FIN TEST */
 
 
 // Pour afficher et animer sur un tracé circulaire l'intitulé du job
