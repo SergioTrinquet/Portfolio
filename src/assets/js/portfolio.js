@@ -59,6 +59,14 @@ if (isMobileOrTablette) {
 //document.documentElement.style.setProperty('--vh', "42em");
 //var TEST = document.documentElement.style.getPropertyValue("--vh"); console.log("TEST", TEST);
 
+if (isIPadOrIPhone) {
+    function createDomEl() {
+        let avoidScroll = document.createElement("div");
+        avoidScroll.id = "avoidScroll";
+        document.querySelector("#container").prepend(avoidScroll);
+    }
+    createDomEl();
+}
 
 
 
@@ -85,7 +93,8 @@ if (isMobileOrTablette) {
     window.addEventListener('touchend', () => document.querySelector("#flagIsScrolling").innerText = "Plus d'evenements touch"); //TEST */
 ////////// FIN TEST ///////////
 
-/* document.querySelector("#avoidScroll").addEventListener("touchstart", (e) => {e.preventDefault()}, { passive:false });
+/* 
+document.querySelector("#avoidScroll").addEventListener("touchstart", (e) => {e.preventDefault()}, { passive:false });
 document.querySelector("#avoidScroll").addEventListener("touchmove", (e) => {e.preventDefault()}, { passive:false });
  */
 
@@ -185,6 +194,12 @@ window.addEventListener('scroll', () => {
     if(scrollValue > (body.scrollHeight - document.documentElement.clientHeight)) { 
         Pos.style.backgroundColor = "yellow"; 
     } else { Pos.style.backgroundColor = "none"; } */
+
+    if(scrollValue == 0 || scrollValue == (body.scrollHeight - document.documentElement.clientHeight)) { 
+        document.querySelector("#avoidScroll").classList.remove("hidden");
+    } else {
+        document.querySelector("#avoidScroll").classList.add("hidden");
+    }
     /* FIN TEST -  A VIRER */
 
 

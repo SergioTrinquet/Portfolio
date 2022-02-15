@@ -415,14 +415,12 @@ body.noscroll {
 /*#region - Bouton pour skipper l'anim d'intro */
 #wrapperButtonSkipIntro {
   position: absolute;
-  z-index: 3;
-  top: 78vmin;
+  z-index: 10;
+  top: calc(100% + 20px);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
-
-  top: calc(100% + 20px); /* TEST */
 }
 #buttonSkipIntro {
   cursor: pointer;
@@ -1295,33 +1293,36 @@ body.noscroll {
   margin-top: 10px;
 }
 
-#background_screenEnd #linkbackToTop {
+#linkbackToTop {
   /* font-size: clamp(15px, 1.6vw, 17px); */ /* Version non IOS compatible */
   font-size: max(15px, min(1.6vw, 17px)); /* Version IOS compatible */
   color: rgba(255,255,255,0.4);
   cursor: pointer;
   margin: 20vh 0 0 0;
   transition: all 0.5s ease;
+
+  position: fixed;
+  z-index: 10;
 }
-#background_screenEnd #linkbackToTop .trait {
+#linkbackToTop .trait {
   width: 0;
   height: 2px;
   background-color: rgba(255,255,255,0.6);
   margin: 0 auto 4px auto;
   transition: width 0.5s ease;
 }
-#background_screenEnd #linkbackToTop .trait.bottom {
+#linkbackToTop .trait.bottom {
   margin: 5px auto 0 auto;
 }
-#background_screenEnd #linkbackToTop:hover {
+#linkbackToTop:hover {
   letter-spacing: 2px;
   color: rgba(255,255,255, 1);
 }
-#background_screenEnd #linkbackToTop:hover .trait {
+#linkbackToTop:hover .trait {
   width: 100%;
   background-color: rgba(255,255,255, 1);
 }
-#background_screenEnd #linkbackToTop i {
+#linkbackToTop i {
   margin: 0 0.5vw 0 0;
 }
 /*#endregion - écran de fin */
@@ -1538,8 +1539,19 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
 
 
 
-
-
+/* TEST */
+#avoidScroll {
+  position: fixed; 
+  z-index: 9; 
+  background-color: rgba(255,0,0,0.3); 
+  height:90vh; 
+  width: 90vw; 
+  top: 5vh; 
+  left: 5vw;
+}
+#avoidScroll.hidden { 
+  display: none;
+}
 
 
 /* 07/02/02022 - TEST no scroll on body !!!! */
