@@ -59,39 +59,6 @@ if (isMobileOrTablette) {
 //document.documentElement.style.setProperty('--vh', "42em");
 //var TEST = document.documentElement.style.getPropertyValue("--vh"); console.log("TEST", TEST);
 
-// Quand iOS devices, pour éviter d'over scroller au début et à la fin de l'animat°.
-// Au début parce que l'on pourrait scroller alors que l'on n'est pas sensé pouvoir le faire 
-//if (isIPadOrIPhone) {
-    let idName = "avoidScroll";
-    function createDomEl() {
-        let avoidScroll = document.createElement("div");
-        avoidScroll.id = idName;
-        document.querySelector("#container").prepend(avoidScroll);
-    }
-    createDomEl();
-    /* ["touchstart", "touchmove"].forEach(function(e) {
-        document.querySelector(`#${idName}`).addEventListener(e, () => { e.preventDefault() }, { passive:false });
-    }); */
-    document.querySelector("#avoidScroll").addEventListener("touchstart", (e) => {e.preventDefault()}, { passive:false });
-document.querySelector("#avoidScroll").addEventListener("touchmove", (e) => {e.preventDefault()}, { passive:false });
-function preventDefaultEv(ev) { ev.preventDefault() }
-    function toggleDomElAvoidScroll(scrollValue) {
-        /* TEST */document.querySelector("#data").innerText = "getScrollTop() =>" + getScrollTop();
-    
-        if(scrollValue < 0 || scrollValue > (body.scrollHeight - document.documentElement.clientHeight)) { 
-            document.querySelector(`#${idName}`).classList.remove("hidden");
-            body.addEventListener("touchstart", (e) => {preventDefaultEv}, { passive:false });
-            body.addEventListener("touchmove", (e) => {preventDefaultEv}, { passive:false });
-        } else {
-            document.querySelector(`#${idName}`).classList.add("hidden");
-            body.removeEventListener("touchstart", (e) => {preventDefaultEv}, { passive:false });
-            body.removeEventListener("touchmove", (e) => {preventDefaultEv}, { passive:false });
-        }
-    }
-    toggleDomElAvoidScroll(getScrollTop());
-//}
-
-
 
 ////////// TEST simul overscroll-behavior pour iOS///////////
 /*     async function stopScrolling(e) {  
@@ -217,8 +184,6 @@ window.addEventListener('scroll', () => {
     if(scrollValue > (body.scrollHeight - document.documentElement.clientHeight)) { 
         Pos.style.backgroundColor = "yellow"; 
     } else { Pos.style.backgroundColor = "none"; } */
-
-    toggleDomElAvoidScroll(scrollValue);
     /* FIN TEST -  A VIRER */
 
 
