@@ -84,6 +84,8 @@ document.querySelector("#avoidScroll").addEventListener("touchmove", (e) => {e.p
             body.addEventListener("touchmove", (e) => {e.preventDefault()}, { passive:false });
         } else {
             document.querySelector(`#${idName}`).classList.add("hidden");
+            body.removeEventListener("touchstart", (e) => {e.preventDefault()}, { passive:false });
+            body.removeEventListener("touchmove", (e) => {e.preventDefault()}, { passive:false });
         }
     }
     toggleDomElAvoidScroll(getScrollTop());
