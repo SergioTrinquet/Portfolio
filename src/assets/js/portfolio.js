@@ -39,10 +39,10 @@ const isIPadOrIPhone = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (/iPhone
 let scrubValue = 1;
 
 // Pour faire apparaitre msg d'incitat° de consultation en mode portrait qd mobile
-/* let msgPortraitIsBetter = document.querySelector("#msgPortraitIsBetter");
+let msgPortraitIsBetter = document.querySelector("#msgPortraitIsBetter");
 document.querySelector("#msgPortraitIsBetter button").addEventListener("click", () => msgPortraitIsBetter.classList.add("hidden") );
 window.addEventListener('orientationchange', () => msgPortraitIsBetter.classList.remove("hidden") ); 
- */
+
 // Code juste pour mobile : Correct° du bug sur mobile et tablettes => unité du type vh, vmax, vmin,... sont faussées à cause de la barre d'adresse qui coulisse
 if (isMobileOrTablette) {
     function setCSSunits() {
@@ -88,10 +88,6 @@ if (isMobileOrTablette) {
     window.addEventListener('touchend', () => document.querySelector("#flagIsScrolling").innerText = "Plus d'evenements touch"); //TEST */
 ////////// FIN TEST ///////////
 
-/* 
-document.querySelector("#avoidScroll").addEventListener("touchstart", (e) => {e.preventDefault()}, { passive:false });
-document.querySelector("#avoidScroll").addEventListener("touchmove", (e) => {e.preventDefault()}, { passive:false });
- */
 
 /* function preventDefaultEvent(e) { e.preventDefault() };
 function disableTouchMove() {
