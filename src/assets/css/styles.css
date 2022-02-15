@@ -1560,6 +1560,8 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   background-color:rgba(0, 118, 166,1);
   color: #fff;
   padding: 5px 30px;
+  border: none;
+  border-radius: 3px;
 }
 @media screen and (max-aspect-ratio: 9/13) and (pointer: coarse) {
   #msgPortraitIsBetter { 
