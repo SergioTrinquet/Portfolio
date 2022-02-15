@@ -73,6 +73,8 @@ if (isMobileOrTablette) {
         document.querySelector(`#${idName}`).addEventListener(e, () => { e.preventDefault() }, { passive:false });
     } */
     function toggleDomElAvoidScroll(scrollValue) {
+        /* TEST */document.querySelector("#data").innerText = "getScrollTop() =>" + getScrollTop();
+    
         if(scrollValue < 0 || scrollValue > (body.scrollHeight - document.documentElement.clientHeight)) { 
             document.querySelector(`#${idName}`).classList.remove("hidden");
         } else {
