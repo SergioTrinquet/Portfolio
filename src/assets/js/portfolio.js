@@ -43,7 +43,7 @@ let msgPortraitIsBetter = document.querySelector("#msgPortraitIsBetter");
 document.querySelector("#msgPortraitIsBetter button").addEventListener("click", () => msgPortraitIsBetter.classList.add("hidden") );
 window.addEventListener('orientationchange', () => msgPortraitIsBetter.classList.remove("hidden") ); 
 
-window.addEventListener('orientationchange', () => console.log("orientationchange : progress " + scrolltriggerOnUpdate.progress) ); //TEST
+window.addEventListener('orientationchange', () => document.querySelector("#scrollPos").innerText = "orientationchange : progress " + scrolltriggerOnUpdate.progress ); //TEST
 
 // Code juste pour mobile : Correct° du bug sur mobile et tablettes => unité du type vh, vmax, vmin,... sont faussées à cause de la barre d'adresse qui coulisse
 if (isMobileOrTablette) {
