@@ -351,7 +351,7 @@ body.noscroll {
 }
 
 /* TEST */
-@media (max-width: 800px) and (min-aspect-ratio: 13/9) and (pointer: coarse) {
+@media screen and (max-aspect-ratio: 9/13) and (pointer: coarse) {
   .wrapperSVGsAndTexts.columnDirection {
     flex-direction: column;
     text-align: center;
@@ -1560,10 +1560,11 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   background-color:rgba(0, 118, 166,1);
   color: #fff;
   padding: 5px 30px;
+  margin: 3vh 0 0 0;
   border: none;
   border-radius: 3px;
 }
-@media screen and (max-aspect-ratio: 13/9) and (pointer: coarse) {
+@media (max-width: 800px) and (min-aspect-ratio: 13/9) and (pointer: coarse) {
   #msgPortraitIsBetter { 
     display: block;
   }
