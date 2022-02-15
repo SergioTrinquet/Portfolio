@@ -80,12 +80,12 @@ document.querySelector("#avoidScroll").addEventListener("touchmove", (e) => {e.p
     
         if(scrollValue < 0 || scrollValue > (body.scrollHeight - document.documentElement.clientHeight)) { 
             document.querySelector(`#${idName}`).classList.remove("hidden");
-            body.addEventListener("touchstart", (e) => {e.preventDefault()}, { passive:false });
-            body.addEventListener("touchmove", (e) => {e.preventDefault()}, { passive:false });
+            body.addEventListener("touchstart", (e) => {e.preventDefault()});
+            body.addEventListener("touchmove", (e) => {e.preventDefault()});
         } else {
             document.querySelector(`#${idName}`).classList.add("hidden");
-            body.removeEventListener("touchstart", (e) => {e.preventDefault()}, { passive:false });
-            body.removeEventListener("touchmove", (e) => {e.preventDefault()}, { passive:false });
+            body.removeEventListener("touchstart", (e) => {e.preventDefault()});
+            body.removeEventListener("touchmove", (e) => {e.preventDefault()});
         }
     }
     toggleDomElAvoidScroll(getScrollTop());
