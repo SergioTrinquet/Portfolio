@@ -1543,6 +1543,7 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
 #msgPortraitIsBetter {
   position: fixed;
   z-index: 11;
+  width: calc(100vw - 60px);
   background-color: #fff;
   color: #5a5a5a;
   padding: 30px;
@@ -1559,11 +1560,11 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
 #msgPortraitIsBetter button {
   background-color:rgba(0, 118, 166,1);
   color: #fff;
-  padding: 5px 30px;
+  padding: 5px 5vw;
   margin: 3vh 0 0 0;
   border: none;
-  border-radius: 3px;
-  font-size: 20px;
+  border-radius: 50px;
+  font-size: 18px;
 }
 @media screen and (min-aspect-ratio: 13/9) and (pointer: coarse) {
   #msgPortraitIsBetter { 
