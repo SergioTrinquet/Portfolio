@@ -74,18 +74,18 @@ if (isMobileOrTablette) {
     }); */
     document.querySelector("#avoidScroll").addEventListener("touchstart", (e) => {e.preventDefault()}, { passive:false });
 document.querySelector("#avoidScroll").addEventListener("touchmove", (e) => {e.preventDefault()}, { passive:false });
-
+function preventDefaultEv(ev) { ev.preventDefault() }
     function toggleDomElAvoidScroll(scrollValue) {
         /* TEST */document.querySelector("#data").innerText = "getScrollTop() =>" + getScrollTop();
     
         if(scrollValue < 0 || scrollValue > (body.scrollHeight - document.documentElement.clientHeight)) { 
             document.querySelector(`#${idName}`).classList.remove("hidden");
-            body.addEventListener("touchstart", (e) => {e.preventDefault()});
-            body.addEventListener("touchmove", (e) => {e.preventDefault()});
+            body.addEventListener("touchstart", (e) => {preventDefaultEv(e)});
+            body.addEventListener("touchmove", (e) => {preventDefaultEv(e)});
         } else {
             document.querySelector(`#${idName}`).classList.add("hidden");
-            body.removeEventListener("touchstart", (e) => {e.preventDefault()});
-            body.removeEventListener("touchmove", (e) => {e.preventDefault()});
+            body.removeEventListener("touchstart", (e) => {preventDefaultEv(e)});
+            body.removeEventListener("touchmove", (e) => {preventDefaultEv(e)});
         }
     }
     toggleDomElAvoidScroll(getScrollTop());
