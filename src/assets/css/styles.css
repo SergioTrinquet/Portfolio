@@ -1293,7 +1293,7 @@ body.noscroll {
   margin-top: 10px;
 }
 
-#linkbackToTop {
+#background_screenEnd #linkbackToTop {
   /* font-size: clamp(15px, 1.6vw, 17px); */ /* Version non IOS compatible */
   font-size: max(15px, min(1.6vw, 17px)); /* Version IOS compatible */
   color: rgba(255,255,255,0.4);
@@ -1304,25 +1304,25 @@ body.noscroll {
   position: fixed;
   z-index: 10;
 }
-#linkbackToTop .trait {
+#background_screenEnd #linkbackToTop .trait {
   width: 0;
   height: 2px;
   background-color: rgba(255,255,255,0.6);
   margin: 0 auto 4px auto;
   transition: width 0.5s ease;
 }
-#linkbackToTop .trait.bottom {
+#background_screenEnd #linkbackToTop .trait.bottom {
   margin: 5px auto 0 auto;
 }
-#linkbackToTop:hover {
+#background_screenEnd #linkbackToTop:hover {
   letter-spacing: 2px;
   color: rgba(255,255,255, 1);
 }
-#linkbackToTop:hover .trait {
+#background_screenEnd #linkbackToTop:hover .trait {
   width: 100%;
   background-color: rgba(255,255,255, 1);
 }
-#linkbackToTop i {
+#background_screenEnd #linkbackToTop i {
   margin: 0 0.5vw 0 0;
 }
 /*#endregion - écran de fin */
@@ -1573,11 +1573,6 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
     display: block;
   }
 }
-/* @media screen and (min-aspect-ratio: 14/9) {
-  #msgPortraitIsBetter {
-    background-color: red !important;
-  }
-} */
 /*#endregion - Apparition ou non encart pour mobile pour initer utilisateur à consulter en mode portrait */
 
 
