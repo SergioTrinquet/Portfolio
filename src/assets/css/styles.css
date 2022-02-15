@@ -1545,16 +1545,23 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   z-index: 11;
   background-color: #fff;
   color: #5a5a5a;
-  padding: 3vmin;
+  padding: 30px;
   margin: 5vmin;
   text-align: center;
+  font-size: 16px;
+  line-height: 16px;
   border-radius: 5px;
   box-shadow: 0 0 0 100vmax rgba(0,0,0,0.4), 0 0 20px rgba(0,0,0,0.3);
   display: none;
 
   /* display: block; */ /* A VIRER */
 }
-@media screen and (max-aspect-ratio: 9/13) and (pointer: coarse) {
+#msgPortraitIsBetter button {
+  background-color:rgba(0, 118, 166,1);
+  color: #fff;
+  padding: 5px 30px;
+}
+@media screen and (not(max-aspect-ratio: 9/13)) and (pointer: coarse) {
   #msgPortraitIsBetter { 
     display: block;
   }

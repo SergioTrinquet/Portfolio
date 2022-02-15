@@ -38,6 +38,8 @@ const isIPadOrIPhone = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (/iPhone
 
 let scrubValue = 1;
 
+document.querySelector("#msgPortraitIsBetter button").addEventListener("click", () => document.querySelector("#msgPortraitIsBetter").classList.add("hidden") );
+
 // Code juste pour mobile : Correct° du bug sur mobile et tablettes => unité du type vh, vmax, vmin,... sont faussées à cause de la barre d'adresse qui coulisse
 if (isMobileOrTablette) {
     function setCSSunits() {
