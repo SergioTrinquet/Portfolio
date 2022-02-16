@@ -19,6 +19,7 @@
   --color-degr-1-screen4: rgb(103, 108, 198);
   --color-degr-2-screen4: rgb(232, 70, 255);
   --bgcolor-screenEnd: #2b2b2b;
+  --color-bt-modal: rgba(0, 118, 166,1);
 }
 
 
@@ -363,7 +364,7 @@ body.noscroll {
 /* FIN TEST */
 
 /*#region - Container englobant SVGs et tout les éléments DOM qui doivent se positionner en fonction de ces SVGs */
-.SVGsAndAnnexes {   border: dashed 2px purple;
+.SVGsAndAnnexes {
   height: 100%;
   display: flex; 
   justify-content: center; 
@@ -644,7 +645,7 @@ body.noscroll {
 
 
 /*#region -  Texte de présentation à la question "Qui suis-je ?" */
-.textePresentation {    border: dashed 2px yellow;
+.textePresentation {
   color: #fff;
   text-shadow: 0 1px 0 rgba(0,0,0,0.5);
   margin: 0;
@@ -1554,16 +1555,29 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   box-shadow: 0 0 0 100vmax rgba(0,0,0,0.4), 0 0 20px rgba(0,0,0,0.3);
   display: none;
 
-  /* display: block; */ /* A VIRER */
+  display: block; /* A VIRER */
+  
+  animation: modalAppear 0.8s forwards;
+}
+@keyframes modalAppear {
+  0% { transform: translateY(-110%); }
+  100% { transform: translateY(0%); }
 }
 #msgPortraitIsBetter button {
-  background-color:rgba(0, 118, 166,1);
-  color: #fff;
-  padding: 5px 5vw;
-  margin: 3vh 0 0 0;
-  border: none;
+  padding: 3px 5vw;
+  margin: 3vh 5px 0 5px;
   border-radius: 50px;
   font-size: 18px;
+  border: solid 2px var(--color-bt-modal);
+}
+#closeModal {
+  background-color: transparent;
+  color: var(--color-bt-modal);
+}
+#sessionCloseModal {
+  background-color:var(--color-bt-modal);
+  border: none;
+  color: #fff;
 }
 #msgPortraitIsBetter.hidden { 
   display: none;

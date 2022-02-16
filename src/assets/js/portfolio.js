@@ -40,9 +40,22 @@ let scrubValue = 1;
 
 // Pour faire apparaitre msg d'incitat° de consultation en mode portrait qd mobile
 let msgPortraitIsBetter = document.querySelector("#msgPortraitIsBetter");
-document.querySelector("#msgPortraitIsBetter button").addEventListener("click", () => msgPortraitIsBetter.classList.add("hidden") );
 //window.addEventListener('orientationchange', () => msgPortraitIsBetter.classList.remove("hidden") ); 
 window.matchMedia("(orientation: landscape)").onchange = () => msgPortraitIsBetter.classList.remove("hidden");
+
+const closeModal = () => msgPortraitIsBetter.classList.add("hidden");
+if(eval(sessionStorage.getItem('st_dont-show-modal'))) { console.warn("sessionStorage présent");
+    closeModal();
+};
+
+// Action boutons
+document.querySelector("#closeModal").addEventListener("click", closeModal);
+document.querySelector("#sessionCloseModal").addEventListener("click", () => {
+    sessionStorage.setItem('st_dont-show-modal', true);
+    closeModal();
+});
+
+
 // TEST
 /* var mediaQueryList = window.matchMedia("(orientation: landscape)");
 mediaQueryList.onchange = handleOrientationChange;
@@ -66,7 +79,8 @@ if (isMobileOrTablette) {
         document.querySelector("#hauteurOneVh").innerText = `${h/100}px`; //TEST
     };
     window.addEventListener('resize', setCSSunits);
-    window.addEventListener('orientationchange', setCSSunits);
+    //window.addEventListener('orientationchange', setCSSunits);
+    window.matchMedia("(orientation: landscape)").onchange = setCSSunits;
     setCSSunits();
 
     //scrubValue = 0.1;
