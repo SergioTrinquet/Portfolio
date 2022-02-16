@@ -1566,7 +1566,6 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   padding: 3px 5vw;
   margin: 3vh 5px 0 5px;
   border-radius: 50px;
-  /* font-size: clamp(15px, 2.7vw, 19px); */ /* Version non IOS compatible */
   font-size: max(15px, min(2.7vw, 19px)); /* Version IOS compatible */
   border: solid 2px var(--color-bt-modal);
 }
@@ -1580,7 +1579,7 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   color: #fff;
 }
 #msgPortraitIsBetter.hidden { 
-  display: none;
+  display: none !important;
 }
 @media screen and (min-aspect-ratio: 14/9) and (pointer: coarse) {
   #msgPortraitIsBetter { 
