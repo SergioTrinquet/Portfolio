@@ -61,8 +61,8 @@ function handleOrientationChange(e) {
     /* if (e.matches) { console.log('orientation: landscape');
     } else { console.log('Pas orientation: landscape');
     } */
-    const duration_onOrientationChange = tl_scrollTriggerBody.totalDuration() * scrolltriggerOnUpdate.progress;
-    document.querySelector("#flagIsScrolling").innerText = "duration_onOrientationChange => " + duration_onOrientationChange;
+    //const duration_onOrientationChange = tl_scrollTriggerBody.totalDuration() * scrolltriggerOnUpdate.progress;
+    //document.querySelector("#flagIsScrolling").innerText = "duration_onOrientationChange => " + duration_onOrientationChange;
     document.querySelector("#scrollPos").innerText = "Présence 'columnDirection': " + SVGsAndTextWrapper.classList.contains("columnDirection");
 }
 // FIN TEST
@@ -543,14 +543,18 @@ ScrollTrigger.addEventListener("refreshInit", () => {   //document.querySelector
     console.log("refreshInit =>>> " + scrolltriggerOnUpdate.progress); //TEST
     const duration_label2 = tl_scrollTriggerBody.labels["step_2|Compétences"];
     const duration_onRefreshInit = tl_scrollTriggerBody.totalDuration() * scrolltriggerOnUpdate.progress;
-    /*document.querySelector("#scrollPos").innerText = "duration_onRefreshInit: " + duration_onRefreshInit + " | duration_label2: " + duration_label2;//TEST
-     if(duration_onRefreshInit <= duration_label2) {
-        SVGsAndTextWrapper.classList.add("columnDirection");
+    //document.querySelector("#scrollPos").innerText = "duration_onRefreshInit: " + duration_onRefreshInit + " | duration_label2: " + duration_label2;//TEST
+    
+    var toto = "";
+    if(duration_onRefreshInit <= duration_label2) {
+        //SVGsAndTextWrapper.classList.add("columnDirection");
+        toto = "Should add 'columnDirection'";
     } else {
-        SVGsAndTextWrapper.classList.remove("columnDirection");
-    } */
+        //SVGsAndTextWrapper.classList.remove("columnDirection");
+        toto = "Should remove 'columnDirection'";
+    }
 
-    document.querySelector("#data").innerText = "RefreshInit " + (num +=1) + " | duration_onRefreshInit: " + duration_onRefreshInit;
+    document.querySelector("#data").innerText = "RefreshInit " + (num +=1) + " | duration_onRefreshInit: " + duration_onRefreshInit + " | " + toto;
     // FIN TEST
 });
 
