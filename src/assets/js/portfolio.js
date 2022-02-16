@@ -44,28 +44,25 @@ document.querySelector("#msgPortraitIsBetter button").addEventListener("click", 
 window.addEventListener('orientationchange', () => msgPortraitIsBetter.classList.remove("hidden") ); 
 
 // TEST
-window.addEventListener('orientationchange', () => {
+/* window.addEventListener('orientationchange', () => {
     document.querySelector("#scrollPos").innerText = "orientationchange : progress " + scrolltriggerOnUpdate.progress + " | direction: " + scrolltriggerOnUpdate.direction;
     const duration_label2 = tl_scrollTriggerBody.labels["step_2|Compétences"];
-    // Prenre en compte direction aussi
     const duration_onOrientationChange = tl_scrollTriggerBody.totalDuration() * scrolltriggerOnUpdate.progress;
-    // Si 
     if(duration_onOrientationChange <= duration_label2) {
         SVGsAndTextWrapper.classList.add("columnDirection");
     } else {
         SVGsAndTextWrapper.classList.remove("columnDirection");
     }
-});
+}); */
 
-/* var mediaQueryList = window.matchMedia("(orientation: landscape)");
-mediaQueryList.addEventListener(handleOrientationChange);
-function handleOrientationChange() {
-    if (e.matches) {
-
-    } else {
-
-    }
-} */
+var mediaQueryList = window.matchMedia("(orientation: landscape)");
+mediaQueryList.onchange = handleOrientationChange;
+function handleOrientationChange(e) {
+    /* if (e.matches) { console.log('orientation: landscape');
+    } else { console.log('Pas orientation: landscape');
+    } */
+    document.querySelector("#scrollPos").innerText = "Présence 'columnDirection': " + SVGsAndTextWrapper.classList.contains("columnDirection");
+}
 // FIN TEST
 
 // Code juste pour mobile : Correct° du bug sur mobile et tablettes => unité du type vh, vmax, vmin,... sont faussées à cause de la barre d'adresse qui coulisse
