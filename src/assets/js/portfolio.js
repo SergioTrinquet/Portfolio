@@ -308,7 +308,7 @@ const tl_scrollTriggerBody = gsap.timeline({
 });
 
 
-
+let titi = 2353; //TEST
 
 // Fonction d'"alimentation" de l'objet timeline. Est appelée au chargement de la page 
 // mais aussi qd redimensionnement (sur event 'refreshInit') pour recalculer les positions de tous les éléments (sinon décalages potentiels)
@@ -365,7 +365,8 @@ function generate_timeline() {
         .to(".halo", { autoAlpha:0, background: "linear-gradient(29deg, rgb(255, 255, 255) 100%, rgb(255, 255, 255) 100%)" })
         //.call(() => { SVGsAndTextWrapper.classList.toggle("columnDirection") })
         .add(() => {    
-            console.log("add() =>>> " + scrolltriggerOnUpdate.progress); //TEST
+            console.log("add() =>>> " + scrolltriggerOnUpdate.progress); //TEST 
+            titi = scrolltriggerOnUpdate.progress; //TEST
             // Pour bug qd chgmt orientat° portable : Ici prévoir fct° qui s'execute que qd event 'orientationchange' et qui toggle 'columnDirection en fct° du progress et de sa posit° selon le point de bascle du toggle ds la tileline
             SVGsAndTextWrapper.classList.toggle("columnDirection") 
         });    // Retrait class qui permet affichage en colonne pour small devices
@@ -541,12 +542,12 @@ ScrollTrigger.addEventListener("refreshInit", () => {   //document.querySelector
 
     // TEST au 16/02/2022
     console.log("refreshInit =>>> " + scrolltriggerOnUpdate.progress); //TEST
-    const duration_label2 = tl_scrollTriggerBody.labels["step_2|Compétences"];
+    //const duration_label2 = tl_scrollTriggerBody.labels["step_2|Compétences"];
     const duration_onRefreshInit = tl_scrollTriggerBody.totalDuration() * scrolltriggerOnUpdate.progress;
     //document.querySelector("#scrollPos").innerText = "duration_onRefreshInit: " + duration_onRefreshInit + " | duration_label2: " + duration_label2;//TEST
     
     var toto = "";
-    if(duration_onRefreshInit <= duration_label2) {
+    if(duration_onRefreshInit <= tl_scrollTriggerBody.totalDuration() * titi) {
         //SVGsAndTextWrapper.classList.add("columnDirection");
         toto = "Should add 'columnDirection'";
     } else {
