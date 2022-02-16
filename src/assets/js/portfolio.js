@@ -557,7 +557,14 @@ ScrollTrigger.addEventListener("refreshInit", () => {   document.querySelector("
 
     // TEST au 16/02/2022
     console.log("refreshInit =>>> " + scrolltriggerOnUpdate.progress); //TEST
-            
+    const duration_label2 = tl_scrollTriggerBody.labels["step_2|Compétences"];
+    const duration_onRefreshInit = tl_scrollTriggerBody.totalDuration() * scrolltriggerOnUpdate.progress;
+    if(duration_onRefreshInit <= duration_label2) {
+        SVGsAndTextWrapper.classList.add("columnDirection");
+    } else {
+        SVGsAndTextWrapper.classList.remove("columnDirection");
+    }
+    // FIN TEST
 });
 
 
