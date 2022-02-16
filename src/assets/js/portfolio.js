@@ -57,7 +57,7 @@ window.addEventListener('orientationchange', () => msgPortraitIsBetter.classList
     }
 }); */
 
-var mediaQueryList = window.matchMedia("(orientation: landscape)");
+/* var mediaQueryList = window.matchMedia("(orientation: landscape)");
 mediaQueryList.addEventListener(handleOrientationChange);
 function handleOrientationChange() {
     if (e.matches) {
@@ -65,7 +65,7 @@ function handleOrientationChange() {
     } else {
 
     }
-}
+} */
 // FIN TEST
 
 // Code juste pour mobile : Correct° du bug sur mobile et tablettes => unité du type vh, vmax, vmin,... sont faussées à cause de la barre d'adresse qui coulisse
