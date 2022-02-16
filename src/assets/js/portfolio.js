@@ -559,6 +559,7 @@ ScrollTrigger.addEventListener("refreshInit", () => {   document.querySelector("
     console.log("refreshInit =>>> " + scrolltriggerOnUpdate.progress); //TEST
     const duration_label2 = tl_scrollTriggerBody.labels["step_2|Compétences"];
     const duration_onRefreshInit = tl_scrollTriggerBody.totalDuration() * scrolltriggerOnUpdate.progress;
+    document.querySelector("#scrollPos").innerText = "duration_onRefreshInit: " + duration_onRefreshInit + " | duration_label2: " + duration_label2;//TEST
     if(duration_onRefreshInit <= duration_label2) {
         SVGsAndTextWrapper.classList.add("columnDirection");
     } else {
