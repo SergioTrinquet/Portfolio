@@ -44,18 +44,18 @@ document.querySelector("#msgPortraitIsBetter button").addEventListener("click", 
 window.addEventListener('orientationchange', () => msgPortraitIsBetter.classList.remove("hidden") ); 
 
 // TEST
-/* window.addEventListener('orientationchange', () => {
+window.addEventListener('orientationchange', () => {
     document.querySelector("#scrollPos").innerText = "orientationchange : progress " + scrolltriggerOnUpdate.progress + " | direction: " + scrolltriggerOnUpdate.direction;
     const duration_label2 = tl_scrollTriggerBody.labels["step_2|Compétences"];
     // Prenre en compte direction aussi
     const duration_onOrientationChange = tl_scrollTriggerBody.totalDuration() * scrolltriggerOnUpdate.progress;
     // Si 
     if(duration_onOrientationChange <= duration_label2) {
-
+        SVGsAndTextWrapper.classList.add("columnDirection");
     } else {
-
+        SVGsAndTextWrapper.classList.remove("columnDirection");
     }
-}); */
+});
 
 /* var mediaQueryList = window.matchMedia("(orientation: landscape)");
 mediaQueryList.addEventListener(handleOrientationChange);
@@ -345,7 +345,7 @@ function generate_timeline() {
         #background_screenEnd, #background_screenEnd #mot span, #background_screenEnd .motTrait, .transitionalBackground, .SVGsAndAnnexes
         `, {clearProps: "all"});
             
-/* TEST */ tl_scrollTriggerBody.add(() =>  SVGsAndTextWrapper.classList.add("columnDirection") );
+/* TEST *///tl_scrollTriggerBody.add(() =>  SVGsAndTextWrapper.classList.add("columnDirection") );
 
     tl_scrollTriggerBody
         .addLabel("step_1_1|Intro", ">")  
