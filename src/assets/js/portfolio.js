@@ -314,9 +314,7 @@ function generate_timeline() {
     tl_scrollTriggerBody 
         .set(".halo", { clearProps: "all" }) // Pour supprimer le style "background" écrit en dur ds la propriété style quand on a passé le tween juste après celui-ci et que l'on revient en arrière
         .to(".halo", { autoAlpha:0, background: "linear-gradient(29deg, rgb(255, 255, 255) 100%, rgb(255, 255, 255) 100%)" })
-        //.call(() => { SVGsAndTextWrapper.classList.toggle("columnDirection") })
-        //.add(() => { SVGsAndTextWrapper.classList.toggle("columnDirection") }); // Retrait class qui permet affichage en colonne pour small devices
-        .set(".wrapperSVGsAndTexts", { flexDirection: "unset", textAlign: "unset" });
+        .set(".wrapperSVGsAndTexts", { flexDirection: "unset", textAlign: "unset" }); // Retrait class qui permet affichage en colonne pour small devices/small screens
 
     // Gestion de la transition seulement qd écran est grand ou très grand
     if(mm !== "m" || mm !== "s" || mm !== "xs") {

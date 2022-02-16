@@ -328,7 +328,7 @@ body.noscroll {
   height: 100vh;    /* test */ /* height: 100%; */
 }
 
-.wrapperSVGsAndTexts {    border: solid 1px red; 
+.wrapperSVGsAndTexts { 
   width: 50%;
   /* height: 70vmin; */   height: calc(var(--vmin, 1vmin) * 70);
   max-width: 900px;
@@ -339,7 +339,7 @@ body.noscroll {
 }
 
 @media screen and (max-width: 768px) and (hover: hover) {
-  .wrapperSVGsAndTexts.columnDirection {
+  .wrapperSVGsAndTexts {
     flex-direction: column;
     text-align: center;
   }
@@ -352,7 +352,7 @@ body.noscroll {
 
 /* TEST */
 @media screen and (max-aspect-ratio: 9/14) and (pointer: coarse) {
-  .wrapperSVGsAndTexts.columnDirection {
+  .wrapperSVGsAndTexts {
     flex-direction: column;
     text-align: center;
   }
