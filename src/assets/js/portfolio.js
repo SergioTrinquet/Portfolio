@@ -44,7 +44,7 @@ document.querySelector("#msgPortraitIsBetter button").addEventListener("click", 
 window.addEventListener('orientationchange', () => msgPortraitIsBetter.classList.remove("hidden") ); 
 
 // TEST
-window.addEventListener('orientationchange', () => {
+/* window.addEventListener('orientationchange', () => {
     document.querySelector("#scrollPos").innerText = "orientationchange : progress " + scrolltriggerOnUpdate.progress + " | direction: " + scrolltriggerOnUpdate.direction;
     const duration_label2 = tl_scrollTriggerBody.labels["step_2|Compétences"];
     // Prenre en compte direction aussi
@@ -55,7 +55,7 @@ window.addEventListener('orientationchange', () => {
     } else {
 
     }
-});// FIN TEST
+}); */// FIN TEST
 
 // Code juste pour mobile : Correct° du bug sur mobile et tablettes => unité du type vh, vmax, vmin,... sont faussées à cause de la barre d'adresse qui coulisse
 if (isMobileOrTablette) {
@@ -376,7 +376,7 @@ function generate_timeline() {
         .to(".halo", { autoAlpha:0, background: "linear-gradient(29deg, rgb(255, 255, 255) 100%, rgb(255, 255, 255) 100%)" })
         //.call(() => { SVGsAndTextWrapper.classList.toggle("columnDirection") })
         .add(() => {    
-            console.log("=>>> " + scrolltriggerOnUpdate.progress); //TEST
+            console.log("add() =>>> " + scrolltriggerOnUpdate.progress); //TEST
             /* if(mediaQueryLandscape.matches) {
                 SVGsAndTextWrapper.classList.remove("columnDirection") 
             } else {
@@ -554,6 +554,10 @@ ScrollTrigger.addEventListener("refreshInit", () => {   document.querySelector("
     if(tl !== null) tl.clear(); // Prise en compte 1er déclenchement de l'evenement 'refreshInit' au chargement de la pg ou tl est = à null
     tl = generate_timeline();
     if(!flagAnimationIntro) setNavigation(); // Ici ajouté car qd redimension de la fenêtre, les valeurs des labels utilisés dans cette fonction changent, donc fonction rappelée ici pour avoir les valeurs à jour, sinon décalage entre vrais positions des labels et positions calculées
+
+    // TEST au 16/02/2022
+    console.log("refreshInit =>>> " + scrolltriggerOnUpdate.progress); //TEST
+            
 });
 
 
