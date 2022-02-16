@@ -50,8 +50,6 @@ function handleOrientationChange(e) {
     /* if (e.matches) { console.log('orientation: landscape');
     } else { console.log('Pas orientation: landscape');
     } */
-    //const duration_onOrientationChange = tl_scrollTriggerBody.totalDuration() * scrolltriggerOnUpdate.progress;
-    //document.querySelector("#flagIsScrolling").innerText = "duration_onOrientationChange => " + duration_onOrientationChange;
     document.querySelector("#scrollPos").innerText = "Présence 'columnDirection': " + SVGsAndTextWrapper.classList.contains("columnDirection");
 }
 // FIN TEST
@@ -78,23 +76,10 @@ if (isMobileOrTablette) {
 //var TEST = document.documentElement.style.getPropertyValue("--vh"); console.log("TEST", TEST);
 
 
-/* function preventDefaultEvent(e) { e.preventDefault() };
-function disableTouchMove() {
-    ["touchstart", "touchmove"].forEach((e) => {
-        document.addEventListener(e, preventDefaultEvent, { passive:false });
-    });
-}
-function enableTouchMove() {
-    ["touchstart", "touchmove"].forEach((e) => {
-        document.removeEventListener(e, preventDefaultEvent, { passive:false });
-    });
-} */
-
 
 // Si on est en haut de page, ajout de la transition pour l'apparition du visage
 if(getScrollTop() == 0) {
 
-    //if (isMobileOrTablette) disableTouchMove(); // Pour les mobiles et tablettes
     body.classList.add("noscroll"); // On empeche l'utilisateur de scroller   
     flagAnimationIntro = true;
 
@@ -143,7 +128,6 @@ if(getScrollTop() == 0) {
             texteQuiSuisJe_classList.add('animation');
         })
         .add(() => { 
-            //if (isMobileOrTablette) enableTouchMove(); // Pour les mobiles et tablettes
             body.classList.remove('noscroll'); // Retrait de la class qui empeche de scroller
             texteScrollDown.classList.add('display'); // Affichage txt 'Descendez pour le savoir'
         }, "+=2");
@@ -287,7 +271,6 @@ const tl_scrollTriggerBody = gsap.timeline({
 });
 
 
-let toggleClassPoint = null; //TEST
 
 // Fonction d'"alimentation" de l'objet timeline. Est appelée au chargement de la page 
 // mais aussi qd redimensionnement (sur event 'refreshInit') pour recalculer les positions de tous les éléments (sinon décalages potentiels)
@@ -301,7 +284,6 @@ function generate_timeline() {
         #background_screenEnd, #background_screenEnd #mot span, #background_screenEnd .motTrait, .transitionalBackground, .SVGsAndAnnexes
         `, {clearProps: "all"});
             
-/* TEST *///tl_scrollTriggerBody.add(() =>  SVGsAndTextWrapper.classList.add("columnDirection") );
 
     tl_scrollTriggerBody
         .addLabel("step_1_1|Intro", ">")  
@@ -341,14 +323,8 @@ function generate_timeline() {
         .set(".halo", { clearProps: "all" }) // Pour supprimer le style "background" écrit en dur ds la propriété style quand on a passé le tween juste après celui-ci et que l'on revient en arrière
         .to(".halo", { autoAlpha:0, background: "linear-gradient(29deg, rgb(255, 255, 255) 100%, rgb(255, 255, 255) 100%)" })
         //.call(() => { SVGsAndTextWrapper.classList.toggle("columnDirection") })
-        /* .add(() => {    
-            console.log("add() =>>> " + scrolltriggerOnUpdate.progress); //TEST 
-            toggleClassPoint = scrolltriggerOnUpdate.progress; //TEST
-            // Pour bug qd chgmt orientat° portable : Ici prévoir fct° qui s'execute que qd event 'orientationchange' et qui toggle 'columnDirection en fct° du progress et de sa posit° selon le point de bascle du toggle ds la tileline
-            SVGsAndTextWrapper.classList.toggle("columnDirection") 
-        });  */   // Retrait class qui permet affichage en colonne pour small devices
-
-/* TEST */tl_scrollTriggerBody.set(".wrapperSVGsAndTexts", { flexDirection: "unset", textAlign: "unset" });
+        //.add(() => { SVGsAndTextWrapper.classList.toggle("columnDirection") }); // Retrait class qui permet affichage en colonne pour small devices
+        .set(".wrapperSVGsAndTexts", { flexDirection: "unset", textAlign: "unset" });
 
     // Gestion de la transition seulement qd écran est grand ou très grand
     if(mm !== "m" || mm !== "s" || mm !== "xs") {
@@ -509,45 +485,16 @@ function generate_timeline() {
     return tl_scrollTriggerBody;
 }
 
-var num = 0; //TEST
 
 // Pour regénérer la timeline à chaque redimensionnement de la fenetre, sinon décalages se produisent car les prop. CSS de 
 // dimensions relatives (en vw, vh, %,...) sont interprétées une seule fois à l'initialisation de la timeline avec GSAP
-ScrollTrigger.addEventListener("refreshInit", () => {   //document.querySelector("#data").innerText = "RefreshInit " + (num +=1);
+ScrollTrigger.addEventListener("refreshInit", () => {
     mm = getMedia();
     if(tl !== null) tl.clear(); // Prise en compte 1er déclenchement de l'evenement 'refreshInit' au chargement de la pg ou tl est = à null
     tl = generate_timeline();
     if(!flagAnimationIntro) setNavigation(); // Ici ajouté car qd redimension de la fenêtre, les valeurs des labels utilisés dans cette fonction changent, donc fonction rappelée ici pour avoir les valeurs à jour, sinon décalage entre vrais positions des labels et positions calculées
-
-    // TEST au 16/02/2022 : Pour corriger bug qd chgmt d'orientat° sur mobile entre le 2eme label et 3eme label : Saut dans la timeline et étape du toggle sur class 'coluDirection' est alors zappé
-    //toggleClassColumnDirection();
-    // FIN TEST
 });
 
-
-// TEST au 16/02/2022
-//generate_timeline(); //TEST au 16/02/2022
-
-function toggleClassColumnDirection() {
-    console.log("refreshInit =>>> " + scrolltriggerOnUpdate.progress + " | toggleClassPoint =>>> " + toggleClassPoint); //TEST
-    const duration_onRefreshInit = tl_scrollTriggerBody.totalDuration() * scrolltriggerOnUpdate.progress;
-    //document.querySelector("#scrollPos").innerText = "duration_onRefreshInit: " + duration_onRefreshInit;
-    
-    var toto = "";
-    //if(duration_onRefreshInit <= tl_scrollTriggerBody.totalDuration() * toggleClassPoint) {
-    if(scrolltriggerOnUpdate.progress <= toggleClassPoint) {
-        //SVGsAndTextWrapper.classList.add("columnDirection");
-        toto = "Should add 'columnDirection'";
-    } else {
-        //SVGsAndTextWrapper.classList.remove("columnDirection");
-        toto = "Should remove 'columnDirection'";
-    }
-
-    document.querySelector("#data").innerText = "RefreshInit " + (num +=1) + " | duration_onRefreshInit: " + duration_onRefreshInit.toFixed(3) + " | " + toto;
-    
-}
-//toggleClassColumnDirection();
-// FIN TEST au 16/02/2022
 
 
 // Pour afficher et animer sur un tracé circulaire l'intitulé du job
