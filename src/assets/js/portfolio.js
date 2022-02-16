@@ -87,30 +87,6 @@ if (isMobileOrTablette) {
 //var TEST = document.documentElement.style.getPropertyValue("--vh"); console.log("TEST", TEST);
 
 
-////////// TEST simul overscroll-behavior pour iOS///////////
-/*     async function stopScrolling(e) {  
-        document.querySelector("#flagIsScrolling").innerText = "touchstart/touchmove"; //TEST
-        await new Promise(resolve => window.requestAnimationFrame(resolve));    
-        let scrollVal = getScrollTop();
-        let totalScroll = body.scrollHeight;
-        //document.querySelector("#data").innerText = scrollVal + " " + totalScroll + " " + document.documentElement.clientHeight; //TEST
-        document.querySelector("#data").innerText = e.type;
-
-        if(scrollVal <= 0) {    document.querySelector("#flagIsScrolling").innerText += "| inf. à 0"; //TEST
-            window.scrollTo(0, 1);
-            //e.preventDefault();
-        } else if(scrollVal >= (totalScroll - document.documentElement.clientHeight)) { document.querySelector("#flagIsScrolling").innerText += "| sup. à " + totalScroll - document.documentElement.clientHeight; //TEST
-            window.scrollTo(0, scrollVal - 1);
-            //e.preventDefault();
-        }
-    }
-   
-    window.addEventListener('touchstart', stopScrolling, false);
-    window.addEventListener('touchmove', stopScrolling, false);
-    window.addEventListener('touchend', () => document.querySelector("#flagIsScrolling").innerText = "Plus d'evenements touch"); //TEST */
-////////// FIN TEST ///////////
-
-
 /* function preventDefaultEvent(e) { e.preventDefault() };
 function disableTouchMove() {
     ["touchstart", "touchmove"].forEach((e) => {
@@ -207,6 +183,8 @@ window.addEventListener('scroll', () => {
     if(scrollValue > (body.scrollHeight - document.documentElement.clientHeight)) { 
         Pos.style.backgroundColor = "yellow"; 
     } else { Pos.style.backgroundColor = "none"; } */
+
+    document.querySelector("#scrollPos").innerText = "Présence 'columnDirection': " + SVGsAndTextWrapper.classList.contains("columnDirection");
     /* FIN TEST -  A VIRER */
 
 
