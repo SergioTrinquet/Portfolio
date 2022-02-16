@@ -165,16 +165,6 @@ window.addEventListener('scroll', () => {
     
     
     /* TEST -  A VIRER */
-    /* document.querySelector("#titi").innerText = scrollValue; 
-    let Neg = document.querySelector("#scrollNeg");
-    let Pos = document.querySelector("#scrollPos"); 
-    if(scrollValue < 0) { 
-        Neg.style.backgroundColor = "yellow"; 
-    } else { Neg.style.backgroundColor = "none"; }
-    if(scrollValue > (body.scrollHeight - document.documentElement.clientHeight)) { 
-        Pos.style.backgroundColor = "yellow"; 
-    } else { Pos.style.backgroundColor = "none"; } */
-
     document.querySelector("#scrollPos").innerText = "Présence 'columnDirection': " + SVGsAndTextWrapper.classList.contains("columnDirection");
     /* FIN TEST -  A VIRER */
 
@@ -297,7 +287,7 @@ const tl_scrollTriggerBody = gsap.timeline({
 });
 
 
-let toggleClassPoint = 2353; //TEST
+let toggleClassPoint = null; //TEST
 
 // Fonction d'"alimentation" de l'objet timeline. Est appelée au chargement de la page 
 // mais aussi qd redimensionnement (sur event 'refreshInit') pour recalculer les positions de tous les éléments (sinon décalages potentiels)
@@ -347,18 +337,18 @@ function generate_timeline() {
         tl_scrollTriggerBody.to(".textePresentation", { width:"0vw", height: "0vw", margin: 0, duration: 20 }); 
     }
 
-//var mediaQueryLandscape = window.matchMedia("(orientation: landscape)");
-
     tl_scrollTriggerBody 
         .set(".halo", { clearProps: "all" }) // Pour supprimer le style "background" écrit en dur ds la propriété style quand on a passé le tween juste après celui-ci et que l'on revient en arrière
         .to(".halo", { autoAlpha:0, background: "linear-gradient(29deg, rgb(255, 255, 255) 100%, rgb(255, 255, 255) 100%)" })
         //.call(() => { SVGsAndTextWrapper.classList.toggle("columnDirection") })
-        .call(() => {    
+        /* .add(() => {    
             console.log("add() =>>> " + scrolltriggerOnUpdate.progress); //TEST 
             toggleClassPoint = scrolltriggerOnUpdate.progress; //TEST
             // Pour bug qd chgmt orientat° portable : Ici prévoir fct° qui s'execute que qd event 'orientationchange' et qui toggle 'columnDirection en fct° du progress et de sa posit° selon le point de bascle du toggle ds la tileline
             SVGsAndTextWrapper.classList.toggle("columnDirection") 
-        });    // Retrait class qui permet affichage en colonne pour small devices
+        });  */   // Retrait class qui permet affichage en colonne pour small devices
+
+/* TEST */tl_scrollTriggerBody.set(".wrapperSVGsAndTexts", { flexDirection: "unset", textAlign: "unset" });
 
     // Gestion de la transition seulement qd écran est grand ou très grand
     if(mm !== "m" || mm !== "s" || mm !== "xs") {
@@ -530,6 +520,15 @@ ScrollTrigger.addEventListener("refreshInit", () => {   //document.querySelector
     if(!flagAnimationIntro) setNavigation(); // Ici ajouté car qd redimension de la fenêtre, les valeurs des labels utilisés dans cette fonction changent, donc fonction rappelée ici pour avoir les valeurs à jour, sinon décalage entre vrais positions des labels et positions calculées
 
     // TEST au 16/02/2022 : Pour corriger bug qd chgmt d'orientat° sur mobile entre le 2eme label et 3eme label : Saut dans la timeline et étape du toggle sur class 'coluDirection' est alors zappé
+    //toggleClassColumnDirection();
+    // FIN TEST
+});
+
+
+// TEST au 16/02/2022
+//generate_timeline(); //TEST au 16/02/2022
+
+function toggleClassColumnDirection() {
     console.log("refreshInit =>>> " + scrolltriggerOnUpdate.progress + " | toggleClassPoint =>>> " + toggleClassPoint); //TEST
     const duration_onRefreshInit = tl_scrollTriggerBody.totalDuration() * scrolltriggerOnUpdate.progress;
     //document.querySelector("#scrollPos").innerText = "duration_onRefreshInit: " + duration_onRefreshInit;
@@ -545,8 +544,10 @@ ScrollTrigger.addEventListener("refreshInit", () => {   //document.querySelector
     }
 
     document.querySelector("#data").innerText = "RefreshInit " + (num +=1) + " | duration_onRefreshInit: " + duration_onRefreshInit.toFixed(3) + " | " + toto;
-    // FIN TEST
-});
+    
+}
+//toggleClassColumnDirection();
+// FIN TEST au 16/02/2022
 
 
 // Pour afficher et animer sur un tracé circulaire l'intitulé du job
