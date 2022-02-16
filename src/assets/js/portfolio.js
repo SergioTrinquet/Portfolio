@@ -533,22 +533,24 @@ var num = 0; //TEST
 
 // Pour regénérer la timeline à chaque redimensionnement de la fenetre, sinon décalages se produisent car les prop. CSS de 
 // dimensions relatives (en vw, vh, %,...) sont interprétées une seule fois à l'initialisation de la timeline avec GSAP
-ScrollTrigger.addEventListener("refreshInit", () => {   document.querySelector("#data").innerText = "RefreshInit " + (num +=1);
+ScrollTrigger.addEventListener("refreshInit", () => {   //document.querySelector("#data").innerText = "RefreshInit " + (num +=1);
     mm = getMedia();
     if(tl !== null) tl.clear(); // Prise en compte 1er déclenchement de l'evenement 'refreshInit' au chargement de la pg ou tl est = à null
     tl = generate_timeline();
     if(!flagAnimationIntro) setNavigation(); // Ici ajouté car qd redimension de la fenêtre, les valeurs des labels utilisés dans cette fonction changent, donc fonction rappelée ici pour avoir les valeurs à jour, sinon décalage entre vrais positions des labels et positions calculées
 
     // TEST au 16/02/2022
-    /* console.log("refreshInit =>>> " + scrolltriggerOnUpdate.progress); //TEST
+    console.log("refreshInit =>>> " + scrolltriggerOnUpdate.progress); //TEST
     const duration_label2 = tl_scrollTriggerBody.labels["step_2|Compétences"];
     const duration_onRefreshInit = tl_scrollTriggerBody.totalDuration() * scrolltriggerOnUpdate.progress;
-    document.querySelector("#scrollPos").innerText = "duration_onRefreshInit: " + duration_onRefreshInit + " | duration_label2: " + duration_label2;//TEST
-    if(duration_onRefreshInit <= duration_label2) {
+    /*document.querySelector("#scrollPos").innerText = "duration_onRefreshInit: " + duration_onRefreshInit + " | duration_label2: " + duration_label2;//TEST
+     if(duration_onRefreshInit <= duration_label2) {
         SVGsAndTextWrapper.classList.add("columnDirection");
     } else {
         SVGsAndTextWrapper.classList.remove("columnDirection");
     } */
+
+    document.querySelector("#data").innerText = "RefreshInit " + (num +=1) + " | duration_onRefreshInit: " + duration_onRefreshInit;
     // FIN TEST
 });
 
