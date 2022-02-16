@@ -50,7 +50,6 @@ function handleOrientationChange(e) {
     /* if (e.matches) { console.log('orientation: landscape');
     } else { console.log('Pas orientation: landscape');
     } */
-    document.querySelector("#scrollPos").innerText = "Présence 'columnDirection': " + SVGsAndTextWrapper.classList.contains("columnDirection");
 }
 // FIN TEST
 
@@ -146,13 +145,6 @@ if(getScrollTop() == 0) {
 
 window.addEventListener('scroll', () => {
     const scrollValue = getScrollTop();             
-    
-    
-    /* TEST -  A VIRER */
-    document.querySelector("#scrollPos").innerText = "Présence 'columnDirection': " + SVGsAndTextWrapper.classList.contains("columnDirection");
-    /* FIN TEST -  A VIRER */
-
-
 
     // Appel fct° pour aller au label suivant/précédent qd : 
     // 1. Début de scroll exclusivement 
