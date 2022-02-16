@@ -1553,11 +1553,10 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   line-height: 17px;
   border-radius: 5px;
   box-shadow: 0 0 0 100vmax rgba(0,0,0,0.4), 0 0 20px rgba(0,0,0,0.3);
+  animation: modalAppear 0.8s forwards;
   display: none;
 
-  display: block; /* A VIRER */
-  
-  animation: modalAppear 0.8s forwards;
+  /* display: block; */ /* A VIRER */
 }
 @keyframes modalAppear {
   0% { transform: translateY(-110%); }
@@ -1567,7 +1566,8 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   padding: 3px 5vw;
   margin: 3vh 5px 0 5px;
   border-radius: 50px;
-  font-size: 18px;
+  /* font-size: clamp(15px, 2.7vw, 19px); */ /* Version non IOS compatible */
+  font-size: max(15px, min(2.7vw, 19px)); /* Version IOS compatible */
   border: solid 2px var(--color-bt-modal);
 }
 #closeModal {
