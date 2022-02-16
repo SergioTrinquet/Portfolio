@@ -43,7 +43,19 @@ let msgPortraitIsBetter = document.querySelector("#msgPortraitIsBetter");
 document.querySelector("#msgPortraitIsBetter button").addEventListener("click", () => msgPortraitIsBetter.classList.add("hidden") );
 window.addEventListener('orientationchange', () => msgPortraitIsBetter.classList.remove("hidden") ); 
 
-window.addEventListener('orientationchange', () => document.querySelector("#scrollPos").innerText = "orientationchange : progress " + scrolltriggerOnUpdate.progress ); //TEST
+// TEST
+window.addEventListener('orientationchange', () => {
+    document.querySelector("#scrollPos").innerText = "orientationchange : progress " + scrolltriggerOnUpdate.progress + " | direction: " + scrolltriggerOnUpdate.direction;
+    const duration_label2 = tl_scrollTriggerBody.labels["step_2|Compétences"];
+    // Prenre en compte direction aussi
+    const duration_onOrientationChange = tl_scrollTriggerBody.totalDuration() * scrolltriggerOnUpdate.progress;
+    // Si 
+    if(duration_onOrientationChange <= duration_label2) {
+
+    } else {
+
+    }
+});// FIN TEST
 
 // Code juste pour mobile : Correct° du bug sur mobile et tablettes => unité du type vh, vmax, vmin,... sont faussées à cause de la barre d'adresse qui coulisse
 if (isMobileOrTablette) {
@@ -357,11 +369,19 @@ function generate_timeline() {
         tl_scrollTriggerBody.to(".textePresentation", { width:"0vw", height: "0vw", margin: 0, duration: 20 }); 
     }
 
+//var mediaQueryLandscape = window.matchMedia("(orientation: landscape)");
+
     tl_scrollTriggerBody 
         .set(".halo", { clearProps: "all" }) // Pour supprimer le style "background" écrit en dur ds la propriété style quand on a passé le tween juste après celui-ci et que l'on revient en arrière
         .to(".halo", { autoAlpha:0, background: "linear-gradient(29deg, rgb(255, 255, 255) 100%, rgb(255, 255, 255) 100%)" })
         //.call(() => { SVGsAndTextWrapper.classList.toggle("columnDirection") })
-        .add(() => {    console.log("=>>> " + scrolltriggerOnUpdate.progress); //TEST
+        .add(() => {    
+            console.log("=>>> " + scrolltriggerOnUpdate.progress); //TEST
+            /* if(mediaQueryLandscape.matches) {
+                SVGsAndTextWrapper.classList.remove("columnDirection") 
+            } else {
+                SVGsAndTextWrapper.classList.add("columnDirection") 
+            } */
             // Pour bug qd chgmt orientat° portable : Ici prévoir fct° qui s'execute que qd event 'orientationchange' et qui toggle 'columnDirection en fct° du progress et de sa posit° selon le point de bascle du toggle ds la tileline
             SVGsAndTextWrapper.classList.toggle("columnDirection") 
         });    // Retrait class qui permet affichage en colonne pour small devices
@@ -525,11 +545,11 @@ function generate_timeline() {
     return tl_scrollTriggerBody;
 }
 
-//var num = 0; //TEST
+var num = 0; //TEST
 
 // Pour regénérer la timeline à chaque redimensionnement de la fenetre, sinon décalages se produisent car les prop. CSS de 
 // dimensions relatives (en vw, vh, %,...) sont interprétées une seule fois à l'initialisation de la timeline avec GSAP
-ScrollTrigger.addEventListener("refreshInit", () => {   //document.querySelector("#data").innerText = "RefreshInit " + (num +=1);
+ScrollTrigger.addEventListener("refreshInit", () => {   document.querySelector("#data").innerText = "RefreshInit " + (num +=1);
     mm = getMedia();
     if(tl !== null) tl.clear(); // Prise en compte 1er déclenchement de l'evenement 'refreshInit' au chargement de la pg ou tl est = à null
     tl = generate_timeline();
