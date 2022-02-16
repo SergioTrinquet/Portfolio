@@ -41,16 +41,16 @@ let scrubValue = 1;
 // Pour faire apparaitre msg d'incitat° de consultation en mode portrait qd mobile
 let msgPortraitIsBetter = document.querySelector("#msgPortraitIsBetter");
 document.querySelector("#msgPortraitIsBetter button").addEventListener("click", () => msgPortraitIsBetter.classList.add("hidden") );
-window.addEventListener('orientationchange', () => msgPortraitIsBetter.classList.remove("hidden") ); 
-
+//window.addEventListener('orientationchange', () => msgPortraitIsBetter.classList.remove("hidden") ); 
+window.matchMedia("(orientation: landscape)").onchange = () => msgPortraitIsBetter.classList.remove("hidden");
 // TEST
-var mediaQueryList = window.matchMedia("(orientation: landscape)");
+/* var mediaQueryList = window.matchMedia("(orientation: landscape)");
 mediaQueryList.onchange = handleOrientationChange;
 function handleOrientationChange(e) {
-    /* if (e.matches) { console.log('orientation: landscape');
+    if (e.matches) { console.log('orientation: landscape');
     } else { console.log('Pas orientation: landscape');
-    } */
-}
+    }
+} */
 // FIN TEST
 
 // Code juste pour mobile : Correct° du bug sur mobile et tablettes => unité du type vh, vmax, vmin,... sont faussées à cause de la barre d'adresse qui coulisse
