@@ -61,6 +61,8 @@ function handleOrientationChange(e) {
     /* if (e.matches) { console.log('orientation: landscape');
     } else { console.log('Pas orientation: landscape');
     } */
+    const duration_onOrientationChange = tl_scrollTriggerBody.totalDuration() * scrolltriggerOnUpdate.progress;
+    document.querySelector("#flagIsScrolling").innerText = "duration_onOrientationChange => " + duration_onOrientationChange;
     document.querySelector("#scrollPos").innerText = "Présence 'columnDirection': " + SVGsAndTextWrapper.classList.contains("columnDirection");
 }
 // FIN TEST
@@ -364,11 +366,6 @@ function generate_timeline() {
         //.call(() => { SVGsAndTextWrapper.classList.toggle("columnDirection") })
         .add(() => {    
             console.log("add() =>>> " + scrolltriggerOnUpdate.progress); //TEST
-            /* if(mediaQueryLandscape.matches) {
-                SVGsAndTextWrapper.classList.remove("columnDirection") 
-            } else {
-                SVGsAndTextWrapper.classList.add("columnDirection") 
-            } */
             // Pour bug qd chgmt orientat° portable : Ici prévoir fct° qui s'execute que qd event 'orientationchange' et qui toggle 'columnDirection en fct° du progress et de sa posit° selon le point de bascle du toggle ds la tileline
             SVGsAndTextWrapper.classList.toggle("columnDirection") 
         });    // Retrait class qui permet affichage en colonne pour small devices
