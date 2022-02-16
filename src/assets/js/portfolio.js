@@ -55,7 +55,18 @@ window.addEventListener('orientationchange', () => msgPortraitIsBetter.classList
     } else {
 
     }
-}); */// FIN TEST
+}); */
+
+var mediaQueryList = window.matchMedia("(orientation: landscape)");
+mediaQueryList.addEventListener(handleOrientationChange);
+function handleOrientationChange() {
+    if (e.matches) {
+
+    } else {
+
+    }
+}
+// FIN TEST
 
 // Code juste pour mobile : Correct° du bug sur mobile et tablettes => unité du type vh, vmax, vmin,... sont faussées à cause de la barre d'adresse qui coulisse
 if (isMobileOrTablette) {
@@ -334,6 +345,7 @@ function generate_timeline() {
         #background_screenEnd, #background_screenEnd #mot span, #background_screenEnd .motTrait, .transitionalBackground, .SVGsAndAnnexes
         `, {clearProps: "all"});
             
+/* TEST */ tl_scrollTriggerBody.add(() =>  SVGsAndTextWrapper.classList.add("columnDirection") );
 
     tl_scrollTriggerBody
         .addLabel("step_1_1|Intro", ">")  
@@ -556,7 +568,7 @@ ScrollTrigger.addEventListener("refreshInit", () => {   document.querySelector("
     if(!flagAnimationIntro) setNavigation(); // Ici ajouté car qd redimension de la fenêtre, les valeurs des labels utilisés dans cette fonction changent, donc fonction rappelée ici pour avoir les valeurs à jour, sinon décalage entre vrais positions des labels et positions calculées
 
     // TEST au 16/02/2022
-    console.log("refreshInit =>>> " + scrolltriggerOnUpdate.progress); //TEST
+    /* console.log("refreshInit =>>> " + scrolltriggerOnUpdate.progress); //TEST
     const duration_label2 = tl_scrollTriggerBody.labels["step_2|Compétences"];
     const duration_onRefreshInit = tl_scrollTriggerBody.totalDuration() * scrolltriggerOnUpdate.progress;
     document.querySelector("#scrollPos").innerText = "duration_onRefreshInit: " + duration_onRefreshInit + " | duration_label2: " + duration_label2;//TEST
@@ -564,7 +576,7 @@ ScrollTrigger.addEventListener("refreshInit", () => {   document.querySelector("
         SVGsAndTextWrapper.classList.add("columnDirection");
     } else {
         SVGsAndTextWrapper.classList.remove("columnDirection");
-    }
+    } */
     // FIN TEST
 });
 
