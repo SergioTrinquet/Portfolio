@@ -42,37 +42,26 @@ let scrubValue = 1;
 
 // Pour faire apparaitre msg d'incitat° de consultation en mode portrait qd mobile
 function createModalPortraitIsBetter(cookieName) {
-    const msgPortraitIsBetter = document.querySelector("#msgPortraitIsBetter");
+    const msgPortraitIsBetterClassList = document.querySelector("#msgPortraitIsBetter").classList;
+    const closeModal = () => msgPortraitIsBetterClassList.add("hidden");
+    const displayModal = () => msgPortraitIsBetterClassList.remove("hidden");
     let isCookiePresent = () => document.cookie.split(';').some((item) => item.trim().startsWith(`${cookieName}=`));
-    const closeModal = () => msgPortraitIsBetter.classList.add("hidden");
-    const displayModal = () => msgPortraitIsBetter.classList.remove("hidden");
     
     // Au chargement
-    console.log("isCookiePresent => " + isCookiePresent()); //TEST
-    //if(eval(sessionStorage.getItem('st_dont-show-modal'))) { 
+    //console.log("isCookiePresent => " + isCookiePresent()); //TEST
+    //if(eval(sessionStorage.getItem('st_dont-show-modal'))) closeModal(); 
     if(isCookiePresent()) closeModal();
 
     // Si avant rotation mobile, juste click sur bouton 'Fermer', alors on affiche à nouveau l'encart
-    //window.addEventListener('orientationchange', () => msgPortraitIsBetter.classList.remove("hidden") ); 
     window.matchMedia("(orientation: landscape)").onchange = (e) => {    
-        console.log("isCookiePresent => " + isCookiePresent()); //TEST
-        //if(!isCookiePresent()) displayModal();
+        //console.log("isCookiePresent => " + isCookiePresent()); //TEST
         if(e.matches && !isCookiePresent()) displayModal();
     };
-    // TEST
-    /* window.matchMedia("(orientation: landscape)").onchange = handleOrientationChange;
-    function handleOrientationChange(e) {
-        if (e.matches) { console.log('orientation: landscape');
-        } else { console.log('Pas orientation: landscape');
-        }
-    } */
-    // FIN TEST
 
     // Action boutons
     document.querySelector("#closeModal").addEventListener("click", closeModal);
     document.querySelector("#sessionCloseModal").addEventListener("click", () => {
         //sessionStorage.setItem('st_dont-show-modal', true);
-        //document.cookie = `${cookieName}=true; max-age=${60*30}`;
         document.cookie = `${cookieName}=true`;
         closeModal();
     });
