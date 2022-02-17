@@ -660,8 +660,8 @@ body.noscroll {
 }
 .textePresentation > p { 
   font-size: 22px; 
-  /* font-size: clamp(19px, 3vw, 23px); */ /* Version non IOS compatible */
-  font-size: max(19px, min(3vw, 23px)); /* Version IOS compatible */
+  /* font-size: clamp(19px, 3.5vw, 23px); */ /* Version non IOS compatible */
+  font-size: max(19px, min(3.5vw, 23px)); /* Version IOS compatible */
 }
 .textePresentation > p > span {
   text-decoration: underline 2px dotted;
@@ -1434,7 +1434,7 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
 }
 .menu .link:hover > span {
   opacity: 1;
-  transform: translateY(0vh);
+  transform: translateY(calc(1vh - 10px));
 }
 /*#endregion - Menu avec points en bas de page: Qd écran >= à taille Moyenne */
 
