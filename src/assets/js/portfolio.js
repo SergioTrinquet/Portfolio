@@ -38,33 +38,39 @@ const isIPadOrIPhone = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (/iPhone
 
 let scrubValue = 1;
 
+
+
 // Pour faire apparaitre msg d'incitat° de consultation en mode portrait qd mobile
-let msgPortraitIsBetter = document.querySelector("#msgPortraitIsBetter");
-//window.addEventListener('orientationchange', () => msgPortraitIsBetter.classList.remove("hidden") ); 
-window.matchMedia("(orientation: landscape)").onchange = () => msgPortraitIsBetter.classList.remove("hidden");
+function createModalPortraitIsBetter(cookieName) {
+    let msgPortraitIsBetter = document.querySelector("#msgPortraitIsBetter");
+    //window.addEventListener('orientationchange', () => msgPortraitIsBetter.classList.remove("hidden") ); 
+    window.matchMedia("(orientation: landscape)").onchange = () => msgPortraitIsBetter.classList.remove("hidden");
+    // TEST
+    /* window.matchMedia("(orientation: landscape)").onchange = handleOrientationChange;
+    function handleOrientationChange(e) {
+        if (e.matches) { console.log('orientation: landscape');
+        } else { console.log('Pas orientation: landscape');
+        }
+    } */
+    // FIN TEST
 
-const closeModal = () => msgPortraitIsBetter.classList.add("hidden");
-if(eval(sessionStorage.getItem('st_dont-show-modal'))) { console.warn("sessionStorage présent");
-    closeModal();
-};
+    const closeModal = () => msgPortraitIsBetter.classList.add("hidden");
+    //if(eval(sessionStorage.getItem('st_dont-show-modal'))) { 
+    let isCookiePresent = document.cookie.split(';').some((item) => item.trim().startsWith(`${cookieName}=`));
+    if(isCookiePresent) closeModal();
 
-// Action boutons
-document.querySelector("#closeModal").addEventListener("click", closeModal);
-document.querySelector("#sessionCloseModal").addEventListener("click", () => {
-    sessionStorage.setItem('st_dont-show-modal', true);
-    closeModal();
-});
+    // Action boutons
+    document.querySelector("#closeModal").addEventListener("click", closeModal);
+    document.querySelector("#sessionCloseModal").addEventListener("click", () => {
+        //sessionStorage.setItem('st_dont-show-modal', true);
+        document.cookie = `${cookieName}=true`;
+
+        closeModal();
+    });
+}
+createModalPortraitIsBetter("st_dont-show-modal");
 
 
-// TEST
-/* var mediaQueryList = window.matchMedia("(orientation: landscape)");
-mediaQueryList.onchange = handleOrientationChange;
-function handleOrientationChange(e) {
-    if (e.matches) { console.log('orientation: landscape');
-    } else { console.log('Pas orientation: landscape');
-    }
-} */
-// FIN TEST
 
 // Code juste pour mobile : Correct° du bug sur mobile et tablettes => unité du type vh, vmax, vmin,... sont faussées à cause de la barre d'adresse qui coulisse
 if (isMobileOrTablette) {
