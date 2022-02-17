@@ -665,9 +665,9 @@ body.noscroll {
   text-decoration: underline 2px dotted;
 }
 @media screen and (max-width: 768px) {
-  .textePresentation {
+  /* .textePresentation {
     margin: 0;
-  }
+  } */
   .textePresentation > p:first-child {
     font-size: 6.5vw;
     line-height: 7vw;
@@ -678,6 +678,14 @@ body.noscroll {
   .textePresentation > p:first-child {
     font-size: max(32px, 7.5vw);
     line-height: max(32px, 7.5vw);
+  }
+}
+/* On force positionnement par défaut, même si largeur inf. à 768px (cf. media queries juste au-dessus) */
+@media screen and (min-aspect-ratio: 14/9) {
+  .textePresentation > p:first-child { 
+    font-size: 4vw;
+    line-height: 4vw;
+    margin: 0 0 2vh 0;
   }
 }
 /*#endregion -  Texte de présentation à la question "Qui suis-je ?" */
