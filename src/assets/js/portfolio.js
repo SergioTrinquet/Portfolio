@@ -40,32 +40,7 @@ let scrubValue = 1;
 
 
 
-// Pour faire apparaitre msg d'incitat° de consultation en mode portrait qd mobile
-function createModalPortraitIsBetter(cookieName) {
-    const msgPortraitIsBetterClassList = document.querySelector("#msgPortraitIsBetter").classList;
-    const closeModal = () => msgPortraitIsBetterClassList.add("hidden");
-    const displayModal = () => msgPortraitIsBetterClassList.remove("hidden");
-    let isCookiePresent = () => document.cookie.split(';').some((item) => item.trim().startsWith(`${cookieName}=`));
-    
-    // Au chargement
-    //console.log("isCookiePresent => " + isCookiePresent()); //TEST
-    //if(eval(sessionStorage.getItem('st_dont-show-modal'))) closeModal(); 
-    if(isCookiePresent()) closeModal();
-
-    // Si avant rotation mobile, juste click sur bouton 'Fermer', alors on affiche à nouveau l'encart
-    window.matchMedia("(orientation: landscape)").onchange = (e) => {    
-        //console.log("isCookiePresent => " + isCookiePresent()); //TEST
-        if(e.matches && !isCookiePresent()) displayModal();
-    };
-
-    // Action boutons
-    document.querySelector("#closeModal").addEventListener("click", closeModal);
-    document.querySelector("#sessionCloseModal").addEventListener("click", () => {
-        //sessionStorage.setItem('st_dont-show-modal', true);
-        document.cookie = `${cookieName}=true`;
-        closeModal();
-    });
-}
+// Gestion modal avec msg d'incitat° de consultation en mode portrait qd mobile
 createModalPortraitIsBetter("st_dont-show-modal");
 
 
@@ -340,14 +315,12 @@ function generate_timeline() {
     }
 
     tl_scrollTriggerBody  
-        //.to(".halo", { zIndex: 2, width: "115%", height: "115%", boxShadow: "-3px 2px 1px #4d4d4d91", autoAlpha:1, duration: 20 })    // Halo rendu à nouveau visible + chgmt css
         .to(".halo", { zIndex: 2, width: "115%", paddingTop: "115%", boxShadow: "-3px 2px 1px #4d4d4d91", autoAlpha:1, duration: 20 })    // Halo rendu à nouveau visible + chgmt css
         .to("#SVGs", { filter: "drop-shadow( 1px 0px 0px rgba(77, 81, 120, 0.7)" }, "<")   // Ajout ombre sur visage
         .to(".wrapperSVGsAndTexts", { keyframes: [
             { position: "absolute", duration: 0 },
             //{ height: "20vh", marginTop: "-70vh", duration: 50 } // Version Originale
-            { height: "20vh", marginTop: isIPadOrIPhone ? "-35vh" : "-70vh", duration: 50 } // V1
-            //(isIPadOrIPhone ? { height: "20vh", y: "5vh", duration: 50 } : { height: "20vh", marginTop: "-70vh", duration: 50 }) // V2
+            { height: "20vh", marginTop: isIPadOrIPhone ? "-35vh" : "-70vh", duration: 50 } // Nvelle version
         ] }, "<")
         .to("#intituleJob", { display: "unset" }) // Pour activer l'animation
         .fromTo("#intituleJob", { zIndex: 3, scale: 0.5, autoAlpha:0 }, { zIndex: 3, scale: 1, autoAlpha: 1, duration: 10})   // Apparition "intitulé job"
@@ -360,7 +333,12 @@ function generate_timeline() {
 
         // En gérant du coté JS "flex-direction", on évite un bug d'affichage: Le SVG changeait brusquement de position
         if( mm == "xs" || mm == "s" || mm == "m") {
-            tl_scrollTriggerBody.to("#skills", { zIndex: 3, autoAlpha: 1, flexDirection:"column", marginTop: "calc(var(--vh, 1vh) * 30)" });
+            const isLandscapeDisplay = window.matchMedia("(orientation: landscape)").matches;
+            if(isLandscapeDisplay) {
+                tl_scrollTriggerBody.to("#skills", { zIndex: 3, autoAlpha: 1 });
+            } else {
+                tl_scrollTriggerBody.to("#skills", { zIndex: 3, autoAlpha: 1, flexDirection:"column", marginTop: "calc(var(--vh, 1vh) * 30)" });
+            }
         } else {
             tl_scrollTriggerBody.to("#skills", { zIndex: 3, autoAlpha: 1 });
         }
@@ -400,8 +378,7 @@ function generate_timeline() {
     tl_scrollTriggerBody
         .to(".transitionalBackground", { keyframes: [
             { autoAlpha: 1 }, 
-            //{ boxShadow: "-100vw 0 0 rgba(255,255,255,0.5)", duration: 60 }, // Version Originale au 09/02/2022
-            { boxShadow: isIPadOrIPhone ? "none" : "-100vw 0 0 rgba(255,255,255,0.5)", duration: 60 }, // V2
+            { boxShadow: isIPadOrIPhone ? "none" : "-100vw 0 0 rgba(255,255,255,0.5)", duration: 60 },
             { x:"0%", duration: 80 }] 
         })
         .to("#intituleJob", { keyframes: [
@@ -750,4 +727,32 @@ function eyeball(event) {
     eyesMovingZone.addEventListener(e, () => { 
         pupilles.forEach(pupille => pupille.style = "");
     });
-})
+});
+
+
+// Pour faire apparaitre msg d'incitat° de consultation en mode portrait qd mobile
+function createModalPortraitIsBetter(cookieName) {
+    const msgPortraitIsBetterClassList = document.querySelector("#msgPortraitIsBetter").classList;
+    const closeModal = () => msgPortraitIsBetterClassList.add("hidden");
+    const displayModal = () => msgPortraitIsBetterClassList.remove("hidden");
+    let isCookiePresent = () => document.cookie.split(';').some((item) => item.trim().startsWith(`${cookieName}=`));
+    
+    // Au chargement
+    //console.log("isCookiePresent => " + isCookiePresent()); //TEST
+    //if(eval(sessionStorage.getItem('st_dont-show-modal'))) closeModal(); 
+    if(isCookiePresent()) closeModal();
+
+    // Si avant rotation mobile, juste click sur bouton 'Fermer', alors on affiche à nouveau l'encart
+    window.matchMedia("(orientation: landscape)").onchange = (e) => {    
+        //console.log("isCookiePresent => " + isCookiePresent()); //TEST
+        if(e.matches && !isCookiePresent()) displayModal();
+    };
+
+    // Action boutons
+    document.querySelector("#closeModal").addEventListener("click", closeModal);
+    document.querySelector("#sessionCloseModal").addEventListener("click", () => {
+        //sessionStorage.setItem('st_dont-show-modal', true);
+        document.cookie = `${cookieName}=true`;
+        closeModal();
+    });
+}

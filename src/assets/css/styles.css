@@ -723,6 +723,8 @@ body.noscroll {
 #skills .domain {
   /* font-size: clamp(15px, 2vw, 19px); */  /* Version non IOS compatible */
   font-size: max(15px, min(2vw, 19px)); /* Version IOS compatible */
+  font-size: max(15px, min(2.7vmin, 19px));
+
   box-shadow: 0 15px 25px rgba(0,0,0,0.3);
   background-color: #fff;
   color: var(--font-color-screen2);
@@ -788,6 +790,20 @@ body.noscroll {
   .title { padding: 6px 18px 6px 15px !important; }
   #skills .domain { padding-bottom: 2vmin; }
 }
+
+/* On force propriétés par défaut, même si largeur inf. à 768px (cf. media queries juste au-dessus) */
+@media screen and (orientation: landscape) {
+  #skills .domain {
+    margin: 2.8vh 2vw;
+    padding-top: 5vmin;
+    padding-right: 3vmin;
+    padding-bottom: 3vmin;
+    padding-left: 3vmin;
+    width: 23%;
+  }
+  #skills .domain:first-child {  width: 40%; }
+}
+/* FIN TEST */
 
 .title {
   background: linear-gradient(90deg, var(--color-gradient-1-ruban) 0%, #fd7298 5%, #f1507d 70%);
