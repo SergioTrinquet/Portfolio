@@ -1581,7 +1581,7 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
 #msgPortraitIsBetter.hidden { 
   display: none !important;
 }
-@media screen and (min-aspect-ratio: 14/9) and (pointer: coarse) {
+@media screen and (min-aspect-ratio: 14/9) and (pointer: coarse) { /* Mode paysage pour mobile */
   #msgPortraitIsBetter { 
     display: block;
   }
