@@ -308,7 +308,7 @@ function generate_timeline() {
     // Apparition texte présentation : gestion de la transition différente selon que écran moyen ou petit ou bien plus grand
     if(mm == "m" || mm == "s" || mm == "xs") {
         tl_scrollTriggerBody.to(".textePresentation", { keyframes: [
-            { width:"70vw", height: 0, margin: "0", scale: 0.5, duration: 30 },
+            { width:"70vw", height: 0, /* margin: "0", */ scale: 0.5, duration: 30 },
             { autoAlpha: 1, scale: 1, height: "auto", duration: 30 }
         ]});
     } else {

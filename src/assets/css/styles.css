@@ -660,14 +660,13 @@ body.noscroll {
 }
 .textePresentation > p { 
   font-size: 22px; 
+  /* font-size: clamp(19px, 3vw, 23px); */ /* Version non IOS compatible */
+  font-size: max(19px, min(3vw, 23px)); /* Version IOS compatible */
 }
 .textePresentation > p > span {
   text-decoration: underline 2px dotted;
 }
 @media screen and (max-width: 768px) {
-  /* .textePresentation {
-    margin: 0;
-  } */
   .textePresentation > p:first-child {
     font-size: 6.5vw;
     line-height: 7vw;
