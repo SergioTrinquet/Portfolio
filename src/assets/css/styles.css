@@ -339,6 +339,11 @@ body.noscroll {
   position: relative; /* Pour que SVGvisageVIVUS en position:absolute ne déborde pas de son conteneur */
 }
 
+/* TEST */
+#flagIsScrolling::before {
+  content: "---nada---";
+}
+
 @media screen and (max-width: 768px) and (hover: hover) {
   .wrapperSVGsAndTexts {
     flex-direction: column;
