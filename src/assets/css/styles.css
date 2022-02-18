@@ -344,26 +344,29 @@ body.noscroll {
   content: "---nada---";
 }
 
-@media screen and (max-width: 768px) and (hover: hover) {
+/* @media screen and (max-width: 768px) and (hover: hover) {
   .wrapperSVGsAndTexts {
     flex-direction: column;
     text-align: center;
   }
 
-  /* TEST */
+  
   #data::before {
     content: "max-width: 768px + hover:hover";
   }
-}
+} */
 
 /* TEST */
-@media screen and (max-aspect-ratio: 9/14) and (pointer: coarse) {
-  .wrapperSVGsAndTexts {
+/* @media screen and (max-aspect-ratio: 9/14) and (pointer: coarse) { */
+@media screen and (orientation: portrait) {
+  /* @media screen and (max-aspect-ratio: 4/3) { */
+    .wrapperSVGsAndTexts {
     flex-direction: column;
     text-align: center;
   }
   #flagIsScrolling::before {
-    content: "max-aspect-ratio: 9/14 + pointer:coarse";
+    /* content: "max-aspect-ratio: 9/14 + pointer:coarse"; */
+    content: "orientation: portrait";
   }
 }
 /* FIN TEST */
