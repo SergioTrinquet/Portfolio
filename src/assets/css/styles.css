@@ -358,15 +358,13 @@ body.noscroll {
 
 /* TEST */
 /* @media screen and (max-aspect-ratio: 9/14) and (pointer: coarse) { */
-@media screen and (orientation: portrait) {
-  /* @media screen and (max-aspect-ratio: 4/3) { */
+  @media screen and (max-aspect-ratio: 4/3) {
     .wrapperSVGsAndTexts {
     flex-direction: column;
     text-align: center;
   }
   #flagIsScrolling::before {
-    /* content: "max-aspect-ratio: 9/14 + pointer:coarse"; */
-    content: "orientation: portrait";
+    content: "max-aspect-ratio: 4/3";
   }
 }
 /* FIN TEST */
@@ -674,7 +672,7 @@ body.noscroll {
 .textePresentation > p > span {
   text-decoration: underline 2px dotted;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-aspect-ratio: 4/3) {
   .textePresentation > p:first-child {
     font-size: 6.5vw;
     line-height: 7vw;

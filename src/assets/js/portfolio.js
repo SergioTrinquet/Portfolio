@@ -33,6 +33,8 @@ let nbExecScrollEvent = -1,
 const dureeEntreLabels = [1.7, 2.6, 2.7, 0.8, 0.8, 6, 1.5];
 const isMobileOrTablette = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) || (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.platform));
 const isIPadOrIPhone = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (/iPhone|iPad|iPod/i.test(navigator.platform));
+//const isIPadOrIPhone = (/iPhone|iPad|iPod/i.test(navigator.userAgent) && !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/)) || ((/iPhone|iPad|iPod/i.test(navigator.platform)) && !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/));
+
 
 /* A VIRER */ document.querySelector("#titi").innerText = isIPadOrIPhone ? "iPhone/iPad" : "Autre"; //TEST
 
@@ -281,9 +283,19 @@ function generate_timeline() {
         ]});
 
     // Apparition texte présentation : gestion de la transition différente selon que écran moyen ou petit ou bien plus grand
-    if(mm == "m" || mm == "s" || mm == "xs") {
+    let screen1_kf1 = { scale: 0.5, duration: 30 };
+    let screen1_kf2 = { autoAlpha: 1, scale: 1, duration: 30 };
+    if(window.matchMedia("(max-aspect-ratio: 4/3)").matches) {
+        screen1_kf1 = {...screen1_kf1, ...{ width:"70vw", height: 0 }};
+        screen1_kf2 = {...screen1_kf2, ...{ height: "auto" }};
+    } else {
+        screen1_kf1 = {...screen1_kf1, ...{ width:"70%", height: "auto", margin: "0px 0px 0px 4vw" }};
+    }
+    tl_scrollTriggerBody.to(".textePresentation", { keyframes: [screen1_kf1, screen1_kf2]});
+
+    /* if(mm == "m" || mm == "s" || mm == "xs") {
         tl_scrollTriggerBody.to(".textePresentation", { keyframes: [
-            { width:"70vw", height: 0, /* margin: "0", */ scale: 0.5, duration: 30 },
+            { width:"70vw", height: 0, scale: 0.5, duration: 30 },
             { autoAlpha: 1, scale: 1, height: "auto", duration: 30 }
         ]});
     } else {
@@ -291,7 +303,7 @@ function generate_timeline() {
             { width:"70%", height: "auto", margin: "0px 0px 0px 4vw", scale: 0.5, duration: 30 },
             { autoAlpha: 1, scale: 1, duration: 30 }
         ]});
-    }
+    } */
 
     tl_scrollTriggerBody
         .to("#background_screen1and2 > .ray", { transform: `skew(0deg, ${deg_inclinaison_asc}deg) translate(0vh, 0vh)`, duration: 10, stagger: 5 })    // ray en diagonale : Apparition de gauche à droite        
@@ -300,7 +312,8 @@ function generate_timeline() {
         .to("#content_screen3", { left:"0vw", duration: 80 }, "<+=30");    // Transition arrivée fond bleu marine
 
     // Transition seulement qd écran moyen ou petit      
-    if(mm == "m" || mm == "s" || mm == "xs") {
+    /* if(mm == "m" || mm == "s" || mm == "xs") { */
+    if(window.matchMedia("(max-aspect-ratio: 4/3)").matches) {
         tl_scrollTriggerBody.to(".textePresentation", { width:"0vw", height: "0vw", margin: 0, duration: 20 }); 
     }
 
@@ -310,7 +323,8 @@ function generate_timeline() {
         .set(".wrapperSVGsAndTexts", { flexDirection: "unset", textAlign: "unset" }); // Retrait class qui permet affichage en colonne pour small devices/small screens
 
     // Gestion de la transition seulement qd écran est grand ou très grand
-    if(mm !== "m" || mm !== "s" || mm !== "xs") {
+    /* if(mm !== "m" || mm !== "s" || mm !== "xs") { */
+    if(window.matchMedia("(min-aspect-ratio: 4/3)").matches) {
         tl_scrollTriggerBody.to(".textePresentation", { width:"0vw", margin: 0, duration: 20 }); // SVG du visage qui va vers le centre de la page car textePresentation se réduit progressivement
     }
 
@@ -319,8 +333,7 @@ function generate_timeline() {
         .to("#SVGs", { filter: "drop-shadow( 1px 0px 0px rgba(77, 81, 120, 0.7)" }, "<")   // Ajout ombre sur visage
         .to(".wrapperSVGsAndTexts", { keyframes: [
             { position: "absolute", duration: 0 },
-            //{ height: "20vh", marginTop: "-70vh", duration: 50 } // Version Originale
-            { height: "20vh", marginTop: isIPadOrIPhone ? "-35vh" : "-70vh", duration: 50 } // Nvelle version
+            { height: "20vh", marginTop: isIPadOrIPhone ? "-35vh" : "-70vh", duration: 50 }
         ] }, "<")
         .to("#intituleJob", { display: "unset" }) // Pour activer l'animation
         .fromTo("#intituleJob", { zIndex: 3, scale: 0.5, autoAlpha:0 }, { zIndex: 3, scale: 1, autoAlpha: 1, duration: 10})   // Apparition "intitulé job"
