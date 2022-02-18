@@ -32,8 +32,8 @@ let nbExecScrollEvent = -1,
     menuOrArrowClicked = false;
 const dureeEntreLabels = [1.7, 2.6, 2.7, 0.8, 0.8, 6, 1.5];
 const isMobileOrTablette = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) || (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.platform));
-const isIPadOrIPhone = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (/iPhone|iPad|iPod/i.test(navigator.platform));
-//const isIPadOrIPhone = (/iPhone|iPad|iPod/i.test(navigator.userAgent) && !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/)) || ((/iPhone|iPad|iPod/i.test(navigator.platform)) && !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/));
+//const isIPadOrIPhone = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (/iPhone|iPad|iPod/i.test(navigator.platform));
+const isIPadOrIPhone = (/iPhone|iPad|iPod/i.test(navigator.userAgent) && !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/)) || ((/iPhone|iPad|iPod/i.test(navigator.platform)) && !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/));
 
 
 /* A VIRER */ document.querySelector("#titi").innerText = isIPadOrIPhone ? "iPhone/iPad" : "Autre"; //TEST
