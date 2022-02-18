@@ -32,17 +32,20 @@ let nbExecScrollEvent = -1,
     menuOrArrowClicked = false;
 const dureeEntreLabels = [1.7, 2.6, 2.7, 0.8, 0.8, 6, 1.5];
 const isMobileOrTablette = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) || (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.platform));
-//const isIPadOrIPhone = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (/iPhone|iPad|iPod/i.test(navigator.platform));
-
-// TEST
 const isIPadOrIPhone = detectIOS();
 function detectIOS() {
     var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     var isAppleDevice = navigator.userAgent.includes('Macintosh');
     var isTouchScreen = navigator.maxTouchPoints >= 1; // true for iOS 13 (and hopefully beyond)
-    return isIOS || (isAppleDevice && (isTouchScreen || this.iOS1to12quirk()));
+
+    var iOS1to12quirk = () => {
+        var audio = new Audio(); // temporary Audio object
+        audio.volume = 0.5; // has no effect on iOS <= 12
+        return audio.volume === 1;
+    }
+
+    return isIOS || (isAppleDevice && (isTouchScreen || iOS1to12quirk()));
 }
-// FIN TEST
 
 /* A VIRER */ document.querySelector("#titi").innerText = isIPadOrIPhone ? "iPhone/iPad" : "Autre"; //TEST
 
