@@ -346,9 +346,9 @@ body.noscroll {
   }
 
   /* TEST */
-  /* #data::before {
+  #data::before {
     content: "max-width: 768px + hover:hover";
-  } */
+  }
 }
 
 /* TEST */
@@ -357,9 +357,9 @@ body.noscroll {
     flex-direction: column;
     text-align: center;
   }
-  /* #flagIsScrolling::before {
+  #flagIsScrolling::before {
     content: "max-aspect-ratio: 9/14 + pointer:coarse";
-  } */
+  }
 }
 /* FIN TEST */
 
