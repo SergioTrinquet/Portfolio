@@ -1215,8 +1215,9 @@ body.noscroll {
   letter-spacing: 0.15vw;
   font-weight: 800;
 }
-/* Media query qui permet de filtrer les devices qui peuvent survoler les éléments simplement: Ici les ordimais pas les mobiles et tablettes */
-@media (hover: hover) {
+/* Media query qui permet de filtrer les devices qui peuvent survoler les éléments simplement: Ici les ordi mais pas les mobiles et tablettes */
+/* PS: On ajoute (pointer: fine) car certains devices avec Android émulent un hover qd la pression  sur l'écran est longue */
+@media (hover: hover) and (pointer: fine) {
   .msgRemerciements a:hover {
     box-shadow: 0 4px 0 #ffa09c;
     transform: translateY(-4px) !important;
@@ -1569,7 +1570,7 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
 
 
 /*#region - Apparition ou non encart pour mobile pour initer utilisateur à consulter en mode portrait */
-#msgPortraitIsBetter {
+.modal {
   position: fixed;
   z-index: 11;
   width: calc(100% - 6vmin);
@@ -1582,9 +1583,10 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   line-height: 17px;
   border-radius: 5px;
   box-shadow: 0 0 0 100vmax rgba(0,0,0,0.4), 0 0 20px rgba(0,0,0,0.3);
+}
+#msgPortraitIsBetter {
   animation: modalAppear 0.8s forwards;
-  display: none;
-
+  display: none
   /* display: block; */ /* A VIRER */
 }
 @keyframes modalAppear {
@@ -1617,49 +1619,8 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
 }
 /*#endregion - Apparition ou non encart pour mobile pour initer utilisateur à consulter en mode portrait */
 
-
-/* 07/02/02022 - TEST no scroll on body !!!! */
-/* #TEST_noScrollOnBody {
-  position: absolute;
-  overflow-y: auto;
-  width: 100%;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+#msgNoIE {
+  font-size: 20px;
+  line-height: 23px;
+  color: #b90404;
 }
-#TEST_son {
-  height: 37000px;
-  overflow: hidden;
-}
-body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-#container {width: 97%;} */
-
-
-/* V2 */
-/* html {
-  overflow: hidden;
-}
-body {
-height: 100%;
-overflow-y: scroll;
-position: fixed;
-}
-#testScroller {
-  height: 100%;
-  position: fixed;
-  z-index: 100;
-  width: 50px;
-  border: solid 1px red;
-  top: 0;
-  right: 0;
-  overflow-y: scroll;
-}
-#testScroller > div {
-  height: 37000px;
-} */
-/* FIN 07/02/02022 - TEST no scroll on body !!!! */
