@@ -1531,7 +1531,8 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
 }
 @media screen and (orientation: landscape) { 
   #smallMenu #listeSections > div {
-    font-size: max(14px, min(3vw, 18px)); /* Version IOS compatible */
+    font-size: max(14px, min(3vw, 17px)); /* Version IOS compatible */
+    padding: 1vh;
   }
 }
 #smallMenu #listeSections > div:hover {
