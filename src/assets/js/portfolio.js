@@ -49,7 +49,7 @@ function detectIOS() {
     return isIOS || (isAppleDevice && (isTouchScreen || iOS1to12quirk()));
 }
 /* A VIRER */ document.querySelector("#titi").innerText = isIPadOrIPhone ? "iPhone/iPad" : "Autre"; //TEST
-/* A VIRER */ document.querySelector("#scrollPos").innerText = window.matchMedia("only screen and (hover: none) and (pointer: coarse)").matches;
+/* A VIRER */ //document.querySelector("#scrollPos").innerText = window.matchMedia("only screen and (hover: none) and (pointer: coarse)").matches;
 
 
 let scrubValue = 1; /* VOIR CE QUE L'ON EN FAIT !!! */
@@ -606,7 +606,8 @@ function setNavigation() {
     // Génération du bon menu en fonction de la taille de l'écran
     let menuTag = null;
     let force = false;
-    if(mm == "xs" || mm == "s") { 
+    //if(mm == "xs" || mm == "s") { 
+    if(mm == "xs" || mm == "s" || window.matchMedia("only screen and (hover: none) and (pointer: coarse)").matches) { 
         force = !force;
         menuTag = smallMenuSections;
     } else if(mm == "m" || mm == "l" || mm == "xl") {
