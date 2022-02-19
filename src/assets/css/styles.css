@@ -1528,6 +1528,7 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   cursor: pointer;
   font-size: max(4.5vw, 16px);
   color: #4d4d4d;
+  background-color: #fff;
 }
 @media screen and (orientation: landscape) { 
   #smallMenu #listeSections > div {
