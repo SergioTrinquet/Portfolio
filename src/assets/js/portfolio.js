@@ -31,7 +31,9 @@ let scrolltriggerOnUpdate = {
 let nbExecScrollEvent = -1,
     menuOrArrowClicked = false;
 const dureeEntreLabels = [1.7, 2.6, 2.7, 0.8, 0.8, 6, 1.5];
-const isMobileOrTablette = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) || (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.platform));
+const isMobileOrTablette = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) || 
+                            (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.platform)) ||
+                            window.matchMedia("only screen and (hover: none) and (pointer: coarse)").matches;
 const isIPadOrIPhone = detectIOS();
 
 
@@ -47,9 +49,10 @@ function detectIOS() {
     return isIOS || (isAppleDevice && (isTouchScreen || iOS1to12quirk()));
 }
 /* A VIRER */ document.querySelector("#titi").innerText = isIPadOrIPhone ? "iPhone/iPad" : "Autre"; //TEST
-/* A VIRER */ document.querySelector("#scrollPos").innerText = getScrollTop() + "px";
+/* A VIRER */ document.querySelector("#scrollPos").innerText = window.matchMedia("only screen and (hover: none) and (pointer: coarse)").matches;
 
-let scrubValue = 1; 
+
+let scrubValue = 1; /* VOIR CE QUE L'ON EN FAIT !!! */
 
 
 
