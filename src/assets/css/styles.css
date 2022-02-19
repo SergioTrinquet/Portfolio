@@ -358,7 +358,7 @@ body.noscroll {
 
 /* TEST */
 /* @media screen and (max-aspect-ratio: 9/14) and (pointer: coarse) { */
-  @media screen and (max-aspect-ratio: 4/3) {
+  @media screen and (max-aspect-ratio: 4/3) { /* De ratio 1/x à 4/3 => écran bcp plus haut que large à écran un peu plus large que haut */
     .wrapperSVGsAndTexts {
     flex-direction: column;
     text-align: center;
@@ -1504,8 +1504,8 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   justify-content: stretch;
   background-color: #fff;
   height: 50vh;
-  top: -60vh;
-  transition: top 0.3s ease-in-out;
+  top: -80vh;
+  transition: top 0.4s ease-in-out;
   box-shadow: 0 10px 15px rgba(0,0,0,0.5); 
 }
 #smallMenu #listeSections.open {
@@ -1528,6 +1528,11 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   cursor: pointer;
   font-size: max(4.5vw, 16px);
   color: #4d4d4d;
+}
+@media screen and (orientation: landscape) { 
+  #smallMenu #listeSections > div {
+    font-size: max(14px, min(3vw, 18px)); /* Version IOS compatible */
+  }
 }
 #smallMenu #listeSections > div:hover {
   background-color: rgb(228, 228, 228);
