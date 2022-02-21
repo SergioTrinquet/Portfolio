@@ -311,7 +311,7 @@ function generate_timeline() {
     }
     tl_scrollTriggerBody.to(".textePresentation", { keyframes: [screen1_kf1, screen1_kf2]});
 
-    /* TEST *///tl_scrollTriggerBody.to(".SVGsAndAnnexes", { width: "44%" }, "<+=30");
+    /* TEST */tl_scrollTriggerBody.to(".SVGsAndAnnexes", { width: "44%" }, "<+=30");
 
 
     tl_scrollTriggerBody
