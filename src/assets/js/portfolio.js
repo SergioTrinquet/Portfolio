@@ -263,6 +263,11 @@ const st = {
     onUpdate: self => {     //console.log("onUpdate => progress: ", self.progress.toFixed(3), "self.direction: ", self.direction); //TEST
         scrolltriggerOnUpdate.progress = self.progress.toFixed(3);
         scrolltriggerOnUpdate.direction = self.direction;
+
+        // TEST pour calcul progressbar à cause bug sur Android
+        //let widthProgressBar = self.progress.toFixed(3) * 100;
+        //progressBar.style.width = `${widthProgressBar}%`;
+        // FIN TST
     },
     //onScrubComplete: () => { console.warn("onScrubComplete"); }
 };
@@ -606,11 +611,11 @@ function setNavigation() {
     // Génération du bon menu en fonction de la taille de l'écran
     let menuTag = null;
     let force = false;
-    //if(mm == "xs" || mm == "s") { 
+    // Taille d'écran s et xs qd PC, sinon ttes les tailles qd écrans tactiles (mobile/tablette)
     if(mm == "xs" || mm == "s" || window.matchMedia("only screen and (hover: none) and (pointer: coarse)").matches) { 
         force = !force;
         menuTag = smallMenuSections;
-    } else if(mm == "m" || mm == "l" || mm == "xl") {
+    } else if(mm == "m" || mm == "l" || mm == "xl") { // Tailles m et <m pour PC seulement
         menuTag = menu;
     }
     smallMenu.classList.toggle("display", force);
