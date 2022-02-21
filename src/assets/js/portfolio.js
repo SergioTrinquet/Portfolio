@@ -33,10 +33,7 @@ const dureeEntreLabels = [1.7, 2.6, 2.7, 0.8, 0.8, 6, 1.5];
 const isMobileOrTablette = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) || 
                             (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.platform)) ||
                             window.matchMedia("only screen and (hover: none) and (pointer: coarse)").matches;
-const isIPadOrIPhone = detectIOS();
-
-
-function detectIOS() {
+const isIPadOrIPhone = () => {
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     const isAppleDevice = navigator.userAgent.includes('Macintosh');
     const isTouchScreen = navigator.maxTouchPoints >= 1; // true for iOS 13 (and hopefully beyond)
@@ -47,6 +44,7 @@ function detectIOS() {
     }
     return isIOS || (isAppleDevice && (isTouchScreen || iOS1to12quirk()));
 }
+
 /* A VIRER */ document.querySelector("#titi").innerText = isIPadOrIPhone ? "iPhone/iPad" : "Autre"; //TEST
 /* A VIRER */ //document.querySelector("#scrollPos").innerText = window.matchMedia("only screen and (hover: none) and (pointer: coarse)").matches;
 
