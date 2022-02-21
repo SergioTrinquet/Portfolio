@@ -416,6 +416,9 @@ body.noscroll {
     transform: translateY(0vh) scale(1);
   }
 }
+
+/* Hack pour Android: Sinon texte apparait qd même malgré opacity à 0 */
+.texteQuiSuisJe.forceNotDisplay { display: none; }
 /*#endregion - Texte "Qui suis-je ?" */
 
 
@@ -504,15 +507,14 @@ body.noscroll {
 .texteScrollDown {
   position: fixed;
   z-index: 0;
-  width: 40vmin;
+  width: 40vmin;  
+  height: 10vh;
   bottom: 3.5vmin;
   right: 3.5vmin;
   display: flex;
   justify-content: space-between;
   opacity: 0;
   transition: opacity 0.4s ease;
-
-  height: 10vh;
 }
 .texteScrollDown.display {
   opacity: 1;
@@ -726,11 +728,13 @@ body.noscroll {
   /* margin-top: 25vh; */ margin-top: calc(var(--vh, 1vh) * 25); /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
 }
 
+/* @media screen and (min-width: 769px) and (max-width: 890px) {
+  #skills { width: 90vw; }
+} */
+
 #skills .domain {
   /* font-size: clamp(15px, 2vw, 19px); */  /* Version non IOS compatible */
-  font-size: max(15px, min(2vw, 19px)); /* Version IOS compatible */
-  font-size: max(15px, min(2.7vmin, 19px));
-
+  font-size: max(15px, min(2.7vmin, 19px)); /* Version IOS compatible */
   box-shadow: 0 15px 25px rgba(0,0,0,0.3);
   background-color: #fff;
   color: var(--font-color-screen2);

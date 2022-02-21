@@ -95,7 +95,8 @@ if(getScrollTop() == 0) {
     flagAnimationIntro = true;
 
     
-            /* TEST */texteQuiSuisJe.style.display = 'none';
+            /* TEST *///texteQuiSuisJe.style.display = 'none';
+            /* TEST */texteQuiSuisJe_classList.add("forceNotDisplay");
 
     const tl_intro = gsap.timeline({
         onComplete: () => { 
@@ -140,7 +141,8 @@ if(getScrollTop() == 0) {
         .add(() => {
             rayons.classList.add('display');
 
-            /* TEST */texteQuiSuisJe.style.display = 'block';
+            /* TEST *///texteQuiSuisJe.style.display = 'block';
+            /* TEST */texteQuiSuisJe_classList.remove("forceNotDisplay");
 
             texteQuiSuisJe_classList.add('animation');
         })
