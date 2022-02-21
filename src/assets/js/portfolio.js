@@ -303,7 +303,6 @@ function generate_timeline() {
         ]});
 
     
-/* TEST pour iOS *//* tl_scrollTriggerBody.to(".SVGsAndAnnexes", { width: "44%" }, "<+=40"); */
 /* TEST pour iOS */tl_scrollTriggerBody.to(".SVGsAndAnnexes", { width: "40vh", duration: 40 }, "<-=10");
 
     // Apparition texte présentation : gestion de la transition différente selon que écran moyen ou petit ou bien plus grand
