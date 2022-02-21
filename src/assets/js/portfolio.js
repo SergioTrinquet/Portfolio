@@ -289,6 +289,8 @@ function generate_timeline() {
         #background_screenEnd, #background_screenEnd #mot span, #background_screenEnd .motTrait, .transitionalBackground, .SVGsAndAnnexes
         `, {clearProps: "all"});
             
+/* TEST pour iOS */tl_scrollTriggerBody.set(".SVGsAndAnnexes", { width: "70vmin" });
+
 
     tl_scrollTriggerBody
         .addLabel("step_1_1|Intro", ">")  
@@ -301,7 +303,8 @@ function generate_timeline() {
         ]});
 
     
-    /* TEST *///tl_scrollTriggerBody.to(".SVGsAndAnnexes", { width: "44%" }, "<+=40");
+/* TEST pour iOS *//* tl_scrollTriggerBody.to(".SVGsAndAnnexes", { width: "44%" }, "<+=40"); */
+/* TEST pour iOS */tl_scrollTriggerBody.to(".SVGsAndAnnexes", { width: "40vh", duration: 40 }, "<-=10");
 
     // Apparition texte présentation : gestion de la transition différente selon que écran moyen ou petit ou bien plus grand
     let screen1_kf1 = { scale: 0.5, duration: 30 };
