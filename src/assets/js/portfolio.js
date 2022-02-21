@@ -3,12 +3,11 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);    // 'ScrollToPlugin' pour 
 let tl = null;
 const body = document.querySelector("body");
 const SVGvisageVIVUS = document.querySelector("#SVGvisageVIVUS");
-const SVGs = document.querySelector("#SVGs");
-const halo = document.querySelector(".halo");
-const rayons = document.querySelector(".rayons");
+const SVGs_classList = document.querySelector("#SVGs").classList;
+const halo_classList = document.querySelector(".halo").classList;
+const rayons_classList = document.querySelector(".rayons").classList;
 const texteQuiSuisJe_classList = document.querySelector(".texteQuiSuisJe").classList;
 const texteScrollDown_classList = document.querySelector(".texteScrollDown").classList;
-const SVGsAndTextWrapper = document.querySelector(".wrapperSVGsAndTexts");
 const btSkipIntro = document.querySelector("#buttonSkipIntro");
 const progressBar = document.querySelector("#progressBar");
 const deg_inclinaison_asc = "-8";
@@ -91,9 +90,9 @@ if(getScrollTop() == 0) {
     body.classList.add("noscroll"); // On empeche l'utilisateur de scroller   
     flagAnimationIntro = true;
 
-            /* TEST : hack pour bug Android qd reload: : Sinon texte apparait qd même malgré opacity à 0 */
-            texteQuiSuisJe_classList.add("forceNotDisplay");
-            texteScrollDown_classList.add("forceNotDisplay");
+    // Code pour corriger bug Android qd reload
+    texteQuiSuisJe_classList.add("forceNotDisplay");
+    texteScrollDown_classList.add("forceNotDisplay");
 
     const tl_intro = gsap.timeline({
         onComplete: () => { 
@@ -117,8 +116,8 @@ if(getScrollTop() == 0) {
             );
         }, "+=1")
         .add(() => {
-            // On cache le SVG utilisé pour l'animation avec les traits et n fait apparaitre l'autre
-            SVGs.classList.add('display');
+            // On cache le SVG utilisé pour l'animation avec les traits et on fait apparaitre l'autre
+            SVGs_classList.add('display');
             SVGvisageVIVUS.classList.remove('display'); 
         }, "+=7")
         .fromTo(".halo", {
@@ -133,22 +132,17 @@ if(getScrollTop() == 0) {
             }
         )
         .add(() => {
-            halo.classList.remove('noTransition');
+            halo_classList.remove('noTransition');
         }) 
         .add(() => {
-            rayons.classList.add('display');
-
-            /* TEST */texteQuiSuisJe_classList.remove("forceNotDisplay");
-
+            rayons_classList.add('display');
+            texteQuiSuisJe_classList.remove("forceNotDisplay"); // Code pour corriger bug Android qd reload
             texteQuiSuisJe_classList.add('animation');
         })
         .add(() => { 
             body.classList.remove('noscroll'); // Retrait de la class qui empeche de scroller
-
-            /* TEST */texteScrollDown_classList.remove("forceNotDisplay");
-
-            texteScrollDown_classList.add('display'); // Affichage txt 'Descendez pour le savoir'
-            
+            texteScrollDown_classList.remove("forceNotDisplay"); // Code pour corriger bug Android qd reload
+            texteScrollDown_classList.add('display'); // Affichage txt 'Descendez pour le savoir'       
         }, "+=2");
 
     // Pour skipper l'intro
@@ -157,8 +151,8 @@ if(getScrollTop() == 0) {
     });
 
 } else {
-    SVGs.classList.add('display');  
-    SVGs.classList.add('noTransition');
+    SVGs_classList.add('display');
+    SVGs_classList.add('noTransition');
 }
 
 
@@ -176,9 +170,10 @@ window.addEventListener('scroll', () => {
         texteQuiSuisJe_classList.remove('animation');
     }
 
-    const scrollValue = getScrollTop();             
-    texteScrollDown_classList.toggle('display', (scrollValue < 200));
-    texteQuiSuisJe_classList.toggle('display', (scrollValue < 200));
+    const scrollValue = getScrollTop();
+    const limitNbPx = 200;             
+    texteScrollDown_classList.toggle('display', (scrollValue < limitNbPx));
+    texteQuiSuisJe_classList.toggle('display', (scrollValue < limitNbPx));
 
     // Fonction ds le setTimeout exécutée que qd le scroll se termine
 	window.clearTimeout(isScrolling);
@@ -529,11 +524,6 @@ intituleJob.innerHTML = intituleJob.innerText.split("").map((char, i) =>
 
 
 // Calcul largeur progress bar
-/* const scrollHeight = Math.max(
-    body.scrollHeight, document.documentElement.scrollHeight,
-    body.offsetHeight, document.documentElement.offsetHeight,
-    body.clientHeight, document.documentElement.clientHeight
-); */
 function animateProgressBar(progress) {
     progressBar.style.width = `${progress * 100}%`;
 }
@@ -776,7 +766,6 @@ function createModalPortraitIsBetter(cookieName) {
     
     // Au chargement
     //console.log("isCookiePresent => " + isCookiePresent()); //TEST
-    //if(eval(sessionStorage.getItem('st_dont-show-modal'))) closeModal(); 
     if(isCookiePresent()) closeModal();
 
     // Si avant rotation mobile, juste click sur bouton 'Fermer', alors on affiche à nouveau l'encart
@@ -788,7 +777,6 @@ function createModalPortraitIsBetter(cookieName) {
     // Action boutons
     document.querySelector("#closeModal").addEventListener("click", closeModal);
     document.querySelector("#sessionCloseModal").addEventListener("click", () => {
-        //sessionStorage.setItem('st_dont-show-modal', true);
         document.cookie = `${cookieName}=true`;
         closeModal();
     });
