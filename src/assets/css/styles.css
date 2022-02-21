@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Dosis:wght@600;700;800&family=Ubuntu+Mono:wght@700&display=swap');
-/* @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Dosis:wght@600;700;800&family=Ubuntu+Mono:wght@700&family=Nova+Mono&display=swap'); */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
 
 * {
@@ -222,54 +221,16 @@ body.noscroll {
   opacity: 0.15;
 }
 
-/* 
-#content_screen3 #shadows > div:nth-child(0) {
-  left: 0;
-  width: 25vw;
-  opacity: 0.2;
-  background-color: #fff;
-  height: 3px;
-  top: 29vh;
-}
-#content_screen3 #shadows > div:nth-child(1) {
-  opacity: 0.15;
-  background-color: #fff;
-  opacity: 0.05;
-  height: 5px;
-  top: 34vh;
-  width: 28vw;
-  left: 46vw;
-}
-#content_screen3 #shadows > div:nth-child(2) {
-  background-color: #fff;
-  opacity: 0.1;
-  height: 3px;
-  width: 15vw;
-  top: 29vh;
-  left: 67vw;
-}
-#content_screen3 #shadows > div:nth-child(3) {
-  background-color: #fff;
-  opacity: 0.1;
-  height: 4px;
-  top: 4vh;
-  width: 28vw;
-  left: 56vw;
-} */
-
 
 .backgroundHalfScreen {
   position: absolute;
   z-index: 2;
   width: 140vw;
-  height: 80vh;
   background-color: #d5d7f9;  
-  background: linear-gradient(-1deg, #dcddf9 0%, #fff 100%);
-  top: 52vh;  
+  background: linear-gradient(-1deg, #dcddf9 0%, #fff 100%); 
   left: -20vw; /* 140vw pour la largeur de cette élément - 100vw pour la largeur de l'écran  / 2 pour centrer l'élément */
   transform-origin: 50% 50%;
   transform: rotate(-8deg) skew(-8deg, 0) translateX(-150vw);
-
   top: 45vh;
   height: 36vh;
   opacity: 0.7;
@@ -344,30 +305,18 @@ body.noscroll {
   content: "---nada---";
 }
 
-/* @media screen and (max-width: 768px) and (hover: hover) {
-  .wrapperSVGsAndTexts {
-    flex-direction: column;
-    text-align: center;
-  }
 
-  
-  #data::before {
-    content: "max-width: 768px + hover:hover";
-  }
-} */
-
-/* TEST */
-/* @media screen and (max-aspect-ratio: 9/14) and (pointer: coarse) { */
   @media screen and (max-aspect-ratio: 4/3) { /* De ratio 1/x à 4/3 => écran bcp plus haut que large à écran un peu plus large que haut */
     .wrapperSVGsAndTexts {
     flex-direction: column;
     text-align: center;
   }
+
+  /* TEST */
   #flagIsScrolling::before {
     content: "max-aspect-ratio: 4/3";
   }
 }
-/* FIN TEST */
 
 /*#region - Container englobant SVGs et tout les éléments DOM qui doivent se positionner en fonction de ces SVGs */
 .SVGsAndAnnexes {
@@ -378,8 +327,6 @@ body.noscroll {
   position: relative;
   transition: all 0.3s ease-in-out;
   min-height: 100%; /* Hack pour que Chrome et Edge aient le même rendu que FF: Sans cela, le contenu de cette balise déborde, en l'ocurrence la balise regroupant les SVGs */
-
-    /* width: auto; */ /* TEST au 09/02/2022 */
 }
 /*#endregion - Container englobant SVGs et tout les éléments DOM qui doivent se positionner en fonction de ces SVGs */
 
@@ -485,7 +432,6 @@ body.noscroll {
   top: 0;
   color: var(--font-color-screen2);
   height: 100%;
-  /* width: 100%; */
   line-height: 2px;
   animation: rotateText 10s linear infinite;
   display: none; /* Qd est en 'display:none', l'animation n'existe pas/plus donc cela ne fait pas augmenter la CPU pour rien. On ne donnera une autre valeur à la propriété 'display' que qd on affichera l'animation */
@@ -639,7 +585,7 @@ body.noscroll {
 }
 @keyframes eyesBlink {
   0%, 95%, 100% { transform: scaleY(1); }
-  97% { /* transform: scaleY(0.3); */ transform: scaleY(0.2) translateY(-9px); }
+  97% { transform: scaleY(0.2) translateY(-9px); }
 }
 
 
@@ -817,7 +763,6 @@ body.noscroll {
   }
   #skills .domain:first-child {  width: 40%; }
 }
-/* FIN TEST */
 
 .title {
   background: linear-gradient(90deg, var(--color-gradient-1-ruban) 0%, #fd7298 5%, #f1507d 70%);
@@ -825,7 +770,6 @@ body.noscroll {
   color: #fff;
   padding: 8px 18px 8px 15px;
   position: absolute;
-  /* margin: calc(-5vmin - 16px) 0 0 calc(-3vmin - 10px); */
   margin-top: calc(-16px - 5vmin);
   margin-right: 0px;
   margin-bottom: 0px;
@@ -1012,8 +956,7 @@ body.noscroll {
   margin: 1vmax 2vmax 3vmax 2vmax;
   flex-grow: 1;
   z-index: 1;
-
-  /* TEST */ position: relative;
+  position: relative;
 }
 :root {
   --padding-x: 20%;
@@ -1601,8 +1544,7 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
 }
 #msgPortraitIsBetter {
   animation: modalAppear 0.8s forwards;
-  display: none
-  /* display: block; */ /* A VIRER */
+  display: none;
 }
 @keyframes modalAppear {
   0% { transform: translateY(-110%); }
