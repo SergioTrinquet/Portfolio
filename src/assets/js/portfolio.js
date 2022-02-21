@@ -105,6 +105,8 @@ if(getScrollTop() == 0) {
 
     tl_intro
         .add(() => {
+            /* TEST */document.querySelector(".texteQuiSuisJe").style.display = 'none';
+
             btSkipIntro.classList.add('display');
             SVGvisageVIVUS.classList.add('display'); 
             // Animation dessin du visage
@@ -135,6 +137,9 @@ if(getScrollTop() == 0) {
         }) 
         .add(() => {
             rayons.classList.add('display');
+
+            /* TEST */document.querySelector(".texteQuiSuisJe").style.display = 'block';
+
             texteQuiSuisJe_classList.add('animation');
         })
         .add(() => { 
@@ -171,9 +176,6 @@ window.addEventListener('scroll', () => {
 
     texteScrollDown.classList.toggle('display', (scrollValue < 200));
     texteQuiSuisJe_classList.toggle('display', (scrollValue < 200));
-
-    // Calcul largeur progress bar
-    //animateProgressBar(scrollValue);
 
     // Fonction ds le setTimeout exécutée que qd le scroll se termine
 	window.clearTimeout(isScrolling);
@@ -264,10 +266,8 @@ const st = {
         scrolltriggerOnUpdate.progress = self.progress.toFixed(3);
         scrolltriggerOnUpdate.direction = self.direction;
 
-        // TEST pour calcul progressbar à cause bug sur Android
-        let widthProgressBar = self.progress.toFixed(3) * 100;
-        progressBar.style.width = `${widthProgressBar}%`;
-        // FIN TST
+        // Calcul largeur progress bar
+        animateProgressBar(scrolltriggerOnUpdate.progress);
     },
     //onScrubComplete: () => { console.warn("onScrubComplete"); }
 };
@@ -526,14 +526,13 @@ intituleJob.innerHTML = intituleJob.innerText.split("").map((char, i) =>
 
 
 // Calcul largeur progress bar
-const scrollHeight = Math.max(
+/* const scrollHeight = Math.max(
     body.scrollHeight, document.documentElement.scrollHeight,
     body.offsetHeight, document.documentElement.offsetHeight,
     body.clientHeight, document.documentElement.clientHeight
-);
-function animateProgressBar(scrollVal) {
-    const widthProgressBar = (scrollVal / (scrollHeight - window.innerHeight)) * 100;
-    progressBar.style.width = `${widthProgressBar}vw`;
+); */
+function animateProgressBar(progress) {
+    progressBar.style.width = `${progress * 100}%`;
 }
 
 
