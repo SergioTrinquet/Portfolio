@@ -300,6 +300,9 @@ function generate_timeline() {
             { display: "none" } // Pour ne pas utiliser de resources CPU car l'élément n'est plus rendered 
         ]});
 
+    
+    /* TEST *///tl_scrollTriggerBody.to(".SVGsAndAnnexes", { width: "44%" }, "<+=40");
+
     // Apparition texte présentation : gestion de la transition différente selon que écran moyen ou petit ou bien plus grand
     let screen1_kf1 = { scale: 0.5, duration: 30 };
     let screen1_kf2 = { autoAlpha: 1, scale: 1, duration: 30 };
@@ -310,8 +313,6 @@ function generate_timeline() {
         screen1_kf1 = {...screen1_kf1, ...{ width:"70%", height: "auto", margin: "0px 0px 0px 4vw" }};
     }
     tl_scrollTriggerBody.to(".textePresentation", { keyframes: [screen1_kf1, screen1_kf2]});
-
-    /* TEST */tl_scrollTriggerBody.to(".SVGsAndAnnexes", { width: "44%" }, "<+=30");
 
 
     tl_scrollTriggerBody
