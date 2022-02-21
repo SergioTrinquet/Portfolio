@@ -2,34 +2,19 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);    // 'ScrollToPlugin' pour 
 
 let tl = null;
 const body = document.querySelector("body");
-const SVGvisageVIVUS = document.querySelector("#SVGvisageVIVUS");
-const SVGs_classList = document.querySelector("#SVGs").classList;
-const halo_classList = document.querySelector(".halo").classList;
-const rayons_classList = document.querySelector(".rayons").classList;
-const texteQuiSuisJe_classList = document.querySelector(".texteQuiSuisJe").classList;
-const texteScrollDown_classList = document.querySelector(".texteScrollDown").classList;
-const btSkipIntro = document.querySelector("#buttonSkipIntro");
-const progressBar = document.querySelector("#progressBar");
-const deg_inclinaison_asc = "-8";
-const inclinaison_desc = parseInt(deg_inclinaison_asc) * -1;
+const texteQuiSuisJe_classList = document.querySelector(".texteQuiSuisJe").classList,
+      texteScrollDown_classList = document.querySelector(".texteScrollDown").classList;
 let dataLabelsExceptProjects = [];
 let ratio = null;
 const prefixNomLabelProjets = "step_3";
-const menu = document.querySelector(".menu");
-const smallMenu = document.querySelector("#smallMenu");
-const smallMenuSections = smallMenu.querySelector("#listeSections");
 let mm = null;
 let flagAnimationIntro = false;
-let isScrolling = null;
-const margeErreurEnPx = 15;
 let tweenScrollToLabelOnComplete = true;
 let scrolltriggerOnUpdate = {
     progress: null,
     direction: 1
 };
-let nbExecScrollEvent = -1,
-    menuOrArrowClicked = false;
-const dureeEntreLabels = [1.7, 2.6, 2.7, 0.8, 0.8, 6, 1.5];
+let menuOrArrowClicked = false;
 const isMobileOrTablette = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) || 
                             (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.platform)) ||
                             window.matchMedia("only screen and (hover: none) and (pointer: coarse)").matches;
@@ -46,9 +31,9 @@ function detectIOS() {
     }
     return isIOS || (isAppleDevice && (isTouchScreen || iOS1to12quirk()));
 }
+
 /* A VIRER */ document.querySelector("#titi").innerText = isIPadOrIPhone ? "iPhone/iPad" : "Autre"; //TEST
 /* A VIRER */ //document.querySelector("#scrollPos").innerText = window.matchMedia("only screen and (hover: none) and (pointer: coarse)").matches;
-
 
 let scrubValue = 1; /* VOIR CE QUE L'ON EN FAIT !!! */
 
@@ -82,80 +67,91 @@ if (isMobileOrTablette) {
 //var TEST = document.documentElement.style.getPropertyValue("--vh"); console.log("TEST", TEST);
 
 
+function introduction() {
+    const SVGvisageVIVUS = document.querySelector("#SVGvisageVIVUS"),
+          SVGs_classList = document.querySelector("#SVGs").classList,
+          halo_classList = document.querySelector(".halo").classList,
+          rayons_classList = document.querySelector(".rayons").classList,
+          btSkipIntro = document.querySelector("#buttonSkipIntro");
 
-// Si on est en haut de page, ajout de la transition pour l'apparition du visage
-if(getScrollTop() == 0) {
+    // Si on est en haut de page, ajout de la transition pour l'apparition du visage
+    if(getScrollTop() == 0) {
 
-    body.classList.add("noscroll"); // On empeche l'utilisateur de scroller   
-    flagAnimationIntro = true;
+        body.classList.add("noscroll"); // On empeche l'utilisateur de scroller   
+        flagAnimationIntro = true;
 
-    // Code pour corriger bug Android qd reload
-    texteQuiSuisJe_classList.add("forceNotDisplay");
-    texteScrollDown_classList.add("forceNotDisplay");
+        // Code pour corriger bug Android qd reload
+        texteQuiSuisJe_classList.add("forceNotDisplay");
+        texteScrollDown_classList.add("forceNotDisplay");
 
-    const tl_intro = gsap.timeline({
-        onComplete: () => { 
-            btSkipIntro.disabled = true;
-            btSkipIntro.classList.remove('display');
+        const tl_intro = gsap.timeline({
+            onComplete: () => { 
+                btSkipIntro.disabled = true;
+                btSkipIntro.classList.remove('display');
 
-            flagAnimationIntro = false; 
-            setNavigation();
-        }
-    });
-
-    tl_intro
-        .add(() => {
-            btSkipIntro.classList.add('display');
-            SVGvisageVIVUS.classList.add('display'); 
-            // Animation dessin du visage
-            new Vivus(
-                'SVGvisageVIVUS', 
-                { duration: 300, type: 'oneByOne' }, 
-                () => { console.log('Animation trait visage réussie') }
-            );
-        }, "+=1")
-        .add(() => {
-            // On cache le SVG utilisé pour l'animation avec les traits et on fait apparaitre l'autre
-            SVGs_classList.add('display');
-            SVGvisageVIVUS.classList.remove('display'); 
-        }, "+=7")
-        .fromTo(".halo", {
-                width: "0%", 
-                paddingTop: "0%"
-            }, { 
-                width: "90%", 
-                paddingTop: "90%",
-                ease: "elastic",
-                duration: 2,
-                clearProps: "width,height" // Retrait de ces inline styles car faussent après l'animation
+                flagAnimationIntro = false; 
+                setNavigation();
             }
-        )
-        .add(() => {
-            halo_classList.remove('noTransition');
-        }) 
-        .add(() => {
-            rayons_classList.add('display');
-            texteQuiSuisJe_classList.remove("forceNotDisplay"); // Code pour corriger bug Android qd reload
-            texteQuiSuisJe_classList.add('animation');
-        })
-        .add(() => { 
-            body.classList.remove('noscroll'); // Retrait de la class qui empeche de scroller
-            texteScrollDown_classList.remove("forceNotDisplay"); // Code pour corriger bug Android qd reload
-            texteScrollDown_classList.add('display'); // Affichage txt 'Descendez pour le savoir'       
-        }, "+=2");
+        });
 
-    // Pour skipper l'intro
-    btSkipIntro.addEventListener("click", () => {
-        tl_intro.progress(1); // On va directement à la fin de la timeline
-    });
+        tl_intro
+            .add(() => {
+                btSkipIntro.classList.add('display');
+                SVGvisageVIVUS.classList.add('display'); 
+                // Animation dessin du visage
+                new Vivus(
+                    'SVGvisageVIVUS', 
+                    { duration: 300, type: 'oneByOne' }, 
+                    () => { console.log('Animation trait visage réussie') }
+                );
+            }, "+=1")
+            .add(() => {
+                // On cache le SVG utilisé pour l'animation avec les traits et on fait apparaitre l'autre
+                SVGs_classList.add('display');
+                SVGvisageVIVUS.classList.remove('display'); 
+            }, "+=7")
+            .fromTo(".halo", {
+                    width: "0%", 
+                    paddingTop: "0%"
+                }, { 
+                    width: "90%", 
+                    paddingTop: "90%",
+                    ease: "elastic",
+                    duration: 2,
+                    clearProps: "width,height" // Retrait de ces inline styles car faussent après l'animation
+                }
+            )
+            .add(() => {
+                halo_classList.remove('noTransition');
+            }) 
+            .add(() => {
+                rayons_classList.add('display');
+                texteQuiSuisJe_classList.remove("forceNotDisplay"); // Code pour corriger bug Android qd reload
+                texteQuiSuisJe_classList.add('animation');
+            })
+            .add(() => { 
+                body.classList.remove('noscroll'); // Retrait de la class qui empeche de scroller
+                texteScrollDown_classList.remove("forceNotDisplay"); // Code pour corriger bug Android qd reload
+                texteScrollDown_classList.add('display'); // Affichage txt 'Descendez pour le savoir'       
+            }, "+=2");
 
-} else {
-    SVGs_classList.add('display');
-    SVGs_classList.add('noTransition');
+        // Pour skipper l'intro
+        btSkipIntro.addEventListener("click", () => {
+            tl_intro.progress(1); // On va directement à la fin de la timeline
+        });
+
+    } else {
+        SVGs_classList.add('display');
+        SVGs_classList.add('noTransition');
+    }
+
 }
+introduction();
 
 
-
+let nbExecScrollEvent = -1,
+    isScrolling = null;
+const margeErreurEnPx = 15;
 window.addEventListener('scroll', () => {
     // Appel fct° pour aller au label suivant/précédent qd : 
     // 1. Début de scroll exclusivement 
@@ -195,6 +191,7 @@ window.addEventListener('scroll', () => {
 
 
 // Pour se déplacer d'un label à un autre avec la méthode '.scrollTo()'
+const dureeEntreLabels = [1.7, 2.6, 2.7, 0.8, 0.8, 6, 1.5];
 function goToLabel() {  
     //document.querySelector("#titi").innerText = JSON.stringify(tl_scrollTriggerBody.labels); //TEST
     const direction = scrolltriggerOnUpdate.direction;
@@ -277,6 +274,8 @@ const tl_scrollTriggerBody = gsap.timeline({
 
 
 
+const deg_inclinaison_asc = "-8",
+      inclinaison_desc = parseInt(deg_inclinaison_asc) * -1;
 // Fonction d'"alimentation" de l'objet timeline. Est appelée au chargement de la page 
 // mais aussi qd redimensionnement (sur event 'refreshInit') pour recalculer les positions de tous les éléments (sinon décalages potentiels)
 function generate_timeline() {
@@ -523,6 +522,7 @@ intituleJob.innerHTML = intituleJob.innerText.split("").map((char, i) =>
 
 
 // Calcul largeur progress bar
+const progressBar = document.querySelector("#progressBar");
 function animateProgressBar(progress) {
     progressBar.style.width = `${progress * 100}%`;
 }
@@ -584,6 +584,10 @@ function setProjectCards(nbProjectCards) {
 
 
 
+const menu = document.querySelector(".menu"),
+      smallMenu = document.querySelector("#smallMenu"),
+      smallMenuSections = smallMenu.querySelector("#listeSections");
+      
 // Gestion affichage menu small qd click sur icone
 smallMenu.querySelector(".iconeMenu").addEventListener("click", displaySmallMenu );
 smallMenu.querySelector(".overlay").addEventListener("click", displaySmallMenu );
@@ -596,7 +600,6 @@ function displaySmallMenu() {
 // Création bon menu de navigation selon la taille de l'écran
 function setNavigation() {              
     //console.log("tl_scrollTriggerBody.labels", tl_scrollTriggerBody.labels); //TEST
-
     if(ratio == null) ratio = getRatio(); // Calcul juste 1 fois au chargement, pas besoin d'être appelé plus
     
     // Génération du bon menu en fonction de la taille de l'écran
