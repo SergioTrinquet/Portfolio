@@ -173,7 +173,7 @@ window.addEventListener('scroll', () => {
     texteQuiSuisJe_classList.toggle('display', (scrollValue < 200));
 
     // Calcul largeur progress bar
-    animateProgressBar(scrollValue);
+    //animateProgressBar(scrollValue);
 
     // Fonction ds le setTimeout exécutée que qd le scroll se termine
 	window.clearTimeout(isScrolling);
@@ -265,8 +265,8 @@ const st = {
         scrolltriggerOnUpdate.direction = self.direction;
 
         // TEST pour calcul progressbar à cause bug sur Android
-        //let widthProgressBar = self.progress.toFixed(3) * 100;
-        //progressBar.style.width = `${widthProgressBar}%`;
+        let widthProgressBar = self.progress.toFixed(3) * 100;
+        progressBar.style.width = `${widthProgressBar}%`;
         // FIN TST
     },
     //onScrubComplete: () => { console.warn("onScrubComplete"); }
