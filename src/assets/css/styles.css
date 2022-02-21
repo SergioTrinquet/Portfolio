@@ -417,7 +417,7 @@ body.noscroll {
   }
 }
 
-/* Hack pour Android: Sinon texte apparait qd même malgré opacity à 0 */
+/* Hack pour Android quand reload (pas au load): Sinon texte apparait qd même malgré opacity à 0 */
 .texteQuiSuisJe.forceNotDisplay { display: none; }
 /*#endregion - Texte "Qui suis-je ?" */
 
@@ -519,6 +519,10 @@ body.noscroll {
 .texteScrollDown.display {
   opacity: 1;
 }
+
+/* Hack pour Android quand reload (pas au load): Sinon texte apparait qd même malgré opacity à 0 */
+.texteScrollDown.forceNotDisplay { display: none; }
+
 .texteScrollDown span {
   font-family: 'Pacifico', cursive;
   font-size: 3.8vmin;

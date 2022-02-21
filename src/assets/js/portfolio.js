@@ -6,9 +6,8 @@ const SVGvisageVIVUS = document.querySelector("#SVGvisageVIVUS");
 const SVGs = document.querySelector("#SVGs");
 const halo = document.querySelector(".halo");
 const rayons = document.querySelector(".rayons");
-const texteQuiSuisJe = document.querySelector(".texteQuiSuisJe");/* TEST */
-const texteQuiSuisJe_classList = texteQuiSuisJe.classList;
-const texteScrollDown = document.querySelector(".texteScrollDown");
+const texteQuiSuisJe_classList = document.querySelector(".texteQuiSuisJe").classList;
+const texteScrollDown_classList = document.querySelector(".texteScrollDown").classList;
 const SVGsAndTextWrapper = document.querySelector(".wrapperSVGsAndTexts");
 const btSkipIntro = document.querySelector("#buttonSkipIntro");
 const progressBar = document.querySelector("#progressBar");
@@ -57,8 +56,6 @@ let scrubValue = 1; /* VOIR CE QUE L'ON EN FAIT !!! */
 
 
 
-
-
 // Gestion modal avec msg d'incitat° de consultation en mode portrait qd mobile
 createModalPortraitIsBetter("st_dont-show-modal");
 
@@ -94,9 +91,9 @@ if(getScrollTop() == 0) {
     body.classList.add("noscroll"); // On empeche l'utilisateur de scroller   
     flagAnimationIntro = true;
 
-    
-            /* TEST *///texteQuiSuisJe.style.display = 'none';
-            /* TEST */texteQuiSuisJe_classList.add("forceNotDisplay");
+            /* TEST : hack pour bug Android qd reload: : Sinon texte apparait qd même malgré opacity à 0 */
+            texteQuiSuisJe_classList.add("forceNotDisplay");
+            texteScrollDown_classList.add("forceNotDisplay");
 
     const tl_intro = gsap.timeline({
         onComplete: () => { 
@@ -141,14 +138,17 @@ if(getScrollTop() == 0) {
         .add(() => {
             rayons.classList.add('display');
 
-            /* TEST *///texteQuiSuisJe.style.display = 'block';
             /* TEST */texteQuiSuisJe_classList.remove("forceNotDisplay");
 
             texteQuiSuisJe_classList.add('animation');
         })
         .add(() => { 
             body.classList.remove('noscroll'); // Retrait de la class qui empeche de scroller
-            texteScrollDown.classList.add('display'); // Affichage txt 'Descendez pour le savoir'
+
+            /* TEST */texteScrollDown_classList.remove("forceNotDisplay");
+
+            texteScrollDown_classList.add('display'); // Affichage txt 'Descendez pour le savoir'
+            
         }, "+=2");
 
     // Pour skipper l'intro
@@ -177,7 +177,7 @@ window.addEventListener('scroll', () => {
     }
 
     const scrollValue = getScrollTop();             
-    texteScrollDown.classList.toggle('display', (scrollValue < 200));
+    texteScrollDown_classList.toggle('display', (scrollValue < 200));
     texteQuiSuisJe_classList.toggle('display', (scrollValue < 200));
 
     // Fonction ds le setTimeout exécutée que qd le scroll se termine
