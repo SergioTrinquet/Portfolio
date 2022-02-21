@@ -6,7 +6,8 @@ const SVGvisageVIVUS = document.querySelector("#SVGvisageVIVUS");
 const SVGs = document.querySelector("#SVGs");
 const halo = document.querySelector(".halo");
 const rayons = document.querySelector(".rayons");
-const texteQuiSuisJe_classList = document.querySelector(".texteQuiSuisJe").classList;
+const texteQuiSuisJe = document.querySelector(".texteQuiSuisJe");/* TEST */
+const texteQuiSuisJe_classList = texteQuiSuisJe.classList;
 const texteScrollDown = document.querySelector(".texteScrollDown");
 const SVGsAndTextWrapper = document.querySelector(".wrapperSVGsAndTexts");
 const btSkipIntro = document.querySelector("#buttonSkipIntro");
@@ -93,6 +94,9 @@ if(getScrollTop() == 0) {
     body.classList.add("noscroll"); // On empeche l'utilisateur de scroller   
     flagAnimationIntro = true;
 
+    
+            /* TEST */texteQuiSuisJe.style.display = 'none';
+
     const tl_intro = gsap.timeline({
         onComplete: () => { 
             btSkipIntro.disabled = true;
@@ -105,8 +109,6 @@ if(getScrollTop() == 0) {
 
     tl_intro
         .add(() => {
-            /* TEST */document.querySelector(".texteQuiSuisJe").style.display = 'none';
-
             btSkipIntro.classList.add('display');
             SVGvisageVIVUS.classList.add('display'); 
             // Animation dessin du visage
@@ -138,7 +140,7 @@ if(getScrollTop() == 0) {
         .add(() => {
             rayons.classList.add('display');
 
-            /* TEST */document.querySelector(".texteQuiSuisJe").style.display = 'block';
+            /* TEST */texteQuiSuisJe.style.display = 'block';
 
             texteQuiSuisJe_classList.add('animation');
         })
@@ -160,8 +162,6 @@ if(getScrollTop() == 0) {
 
 
 window.addEventListener('scroll', () => {
-    const scrollValue = getScrollTop();             
-
     // Appel fct° pour aller au label suivant/précédent qd : 
     // 1. Début de scroll exclusivement 
     // 2. Tween précédent dû au scroll pour se rendre vers un label, est terminé
@@ -174,6 +174,7 @@ window.addEventListener('scroll', () => {
         texteQuiSuisJe_classList.remove('animation');
     }
 
+    const scrollValue = getScrollTop();             
     texteScrollDown.classList.toggle('display', (scrollValue < 200));
     texteQuiSuisJe_classList.toggle('display', (scrollValue < 200));
 
