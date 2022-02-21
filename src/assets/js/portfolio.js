@@ -67,6 +67,7 @@ if (isMobileOrTablette) {
 //var TEST = document.documentElement.style.getPropertyValue("--vh"); console.log("TEST", TEST);
 
 
+// Animation d'intro
 function introduction() {
     const SVGvisageVIVUS = document.querySelector("#SVGvisageVIVUS"),
           SVGs_classList = document.querySelector("#SVGs").classList,
@@ -149,6 +150,8 @@ function introduction() {
 introduction();
 
 
+
+
 let nbExecScrollEvent = -1,
     isScrolling = null;
 const margeErreurEnPx = 15;
@@ -184,8 +187,6 @@ window.addEventListener('scroll', () => {
         console.log('Scrolling has stopped.'); //TEST
 	}, 66);
 }, false);
-
-
 
 
 
@@ -310,17 +311,8 @@ function generate_timeline() {
     }
     tl_scrollTriggerBody.to(".textePresentation", { keyframes: [screen1_kf1, screen1_kf2]});
 
-    /* if(mm == "m" || mm == "s" || mm == "xs") {
-        tl_scrollTriggerBody.to(".textePresentation", { keyframes: [
-            { width:"70vw", height: 0, scale: 0.5, duration: 30 },
-            { autoAlpha: 1, scale: 1, height: "auto", duration: 30 }
-        ]});
-    } else {
-        tl_scrollTriggerBody.to(".textePresentation", { keyframes: [
-            { width:"70%", height: "auto", margin: "0px 0px 0px 4vw", scale: 0.5, duration: 30 },
-            { autoAlpha: 1, scale: 1, duration: 30 }
-        ]});
-    } */
+    /* TEST *///tl_scrollTriggerBody.to(".SVGsAndAnnexes", { width: "44%" }, "<+=30");
+
 
     tl_scrollTriggerBody
         .to("#background_screen1and2 > .ray", { transform: `skew(0deg, ${deg_inclinaison_asc}deg) translate(0vh, 0vh)`, duration: 10, stagger: 5 })    // ray en diagonale : Apparition de gauche à droite        
@@ -328,8 +320,7 @@ function generate_timeline() {
         .to(".PreScreen3", { left:"0vw", duration: 80 })   
         .to("#content_screen3", { left:"0vw", duration: 80 }, "<+=30");    // Transition arrivée fond bleu marine
 
-    // Transition seulement qd écran moyen ou petit      
-    /* if(mm == "m" || mm == "s" || mm == "xs") { */
+    // Transition seulement qd écran moins large que 4/3     
     if(window.matchMedia("(max-aspect-ratio: 4/3)").matches) {
         tl_scrollTriggerBody.to(".textePresentation", { width:"0vw", height: "0vw", margin: 0, duration: 20 }); 
     }
@@ -339,8 +330,7 @@ function generate_timeline() {
         .to(".halo", { autoAlpha:0, background: "linear-gradient(29deg, rgb(255, 255, 255) 100%, rgb(255, 255, 255) 100%)" })
         .set(".wrapperSVGsAndTexts", { flexDirection: "unset", textAlign: "unset" }); // Retrait class qui permet affichage en colonne pour small devices/small screens
 
-    // Gestion de la transition seulement qd écran est grand ou très grand
-    /* if(mm !== "m" || mm !== "s" || mm !== "xs") { */
+    // Gestion de la transition seulement qd écran plus large que 4/3
     if(window.matchMedia("(min-aspect-ratio: 4/3)").matches) {
         tl_scrollTriggerBody.to(".textePresentation", { width:"0vw", margin: 0, duration: 20 }); // SVG du visage qui va vers le centre de la page car textePresentation se réduit progressivement
     }
@@ -361,17 +351,16 @@ function generate_timeline() {
         )   // Apparition titre "Mes compétences"
         .to("#skills .domain", { transform: `translateY(100vw)`, autoAlpha:0 });
 
-        // En gérant du coté JS "flex-direction", on évite un bug d'affichage: Le SVG changeait brusquement de position
-        if( mm == "xs" || mm == "s" || mm == "m") {
-            const isLandscapeDisplay = window.matchMedia("(orientation: landscape)").matches;
-            if(isLandscapeDisplay) {
-                tl_scrollTriggerBody.to("#skills", { zIndex: 3, autoAlpha: 1 });
-            } else {
-                tl_scrollTriggerBody.to("#skills", { zIndex: 3, autoAlpha: 1, flexDirection:"column", marginTop: "calc(var(--vh, 1vh) * 30)" });
-            }
-        } else {
-            tl_scrollTriggerBody.to("#skills", { zIndex: 3, autoAlpha: 1 });
-        }
+
+    // En gérant du coté JS "flex-direction", on évite un bug d'affichage: Le SVG changeait brusquement de position
+    const isLandscapeDisplay = window.matchMedia("(orientation: landscape)").matches;
+    let screen3_tween = { zIndex: 3, autoAlpha: 1 };
+    // Si petit écran ET en portrait...
+    if( (mm == "xs" || mm == "s" || mm == "m") && !isLandscapeDisplay) {
+        screen3_tween = {...screen3_tween, ...{ flexDirection:"column", marginTop: "calc(var(--vh, 1vh) * 30)" }};
+    }
+    tl_scrollTriggerBody.to("#skills", screen3_tween);
+
 
     tl_scrollTriggerBody
         .to(".backgroundHalfScreen", { transform: `rotate(${deg_inclinaison_asc}deg) skew(${deg_inclinaison_asc}deg, 0) translateX(0vh)`, duration: 30 })  // Apparition partie médiane background clair
@@ -429,8 +418,7 @@ function generate_timeline() {
             .to(".wrapperSVGsAndTexts", 
             { 
                 height: (mm == "xl" ? "16vmin" : (mm == "l" || mm == "m" ? "14vmin" : "16vmin")), // 16vmin pour xl et xs, sinon 14vmin
-                //marginTop: "-40vmin",  // Version Originale
-                marginTop: isIPadOrIPhone ? "-14vmin" : "-40vmin", // V1
+                marginTop: isIPadOrIPhone ? "-14vmin" : "-40vmin",
                 duration: 150 
             })
     }
