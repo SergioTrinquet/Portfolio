@@ -295,15 +295,13 @@ function generate_timeline() {
     tl_scrollTriggerBody
         .addLabel("step_1_1|Intro", ">")  
         // Agrandissement wrapper contenant svgs + texte présentation
-        .to(".wrapperSVGsAndTexts", { width: "70vw", height: "40vh", duration: 40 })
+        .to(".wrapperSVGsAndTexts", { width: "70vw", height: "40vh", duration: 40 })        
+/* TEST pour iOS */.to(".SVGsAndAnnexes", { width: "40vh", duration: 40 }, "<")
         // Disparition rayons
         .to(".rayons", { keyframes: [
             { autoAlpha: 0, duration: 1 },
             { display: "none" } // Pour ne pas utiliser de resources CPU car l'élément n'est plus rendered 
         ]});
-
-    
-/* TEST pour iOS */tl_scrollTriggerBody.to(".SVGsAndAnnexes", { width: "40vh", duration: 40 }, "<-=10");
 
     // Apparition texte présentation : gestion de la transition différente selon que écran moyen ou petit ou bien plus grand
     let screen1_kf1 = { scale: 0.5, duration: 30 };
@@ -345,6 +343,7 @@ function generate_timeline() {
             { position: "absolute", duration: 0 },
             { height: "20vh", marginTop: isIPadOrIPhone ? "-35vh" : "-70vh", duration: 50 }
         ] }, "<")
+/* TEST pour iOS */.to(".SVGsAndAnnexes", { width: "20vh", duration: 50 }, "<")
         .to("#intituleJob", { display: "unset" }) // Pour activer l'animation
         .fromTo("#intituleJob", { zIndex: 3, scale: 0.5, autoAlpha:0 }, { zIndex: 3, scale: 1, autoAlpha: 1, duration: 10})   // Apparition "intitulé job"
         .to(".textePresentation", { width:"0vw", duration: 0 })  // On réduit à 0 la largeur du texte de présentation (même s'il n'est plus visible grâce au background) pour que '#skills' s'affiche au même endroit

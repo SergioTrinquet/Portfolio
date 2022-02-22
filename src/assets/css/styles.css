@@ -325,7 +325,7 @@ body.noscroll {
   justify-content: center; 
   align-items: center; /* display: flex permet de mettre le svg 'au dessus' du halo et des rayons, et permet à SVGvisageVIVUS de ne pas se décaler en bas */; 
   position: relative;
-  transition: all 0.3s ease-in-out;
+  /* transition: all 0.3s ease-in-out; */ /* TEST : Mis en comm. le 22/02/2022 */
   min-height: 100%; /* Hack pour que Chrome et Edge aient le même rendu que FF: Sans cela, le contenu de cette balise déborde, en l'ocurrence la balise regroupant les SVGs */
 }
 /*#endregion - Container englobant SVGs et tout les éléments DOM qui doivent se positionner en fonction de ces SVGs */
