@@ -552,6 +552,7 @@ function animateProgressBar(progress) {
 document.querySelector("#linkbackToTop").addEventListener("click", () => {
     tl.progress(0); // Animation au début
     document.documentElement.scrollTop = body.scrollTop = 0; // Scroll en haut de page
+    setSelectedMenu(); // Mise à jour sélection du menu
 });
 
 
