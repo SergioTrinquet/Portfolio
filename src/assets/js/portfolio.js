@@ -91,6 +91,7 @@ function introduction() {
 
                 flagAnimationIntro = false; 
                 setNavigation();
+                setSelectedMenu();
             }
         });
 
@@ -178,7 +179,9 @@ const st = {
 
         //triggerGoToLabel(); //////////// TEST au 22/02/2022
     },
-    //onScrubComplete: () => { console.warn("onScrubComplete"); }
+    onScrubComplete: () => { 
+        setSelectedMenu(); // Mise en valeur du menu sur lequel on est
+    }
 };
 
 // GSAP : Création de la timeline
@@ -227,8 +230,6 @@ window.addEventListener('scroll', () => {
 	isScrolling = setTimeout(() => {
         nbExecScrollEvent = 0; // Réinitialisation
         console.log('Scrolling has stopped.'); //TEST
-        
-        setSelectedMenu(); // Mise en valeur du menu sur lequel on est
 	}, 66);
 
     postIntroduction();
@@ -313,14 +314,14 @@ function generate_timeline() {
         #background_screenEnd, #background_screenEnd #mot span, #background_screenEnd .motTrait, .transitionalBackground, .SVGsAndAnnexes
         `, {clearProps: "all"});
             
-if(isIPadOrIPhone) tl_scrollTriggerBody.set(".SVGsAndAnnexes", { width: "70vmin" }); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
+    if(isIPadOrIPhone) tl_scrollTriggerBody.set(".SVGsAndAnnexes", { width: "70vmin" }); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
 
     tl_scrollTriggerBody
         .addLabel("step_1_1|Intro", ">")  
         // Agrandissement wrapper contenant svgs + texte présentation
         .to(".wrapperSVGsAndTexts", { width: "70vw", height: "40vh", duration: 40 });
 
-if(isIPadOrIPhone) tl_scrollTriggerBody.to(".SVGsAndAnnexes", { width: "40vh", duration: 40 }, "<"); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
+    if(isIPadOrIPhone) tl_scrollTriggerBody.to(".SVGsAndAnnexes", { width: "40vh", duration: 40 }, "<"); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
   
     tl_scrollTriggerBody
         // Disparition rayons
@@ -370,7 +371,7 @@ if(isIPadOrIPhone) tl_scrollTriggerBody.to(".SVGsAndAnnexes", { width: "40vh", d
             { height: "20vh", marginTop: isIPadOrIPhone ? "-35vh" : "-70vh", duration: 50 }
         ] }, "<");
 
-if(isIPadOrIPhone) tl_scrollTriggerBody.to(".SVGsAndAnnexes", { width: "20vh", duration: 50 }, "<"); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
+    if(isIPadOrIPhone) tl_scrollTriggerBody.to(".SVGsAndAnnexes", { width: "20vh", duration: 50 }, "<"); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
 
     tl_scrollTriggerBody
         .to("#intituleJob", { display: "unset" }) // Pour activer l'animation
@@ -526,7 +527,7 @@ ScrollTrigger.addEventListener("refreshInit", () => {
     mm = getMedia();
     if(tl !== null) tl.clear(); // Prise en compte 1er déclenchement de l'evenement 'refreshInit' au chargement de la pg ou tl est = à null
     tl = generate_timeline();
-    if(!flagAnimationIntro) setNavigation(); // Ici ajouté car qd redimension de la fenêtre, les valeurs des labels utilisés dans cette fonction changent, donc fonction rappelée ici pour avoir les valeurs à jour, sinon décalage entre vrais positions des labels et positions calculées
+    if(!flagAnimationIntro) setNavigation(); setSelectedMenu(); // Ici ajouté car qd redimension de la fenêtre, les valeurs des labels utilisés dans cette fonction changent, donc fonction rappelée ici pour avoir les valeurs à jour, sinon décalage entre vrais positions des labels et positions calculées
 });
 
 
@@ -660,7 +661,7 @@ function generateMenu(m, isMenuSmall) {
         if(key.startsWith(prefixNomLabelProjets) && flag == false || !(key.startsWith(prefixNomLabelProjets))) {
             dataLabelsExceptProjects.push({ k: key, v: value });
             
-            m.innerHTML += `<div class='link' id='_${value}'>
+            m.innerHTML += `<div class='link' data-timeline='_${value}'>
                 <span>${key.substring(key.indexOf("|") + 1, key.length)}</span>
             </div>`;
         }
@@ -673,7 +674,7 @@ function generateMenu(m, isMenuSmall) {
             menuOrArrowClicked = true;
             gsap.to(window, { 
                 duration: 6, 
-                scrollTo: (ratio * parseFloat(l.id.substring(1))), 
+                scrollTo: (ratio * parseFloat(l.dataset.timeline.substring(1))), 
                 ease: /* "sine" */ "slow",
                 onComplete:  () => { menuOrArrowClicked = false }
             });     // Fonctionne grace au plugin 'ScrollToPlugin'
@@ -751,13 +752,13 @@ function generateProjectsNavigation() {
 // Mise en valeur du menu sur lequel on est
 const margeErreurEnPx = 30;
 function setSelectedMenu() {
-    // Mise en valeur du menu sur lequel on est
     for(const d of dataLabelsExceptProjects) {
-        let differenceTime = tl_scrollTriggerBody.totalTime() - d.v;
-        document.getElementById(`_${d.v}`).classList.toggle("selected", (differenceTime < margeErreurEnPx && differenceTime > (margeErreurEnPx * -1)) ? true : false);       
+        //let differenceTime = tl_scrollTriggerBody.totalTime() - d.v; // Ancienne version
+        let actualTime = (getScrollTop() / getRatio());
+        let differenceTime = actualTime - d.v; // Nvelle version
+        document.querySelector(`.link[data-timeline='_${d.v}']`).classList.toggle("selected", (differenceTime < margeErreurEnPx && differenceTime > (margeErreurEnPx * -1)) ? true : false);       
     }
 }
-
 
 /// Yeux qui bougent et suivent la souris
 const pupilles = document.querySelectorAll(".pupille");

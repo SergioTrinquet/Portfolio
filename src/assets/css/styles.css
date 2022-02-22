@@ -1480,6 +1480,23 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   color: #4d4d4d;
   background-color: #fff;
 }
+#smallMenu #listeSections > div.selected { 
+  background-color: #e8eef0 
+}
+#smallMenu #listeSections > div.selected::before,
+#smallMenu #listeSections > div.selected::after { 
+  font-family: "Font Awesome 5 Free";
+  font-size: max(3.5vw, 13px);
+  color: #fe558f;
+}
+#smallMenu #listeSections > div.selected::before {   
+  content: "\f101"; 
+  margin: 0 1.5vw 0 0;
+}
+#smallMenu #listeSections > div.selected::after { 
+  content: "\f100"; 
+  margin: 0 0 0 1.5vw;
+}
 @media screen and (orientation: landscape) { 
   #smallMenu #listeSections > div {
     font-size: max(14px, min(3vw, 17px)); /* Version IOS compatible */
