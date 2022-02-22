@@ -684,7 +684,7 @@ body.noscroll {
 
 #skills .domain {
   /* font-size: clamp(15px, 2vw, 19px); */  /* Version non IOS compatible */
-  font-size: max(15px, min(2.7vmin, 19px)); /* Version IOS compatible */
+  font-size: max(15px, min(2.7vmin, 19px)); /* Version IOS compatible */    /* font-size: max(14px, min(2.7vmin, 19px)); */
   box-shadow: 0 15px 25px rgba(0,0,0,0.3);
   background-color: #fff;
   color: var(--font-color-screen2);
@@ -1278,11 +1278,10 @@ body.noscroll {
 #background_screenEnd #linkbackToTop {
   /* font-size: clamp(15px, 1.6vw, 17px); */ /* Version non IOS compatible */
   font-size: max(15px, min(1.6vw, 17px)); /* Version IOS compatible */
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.35);
   cursor: pointer;
-  margin: 20vh 0 0 0;
+  margin: calc(5vh + 100px) 0 0 0;
   transition: all 0.5s ease;
-
   position: fixed;
   z-index: 10;
 }
