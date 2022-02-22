@@ -33,7 +33,6 @@ function detectIOS() {
 }
 
 /* A VIRER */ document.querySelector("#titi").innerText = isIPadOrIPhone ? "iPhone/iPad" : "Autre"; //TEST
-/* A VIRER */ //document.querySelector("#scrollPos").innerText = window.matchMedia("only screen and (hover: none) and (pointer: coarse)").matches;
 
 let scrubValue = 1; /* VOIR CE QUE L'ON EN FAIT !!! */
 
@@ -152,48 +151,108 @@ introduction();
 
 
 
+// GSAP : Config du ScrollTrigger
+const st = {
+    trigger: "body",
+    start: "top top",
+    end: `bottom bottom`,
+    scrub: scrubValue, // Valeur 0.1 si mobile/tablette, sinon 1
+    // Option snap retirée au profit de méthode 'scrollTo' qui est plus réactive
+    /* snap: { 
+        snapTo: "labelsDirectional", 
+        duration: {min: 0.2, max: 2.5},
+        delay: 0,
+        //ease: "slow",
+        ease: "none",
+        inertia: false
+    }, */
+    // markers: true,
+    invalidateOnRefresh: true, 
+    onUpdate: self => {     
+        //console.log("onUpdate => progress: ", self.progress.toFixed(3), "self.direction: ", self.direction); //TEST
+        scrolltriggerOnUpdate.progress = self.progress.toFixed(3);
+        scrolltriggerOnUpdate.direction = self.direction;
+
+        // Calcul largeur progress bar
+        animateProgressBar(scrolltriggerOnUpdate.progress);
+
+        //triggerGoToLabel(); //////////// TEST au 22/02/2022
+    },
+    //onScrubComplete: () => { console.warn("onScrubComplete"); }
+};
+
+// GSAP : Création de la timeline
+const tl_scrollTriggerBody = gsap.timeline({
+    scrollTrigger: st
+    //, onComplete: () => { console.log("animation terminée !"); }
+});
+
+
+
+//////////// TEST au 22/02/2022 ////////////
+/* let __nbExecScrollEvent = -1,
+    __isScrolling = null;
+function triggerGoToLabel() {
+    // Appel fct° pour aller au label suivant/précédent qd : 
+    // 1. Début de scroll exclusivement 
+    // 2. Tween précédent dû au scroll pour se rendre vers un label, est terminé
+    // 3. Scroll n'est pas dû à utilisat° du menu ou des fleches de nav. ds sect° 'Projets perso'
+    if(__nbExecScrollEvent == 0 && tweenScrollToLabelOnComplete == true && menuOrArrowClicked == false) goToLabel();
+    __nbExecScrollEvent++; 
+
+    // Fonction ds le setTimeout exécutée que qd le scroll se termine
+	window.clearTimeout(__isScrolling);
+	__isScrolling = setTimeout(() => {
+        // Réinitialisation
+        __nbExecScrollEvent = 0; 
+        console.log('triggerGoToLabel => Scrolling has stopped.'); //TEST
+	}, 66);
+} */
+//////////// FIN TEST au 22/02/2022 ////////////
+
+
+
 let nbExecScrollEvent = -1,
     isScrolling = null;
-const margeErreurEnPx = 15;
 window.addEventListener('scroll', () => {
-    /* // Appel fct° pour aller au label suivant/précédent qd : 
+    // Appel fct° pour aller au label suivant/précédent qd : 
     // 1. Début de scroll exclusivement 
     // 2. Tween précédent dû au scroll pour se rendre vers un label, est terminé
     // 3. Scroll n'est pas dû à utilisat° du menu ou des fleches de nav. ds sect° 'Projets perso'
     if(nbExecScrollEvent == 0 && tweenScrollToLabelOnComplete == true && menuOrArrowClicked == false) goToLabel();
-    nbExecScrollEvent++;    */         
+    nbExecScrollEvent++;   
     
+    // Fonction ds le setTimeout exécutée que qd le scroll se termine
+	window.clearTimeout(isScrolling);
+	isScrolling = setTimeout(() => {
+        nbExecScrollEvent = 0; // Réinitialisation
+        console.log('Scrolling has stopped.'); //TEST
+        
+        setSelectedMenu(); // Mise en valeur du menu sur lequel on est
+	}, 66);
+
+    postIntroduction();
+}, false);
+
+
+
+function postIntroduction() {
     // Pour supprimer class 'animation' dès que l'on scroll, car empeche le DOM de ne plus s'afficher!
     if(texteQuiSuisJe_classList.contains('animation')) {
         texteQuiSuisJe_classList.remove('animation');
     }
-
-    const scrollValue = getScrollTop();
-    const limitNbPx = 200;             
+    // Retrait élements DOM de l'intro qd scroll vers le bas
+    const scrollValue = getScrollTop(),
+            limitNbPx = 200;             
     texteScrollDown_classList.toggle('display', (scrollValue < limitNbPx));
     texteQuiSuisJe_classList.toggle('display', (scrollValue < limitNbPx));
-
-    // Fonction ds le setTimeout exécutée que qd le scroll se termine
-	window.clearTimeout(isScrolling);
-	isScrolling = setTimeout(() => {
-        // Mise en valeur du menu sur lequel on est
-        for(const d of dataLabelsExceptProjects) {
-            let differenceTime = tl_scrollTriggerBody.totalTime() - d.v;
-            document.getElementById(`_${d.v}`).classList.toggle("selected", (differenceTime < margeErreurEnPx && differenceTime > (margeErreurEnPx * -1)) ? true : false);       
-        }
-
-        // Réinitialisation
-        nbExecScrollEvent = 0; 
-        console.log('Scrolling has stopped.'); //TEST
-	}, 66);
-}, false);
-
+}
 
 
 
 // Pour se déplacer d'un label à un autre avec la méthode '.scrollTo()'
 const dureeEntreLabels = [1.7, 2.6, 2.7, 0.8, 0.8, 6, 1.5];
-function goToLabel() {  console.log("Ds 'goToLabel'"); //TEST
+function goToLabel() {
     //document.querySelector("#titi").innerText = JSON.stringify(tl_scrollTriggerBody.labels); //TEST
     const direction = scrolltriggerOnUpdate.direction;
     const totalDuration = tl_scrollTriggerBody.totalDuration();
@@ -238,63 +297,6 @@ function goToLabel() {  console.log("Ds 'goToLabel'"); //TEST
 
 
 
-// GSAP : Config du ScrollTrigger
-const st = {
-    trigger: "body",
-    start: "top top",
-    end: `bottom bottom`,
-    scrub: scrubValue, // Valeur 0.1 si mobile/tablette, sinon 1
-    // Option snap retirée au profit de méthode 'scrollTo' qui est plus réactive
-    /* snap: { 
-        snapTo: "labelsDirectional", 
-        duration: {min: 0.2, max: 2.5},
-        delay: 0,
-        //ease: "slow",
-        ease: "none",
-        inertia: false
-    }, */
-    // markers: true,
-    invalidateOnRefresh: true, 
-    onUpdate: self => {     //console.log("onUpdate => progress: ", self.progress.toFixed(3), "self.direction: ", self.direction); //TEST
-        scrolltriggerOnUpdate.progress = self.progress.toFixed(3);
-        scrolltriggerOnUpdate.direction = self.direction;
-
-        // Calcul largeur progress bar
-        animateProgressBar(scrolltriggerOnUpdate.progress);
-
-        triggerGoToLabel(); //////////// TEST au 22/02/2022
-    },
-    //onScrubComplete: () => { console.warn("onScrubComplete"); }
-};
-
-// GSAP : Création de la timeline
-const tl_scrollTriggerBody = gsap.timeline({
-    scrollTrigger: st
-    //, onComplete: () => { console.log("animation terminée !"); }
-});
-
-
-
-//////////// TEST au 22/02/2022 ////////////
-let __nbExecScrollEvent = -1,
-    __isScrolling = null;
-function triggerGoToLabel() {
-    // Appel fct° pour aller au label suivant/précédent qd : 
-    // 1. Début de scroll exclusivement 
-    // 2. Tween précédent dû au scroll pour se rendre vers un label, est terminé
-    // 3. Scroll n'est pas dû à utilisat° du menu ou des fleches de nav. ds sect° 'Projets perso'
-    if(__nbExecScrollEvent == 0 && tweenScrollToLabelOnComplete == true && menuOrArrowClicked == false) goToLabel();
-    __nbExecScrollEvent++; 
-
-    // Fonction ds le setTimeout exécutée que qd le scroll se termine
-	window.clearTimeout(__isScrolling);
-	__isScrolling = setTimeout(() => {
-        // Réinitialisation
-        __nbExecScrollEvent = 0; 
-        console.log('triggerGoToLabel => Scrolling has stopped.'); //TEST
-	}, 66);
-}
-//////////// FIN TEST au 22/02/2022 ////////////
 
 
 // Fonction d'"alimentation" de l'objet timeline. Est appelée au chargement de la page 
@@ -529,7 +531,7 @@ ScrollTrigger.addEventListener("refreshInit", () => {
 
 
 
-// Pour afficher et animer sur un tracé circulaire l'intitulé du job
+// Affichage et animation sur un tracé circulaire de l'intitulé du job
 const intituleJob = document.querySelector("#intituleJob");
 // 'translateZ(0)' ajouté pour bénéficier de l'Activation Matérielle pour soulager le CPU ou GPU
 intituleJob.innerHTML = intituleJob.innerText.split("").map((char, i) =>
@@ -652,7 +654,7 @@ function generateMenu(m, isMenuSmall) {
     m.innerHTML = ""; // On vide balise au cas ou elle aurait déjà été alimentée
     dataLabelsExceptProjects = []; // On réinitialise le tableau
 
-    // Génération des points du menu qui correspondent aux labels
+    // Génération des menus qui correspondent aux labels
     for (const [key, value] of Object.entries(tl_scrollTriggerBody.labels)) {
         // Exclusion des labels correspondants aux projets persos (sauf le premier)
         if(key.startsWith(prefixNomLabelProjets) && flag == false || !(key.startsWith(prefixNomLabelProjets))) {
@@ -743,6 +745,17 @@ function generateProjectsNavigation() {
         
         i++;
     })
+}
+
+
+// Mise en valeur du menu sur lequel on est
+const margeErreurEnPx = 30;
+function setSelectedMenu() {
+    // Mise en valeur du menu sur lequel on est
+    for(const d of dataLabelsExceptProjects) {
+        let differenceTime = tl_scrollTriggerBody.totalTime() - d.v;
+        document.getElementById(`_${d.v}`).classList.toggle("selected", (differenceTime < margeErreurEnPx && differenceTime > (margeErreurEnPx * -1)) ? true : false);       
+    }
 }
 
 
