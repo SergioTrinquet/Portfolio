@@ -275,13 +275,14 @@ const tl_scrollTriggerBody = gsap.timeline({
 
 
 
-const deg_inclinaison_asc = "-8",
-      inclinaison_desc = parseInt(deg_inclinaison_asc) * -1;
+
 // Fonction d'"alimentation" de l'objet timeline. Est appelée au chargement de la page 
 // mais aussi qd redimensionnement (sur event 'refreshInit') pour recalculer les positions de tous les éléments (sinon décalages potentiels)
+const deg_inclinaison_asc = "-8",
+      inclinaison_desc = parseInt(deg_inclinaison_asc) * -1;
 function generate_timeline() {
 
-    // On supprime le CSS dans les balises styles ajouté par GSAP
+    // Suppression du CSS dans les balises styles ajouté par GSAP
     tl_scrollTriggerBody
         .set(`.wrapperSVGsAndTexts, .rayons, .textePresentation, #background_screen1and2 > .ray, 
         #content_screen3, .PreScreen3, #content_screen3 #shadows > div, .halo, .backgroundHalfScreen, #skills .domain, .domain .title, #SVGs, #intituleJob, #content_screen4, #sectionTitles .sectionTitle, #skills, 
@@ -289,21 +290,23 @@ function generate_timeline() {
         #background_screenEnd, #background_screenEnd #mot span, #background_screenEnd .motTrait, .transitionalBackground, .SVGsAndAnnexes
         `, {clearProps: "all"});
             
-/* TEST pour iOS */tl_scrollTriggerBody.set(".SVGsAndAnnexes", { width: "70vmin" });
-
+if(isIPadOrIPhone) tl_scrollTriggerBody.set(".SVGsAndAnnexes", { width: "70vmin" }); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
 
     tl_scrollTriggerBody
         .addLabel("step_1_1|Intro", ">")  
         // Agrandissement wrapper contenant svgs + texte présentation
-        .to(".wrapperSVGsAndTexts", { width: "70vw", height: "40vh", duration: 40 })        
-/* TEST pour iOS */.to(".SVGsAndAnnexes", { width: "40vh", duration: 40 }, "<")
+        .to(".wrapperSVGsAndTexts", { width: "70vw", height: "40vh", duration: 40 });
+
+if(isIPadOrIPhone) tl_scrollTriggerBody.to(".SVGsAndAnnexes", { width: "40vh", duration: 40 }, "<"); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
+  
+    tl_scrollTriggerBody
         // Disparition rayons
         .to(".rayons", { keyframes: [
             { autoAlpha: 0, duration: 1 },
             { display: "none" } // Pour ne pas utiliser de resources CPU car l'élément n'est plus rendered 
         ]});
 
-    // Apparition texte présentation : gestion de la transition différente selon que écran moyen ou petit ou bien plus grand
+    // Apparition texte présentation : gestion de la transition différente selon ratio largeur/hauteur de l'écran
     let screen1_kf1 = { scale: 0.5, duration: 30 };
     let screen1_kf2 = { autoAlpha: 1, scale: 1, duration: 30 };
     if(window.matchMedia("(max-aspect-ratio: 4/3)").matches) {
@@ -319,7 +322,7 @@ function generate_timeline() {
         .to("#background_screen1and2 > .ray", { transform: `skew(0deg, ${deg_inclinaison_asc}deg) translate(0vh, 0vh)`, duration: 10, stagger: 5 })    // ray en diagonale : Apparition de gauche à droite        
         .addLabel("step_1_2|Qui je suis", ">")  
         .to(".PreScreen3", { left:"0vw", duration: 80 })   
-        .to("#content_screen3", { left:"0vw", duration: 80 }, "<+=30");    // Transition arrivée fond bleu marine
+        .to("#content_screen3", { left:"0vw", duration: 80 }, "<+=30"); // Transition arrivée fond bleu marine
 
     // Transition seulement qd écran moins large que 4/3     
     if(window.matchMedia("(max-aspect-ratio: 4/3)").matches) {
@@ -329,7 +332,7 @@ function generate_timeline() {
     tl_scrollTriggerBody 
         .set(".halo", { clearProps: "all" }) // Pour supprimer le style "background" écrit en dur ds la propriété style quand on a passé le tween juste après celui-ci et que l'on revient en arrière
         .to(".halo", { autoAlpha:0, background: "linear-gradient(29deg, rgb(255, 255, 255) 100%, rgb(255, 255, 255) 100%)" })
-        .set(".wrapperSVGsAndTexts", { flexDirection: "unset", textAlign: "unset" }); // Retrait class qui permet affichage en colonne pour small devices/small screens
+        .set(".wrapperSVGsAndTexts", { flexDirection: "unset", textAlign: "unset" }); // Retrait style qui permet affichage en colonne pour small devices/small screens
 
     // Gestion de la transition seulement qd écran plus large que 4/3
     if(window.matchMedia("(min-aspect-ratio: 4/3)").matches) {
@@ -342,8 +345,11 @@ function generate_timeline() {
         .to(".wrapperSVGsAndTexts", { keyframes: [
             { position: "absolute", duration: 0 },
             { height: "20vh", marginTop: isIPadOrIPhone ? "-35vh" : "-70vh", duration: 50 }
-        ] }, "<")
-/* TEST pour iOS */.to(".SVGsAndAnnexes", { width: "20vh", duration: 50 }, "<")
+        ] }, "<");
+
+if(isIPadOrIPhone) tl_scrollTriggerBody.to(".SVGsAndAnnexes", { width: "20vh", duration: 50 }, "<"); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
+
+    tl_scrollTriggerBody
         .to("#intituleJob", { display: "unset" }) // Pour activer l'animation
         .fromTo("#intituleJob", { zIndex: 3, scale: 0.5, autoAlpha:0 }, { zIndex: 3, scale: 1, autoAlpha: 1, duration: 10})   // Apparition "intitulé job"
         .to(".textePresentation", { width:"0vw", duration: 0 })  // On réduit à 0 la largeur du texte de présentation (même s'il n'est plus visible grâce au background) pour que '#skills' s'affiche au même endroit
