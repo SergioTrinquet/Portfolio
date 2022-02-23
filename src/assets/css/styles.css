@@ -299,12 +299,10 @@ body.noscroll {
   align-items: center;
   position: relative; /* Pour que SVGvisageVIVUS en position:absolute ne déborde pas de son conteneur */
 }
-
 /* TEST */
-#flagIsScrolling::before {
+/* #test::before {
   content: "---nada---";
-}
-
+} */
 
   @media screen and (max-aspect-ratio: 4/3) { /* De ratio 1/x à 4/3 => écran bcp plus haut que large à écran un peu plus large que haut */
     .wrapperSVGsAndTexts {
@@ -313,9 +311,9 @@ body.noscroll {
   }
 
   /* TEST */
-  #flagIsScrolling::before {
+  /* #test::before {
     content: "max-aspect-ratio: 4/3";
-  }
+  } */
 }
 
 /*#region - Container englobant SVGs et tout les éléments DOM qui doivent se positionner en fonction de ces SVGs */
@@ -325,7 +323,7 @@ body.noscroll {
   justify-content: center; 
   align-items: center; /* display: flex permet de mettre le svg 'au dessus' du halo et des rayons, et permet à SVGvisageVIVUS de ne pas se décaler en bas */; 
   position: relative;
-  /* transition: all 0.3s ease-in-out; */ /* TEST : Mis en comm. le 22/02/2022 */
+  /* transition: all 0.3s ease-in-out; */ /* Mis en comm. le 22/02/2022 */
   min-height: 100%; /* Hack pour que Chrome et Edge aient le même rendu que FF: Sans cela, le contenu de cette balise déborde, en l'ocurrence la balise regroupant les SVGs */
 }
 /*#endregion - Container englobant SVGs et tout les éléments DOM qui doivent se positionner en fonction de ces SVGs */
@@ -538,7 +536,7 @@ body.noscroll {
   border-radius: 50%;
   transition: all 0.5s ease;
   width: 90%;
-  /* height: 90%; */  padding-top: 90%;
+  padding-top: 90%;
   opacity: 0.5;
   background: linear-gradient(29deg, rgb(101, 209, 234) 0%, rgb(255, 255, 255) 100%);
 }
@@ -1487,9 +1485,9 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
 #smallMenu #listeSections > div.selected::before,
 #smallMenu #listeSections > div.selected::after { 
   font-family: "Font Awesome 5 Free";
-  /* font-size: max(3.5vw, 13px);
-  color: #fe558f; */
-  opacity: 0.5;
+  /* font-size: max(3.5vw, 13px); */
+  color: #fe558f;
+  /* opacity: 0.5; */
 }
 #smallMenu #listeSections > div.selected::before {   
   content: "\f101"; 
@@ -1499,7 +1497,6 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
 #smallMenu #listeSections > div.selected::after { 
   content: "\f100"; 
   content: "\f292"; 
-  margin: 0 0 0 2vw;
   opacity: 0;
 }
 @media screen and (orientation: landscape) { 
