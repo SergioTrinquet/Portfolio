@@ -678,9 +678,9 @@ body.noscroll {
   /* margin-top: 25vh; */ margin-top: calc(var(--vh, 1vh) * 25); /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
 }
 
-/* @media screen and (min-width: 769px) and (max-width: 890px) {
+@media screen and (max-width: 850px) and (orientation: landscape) {
   #skills { width: 90vw; }
-} */
+}
 
 #skills .domain {
   /* font-size: clamp(14.5px, 2vw, 19px); */  /* Version non IOS compatible */
@@ -729,7 +729,7 @@ body.noscroll {
 /* FIN ESSAI */
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) and (orientation:portrait) { 
   :root {
     --topSpace: max(24px, 4vmin);
   }
@@ -1477,7 +1477,7 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   align-items: center;
   cursor: pointer;
   font-size: max(4.5vw, 16px);
-  color: #4d4d4d;
+  color: #595959;
   background-color: #fff;
   transition: all 0.2s ease-in-out;
 }
@@ -1487,16 +1487,17 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
 #smallMenu #listeSections > div.selected::before,
 #smallMenu #listeSections > div.selected::after { 
   font-family: "Font Awesome 5 Free";
-  font-size: max(3.5vw, 13px);
-  color: #fe558f;
+  /* font-size: max(3.5vw, 13px);
+  color: #fe558f; */
+  opacity: 0.5;
 }
 #smallMenu #listeSections > div.selected::before {   
   content: "\f101"; 
-  margin: 0 1.5vw 0 0;
+  margin: 0 2vw 0 0;
 }
 #smallMenu #listeSections > div.selected::after { 
   content: "\f100"; 
-  margin: 0 0 0 1.5vw;
+  margin: 0 0 0 2vw;
 }
 @media screen and (orientation: landscape) { 
   #smallMenu #listeSections > div {
