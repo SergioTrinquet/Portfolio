@@ -215,26 +215,36 @@ function triggerGoToLabel() {
 
 
 
+
+window.addEventListener('scroll', () => {
+    triggerGoToLabel();
+    postIntroduction();
+}, false);
+
+
+// Appel fonction pour se rendre au label désiré
 let nbExecScrollEvent = -1,
     isScrolling = null;
-window.addEventListener('scroll', () => {
+function triggerGoToLabel() {
     // Appel fct° pour aller au label suivant/précédent qd : 
-    // 1. Début de scroll exclusivement 
-    // 2. Tween précédent dû au scroll pour se rendre vers un label, est terminé
+    // 1. Tween précédent dû au scroll pour se rendre vers un label, est terminé
+    // 2. Début de ce scroll exclusivement 
     // 3. Scroll n'est pas dû à utilisat° du menu ou des fleches de nav. ds sect° 'Projets perso'
-    if(nbExecScrollEvent == 0 && tweenScrollToLabelOnComplete == true && menuOrArrowClicked == false) goToLabel();
+    if(
+        tweenScrollToLabelOnComplete == true && 
+        nbExecScrollEvent == 0 && 
+        menuOrArrowClicked == false
+    ) goToLabel();
+
     nbExecScrollEvent++;   
     
-    // Fonction ds le setTimeout exécutée que qd le scroll se termine
+    // Code ds le setTimeout exécuté que qd le scroll s'arrête
 	window.clearTimeout(isScrolling);
 	isScrolling = setTimeout(() => {
         nbExecScrollEvent = 0; // Réinitialisation
         console.log('Scrolling has stopped.'); //TEST
 	}, 66);
-
-    postIntroduction();
-}, false);
-
+}
 
 
 function postIntroduction() {
@@ -291,7 +301,8 @@ function goToLabel() {
         scrollTo: { y: tl_scrollTriggerBody.scrollTrigger.labelToScroll(nomLabelToGo), autokill: false }, // Autokill à 'false' pour empecher interrupt° du scroll vers le label en court de scroll en cas d'intervent° de l'utilisateur  // ATTENTION: ".labelToScroll()" Ne fctionne qu'à partir de la version 3.9 de GSAP !!
         ease: "slow",
         onComplete:  () => { 
-            tweenScrollToLabelOnComplete = true; console.log("Tween finito !!!!"); //TEST
+            tweenScrollToLabelOnComplete = true; 
+            console.log("Tween finished !!"); //TEST
         }
     });             
 }
