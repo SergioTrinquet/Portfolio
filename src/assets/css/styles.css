@@ -178,7 +178,7 @@ body.noscroll {
 #content_screen3 #shadows > div {
   content: "";
   position: absolute;
-  z-index: 3;
+  z-index: 2;
   background: radial-gradient(farthest-side at bottom left, #4A4E74AB 0%, #40436500 90%);
   transform: skew(0deg, -8deg);
   opacity: 0.3;
@@ -683,8 +683,8 @@ body.noscroll {
 } */
 
 #skills .domain {
-  /* font-size: clamp(15px, 2vw, 19px); */  /* Version non IOS compatible */
-  font-size: max(15px, min(2.7vmin, 19px)); /* Version IOS compatible */    /* font-size: max(14px, min(2.7vmin, 19px)); */
+  /* font-size: clamp(14.5px, 2vw, 19px); */  /* Version non IOS compatible */
+  font-size: max(14.5px, min(2.5vmin, 19px)); /* Version IOS compatible */
   box-shadow: 0 15px 25px rgba(0,0,0,0.3);
   background-color: #fff;
   color: var(--font-color-screen2);
@@ -1479,6 +1479,7 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   font-size: max(4.5vw, 16px);
   color: #4d4d4d;
   background-color: #fff;
+  transition: all 0.2s ease-in-out;
 }
 #smallMenu #listeSections > div.selected { 
   background-color: #e8eef0 
