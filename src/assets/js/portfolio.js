@@ -1,7 +1,7 @@
 //////////
 // Encapsulation code (au cas ou l'on ajouterait librairie externe ou code maison 
 // dans un autre fichier, qui pourrait générer des conflits - même noms de variables, fonctions par exemple- )
-const portfolio = () => {
+(function () {
 //////////
 
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);    // 'ScrollToPlugin' pour le "scrollTo"
@@ -38,7 +38,7 @@ const portfolio = () => {
         return isIOS || (isAppleDevice && (isTouchScreen || iOS1to12quirk()));
     }
 
-    /* A VIRER */ document.querySelector("#iOSdevices").innerText = isIPadOrIPhone ? "iPhone/iPad" : "Autre"; //TEST
+    /* JUSTE POUR PHASE DE TEST */ document.querySelector("#iOSdevices").innerText = isIPadOrIPhone ? "iPhone/iPad" : "Autre"; //TEST
 
     let scrubValue = 1; /* VOIR CE QUE L'ON EN FAIT !!! */
 
@@ -49,7 +49,8 @@ const portfolio = () => {
 
 
 
-    // Code juste pour mobile : Correct° du bug sur mobile et tablettes => unité du type vh, vmax, vmin,... sont faussées à cause de la barre d'adresse qui coulisse
+    // Code juste pour mobile : Correct° du bug sur mobile et tablettes => unité du type vh, vmax, vmin,... sont faussées à cause de la barre d'adresse qui coulisse qd scroll et qui couvre une partie de l'écran.
+    // Il faut donc recalculer la valeur d'un vh/vmax/vmin à chaque évènement (resize', chgmt d'orientat°) qui fait varier cette unité.
     if (isMobileOrTablette) {
         function setCSSunits() {
             let h = window.innerHeight;
@@ -59,16 +60,16 @@ const portfolio = () => {
             document.documentElement.style.setProperty('--vh', `${h/100}px`);
             document.documentElement.style.setProperty('--vmax', `${max/100}px`);
             document.documentElement.style.setProperty('--vmin', `${min/100}px`);
-            document.querySelector("#hauteurOneVh").innerText = `${h/100}px`; //TEST
+            document.querySelector("#hauteurOneVh").innerText = `${h/100}px`; // JUSTE POUR PHASE DE TEST
         };
         window.addEventListener('resize', setCSSunits);
-        //window.addEventListener('orientationchange', setCSSunits); :: obsolète
+        //window.addEventListener('orientationchange', setCSSunits); // obsolète
         window.matchMedia("(orientation: landscape)").onchange = setCSSunits;
         setCSSunits();
 
         //scrubValue = 0.1;
     }
-    //var TEST = document.documentElement.style.getPropertyValue("--vh"); console.log("TEST", TEST);
+    // console.log("TEST", document.documentElement.style.getPropertyValue("--vh"));
 
 
     // Animation d'intro
@@ -808,6 +809,5 @@ const portfolio = () => {
 
 
 //////////
-}
-portfolio();
+}());
 //////////
