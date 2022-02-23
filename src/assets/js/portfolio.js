@@ -314,7 +314,8 @@ function goToLabel() {
 // Fonction d'"alimentation" de l'objet timeline. Est appelée au chargement de la page 
 // mais aussi qd redimensionnement (sur event 'refreshInit') pour recalculer les positions de tous les éléments (sinon décalages potentiels)
 const deg_inclinaison_asc = "-8",
-      inclinaison_desc = parseInt(deg_inclinaison_asc) * -1;
+      inclinaison_desc = parseInt(deg_inclinaison_asc) * -1,
+      intitulesMenu = ["Intro", "Qui je suis", "Compétences", "Projets perso", "Mon CV", "Fin"];
 function generate_timeline() {
 
     // Suppression du CSS dans les balises styles ajouté par GSAP
@@ -328,7 +329,7 @@ function generate_timeline() {
     if(isIPadOrIPhone) tl_scrollTriggerBody.set(".SVGsAndAnnexes", { width: "70vmin" }); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
 
     tl_scrollTriggerBody
-        .addLabel("step_1_1|Intro", ">")  
+        .addLabel(`step_1_1|${intitulesMenu[0]}`, ">")
         // Agrandissement wrapper contenant svgs + texte présentation
         .to(".wrapperSVGsAndTexts", { width: "70vw", height: "40vh", duration: 40 });
 
@@ -355,7 +356,7 @@ function generate_timeline() {
 
     tl_scrollTriggerBody
         .to("#background_screen1and2 > .ray", { transform: `skew(0deg, ${deg_inclinaison_asc}deg) translate(0vh, 0vh)`, duration: 10, stagger: 5 })    // ray en diagonale : Apparition de gauche à droite        
-        .addLabel("step_1_2|Qui je suis", ">")  
+        .addLabel(`step_1_2|${intitulesMenu[1]}`, ">")  
         .to(".PreScreen3", { left:"0vw", duration: 80 })   
         .to("#content_screen3", { left:"0vw", duration: 80 }, "<+=30"); // Transition arrivée fond bleu marine
 
@@ -409,7 +410,7 @@ function generate_timeline() {
         .to(".backgroundHalfScreen", { transform: `rotate(${deg_inclinaison_asc}deg) skew(${deg_inclinaison_asc}deg, 0) translateX(0vh)`, duration: 30 })  // Apparition partie médiane background clair
         .to("#shadows", {autoAlpha:1, duration: 20})
         .to("#skills .domain", { transform:`translateY(0vw)`, autoAlpha:1, duration: 30, stagger:10 })      // Animation arrivée encarts "compétences"    
-        .addLabel("step_2|Compétences", ">")      
+        .addLabel(`step_2|${intitulesMenu[2]}`, ">")      
         .to("#skills", { duration: 100 })    // Pour faire une pause dans l'animation le temps de pouvoir lire le contenu de la page
         .to("#skills .domain", { transform: `skew(0deg, ${deg_inclinaison_asc}deg) translateX(100vw)`, autoAlpha:0, duration: 20, stagger:10 })      // Animation retrait encarts "compétences"
         .to(".sectionTitle#mySkills", { keyframes: [
@@ -434,8 +435,7 @@ function generate_timeline() {
         ); // Arrivée encarts projets venant de la droite
         
     // Ajout projets
-    const nbProjects = document.querySelectorAll("#projects .projectCard").length;
-    setProjectCards(nbProjects);
+    setProjectCards(intitulesMenu[3]);
 
     tl_scrollTriggerBody
         .to(".transitionalBackground", { keyframes: [
@@ -521,12 +521,12 @@ function generate_timeline() {
         
     tl_scrollTriggerBody 
         .to(".msgRemerciements > *", { autoAlpha:1, y: 0, duration: 50, stagger: 25 })
-        .addLabel("step_4|Mon CV", ">")  
+        .addLabel(`step_4|${intitulesMenu[4]}`, ">")  
         .to("#background_screenEnd", { clipPath: "circle(100vmax)", duration: 120 })
         .to("#background_screenEnd #mot span", { autoAlpha:1, scale:1, duration: 20, stagger: 20 }, "<+=20")
         .to("#background_screenEnd .motTrait", { width: "clamp(135px, 30vmin, 220px)", duration: 20 })
         .fromTo("#linkbackToTop", { autoAlpha: 0, y:20  }, { autoAlpha:1, y:0, duration: 1, delay: 10 })    
-        .addLabel("step_final|Fin", ">");  
+        .addLabel(`step_final|${intitulesMenu[5]}`, ">");  
 
     return tl_scrollTriggerBody;
 }
@@ -599,15 +599,16 @@ function getScrollTop() {
 
 
 
-// Ajout dynamique des projets dans la timeline 
-function setProjectCards(nbProjectCards) {
+// Ajout dynamique des projets dans la timeline
+const nbProjectCards = document.querySelectorAll("#projects .projectCard").length;
+function setProjectCards(intituleMenu) {
     let units = 100;
     let coordX = 0;
     for(var i = 1; i <= nbProjectCards; i++) {
         coordX -= units;
         tl_scrollTriggerBody
             .to(".projectCard", { duration: 25 })
-            .addLabel(`${prefixNomLabelProjets}_${i}|Mes projets`, ">") 
+            .addLabel(`${prefixNomLabelProjets}_${i}|${intituleMenu}`, ">") 
             .to(".projectCard", { x: `${coordX}vw`, duration: 80, stagger: 10 })
             .to(".projectCard", { duration: 25 }) // Pour que l'on reste sur un projet qd on scroll, sinon effet d'inertie et passe au label suivant
     }
