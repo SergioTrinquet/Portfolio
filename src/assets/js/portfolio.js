@@ -181,8 +181,6 @@ const portfolio = () => {
 
             // Calcul largeur progress bar
             animateProgressBar(scrolltriggerOnUpdate.progress);
-
-            //triggerGoToLabel(); //////////// TEST au 22/02/2022
         },
         onScrubComplete: () => { 
             setSelectedMenu(); // Mise en valeur du menu sur lequel on est
@@ -196,38 +194,13 @@ const portfolio = () => {
     });
 
 
-
-    //////////// TEST au 22/02/2022 ////////////
-    /* let __nbExecScrollEvent = -1,
-        __isScrolling = null;
-    function triggerGoToLabel() {
-        // Appel fct° pour aller au label suivant/précédent qd : 
-        // 1. Début de scroll exclusivement 
-        // 2. Tween précédent dû au scroll pour se rendre vers un label, est terminé
-        // 3. Scroll n'est pas dû à utilisat° du menu ou des fleches de nav. ds sect° 'Projets perso'
-        if(__nbExecScrollEvent == 0 && tweenScrollToLabelOnComplete == true && menuOrArrowClicked == false) goToLabel();
-        __nbExecScrollEvent++; 
-
-        // Fonction ds le setTimeout exécutée que qd le scroll se termine
-        window.clearTimeout(__isScrolling);
-        __isScrolling = setTimeout(() => {
-            // Réinitialisation
-            __nbExecScrollEvent = 0; 
-            console.log('triggerGoToLabel => Scrolling has stopped.'); //TEST
-        }, 66);
-    } */
-    //////////// FIN TEST au 22/02/2022 ////////////
-
-
-
-
     window.addEventListener('scroll', () => {
         triggerGoToLabel();
         postIntroduction();
     }, false);
 
 
-    // Appel fonction pour se rendre au label désiré
+    // Appel fonction pour se rendre au label désiré qd scroll
     let nbExecScrollEvent = -1,
         isScrolling = null;
     function triggerGoToLabel() {
@@ -266,7 +239,8 @@ const portfolio = () => {
 
 
 
-    // Pour se déplacer d'un label à un autre avec la méthode '.scrollTo()'
+    // Pour se déplacer d'un label à un autre qd scroll, 
+    // avec méthode '.scrollTo()' (different de prop. 'snap' dans config du ScrollTrigger)
     const dureeEntreLabels = [1.7, 2.6, 2.7, 0.8, 0.8, 6, 1.5];
     function goToLabel() {
         //console.log(tl_scrollTriggerBody.labels); //TEST
