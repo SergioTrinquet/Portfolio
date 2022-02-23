@@ -1477,7 +1477,7 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   align-items: center;
   cursor: pointer;
   font-size: max(4.5vw, 16px);
-  color: #595959;
+  color: #656f73;
   background-color: #fff;
   transition: all 0.2s ease-in-out;
 }
@@ -1493,11 +1493,14 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
 }
 #smallMenu #listeSections > div.selected::before {   
   content: "\f101"; 
+  content: "\f292"; 
   margin: 0 2vw 0 0;
 }
 #smallMenu #listeSections > div.selected::after { 
   content: "\f100"; 
+  content: "\f292"; 
   margin: 0 0 0 2vw;
+  opacity: 0;
 }
 @media screen and (orientation: landscape) { 
   #smallMenu #listeSections > div {
@@ -1506,7 +1509,7 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   }
 }
 #smallMenu #listeSections > div:hover {
-  background-color: rgb(228, 228, 228);
+  background-color: #e2e8ec;
 }
 /*#endregion - Menu qd écran < à taille Moyenne */
 
