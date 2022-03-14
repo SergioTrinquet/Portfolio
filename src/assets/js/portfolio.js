@@ -1,8 +1,8 @@
-//////////
+///
 // Encapsulation code (au cas ou l'on ajouterait librairie externe ou code maison 
 // dans un autre fichier, qui pourrait générer des conflits - même noms de variables, fonctions par exemple- )
 (function () {
-//////////
+///
 
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);    // 'ScrollToPlugin' pour le "scrollTo"
 
@@ -38,7 +38,7 @@
         return isIOS || (isAppleDevice && (isTouchScreen || iOS1to12quirk()));
     }
 
-    /* JUSTE POUR PHASE DE TEST */ document.querySelector("#iOSdevices").innerText = isIPadOrIPhone ? "iPhone/iPad" : "Autre"; //TEST
+    /* POUR PHASE DE TEST */ //document.querySelector("#iOSdevices").innerText = isIPadOrIPhone ? "iPhone/iPad" : "Autre"; //TEST
 
     let scrubValue = 1; /* VOIR CE QUE L'ON EN FAIT !!! */
 
@@ -60,7 +60,7 @@
             document.documentElement.style.setProperty('--vh', `${h/100}px`);
             document.documentElement.style.setProperty('--vmax', `${max/100}px`);
             document.documentElement.style.setProperty('--vmin', `${min/100}px`);
-            document.querySelector("#hauteurOneVh").innerText = `${h/100}px`; // JUSTE POUR PHASE DE TEST
+            //document.querySelector("#hauteurOneVh").innerText = `${h/100}px`; // JUSTE POUR PHASE DE TEST
         };
         window.addEventListener('resize', setCSSunits);
         //window.addEventListener('orientationchange', setCSSunits); // obsolète
@@ -102,7 +102,7 @@
             });
 
             tl_intro
-                .add(() => {
+                .call(() => {
                     btSkipIntro.classList.add('display');
                     SVGvisageVIVUS.classList.add('display'); 
                     // Animation dessin du visage
@@ -111,12 +111,12 @@
                         { duration: 300, type: 'oneByOne' }, 
                         () => { console.log('Animation trait visage réussie') }
                     );
-                }, "+=1")
-                .add(() => {
+                }, null, "+=1")
+                .call(() => {
                     // On cache le SVG utilisé pour l'animation avec les traits et on fait apparaitre l'autre
                     SVGs_classList.add('display');
                     SVGvisageVIVUS.classList.remove('display'); 
-                }, "+=7")
+                }, null, "+=7")
                 .fromTo(".halo", {
                         width: "0%", 
                         paddingTop: "0%"
@@ -128,19 +128,17 @@
                         clearProps: "width,height" // Retrait de ces inline styles car faussent après l'animation
                     }
                 )
-                .add(() => {
+                .call(() => {
                     halo_classList.remove('noTransition');
-                }) 
-                .add(() => {
                     rayons_classList.add('display');
                     texteQuiSuisJe_classList.remove("forceNotDisplay"); // Code pour corriger bug Android qd reload
                     texteQuiSuisJe_classList.add('animation');
                 })
-                .add(() => { 
+                .call(() => { 
                     body.classList.remove('noscroll'); // Retrait de la class qui empeche de scroller
                     texteScrollDown_classList.remove("forceNotDisplay"); // Code pour corriger bug Android qd reload
                     texteScrollDown_classList.add('display'); // Affichage txt 'Descendez pour le savoir'       
-                }, "+=2");
+                }, null, "+=2");
 
             // Pour skipper l'intro
             btSkipIntro.addEventListener("click", () => {
@@ -790,12 +788,10 @@
         let isCookiePresent = () => document.cookie.split(';').some((item) => item.trim().startsWith(`${cookieName}=`));
         
         // Au chargement
-        //console.log("isCookiePresent => " + isCookiePresent()); //TEST
         if(isCookiePresent()) closeModal();
 
         // Si avant rotation mobile, juste click sur bouton 'Fermer', alors on affiche à nouveau l'encart
         window.matchMedia("(orientation: landscape)").onchange = (e) => {    
-            //console.log("isCookiePresent => " + isCookiePresent()); //TEST
             if(e.matches && !isCookiePresent()) displayModal();
         };
 
@@ -808,6 +804,6 @@
     }
 
 
-//////////
+///
 }());
-//////////
+///
