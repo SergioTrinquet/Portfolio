@@ -38,10 +38,7 @@
         return isIOS || (isAppleDevice && (isTouchScreen || iOS1to12quirk()));
     }
 
-    /* POUR PHASE DE TEST */ //document.querySelector("#iOSdevices").innerText = isIPadOrIPhone ? "iPhone/iPad" : "Autre"; //TEST
-
-    let scrubValue = 1; /* VOIR CE QUE L'ON EN FAIT !!! */
-
+    /* TEST */ //document.querySelector("#iOSdevices").innerText = isIPadOrIPhone ? "iPhone/iPad" : "Autre"; //TEST
 
 
     // Gestion modal avec msg d'incitat° de consultation en mode portrait qd mobile
@@ -66,8 +63,6 @@
         //window.addEventListener('orientationchange', setCSSunits); // obsolète
         window.matchMedia("(orientation: landscape)").onchange = setCSSunits;
         setCSSunits();
-
-        //scrubValue = 0.1;
     }
     // console.log("TEST", document.documentElement.style.getPropertyValue("--vh"));
 
@@ -161,7 +156,7 @@
         trigger: "body",
         start: "top top",
         end: `bottom bottom`,
-        scrub: scrubValue, // Valeur 0.1 si mobile/tablette, sinon 1
+        scrub: 1,
         // Option snap retirée au profit de méthode 'scrollTo' qui est plus réactive
         /* snap: { 
             snapTo: "labelsDirectional", 
