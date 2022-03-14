@@ -336,7 +336,8 @@
             .to("#background_screen1and2 > .ray", { transform: `skew(0deg, ${deg_inclinaison_asc}deg) translate(0vh, 0vh)`, duration: 10, stagger: 5 })    // ray en diagonale : Apparition de gauche à droite        
             .addLabel(`step_1_2|${intitulesMenu[1]}`, ">")  
             .to(".PreScreen3", { left:"0vw", duration: 80 })   
-            .to("#content_screen3", { left:"0vw", duration: 80 }, "<+=30"); // Transition arrivée fond bleu marine
+            .to("#content_screen3", { left:"0vw", duration: 80 }, "<+=30") // Transition arrivée fond bleu marine
+            .to("#background_screen1and2 > .ray", { display: "none" });
 
         // Transition seulement qd écran moins large que 4/3     
         if(window.matchMedia("(max-aspect-ratio: 4/3)").matches) {
