@@ -287,7 +287,7 @@ body.noscroll {
   align-items: center;
   position: fixed;
   width: 100%;
-  height: 100vh;    /* test */ /* height: 100%; */
+  height: 100vh;
 }
 
 .wrapperSVGsAndTexts { 
@@ -299,21 +299,14 @@ body.noscroll {
   align-items: center;
   position: relative; /* Pour que SVGvisageVIVUS en position:absolute ne déborde pas de son conteneur */
 }
-/* TEST */
-/* #test::before {
-  content: "---nada---";
-} */
+/* TEST */ /* #test::before { content: "---nada---"; } */
 
   @media screen and (max-aspect-ratio: 4/3) { /* De ratio 1/x à 4/3 => écran bcp plus haut que large à écran un peu plus large que haut */
     .wrapperSVGsAndTexts {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  /* TEST */
-  /* #test::before {
-    content: "max-aspect-ratio: 4/3";
-  } */
+      flex-direction: column;
+      text-align: center;
+    }
+  /* TEST */ /* #test::before { content: "max-aspect-ratio: 4/3"; } */
 }
 
 /*#region - Container englobant SVGs et tout les éléments DOM qui doivent se positionner en fonction de ces SVGs */
@@ -323,7 +316,6 @@ body.noscroll {
   justify-content: center; 
   align-items: center; /* display: flex permet de mettre le svg 'au dessus' du halo et des rayons, et permet à SVGvisageVIVUS de ne pas se décaler en bas */; 
   position: relative;
-  /* transition: all 0.3s ease-in-out; */ /* Mis en comm. le 22/02/2022 */
   min-height: 100%; /* Hack pour que Chrome et Edge aient le même rendu que FF: Sans cela, le contenu de cette balise déborde, en l'ocurrence la balise regroupant les SVGs */
 }
 /*#endregion - Container englobant SVGs et tout les éléments DOM qui doivent se positionner en fonction de ces SVGs */
@@ -442,7 +434,7 @@ body.noscroll {
   position: absolute;
   transform-origin: 0 10vh;
   font-size: 2vh;
-  font-family: 'Ubuntu Mono', monospace;    /* font-family: 'Nova Mono', monospace; */
+  font-family: 'Ubuntu Mono', monospace;
 }
 /*#endregion - Texte "Serge Trinquet - Développeur Javascript" */
 
@@ -1222,7 +1214,7 @@ body.noscroll {
 /* CSS specific to iOS devices only */
 @supports (-webkit-touch-callout: none) {
   .transitionalBackground {
-    /* Les propriétés 'box-shadow' et le fait d'avoir un background:gradient font scintiller l'animation avec les devices iOS, donc on les retire */
+    /* Propriétés 'box-shadow' et le fait d'avoir un background:gradient font scintiller l'animation avec les devices iOS, donc on les retire */
     box-shadow: none; 
     background: var(--color-degr-1-screen4);
   }
