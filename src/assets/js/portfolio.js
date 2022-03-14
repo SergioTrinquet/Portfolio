@@ -163,14 +163,14 @@
         end: `bottom bottom`,
         scrub: scrubValue, // Valeur 0.1 si mobile/tablette, sinon 1
         // Option snap retirée au profit de méthode 'scrollTo' qui est plus réactive
-        /* snap: { 
+        snap: { 
             snapTo: "labelsDirectional", 
             duration: {min: 0.2, max: 2.5},
             delay: 0,
             //ease: "slow",
             ease: "none",
             inertia: false
-        }, */
+        },
         // markers: true,
         invalidateOnRefresh: true, 
         onUpdate: self => {     
