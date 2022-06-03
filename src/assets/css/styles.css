@@ -1552,7 +1552,7 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   border-radius: 5px;
   box-shadow: 0 0 0 100vmax rgba(0,0,0,0.4), 0 0 20px rgba(0,0,0,0.3);
 }
-#msgPortraitIsBetter {
+#msg-portrait-is-better {
   animation: modalAppear 0.8s forwards;
   display: none;
 }
@@ -1560,27 +1560,27 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   0% { transform: translateY(-110%); }
   100% { transform: translateY(0%); }
 }
-#msgPortraitIsBetter button {
+#msg-portrait-is-better button {
   padding: 3px 5vw;
   margin: 3vh 5px 0 5px;
   border-radius: 50px;
   font-size: max(15px, min(2.7vw, 19px)); /* Version IOS compatible */
   border: solid 2px var(--color-bt-modal);
 }
-#closeModal {
+#close-modal {
   background-color: transparent;
   color: var(--color-bt-modal);
 }
-#sessionCloseModal {
+#session-close-modal {
   background-color:var(--color-bt-modal);
   border: none;
   color: #fff;
 }
-#msgPortraitIsBetter.hidden { 
+#msg-portrait-is-better.hidden { 
   display: none !important;
 }
 @media screen and (min-aspect-ratio: 14/9) and (pointer: coarse) { /* Mode paysage pour mobile */
-  #msgPortraitIsBetter { 
+  #msg-portrait-is-better { 
     display: block;
   }
 }

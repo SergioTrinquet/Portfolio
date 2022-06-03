@@ -778,7 +778,7 @@
 
     // Pour faire apparaitre msg d'incitat° de consultation en mode portrait qd mobile
     function createModalPortraitIsBetter(cookieName) {
-        const msgPortraitIsBetterClassList = document.querySelector("#msgPortraitIsBetter").classList;
+        const msgPortraitIsBetterClassList = document.querySelector("#msg-portrait-is-better").classList;
         const closeModal = () => msgPortraitIsBetterClassList.add("hidden");
         const displayModal = () => msgPortraitIsBetterClassList.remove("hidden");
         let isCookiePresent = () => document.cookie.split(';').some((item) => item.trim().startsWith(`${cookieName}=`));
@@ -792,8 +792,8 @@
         };
 
         // Action boutons
-        document.querySelector("#closeModal").addEventListener("click", closeModal);
-        document.querySelector("#sessionCloseModal").addEventListener("click", () => {
+        document.querySelector("#close-modal").addEventListener("click", closeModal);
+        document.querySelector("#session-close-modal").addEventListener("click", () => {
             document.cookie = `${cookieName}=true`;
             closeModal();
         });
