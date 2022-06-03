@@ -44,53 +44,53 @@ body.noscroll {
   overflow-y: scroll;
 }
 
-#background_screen1and2,
-#content_screen3,
-.PreScreen3,
-#content_screen4 {
+#bg-screen-1-and-2,
+#content-screen-3,
+.pre-screen-3,
+#content-screen-4 {
   position: fixed;
   height: 100vh;
 }
 
-#background_screen1and2 {
+#bg-screen-1-and-2 {
   width: 100vw;
   background: rgb(102,209,234);
   background: linear-gradient(29deg, rgba(102, 209, 234,1) 0%, rgba(0, 118, 166,1) 100%);
 }
-#background_screen1and2 > .ray {
+#bg-screen-1-and-2 > .ray {
   position: fixed;
   height: 42px;
   transform: skew(0deg, var(--inclinaison-bg1));
   opacity: 0.7;
 }
-#background_screen1and2 > .ray:first-child {
+#bg-screen-1-and-2 > .ray:first-child {
   width: 30vw;
   transform: skew(0deg, var(--inclinaison-bg1)) translate(-30vw);
   top: 16vh;
   background-color: #0379a8;
 }
-#background_screen1and2 > .ray:nth-child(2) {
+#bg-screen-1-and-2 > .ray:nth-child(2) {
   width: 50vw;
   transform: skew(0deg, var(--inclinaison-bg1)) translate(-50vw);
   top: 20vh;
   background-color: #3cabce;
   height: 18px;
 }
-#background_screen1and2 > .ray:nth-child(3) {
+#bg-screen-1-and-2 > .ray:nth-child(3) {
   width: 10vw;
   transform: skew(0deg, var(--inclinaison-bg1)) translate(-10vw);
   top: 75vh;
   background-color: #2294bd;
   height: 16px;
 }
-#background_screen1and2 > .ray:nth-child(4) {
+#bg-screen-1-and-2 > .ray:nth-child(4) {
   top: 45vh;
   background-color: #1084B1;
   width: 38vw;
   left: 90vw;
   transform: skew(0deg, var(--inclinaison-bg1)) translate(-190vw); 
 }
-#background_screen1and2 > .ray:nth-child(5) {
+#bg-screen-1-and-2 > .ray:nth-child(5) {
   width: 25vw;
   transform: skew(0deg, var(--inclinaison-bg1)) translate(-175vw);
   top: 26vh;
@@ -98,13 +98,13 @@ body.noscroll {
   background-color: #2C9EC4;
   height: 17px;
 }
-#background_screen1and2 > .ray:nth-child(6) {
+#bg-screen-1-and-2 > .ray:nth-child(6) {
   width: 85vw;
   transform: skew(0deg, var(--inclinaison-bg1)) translate(-85vw);
   top: 94vh;
   background-color: #1c8fb9;
 }
-#background_screen1and2 > .ray:nth-child(7) {
+#bg-screen-1-and-2 > .ray:nth-child(7) {
   width: 5vw;
   top: 49vh;
   right: 0vw;
@@ -113,14 +113,14 @@ body.noscroll {
   transform: skew(0deg, var(--inclinaison-bg1)) translate(-100vw);
 }
 
-#background_screen1and2 > .ray:nth-child(8) {
+#bg-screen-1-and-2 > .ray:nth-child(8) {
   width: 54vw;
   top: 92vh;
   transform: skew(0deg, var(--inclinaison-bg1)) translate(-54vw);
   background-color: #34a4c9;
   height: 5px;
 }
-#background_screen1and2 > .ray:nth-child(9) {
+#bg-screen-1-and-2 > .ray:nth-child(9) {
   width: 12vw;
   top: 62vh;
   right: 0vw;
@@ -128,7 +128,7 @@ body.noscroll {
   height: 10px;
   transform: skew(0deg, var(--inclinaison-bg1)) translate(-100vw);
 }
-#background_screen1and2 > .ray:nth-child(10) {
+#bg-screen-1-and-2 > .ray:nth-child(10) {
   width: 26vw;
   top: 18vh;
   left: 92vw;
@@ -136,7 +136,7 @@ body.noscroll {
   height: 20px;
   transform: skew(0deg, var(--inclinaison-bg1)) translate(-120vw);
 }
-#background_screen1and2 > .ray:nth-child(11) {
+#bg-screen-1-and-2 > .ray:nth-child(11) {
   width: 40vw;
   top: 46vh;
   left: 8vw;
@@ -144,7 +144,7 @@ body.noscroll {
   background-color: #4AB8D7;
   height: 4px;
 }
-#background_screen1and2 > .ray:nth-child(12) {
+#bg-screen-1-and-2 > .ray:nth-child(12) {
   width: 40vw;
   top: 79vh;
   left: 32vw;
@@ -154,28 +154,28 @@ body.noscroll {
 }
 
 
-#content_screen3,
-.PreScreen3 {
+#content-screen-3,
+.pre-screen-3 {
   z-index: 2;
   width: calc(100vw + 400px);
   left: calc(-100vw - 400px);
   -webkit-clip-path: polygon(0 0, 100% 0, calc(100% - 400px) 100%, 0% 100%);
   clip-path: polygon(0 0, 100% 0, calc(100% - 400px) 100%, 0% 100%);
 }
-#content_screen3 {
+#content-screen-3 {
   display: flex;
   justify-content: center;
   align-items: center;
   background: linear-gradient(29deg, #959ADD 30%, #292C45 80%);
 }
-.PreScreen3 {
+.pre-screen-3 {
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-#content_screen3 #shadows {
+#content-screen-3 #shadows {
   opacity: 0;
 }
-#content_screen3 #shadows > div {
+#content-screen-3 #shadows > div {
   content: "";
   position: absolute;
   z-index: 2;
@@ -183,20 +183,20 @@ body.noscroll {
   transform: skew(0deg, -8deg);
   opacity: 0.3;
 }
-#content_screen3 #shadows > div:nth-child(1) {
+#content-screen-3 #shadows > div:nth-child(1) {
   top: 16vh;
   left: 0;
   width: 45vw;
   height: 50px;
 }
-#content_screen3 #shadows > div:nth-child(2) {
+#content-screen-3 #shadows > div:nth-child(2) {
   top: 22vh;
   left: 0;
   width: 25vw;
   opacity: 0.2;
   height: 100px;
 }
-#content_screen3 #shadows > div:nth-child(3) {
+#content-screen-3 #shadows > div:nth-child(3) {
   background: radial-gradient(farthest-side at bottom center, #4A4E74 0%, #40436500 90%);
   top: 28vh;
   width: 55vw;
@@ -204,7 +204,7 @@ body.noscroll {
   height: 50px;
   opacity: 0.15;
 }
-#content_screen3 #shadows > div:nth-child(4) {
+#content-screen-3 #shadows > div:nth-child(4) {
   background: radial-gradient(farthest-side at bottom center, #4A4E74 0%, #40436500 90%);
   top: 80vh;
   width: 35vw;
@@ -212,7 +212,7 @@ body.noscroll {
   height: 50px;
   opacity: 0.15;
 }
-#content_screen3 #shadows > div:nth-child(5) {
+#content-screen-3 #shadows > div:nth-child(5) {
   background: radial-gradient(farthest-side at bottom center, #4A4E74 0%, #40436500 90%);
   top: 90vh;
   width: 35vw;
@@ -222,7 +222,7 @@ body.noscroll {
 }
 
 
-.backgroundHalfScreen {
+.half-screen-bg {
   position: absolute;
   z-index: 2;
   width: 140vw;
@@ -236,7 +236,7 @@ body.noscroll {
   opacity: 0.7;
 }
 
-#content_screen4 {
+#content-screen-4 {
   z-index: 2;
   width: 100vw;
   top: 100vh;
@@ -246,7 +246,7 @@ body.noscroll {
   flex-direction: column;
 }
 
-#background_screen5 {
+#bg-screen-5 {
   position: fixed;
   z-index: 2;
   width: 100vw;
@@ -256,7 +256,7 @@ body.noscroll {
 }
 
 
-#background_screen5 > #margeRight {
+#bg-screen-5 > #marge-right {
   position: absolute;
   z-index: 2;
   background: linear-gradient(20deg, var(--color-degr-1-screen4) 10%, var(--color-degr-2-screen4) 40%);
@@ -269,14 +269,14 @@ body.noscroll {
   display: none;
 }
 @media screen and (min-width: 769px) and (max-width: 1024px) {
-  #background_screen5 > #margeRight { width: 20vmax; }
+  #bg-screen-5 > #marge-right { width: 20vmax; }
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
-  #background_screen5 > #margeRight { width: 24vmax; }
+  #bg-screen-5 > #marge-right { width: 24vmax; }
 }
 /* Gestion très petit écran (taille 's' coté js) */
 @media screen and (max-width: 480px) {
-  #background_screen5 > #margeRight {
+  #bg-screen-5 > #marge-right {
     background: linear-gradient(20deg, var(--color-degr-1-screen4) 0%, var(--color-degr-2-screen4) 100%);
   } 
 }
@@ -290,19 +290,19 @@ body.noscroll {
   height: 100vh;
 }
 
-.wrapperSVGsAndTexts { 
+.wrapper-SVGs-and-texts { 
   width: 50%;
   /* height: 70vmin; */   height: calc(var(--vmin, 1vmin) * 70);
   max-width: 900px;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative; /* Pour que SVGvisageVIVUS en position:absolute ne déborde pas de son conteneur */
+  position: relative; /* Pour que SVG-face-drawing en position:absolute ne déborde pas de son conteneur */
 }
 /* TEST */ /* #test::before { content: "---nada---"; } */
 
   @media screen and (max-aspect-ratio: 4/3) { /* De ratio 1/x à 4/3 => écran bcp plus haut que large à écran un peu plus large que haut */
-    .wrapperSVGsAndTexts {
+    .wrapper-SVGs-and-texts {
       flex-direction: column;
       text-align: center;
     }
@@ -310,11 +310,11 @@ body.noscroll {
 }
 
 /*#region - Container englobant SVGs et tout les éléments DOM qui doivent se positionner en fonction de ces SVGs */
-.SVGsAndAnnexes {
+.SVGs-and-annexes {
   height: 100%;
   display: flex; 
   justify-content: center; 
-  align-items: center; /* display: flex permet de mettre le svg 'au dessus' du halo et des rayons, et permet à SVGvisageVIVUS de ne pas se décaler en bas */; 
+  align-items: center; /* display: flex permet de mettre le svg 'au dessus' du halo et des rayons, et permet à SVG-face-drawing de ne pas se décaler en bas */; 
   position: relative;
   min-height: 100%; /* Hack pour que Chrome et Edge aient le même rendu que FF: Sans cela, le contenu de cette balise déborde, en l'ocurrence la balise regroupant les SVGs */
 }
@@ -324,7 +324,7 @@ body.noscroll {
 
 
 /*#region - Texte "Qui suis-je ?" */
-.texteQuiSuisJe {
+.text-qui-suis-je {
   position: absolute;
   z-index: 0;
   top: -9.5vmin;
@@ -336,13 +336,13 @@ body.noscroll {
   transition: opacity 0.4s ease-in-out;
 }
 @media screen and (max-width: 480px) {
-  .texteQuiSuisJe {
+  .text-qui-suis-je {
     top: -11vh;
     font-size: 9vmin;
   }
 }
-.texteQuiSuisJe.display { opacity: 1; }
-.texteQuiSuisJe.animation { animation: txtAppear 1.3s cubic-bezier(0.015, 0.835, 0.440, 1.000) forwards; }
+.text-qui-suis-je.display { opacity: 1; }
+.text-qui-suis-je.animation { animation: txtAppear 1.3s cubic-bezier(0.015, 0.835, 0.440, 1.000) forwards; }
 @keyframes txtAppear {
   0% {
     opacity: 0;
@@ -355,12 +355,12 @@ body.noscroll {
 }
 
 /* Hack pour Android quand reload (pas au load): Sinon texte apparait qd même malgré opacity à 0 */
-.texteQuiSuisJe.forceNotDisplay { display: none; }
+.text-qui-suis-je.forceNotDisplay { display: none; }
 /*#endregion - Texte "Qui suis-je ?" */
 
 
 /*#region - Bouton pour skipper l'anim d'intro */
-#wrapperButtonSkipIntro {
+#wrapper-button-skip-intro {
   position: absolute;
   z-index: 10;
   top: calc(100% + 3vh);
@@ -369,7 +369,7 @@ body.noscroll {
   display: flex;
   flex-direction: column;
 }
-#buttonSkipIntro {
+#button-skip-intro {
   cursor: pointer;
   background: none;
   color: rgba(255,255,255,0.6);
@@ -383,7 +383,7 @@ body.noscroll {
   opacity: 0;
   display: none;
 }
-#buttonSkipIntro i { 
+#button-skip-intro i { 
   margin: 0 5px 0 0;
   animation: lateralMove 1s infinite; 
 }
@@ -391,23 +391,23 @@ body.noscroll {
   0%, 100% { transform: translateX(-2px); }
   50% { transform: translateX(2px); }
 }
-#buttonSkipIntro:hover i { animation-play-state: paused; }
-#wrapperButtonSkipIntro .trait {
+#button-skip-intro:hover i { animation-play-state: paused; }
+#wrapper-button-skip-intro .trait {
   width: 0;
   height: 2px;
   background-color: rgba(255,255,255,0.6);
   margin: 0 auto 0 auto;
   transition: width 0.3s ease;
 }
-#wrapperButtonSkipIntro:hover #buttonSkipIntro {
+#wrapper-button-skip-intro:hover #button-skip-intro {
   letter-spacing: 2px;
   color: rgba(255,255,255, 1);
 }
-#wrapperButtonSkipIntro:hover .trait {
+#wrapper-button-skip-intro:hover .trait {
   width: 100%;
   background-color: rgba(255,255,255, 1);
 }
-#wrapperButtonSkipIntro #buttonSkipIntro.display {
+#wrapper-button-skip-intro #button-skip-intro.display {
   opacity: 1;
   display: initial;
 } 
@@ -415,7 +415,7 @@ body.noscroll {
 
 
 /*#region - Texte "Serge Trinquet - Développeur Javascript" */
-#intituleJob {
+#intitule-job {
   position: absolute;
   z-index: 2;
   opacity: 0;
@@ -430,7 +430,7 @@ body.noscroll {
   0% { transform: rotate(360deg); }
   100% { transform: rotate(0deg); }
 }
-#intituleJob > span {
+#intitule-job > span {
   position: absolute;
   transform-origin: 0 10vh;
   font-size: 2vh;
@@ -440,7 +440,7 @@ body.noscroll {
 
 
 /*#region - Texte "Descendez pour le savoir" */
-.texteScrollDown {
+.text-scroll-down {
   position: fixed;
   z-index: 0;
   width: 40vmin;  
@@ -452,14 +452,14 @@ body.noscroll {
   opacity: 0;
   transition: opacity 0.4s ease;
 }
-.texteScrollDown.display {
+.text-scroll-down.display {
   opacity: 1;
 }
 
 /* Hack pour Android quand reload (pas au load): Sinon texte apparait qd même malgré opacity à 0 */
-.texteScrollDown.forceNotDisplay { display: none; }
+.text-scroll-down.forceNotDisplay { display: none; }
 
-.texteScrollDown span {
+.text-scroll-down span {
   font-family: 'Pacifico', cursive;
   font-size: 3.8vmin;
   line-height: 3.8vmin;
@@ -469,7 +469,7 @@ body.noscroll {
   text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
   text-align: right;
 }
-.texteScrollDown #svg_fleche {
+.text-scroll-down #svg-arrow {
   width: 30%;
   -webkit-filter: drop-shadow( 1px 1px 0px rgba(0, 0, 0, .5));
   filter: drop-shadow( 1px 1px 0px rgba(0, 0, 0, .5));
@@ -482,12 +482,12 @@ body.noscroll {
 }
 
 @media screen and (max-width: 480px) {
-  .texteScrollDown {
+  .text-scroll-down {
     width: 50vmin;
     height: 8vh;
     align-items: center;
   }
-  .texteScrollDown span {
+  .text-scroll-down span {
     font-size: 5vmin;
     line-height: 5vmin;
   }
@@ -497,12 +497,12 @@ body.noscroll {
 
 /*#region - Gestion de l'apparition du SVG en haut de page au chargement */
 #SVGs,
-#SVGvisageVIVUS {
+#SVG-face-drawing {
   opacity: 0;
   height: 100%;
   transition: opacity 1.5s ease;
 }
-#SVGvisageVIVUS { 
+#SVG-face-drawing { 
   position: absolute; /* Pour se superposer à SVGs */
   z-index: 2; 
 }
@@ -511,12 +511,12 @@ body.noscroll {
   overflow: visible; /* Pour rendre les éléments du SVG visibles à l'extérieur du viewBox sans être tronqués (corps dan SVG) */
 }
 
-#SVGs.noTransition {
+#SVGs.no-transition {
   transition: all 0s;
 }
 
 #SVGs.display,
-#SVGvisageVIVUS.display {
+#SVG-face-drawing.display {
   opacity: 1;
 }
 /*#endregion - Gestion de l'apparition du SVG en haut de page au chargement*/
@@ -532,7 +532,7 @@ body.noscroll {
   opacity: 0.5;
   background: linear-gradient(29deg, rgb(101, 209, 234) 0%, rgb(255, 255, 255) 100%);
 }
-.halo.noTransition {
+.halo.no-transition {
   transition: all 0s;
 }
 
@@ -558,7 +558,7 @@ body.noscroll {
 
 
 /*#region -  Animations sur visage */
-#eyesMovingZone {
+#eyes-moving-zone {
   position: absolute;
   z-index: 3;
   border-radius: 50%;
@@ -593,7 +593,7 @@ body.noscroll {
 
 
 /*#region -  Texte de présentation à la question "Qui suis-je ?" */
-.textePresentation {
+.text-presentation {
   color: #fff;
   text-shadow: 0 1px 0 rgba(0,0,0,0.5);
   margin: 0;
@@ -601,35 +601,35 @@ body.noscroll {
   width: 0vw;
   height: 0vh;
 }
-.textePresentation > p:first-child { 
+.text-presentation > p:first-child { 
   font-size: 4vw;
   line-height: 4vw;
   margin: 0 0 2vh 0;
 }
-.textePresentation > p { 
+.text-presentation > p { 
   font-size: 22px; 
   /* font-size: clamp(19px, 3.5vw, 23px); */ /* Version non IOS compatible */
   font-size: max(19px, min(3.5vw, 23px)); /* Version IOS compatible */
 }
-.textePresentation > p > span {
+.text-presentation > p > span {
   text-decoration: underline 2px dotted;
 }
 @media screen and (max-aspect-ratio: 4/3) {
-  .textePresentation > p:first-child {
+  .text-presentation > p:first-child {
     font-size: 6.5vw;
     line-height: 7vw;
     margin: 4vh 0 2vh 0;
   }
 }
 @media screen and (max-width: 480px) {
-  .textePresentation > p:first-child {
+  .text-presentation > p:first-child {
     font-size: max(32px, 7.5vw);
     line-height: max(32px, 7.5vw);
   }
 }
 /* On force positionnement par défaut, même si largeur inf. à 768px (cf. media queries juste au-dessus) */
 @media screen and (min-aspect-ratio: 14/9) {
-  .textePresentation > p:first-child { 
+  .text-presentation > p:first-child { 
     font-size: 4vw;
     line-height: 4vw;
     margin: 0 0 2vh 0;
@@ -637,7 +637,7 @@ body.noscroll {
 }
 /*#endregion -  Texte de présentation à la question "Qui suis-je ?" */
 
-#sectionTitles {
+#section-titles {
   position: absolute;
   z-index: 2;
   top: calc(100% + 3vh);
@@ -646,7 +646,7 @@ body.noscroll {
   color: #fff;
 }
 
-.sectionTitle {
+.section-title {
   font-size: 27px;
   /* font-size: clamp(17px, 5vmin, 27px); */  /* Version non IOS compatible */
   font-size: max(17px, min(5vmin, 27px)); /* Version IOS compatible */
@@ -664,7 +664,7 @@ body.noscroll {
   color: #fff;
   width: 80vw;
   max-width: 900px;
-  transform: translateX(-200px); /* Car est centré dans un conteneur (#content_screen3) qui fait plus que 100vw de large (100vw + 400px) */
+  transform: translateX(-200px); /* Car est centré dans un conteneur (#content-screen-3) qui fait plus que 100vw de large (100vw + 400px) */
   /* margin-top: 25vh; */ margin-top: calc(var(--vh, 1vh) * 25); /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
 }
 
@@ -801,7 +801,7 @@ body.noscroll {
   display: block;
   font-weight: normal;
 }
-.domainContent > div {
+.domain-content > div {
   /* margin-bottom: clamp(4px, 0.5vh, 7px); */  /* Version non IOS compatible */
   margin-bottom: max(4px, min(0.5vh, 7px)); /* Version IOS compatible */
 }
@@ -816,7 +816,7 @@ body.noscroll {
   align-self: flex-start;
   /* margin: 28vh 0 0 0; */   margin: calc(var(--vh, 1vh) * 28) 0 0 0;  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
 }
-#projects .projectCard {
+#projects .project-card {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -831,7 +831,7 @@ body.noscroll {
   border-radius: 10px;
 }
 @media screen and (min-width: 769px) and (max-width: 1024px) {
-  #projects .projectCard { 
+  #projects .project-card { 
     width: 50vw; 
     margin: 0 25vw; 
   }
@@ -840,7 +840,7 @@ body.noscroll {
   #projects { 
     transform-origin: 0% 0%; 
   }
-  #projects .projectCard { 
+  #projects .project-card { 
     width: 70vw; 
     margin: 0 15vw; }
 }
@@ -849,7 +849,7 @@ body.noscroll {
     transform-origin: 0% 0%; 
     /* margin: 30vh 0 0 0; */ margin: calc(var(--vh, 1vh) * 30) 0 0 0;  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
   }
-  #projects .projectCard { 
+  #projects .project-card { 
     width: 74vw; 
     margin: 0 13vw;
     /* height: 48vh; */ height: calc(var(--vh, 1vh) * 48);  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
@@ -859,7 +859,7 @@ body.noscroll {
   #projects {
     /* margin: 34vh 0 0 0; */  margin: calc(var(--vh, 1vh) * 34) 0 0 0; /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
   }
-  #projects .projectCard { 
+  #projects .project-card { 
     width: 80vw; 
     margin: 0 10vw;
     /* height: 50vh; */  height: calc(var(--vh, 1vh) * 50);  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
@@ -940,7 +940,7 @@ body.noscroll {
       margin: -15px 0 0 -10px;
     }
 }
-#projects .projectCard ul li { margin: 0 0 0 12px; }
+#projects .project-card ul li { margin: 0 0 0 12px; }
 #projects .details {
   overflow-y: auto;
   margin: 1vmax 2vmax 3vmax 2vmax;
@@ -951,7 +951,7 @@ body.noscroll {
 :root {
   --padding-x: 20%;
 }
-#projects a.projectLink {
+#projects a.project-link {
   border-radius: 50px;
   background-color: rgb(118, 133, 219);
   background: linear-gradient(270deg, rgb(118, 133, 219) 0%, #7c65c1 100%);
@@ -970,35 +970,35 @@ body.noscroll {
   border-bottom: solid 1px rgb(100, 82, 138);
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
-  #projects a.projectLink {  
+  #projects a.project-link {  
     /* font-size: clamp(16px, 3vmin, 18px); */ /* Version non IOS compatible */
     font-size: max(16px, min(3vmin, 18px)); /* Version IOS compatible */
   }
 }
 @media screen and (max-width: 480px) {
-  #projects a.projectLink { 
+  #projects a.project-link { 
     /* font-size: clamp(16px, 4vmin, 18px); */ /* Version non IOS compatible */
     font-size: max(16px, min(4vmin, 18px)); /* Version IOS compatible */
   }
 }
 @media screen and (max-height: 600px) {
-  #projects a.projectLink {
+  #projects a.project-link {
     padding: 5px var(--padding-x);
   }
 }
 
-#projects .projectCard,
-#projects a.projectLink {
+#projects .project-card,
+#projects a.project-link {
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
 }
 @media screen and (max-width: 480px) {
-  #projects .projectCard,
-  #projects a.projectLink {
+  #projects .project-card,
+  #projects a.project-link {
     box-shadow: 0 10px 25px rgb(0 0 0 / 50%);
   }
 }
   
-#projects a.projectLink:before {
+#projects a.project-link:before {
   content: "";
   background: rgba(255,255,255,0.3);
   position: absolute;
@@ -1009,19 +1009,19 @@ body.noscroll {
   transform: rotate(27deg);
   transition: left 0.4s ease;
 }
-#projects a.projectLink:hover:before {
+#projects a.project-link:hover:before {
   left: 110%;
 }
-#projects a.projectLink:hover {
+#projects a.project-link:hover {
   background-color: rgb(79, 66, 109);
 }
-#projects a.projectLink:hover + .img {
+#projects a.project-link:hover + .img {
   background-size: 290%;
 }
 /*#endregion - Rubrique "Projets perso" */
 
 
-#progressBar {
+#progress-bar {
   position: fixed;
   z-index: 1000;
   bottom: 0;
@@ -1030,7 +1030,7 @@ body.noscroll {
   overflow: hidden;
   border-top: solid 1px #a6a6a6;
 }
-#progressBar > div {
+#progress-bar > div {
   height: 10px;
   background: linear-gradient(to right, #fe6652 0%, #fe529a 20%, rgb(0, 118, 166,1) 40%, #5A5E9A 60%, #676CC6 80%, #A867C6 100%);
   width: 100vw;
@@ -1038,48 +1038,48 @@ body.noscroll {
 
 
 /*#region -transform sur les éléments SVG */
-#SVG_chaise,
-#SVG_tableSansPiedBG,
-#SVG_tablePiedBG,
-#SVG_corps,
-#SVG_bras,
-#SVG_laptop,
-#SVG_lampe,
-#SVG_tasse,
-#SVG_ombre {
+#SVG-chaise,
+#SVG-table-sans-pied-BG,
+#SVG-table-pied-BG,
+#SVG-corps,
+#SVG-bras,
+#SVG-laptop,
+#SVG-lampe,
+#SVG-tasse,
+#SVG-ombre {
   display: none;
 }
 
-#SVG_corps,
-#SVG_bras,
-#SVG_ombre,
-#SVG_lampe,
-#SVG_tasse,
-#SVG_laptop {
+#SVG-corps,
+#SVG-bras,
+#SVG-ombre,
+#SVG-lampe,
+#SVG-tasse,
+#SVG-laptop {
   opacity: 0;
 }
-#SVG_chaise {
+#SVG-chaise {
   transform: translateX(-300vw);
 }
-#SVG_chaise .roue {
+#SVG-chaise .roue {
   stroke: #000000;
   stroke-width: 0.8;
   stroke-miterlimit: 4;
 }
-#SVG_tableSansPiedBG, 
-#SVG_tablePiedBG {
+#SVG-table-sans-pied-BG, 
+#SVG-table-pied-BG {
   transform: translateX(300vw);
 }
-#SVG_laptop,
-#SVG_lampe,
-#SVG_tasse {
+#SVG-laptop,
+#SVG-lampe,
+#SVG-tasse {
   transform: translateY(-200vh);
 }
 /*#endregion -transform sur les éléments SVG */
 
 
 /*#region - Dernier écran avant celui de fin: Texte à droite */
-.msgRemerciements {
+.msg-remerciements {
   z-index: 4;
   opacity: 0;
   width: 0;
@@ -1092,7 +1092,7 @@ body.noscroll {
   flex-direction: column;
 }
 
-.msgRemerciements > span {
+.msg-remerciements > span {
   background: #676CC6;
   background: -webkit-linear-gradient(to right, #676CC6 0%, #B754E9 100%);
   background: -moz-linear-gradient(to right, #676CC6 0%, #B754E9 100%);
@@ -1104,7 +1104,7 @@ body.noscroll {
   transform: translateY(5vh);
 }
 
-.msgRemerciements a {
+.msg-remerciements a {
   cursor: pointer;
   width: 80%;
   border-radius: 25px;
@@ -1129,7 +1129,7 @@ body.noscroll {
   box-shadow: 0 0 0 #ffa09c;
   position: relative;
 }
-.msgRemerciements a:before {
+.msg-remerciements a:before {
   content: "";
   background: rgba(255,255,255,0.3);
   position: absolute;
@@ -1139,18 +1139,18 @@ body.noscroll {
   transform: rotate(27deg);
   transition: left 0.4s ease;
 }
-.msgRemerciements a:hover:before {
+.msg-remerciements a:hover:before {
   left: 110%;
 }
 
-.msgRemerciements a > i { opacity: 0.6; }
-.msgRemerciements a,
-.msgRemerciements a > i {
+.msg-remerciements a > i { opacity: 0.6; }
+.msg-remerciements a,
+.msg-remerciements a > i {
   transition: all 0.2s ease-out;
 }
-.msgRemerciements #btCV > i { margin: 0 -12px 0 12px; }
-.msgRemerciements #btGithub > i { margin: 0 -10px 0 10px; }
-.msgRemerciements a > span {
+.msg-remerciements #button-CV > i { margin: 0 -12px 0 12px; }
+.msg-remerciements #button-github > i { margin: 0 -10px 0 10px; }
+.msg-remerciements a > span {
   flex-grow: 1;
   text-align: center;
   letter-spacing: 0.15vw;
@@ -1159,24 +1159,24 @@ body.noscroll {
 /* Media query qui permet de filtrer les devices qui peuvent survoler les éléments simplement: Ici les ordi mais pas les mobiles et tablettes */
 /* PS: On ajoute (pointer: fine) car certains devices avec Android émulent un hover qd la pression  sur l'écran est longue */
 @media (hover: hover) and (pointer: fine) {
-  .msgRemerciements a:hover {
+  .msg-remerciements a:hover {
     box-shadow: 0 4px 0 #ffa09c;
     transform: translateY(-4px) !important;
   }
-  .msgRemerciements a:hover > i { opacity: 1; }
+  .msg-remerciements a:hover > i { opacity: 1; }
 }
 
 /* Gestion petit écran (taille 's' coté js) */
 @media screen and (max-width: 480px) {
-  .msgRemerciements {
+  .msg-remerciements {
     text-align: center;
     position: absolute;
     transform: translateY(-36vh);
   } 
-  .msgRemerciements > span {
+  .msg-remerciements > span {
     -webkit-text-fill-color: #fff;
   }
-  .msgRemerciements a {
+  .msg-remerciements a {
     margin-right: auto;
     width: 100%;
     box-shadow: rgb(255, 255, 255) 0 0 0 2px;
@@ -1184,14 +1184,14 @@ body.noscroll {
 }
 /* Gestion très petit écran (taille 'xs' coté js) */
 @media screen and (max-width: 380px) {
-  .msgRemerciements {
+  .msg-remerciements {
     transform: translateY(-40vh);
   } 
 }
 /*#endregion - Dernier écran: Texte à droite */
 
 
-.transitionalBackground {
+.bg-transitional {
   background: linear-gradient(1deg, var(--color-degr-1-screen4) 40%, var(--color-degr-2-screen4) 60%);
   position: absolute;
   z-index: 2;
@@ -1206,14 +1206,14 @@ body.noscroll {
 }
 /* Gestion très petit écran (taille 's' coté js) */
 @media screen and (max-width: 480px) {
-  .transitionalBackground {
+  .bg-transitional {
     background: linear-gradient(1deg, var(--color-degr-1-screen4) 40%, var(--color-degr-2-screen4) 70%);
   } 
 }
 
 /* CSS specific to iOS devices only */
 @supports (-webkit-touch-callout: none) {
-  .transitionalBackground {
+  .bg-transitional {
     /* Propriétés 'box-shadow' et le fait d'avoir un background:gradient font scintiller l'animation avec les devices iOS, donc on les retire */
     box-shadow: none; 
     background: var(--color-degr-1-screen4);
@@ -1222,7 +1222,7 @@ body.noscroll {
 
 
 /*#region - écran de fin */
-#background_screenEnd {
+#bg-screen-end {
   position: fixed;
   z-index: 5;
   height: 100vh;
@@ -1235,7 +1235,7 @@ body.noscroll {
   -webkit-clip-path: circle(0vw);
   clip-path: circle(0vw);
 }
-#background_screenEnd #mot {
+#bg-screen-end #mot {
   font-family: "Pacifico", cursive;
   position: absolute;
   z-index: 2;
@@ -1246,7 +1246,7 @@ body.noscroll {
   padding: 0px 2vmin;
 }
 
-#background_screenEnd #mot > span {
+#bg-screen-end #mot > span {
   display: inline-block;
   transform: scale(6, 6);
   opacity: 0;
@@ -1256,7 +1256,7 @@ body.noscroll {
   position: relative; z-index: 1; /* TEST pour correct° bug avec iOS */
 }
 
-#background_screenEnd .motTrait {
+#bg-screen-end .mot-trait {
   position: absolute;
   z-index: 1;
   border-bottom: solid 3px #fff;
@@ -1265,7 +1265,7 @@ body.noscroll {
   margin-top: 10px;
 }
 
-#background_screenEnd #linkbackToTop {
+#bg-screen-end #link-back-to-top {
   /* font-size: clamp(15px, 1.6vw, 17px); */ /* Version non IOS compatible */
   font-size: max(15px, min(1.6vw, 17px)); /* Version IOS compatible */
   color: rgba(255,255,255,0.35);
@@ -1275,25 +1275,25 @@ body.noscroll {
   position: fixed;
   z-index: 10;
 }
-#background_screenEnd #linkbackToTop .trait {
+#bg-screen-end #link-back-to-top .trait {
   width: 0;
   height: 2px;
   background-color: rgba(255,255,255,0.6);
   margin: 0 auto 4px auto;
   transition: width 0.5s ease;
 }
-#background_screenEnd #linkbackToTop .trait.bottom {
+#bg-screen-end #link-back-to-top .trait.bottom {
   margin: 5px auto 0 auto;
 }
-#background_screenEnd #linkbackToTop:hover {
+#bg-screen-end #link-back-to-top:hover {
   letter-spacing: 2px;
   color: rgba(255,255,255, 1);
 }
-#background_screenEnd #linkbackToTop:hover .trait {
+#bg-screen-end #link-back-to-top:hover .trait {
   width: 100%;
   background-color: rgba(255,255,255, 1);
 }
-#background_screenEnd #linkbackToTop i {
+#bg-screen-end #link-back-to-top i {
   margin: 0 0.5vw 0 0;
 }
 /*#endregion - écran de fin */
@@ -1333,13 +1333,13 @@ body.noscroll {
 #SVGs .cils {
   fill:#502d16;
 }
-#SVG_elementsVisage path {
+#SVG-elements-visage path {
   fill-rule: evenodd;
 }
 
 /* Prendrait le dessus sur les attributs "stroke-width" dans les balises "path" en question (mais ne les prendraient pas s'il s'agissait d'inline styles) : 
 Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage qui se déssine */
-#SVGvisageVIVUS path {
+#SVG-face-drawing path {
   stroke-width: 1.3px;
   stroke: #fff;
   stroke-linecap: butt;
@@ -1403,15 +1403,15 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
 
 
 /*#region - Menu qd écran < à taille Moyenne */
-#smallMenu {
+#menu-small-screen {
   position: fixed;
   z-index: 6;
   top: 0;
   left: 0;
   display: none;
 }
-#smallMenu.display { display: initial; }
-#smallMenu .iconeMenu {
+#menu-small-screen.display { display: initial; }
+#menu-small-screen .icon-menu {
   position: absolute;
   border-radius: 50px;
   color: #fff;
@@ -1425,17 +1425,17 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   align-items: center;
   cursor: pointer;
 }
-#smallMenu .iconeMenu,
-#smallMenu .iconeMenu i {
+#menu-small-screen .icon-menu,
+#menu-small-screen .icon-menu i {
   transition: all 0.3s ease;
 }
-#smallMenu .iconeMenu:hover {
+#menu-small-screen .icon-menu:hover {
   background-color: #fff;
 }
-#smallMenu .iconeMenu:hover i {
+#menu-small-screen .icon-menu:hover i {
   color: rgb(119, 119, 119);
 }
-#smallMenu #listeSections {
+#menu-small-screen #sections-list {
   position: fixed;
   z-index: 6;
   width: 100vw;
@@ -1448,18 +1448,18 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   transition: top 0.4s ease-in-out;
   box-shadow: 0 10px 15px rgba(0,0,0,0.5); 
 }
-#smallMenu #listeSections.open {
+#menu-small-screen #sections-list.open {
   top: 0vh;
 }
-#smallMenu .overlay {
+#menu-small-screen .overlay {
   position: fixed;
   z-index: 5;
   width: 100vw;
   height: 0vh;
   background-color: rgba(0,0,0,0.7); 
 }
-#smallMenu .overlay.display { height: 100vh; }
-#smallMenu #listeSections > div {
+#menu-small-screen .overlay.display { height: 100vh; }
+#menu-small-screen #sections-list > div {
   border-bottom: dotted 1px rgb(161, 161, 161);
   flex-grow: 1;
   display: flex;
@@ -1471,33 +1471,33 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   background-color: #fff;
   transition: all 0.2s ease-in-out;
 }
-#smallMenu #listeSections > div.selected { 
+#menu-small-screen #sections-list > div.selected { 
   background-color: #e8eef0 
 }
-#smallMenu #listeSections > div.selected::before,
-#smallMenu #listeSections > div.selected::after { 
+#menu-small-screen #sections-list > div.selected::before,
+#menu-small-screen #sections-list > div.selected::after { 
   font-family: "Font Awesome 5 Free";
   /* font-size: max(3.5vw, 13px); */
   color: #fe558f;
   /* opacity: 0.5; */
 }
-#smallMenu #listeSections > div.selected::before {   
+#menu-small-screen #sections-list > div.selected::before {   
   content: "\f101"; 
   content: "\f292"; 
   margin: 0 2vw 0 0;
 }
-#smallMenu #listeSections > div.selected::after { 
+#menu-small-screen #sections-list > div.selected::after { 
   content: "\f100"; 
   content: "\f292"; 
   opacity: 0;
 }
 @media screen and (orientation: landscape) { 
-  #smallMenu #listeSections > div {
+  #menu-small-screen #sections-list > div {
     font-size: max(14px, min(3vw, 17px)); /* Version IOS compatible */
     padding: 1vh;
   }
 }
-#smallMenu #listeSections > div:hover {
+#menu-small-screen #sections-list > div:hover {
   background-color: #e2e8ec;
 }
 /*#endregion - Menu qd écran < à taille Moyenne */
@@ -1505,7 +1505,7 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
 
 
 /*#region - Navigation entre projets dans rubrique "Projets perso" */
-.projectCard .navigation {
+.project-card .navigation {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -1518,7 +1518,7 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   width: calc(100% + max(8vw, 80px));
   left: min(-4vw, -40px);
 }
-.projectCard .navigation i {
+.project-card .navigation i {
   cursor: pointer;
   width: 30px;
   height: 40px;
@@ -1527,10 +1527,10 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   align-items: center;
   transition: all 0.3s ease;
 } 
-.projectCard .navigation i.hidden {
+.project-card .navigation i.hidden {
   visibility: hidden;
 }
-.projectCard .navigation i:hover {
+.project-card .navigation i:hover {
   color: #7387ae;
   transform: scale(1.2, 1.2);
 }
@@ -1586,7 +1586,7 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
 }
 /*#endregion - Apparition ou non encart pour mobile pour initer utilisateur à consulter en mode portrait */
 
-#msgNoIE {
+#msg-no-IE {
   font-size: 20px;
   line-height: 23px;
   color: #b90404;

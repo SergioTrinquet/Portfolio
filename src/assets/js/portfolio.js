@@ -8,8 +8,8 @@
 
     let tl = null;
     const body = document.querySelector("body");
-    const texteQuiSuisJe_classList = document.querySelector(".texteQuiSuisJe").classList,
-          texteScrollDown_classList = document.querySelector(".texteScrollDown").classList;
+    const texteQuiSuisJe_classList = document.querySelector(".text-qui-suis-je").classList,
+          texteScrollDown_classList = document.querySelector(".text-scroll-down").classList;
     let dataLabelsExceptProjects = [];
     let ratio = null;
     const prefixNomLabelProjets = "step_3";
@@ -69,11 +69,11 @@
 
     // Animation d'intro
     function introduction() {
-        const SVGvisageVIVUS = document.querySelector("#SVGvisageVIVUS"),
+        const SVGfaceDrawing = document.querySelector("#SVG-face-drawing"),
             SVGs_classList = document.querySelector("#SVGs").classList,
             halo_classList = document.querySelector(".halo").classList,
             rayons_classList = document.querySelector(".rayons").classList,
-            btSkipIntro = document.querySelector("#buttonSkipIntro");
+            btSkipIntro = document.querySelector("#button-skip-intro");
 
         // Si on est en haut de page, ajout de la transition pour l'apparition du visage
         if(getScrollTop() == 0) {
@@ -99,10 +99,10 @@
             tl_intro
                 .call(() => {
                     btSkipIntro.classList.add('display');
-                    SVGvisageVIVUS.classList.add('display'); 
+                    SVGfaceDrawing.classList.add('display'); 
                     // Animation dessin du visage
                     new Vivus(
-                        'SVGvisageVIVUS', 
+                        'SVG-face-drawing', 
                         { duration: 300, type: 'oneByOne' }, 
                         () => { console.log('Animation trait visage réussie') }
                     );
@@ -110,7 +110,7 @@
                 .call(() => {
                     // On cache le SVG utilisé pour l'animation avec les traits et on fait apparaitre l'autre
                     SVGs_classList.add('display');
-                    SVGvisageVIVUS.classList.remove('display'); 
+                    SVGfaceDrawing.classList.remove('display'); 
                 }, null, "+=7")
                 .fromTo(".halo", {
                         width: "0%", 
@@ -124,7 +124,7 @@
                     }
                 )
                 .call(() => {
-                    halo_classList.remove('noTransition');
+                    halo_classList.remove('no-transition');
                     rayons_classList.add('display');
                     texteQuiSuisJe_classList.remove("forceNotDisplay"); // Code pour corriger bug Android qd reload
                     texteQuiSuisJe_classList.add('animation');
@@ -142,7 +142,7 @@
 
         } else {
             SVGs_classList.add('display');
-            SVGs_classList.add('noTransition');
+            SVGs_classList.add('no-transition');
         }
 
     }
@@ -293,20 +293,20 @@
 
         // Suppression du CSS dans les balises styles ajouté par GSAP
         tl_scrollTriggerBody
-            .set(`.wrapperSVGsAndTexts, .rayons, .textePresentation, #background_screen1and2 > .ray, 
-            #content_screen3, .PreScreen3, #content_screen3 #shadows > div, .halo, .backgroundHalfScreen, #skills .domain, .domain .title, #SVGs, #intituleJob, #content_screen4, #sectionTitles .sectionTitle, #skills, 
-            #background_screen5, #SVG_chaise, #SVG_tableSansPiedBG, #SVG_tablePiedBG, #SVG_corps, #SVG_bras,#SVG_laptop, #SVG_lampe, #SVG_tasse, #SVG_ombre, .msgRemerciements, .msgRemerciements > *, #margeRight,
-            #background_screenEnd, #background_screenEnd #mot span, #background_screenEnd .motTrait, .transitionalBackground, .SVGsAndAnnexes
+            .set(`.wrapper-SVGs-and-texts, .rayons, .text-presentation, #bg-screen-1-and-2 > .ray, 
+            #content-screen-3, .pre-screen-3, #content-screen-3 #shadows > div, .halo, .half-screen-bg, #skills .domain, .domain .title, #SVGs, #intitule-job, #content-screen-4, #section-titles .section-title, #skills, 
+            #bg-screen-5, #SVG-chaise, #SVG-table-sans-pied-BG, #SVG-table-pied-BG, #SVG-corps, #SVG-bras,#SVG-laptop, #SVG-lampe, #SVG-tasse, #SVG-ombre, .msg-remerciements, .msg-remerciements > *, #marge-right,
+            #bg-screen-end, #bg-screen-end #mot span, #bg-screen-end .mot-trait, .bg-transitional, .SVGs-and-annexes
             `, {clearProps: "all"});
                 
-        if(isIPadOrIPhone) tl_scrollTriggerBody.set(".SVGsAndAnnexes", { width: "70vmin" }); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
+        if(isIPadOrIPhone) tl_scrollTriggerBody.set(".SVGs-and-annexes", { width: "70vmin" }); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
 
         tl_scrollTriggerBody
             .addLabel(`step_1_1|${intitulesMenu[0]}`, ">")
             // Agrandissement wrapper contenant svgs + texte présentation
-            .to(".wrapperSVGsAndTexts", { width: "70vw", height: "40vh", duration: 40 });
+            .to(".wrapper-SVGs-and-texts", { width: "70vw", height: "40vh", duration: 40 });
 
-        if(isIPadOrIPhone) tl_scrollTriggerBody.to(".SVGsAndAnnexes", { width: "40vh", duration: 40 }, "<"); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
+        if(isIPadOrIPhone) tl_scrollTriggerBody.to(".SVGs-and-annexes", { width: "40vh", duration: 40 }, "<"); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
     
         tl_scrollTriggerBody
             // Disparition rayons
@@ -324,46 +324,46 @@
         } else {
             screen1_kf1 = {...screen1_kf1, ...{ width:"70%", height: "auto", margin: "0px 0px 0px 4vw" }};
         }
-        tl_scrollTriggerBody.to(".textePresentation", { keyframes: [screen1_kf1, screen1_kf2]});
+        tl_scrollTriggerBody.to(".text-presentation", { keyframes: [screen1_kf1, screen1_kf2]});
 
 
         tl_scrollTriggerBody
-            .to("#background_screen1and2 > .ray", { transform: `skew(0deg, ${deg_inclinaison_asc}deg) translate(0vh, 0vh)`, duration: 10, stagger: 5 })    // ray en diagonale : Apparition de gauche à droite        
+            .to("#bg-screen-1-and-2 > .ray", { transform: `skew(0deg, ${deg_inclinaison_asc}deg) translate(0vh, 0vh)`, duration: 10, stagger: 5 })    // ray en diagonale : Apparition de gauche à droite        
             .addLabel(`step_1_2|${intitulesMenu[1]}`, ">")  
-            .to(".PreScreen3", { left:"0vw", duration: 80 })   
-            .to("#content_screen3", { left:"0vw", duration: 80 }, "<+=30") // Transition arrivée fond bleu marine
-            .to("#background_screen1and2 > .ray", { display: "none" });
+            .to(".pre-screen-3", { left:"0vw", duration: 80 })   
+            .to("#content-screen-3", { left:"0vw", duration: 80 }, "<+=30") // Transition arrivée fond bleu marine
+            .to("#bg-screen-1-and-2 > .ray", { display: "none" });
 
         // Transition seulement qd écran moins large que 4/3     
         if(window.matchMedia("(max-aspect-ratio: 4/3)").matches) {
-            tl_scrollTriggerBody.to(".textePresentation", { width:"0vw", height: "0vw", margin: 0, duration: 20 }); 
+            tl_scrollTriggerBody.to(".text-presentation", { width:"0vw", height: "0vw", margin: 0, duration: 20 }); 
         }
 
         tl_scrollTriggerBody 
             .set(".halo", { clearProps: "all" }) // Pour supprimer le style "background" écrit en dur ds la propriété style quand on a passé le tween juste après celui-ci et que l'on revient en arrière
             .to(".halo", { autoAlpha:0, background: "linear-gradient(29deg, rgb(255, 255, 255) 100%, rgb(255, 255, 255) 100%)" })
-            .set(".wrapperSVGsAndTexts", { flexDirection: "unset", textAlign: "unset" }); // Retrait style qui permet affichage en colonne pour small devices/small screens
+            .set(".wrapper-SVGs-and-texts", { flexDirection: "unset", textAlign: "unset" }); // Retrait style qui permet affichage en colonne pour small devices/small screens
 
         // Gestion de la transition seulement qd écran plus large que 4/3
         if(window.matchMedia("(min-aspect-ratio: 4/3)").matches) {
-            tl_scrollTriggerBody.to(".textePresentation", { width:"0vw", margin: 0, duration: 20 }); // SVG du visage qui va vers le centre de la page car textePresentation se réduit progressivement
+            tl_scrollTriggerBody.to(".text-presentation", { width:"0vw", margin: 0, duration: 20 }); // SVG du visage qui va vers le centre de la page car text-presentation se réduit progressivement
         }
 
         tl_scrollTriggerBody  
             .to(".halo", { zIndex: 2, width: "115%", paddingTop: "115%", boxShadow: "-3px 2px 1px #4d4d4d91", autoAlpha:1, duration: 20 })    // Halo rendu à nouveau visible + chgmt css
             .to("#SVGs", { filter: "drop-shadow( 1px 0px 0px rgba(77, 81, 120, 0.7)" }, "<")   // Ajout ombre sur visage
-            .to(".wrapperSVGsAndTexts", { keyframes: [
+            .to(".wrapper-SVGs-and-texts", { keyframes: [
                 { position: "absolute", duration: 0 },
                 { height: "20vh", marginTop: isIPadOrIPhone ? "-35vh" : "-70vh", duration: 50 }
             ] }, "<");
 
-        if(isIPadOrIPhone) tl_scrollTriggerBody.to(".SVGsAndAnnexes", { width: "20vh", duration: 50 }, "<"); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
+        if(isIPadOrIPhone) tl_scrollTriggerBody.to(".SVGs-and-annexes", { width: "20vh", duration: 50 }, "<"); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
 
         tl_scrollTriggerBody
-            .to("#intituleJob", { display: "unset" }) // Pour activer l'animation
-            .fromTo("#intituleJob", { zIndex: 3, scale: 0.5, autoAlpha:0 }, { zIndex: 3, scale: 1, autoAlpha: 1, duration: 10})   // Apparition "intitulé job"
-            .to(".textePresentation", { width:"0vw", duration: 0 })  // On réduit à 0 la largeur du texte de présentation (même s'il n'est plus visible grâce au background) pour que '#skills' s'affiche au même endroit
-            .fromTo(".sectionTitle#mySkills", 
+            .to("#intitule-job", { display: "unset" }) // Pour activer l'animation
+            .fromTo("#intitule-job", { zIndex: 3, scale: 0.5, autoAlpha:0 }, { zIndex: 3, scale: 1, autoAlpha: 1, duration: 10})   // Apparition "intitulé job"
+            .to(".text-presentation", { width:"0vw", duration: 0 })  // On réduit à 0 la largeur du texte de présentation (même s'il n'est plus visible grâce au background) pour que '#skills' s'affiche au même endroit
+            .fromTo(".section-title#my-skills", 
                 { skewX: "0deg", skewY: `${deg_inclinaison_asc}deg`, y: "-100px", display: "inline-block" },
                 { skewX: "0deg", skewY: `${deg_inclinaison_asc}deg`, y: "0px", autoAlpha: 1, display: "inline-block", duration: 10 }
             )   // Apparition titre "Mes compétences"
@@ -381,29 +381,29 @@
 
 
         tl_scrollTriggerBody
-            .to(".backgroundHalfScreen", { transform: `rotate(${deg_inclinaison_asc}deg) skew(${deg_inclinaison_asc}deg, 0) translateX(0vh)`, duration: 30 })  // Apparition partie médiane background clair
+            .to(".half-screen-bg", { transform: `rotate(${deg_inclinaison_asc}deg) skew(${deg_inclinaison_asc}deg, 0) translateX(0vh)`, duration: 30 })  // Apparition partie médiane background clair
             .to("#shadows", {autoAlpha:1, duration: 20})
             .to("#skills .domain", { transform:`translateY(0vw)`, autoAlpha:1, duration: 30, stagger:10 })      // Animation arrivée encarts "compétences"    
             .addLabel(`step_2|${intitulesMenu[2]}`, ">")      
             .to("#skills", { duration: 100 })    // Pour faire une pause dans l'animation le temps de pouvoir lire le contenu de la page
             .to("#skills .domain", { transform: `skew(0deg, ${deg_inclinaison_asc}deg) translateX(100vw)`, autoAlpha:0, duration: 20, stagger:10 })      // Animation retrait encarts "compétences"
-            .to(".sectionTitle#mySkills", { keyframes: [
+            .to(".section-title#my-skills", { keyframes: [
                 { transform: `skew(0deg, ${deg_inclinaison_asc}deg) translateX(100vw)`, autoAlpha: 0, duration: 20 }, 
                 { display: "none" }] 
             })   // Animation retrait titre "Mes compétences"
-            .to("#content_screen4", { top:"0vh", duration: 80 })    // Apparition contenu section 3
-            .to(".backgroundHalfScreen", { zIndex: 3 })
-            .to(".backgroundHalfScreen", { transform: `rotate(${inclinaison_desc}deg) translateY(0vh)`, top: "52vh", height: "80vh", duration: 30 }) // Changement inclinaison/extension partie médiane du background clair
-            .fromTo(".sectionTitle#myProjects", 
+            .to("#content-screen-4", { top:"0vh", duration: 80 })    // Apparition contenu section 3
+            .to(".half-screen-bg", { zIndex: 3 })
+            .to(".half-screen-bg", { transform: `rotate(${inclinaison_desc}deg) translateY(0vh)`, top: "52vh", height: "80vh", duration: 30 }) // Changement inclinaison/extension partie médiane du background clair
+            .fromTo(".section-title#my-projects", 
                 { transform: `skew(0deg, ${deg_inclinaison_asc}deg) translateX(100vw)`, autoAlpha: 1 }, 
                 { transform: `skew(0deg, ${deg_inclinaison_asc}deg) translateX(0vw)`, autoAlpha: 1, display: "inline-block", duration: 15}
             )   // Animation titre "Mes projets perso"
-            .fromTo("#content_screen3", 
+            .fromTo("#content-screen-3", 
                 { background: "linear-gradient(29deg, #959ADD 30%, #292C45 80%)" },
                 { background: "linear-gradient(-29deg, rgb(122, 221, 212) 0%, rgb(111, 85, 151) 100%)", duration: 80 }
             , "<")
-            .to("#intituleJob", { color: "rgb(114, 122, 167)" }, "<")
-            .fromTo(".projectCard", 
+            .to("#intitule-job", { color: "rgb(114, 122, 167)" }, "<")
+            .fromTo(".project-card", 
                 { x: "100vw" }, 
                 { x: "0vw", duration:40, stagger: 10 }
             ); // Arrivée encarts projets venant de la droite
@@ -412,27 +412,27 @@
         setProjectCards(intitulesMenu[3]);
 
         tl_scrollTriggerBody
-            .to(".transitionalBackground", { keyframes: [
+            .to(".bg-transitional", { keyframes: [
                 { autoAlpha: 1 }, 
                 { boxShadow: isIPadOrIPhone ? "none" : "-100vw 0 0 rgba(255,255,255,0.5)", duration: 60 },
                 { x:"0%", duration: 80 }] 
             })
-            .to("#intituleJob", { keyframes: [
+            .to("#intitule-job", { keyframes: [
                 {scale: 0.5, opacity: 0, duration: 20 }, 
                 { display: "none" }] 
             })   // Disparition texte intitulé job et 'display: none' pour désactiver l'animation
-            .to(".sectionTitle#myProjects, .halo", { autoAlpha:0 }) // Disparition halo et titre "Projets perso"
+            .to(".section-title#my-projects, .halo", { autoAlpha:0 }) // Disparition halo et titre "Projets perso"
             .to("#SVGs", { filter: `drop-shadow( 0px 0px 1px rgba(0, 0, 0, ${mm == "s" || mm == "xs" ? .8 : .5}))` }, "<")   // Ajout ombre sur visage              
-            .to("#background_screen5", { height: "100vh" });    // Apparition fond degr. gris/blanc
+            .to("#bg-screen-5", { height: "100vh" });    // Apparition fond degr. gris/blanc
 
         // Gestion animation selon taille écran
         if(mm == "s" || mm == "xs") {
             tl_scrollTriggerBody
-                .to(".wrapperSVGsAndTexts", { height: "17vmin", marginTop: "-40vmin", duration: 150 }) // SVG visage qui remonte en haut de l'écran qd pas petit écran
-                .to(".textePresentation", { margin: "0 0 0 13vw", duration: 150 }, "<") // Pour décaler les SVG vers la gauche afin qu'ils soient centrés sur la page
+                .to(".wrapper-SVGs-and-texts", { height: "17vmin", marginTop: "-40vmin", duration: 150 }) // SVG visage qui remonte en haut de l'écran qd pas petit écran
+                .to(".text-presentation", { margin: "0 0 0 13vw", duration: 150 }, "<") // Pour décaler les SVG vers la gauche afin qu'ils soient centrés sur la page
         } else {
             tl_scrollTriggerBody
-                .to(".wrapperSVGsAndTexts", 
+                .to(".wrapper-SVGs-and-texts", 
                 { 
                     height: (mm == "xl" ? "16vmin" : (mm == "l" || mm == "m" ? "14vmin" : "16vmin")), // 16vmin pour xl et xs, sinon 14vmin
                     marginTop: isIPadOrIPhone ? "-14vmin" : "-40vmin",
@@ -442,64 +442,64 @@
 
         // Animations et apparitions éléments SVG
         tl_scrollTriggerBody
-            .to("#SVG_chaise", { display: "initial", x:0, duration: 50 })
-            .to("#SVG_tableSansPiedBG, #SVG_tablePiedBG", { display: "initial", x:0, duration: 50 }, "<")
-            .to("#SVG_corps, #SVG_bras", { display: "initial", autoAlpha:1, duration: 50 })
-            .to("#SVG_laptop", { keyframes: [
+            .to("#SVG-chaise", { display: "initial", x:0, duration: 50 })
+            .to("#SVG-table-sans-pied-BG, #SVG-table-pied-BG", { display: "initial", x:0, duration: 50 }, "<")
+            .to("#SVG-corps, #SVG-bras", { display: "initial", autoAlpha:1, duration: 50 })
+            .to("#SVG-laptop", { keyframes: [
                 { display: "block", autoAlpha: 1, duration: 20 },
                 { y:0, duration: 25 }
             ] })
-            .to("#SVG_lampe", { keyframes: [
+            .to("#SVG-lampe", { keyframes: [
                 { display: "block", autoAlpha: 1, duration: 20 },
                 { y:0, duration: 25 }
             ] }, "<+=25")
-            .to("#SVG_tasse", { keyframes: [
+            .to("#SVG-tasse", { keyframes: [
                 { display: "block", autoAlpha: 1, duration: 20 },
                 { y:0, duration: 25 }
             ] }, "<+=25")
-            .to("#SVG_ombre", { display: "initial", autoAlpha:1, duration: 25 });
+            .to("#SVG-ombre", { display: "initial", autoAlpha:1, duration: 25 });
 
 
         if(mm == "s" || mm == "xs") {  
             tl_scrollTriggerBody      
-                .to(".wrapperSVGsAndTexts", { marginTop: (mm == "s" ? "10vmin" : "30vmin"), duration: 150, delay: 100 }) // SVG visage qui descend en bas de l'écran
-                .to(".transitionalBackground", { x:"-55%", rotation: 80, duration: 80 }, "<+=80") // Décalage fond oblique bleu/violet
-                .to(".msgRemerciements", { keyframes: [
+                .to(".wrapper-SVGs-and-texts", { marginTop: (mm == "s" ? "10vmin" : "30vmin"), duration: 150, delay: 100 }) // SVG visage qui descend en bas de l'écran
+                .to(".bg-transitional", { x:"-55%", rotation: 80, duration: 80 }, "<+=80") // Décalage fond oblique bleu/violet
+                .to(".msg-remerciements", { keyframes: [
                     { display: "flex"}, 
                     { autoAlpha:0, flexGrow: "1", width: "auto", duration: 25 },
                     { autoAlpha:1, duration: 25, delay: 80 }
                 ] }, "<") // Apparition message "A bientôt" 
-                .to("#margeRight", { keyframes: [ {display: "initial", rotation: 80}, { x: "-10vw", y:0 , left: 0, duration: 80 } ] });
+                .to("#marge-right", { keyframes: [ {display: "initial", rotation: 80}, { x: "-10vw", y:0 , left: 0, duration: 80 } ] });
         } else {
             tl_scrollTriggerBody
-                .to(".transitionalBackground", { x:"-45%", duration: 100, delay: 100 }) // Décalage fond oblique bleu/violet
-                .set(".SVGsAndAnnexes", { clearProps: "margin" }) // Pour supprimer le style en dur qui reste qd retour en arrière après avoir passé le tween suivant, car fausse la position
-                .to(".SVGsAndAnnexes", { margin: "0 0 0 7vw", duration: 80 }) // Décalage SVGs vers la droite
-                .to(".textePresentation", { margin: "0 0 0 20vw", duration: 80 }, "<") // Pour décaler les SVG vers la gauche afin qu'ils soient centrés sur la page
-                .to(".msgRemerciements", { keyframes: [
+                .to(".bg-transitional", { x:"-45%", duration: 100, delay: 100 }) // Décalage fond oblique bleu/violet
+                .set(".SVGs-and-annexes", { clearProps: "margin" }) // Pour supprimer le style en dur qui reste qd retour en arrière après avoir passé le tween suivant, car fausse la position
+                .to(".SVGs-and-annexes", { margin: "0 0 0 7vw", duration: 80 }) // Décalage SVGs vers la droite
+                .to(".text-presentation", { margin: "0 0 0 20vw", duration: 80 }, "<") // Pour décaler les SVG vers la gauche afin qu'ils soient centrés sur la page
+                .to(".msg-remerciements", { keyframes: [
                     { display: "flex"}, 
                     { autoAlpha:0, flexGrow: "1", width: "auto", duration: 25 },
                     { autoAlpha:1, duration: 25, delay:80 }
                 ] }, "<") // Apparition message "A bientôt"  
-                .to("#margeRight", { display: "initial", transform: "rotate(30deg) translateX(0vw)", duration: 80 });   
+                .to("#marge-right", { display: "initial", transform: "rotate(30deg) translateX(0vw)", duration: 80 });   
         }
 
         
         if(isIPadOrIPhone) {
             //Ici couleurs pas sous forme de variables CSS car sinon pas de transition
-            tl_scrollTriggerBody.fromTo(".transitionalBackground", 
+            tl_scrollTriggerBody.fromTo(".bg-transitional", 
                     { background: "linear-gradient(1deg, rgb(103, 108, 198) 40%, rgb(103, 108, 198) 60%)" }, 
                     { background: "linear-gradient(1deg, rgb(103, 108, 198) 40%, rgb(232, 70, 255) 60%)", duration: 80});
         }
         
             
         tl_scrollTriggerBody 
-            .to(".msgRemerciements > *", { autoAlpha:1, y: 0, duration: 50, stagger: 25 })
+            .to(".msg-remerciements > *", { autoAlpha:1, y: 0, duration: 50, stagger: 25 })
             .addLabel(`step_4|${intitulesMenu[4]}`, ">")  
-            .to("#background_screenEnd", { clipPath: "circle(100vmax)", duration: 120 })
-            .to("#background_screenEnd #mot span", { autoAlpha:1, scale:1, duration: 20, stagger: 20 }, "<+=20")
-            .to("#background_screenEnd .motTrait", { width: "clamp(135px, 30vmin, 220px)", duration: 20 })
-            .fromTo("#linkbackToTop", { autoAlpha: 0, y:20  }, { autoAlpha:1, y:0, duration: 1, delay: 10 })    
+            .to("#bg-screen-end", { clipPath: "circle(100vmax)", duration: 120 })
+            .to("#bg-screen-end #mot span", { autoAlpha:1, scale:1, duration: 20, stagger: 20 }, "<+=20")
+            .to("#bg-screen-end .mot-trait", { width: "clamp(135px, 30vmin, 220px)", duration: 20 })
+            .fromTo("#link-back-to-top", { autoAlpha: 0, y:20  }, { autoAlpha:1, y:0, duration: 1, delay: 10 })    
             .addLabel(`step_final|${intitulesMenu[5]}`, ">");  
 
         return tl_scrollTriggerBody;
@@ -518,7 +518,7 @@
 
 
     // Affichage et animation sur un tracé circulaire de l'intitulé du job
-    const intituleJob = document.querySelector("#intituleJob");
+    const intituleJob = document.querySelector("#intitule-job");
     // 'translateZ(0)' ajouté pour bénéficier de l'Activation Matérielle pour soulager le CPU ou GPU
     intituleJob.innerHTML = intituleJob.innerText.split("").map((char, i) =>
         `<span style="transform:rotate(${(i * 6.5) - 80}deg) translateZ(0);">${char}</span>`
@@ -527,14 +527,14 @@
 
 
     // Calcul largeur progress bar
-    const progressBar = document.querySelector("#progressBar");
+    const progressBar = document.querySelector("#progress-bar");
     function animateProgressBar(progress) {
         progressBar.style.width = `${progress * 100}%`;
     }
 
 
     // Bouton "retour au début" en fin d'animation
-    document.querySelector("#linkbackToTop").addEventListener("click", () => {
+    document.querySelector("#link-back-to-top").addEventListener("click", () => {
         tl.progress(0); // Animation au début
         document.documentElement.scrollTop = body.scrollTop = 0; // Scroll en haut de page
         setSelectedMenu(); // Mise à jour sélection du menu
@@ -574,17 +574,17 @@
 
 
     // Ajout dynamique des projets dans la timeline
-    const nbProjectCards = document.querySelectorAll("#projects .projectCard").length;
+    const nbProjectCards = document.querySelectorAll("#projects .project-card").length;
     function setProjectCards(intituleMenu) {
         let units = 100;
         let coordX = 0;
         for(var i = 1; i <= nbProjectCards; i++) {
             coordX -= units;
             tl_scrollTriggerBody
-                .to(".projectCard", { duration: 25 })
+                .to(".project-card", { duration: 25 })
                 .addLabel(`${prefixNomLabelProjets}_${i}|${intituleMenu}`, ">") 
-                .to(".projectCard", { x: `${coordX}vw`, duration: 80, stagger: 10 })
-                .to(".projectCard", { duration: 25 }) // Pour que l'on reste sur un projet qd on scroll, sinon effet d'inertie et passe au label suivant
+                .to(".project-card", { x: `${coordX}vw`, duration: 80, stagger: 10 })
+                .to(".project-card", { duration: 25 }) // Pour que l'on reste sur un projet qd on scroll, sinon effet d'inertie et passe au label suivant
         }
         return tl_scrollTriggerBody;
     }
@@ -592,11 +592,11 @@
 
 
     const menu = document.querySelector(".menu"),
-        smallMenu = document.querySelector("#smallMenu"),
-        smallMenuSections = smallMenu.querySelector("#listeSections");
+        smallMenu = document.querySelector("#menu-small-screen"),
+        smallMenuSections = smallMenu.querySelector("#sections-list");
         
     // Gestion affichage menu small qd click sur icone
-    smallMenu.querySelector(".iconeMenu").addEventListener("click", displaySmallMenu );
+    smallMenu.querySelector(".icon-menu").addEventListener("click", displaySmallMenu );
     smallMenu.querySelector(".overlay").addEventListener("click", displaySmallMenu );
     function displaySmallMenu() {
         smallMenu.querySelector(".overlay").classList.toggle("display");
@@ -691,7 +691,7 @@
         const duree = 1;
         const easing = "power1"; /* "linear" */;
         let i = 0;
-        document.querySelectorAll(".projectCard").forEach(p => {
+        document.querySelectorAll(".project-card").forEach(p => {
             const leftArrow = p.querySelector(".navigation [data-direction='left']");
             const rightArrow = p.querySelector(".navigation [data-direction='right']");
             
@@ -749,7 +749,7 @@
 
     /// Yeux qui bougent et suivent la souris
     const pupilles = document.querySelectorAll(".pupille");
-    const eyesMovingZone = document.querySelector("#eyesMovingZone");
+    const eyesMovingZone = document.querySelector("#eyes-moving-zone");
     eyesMovingZone.addEventListener("mousemove", (e) => eyeball(e) );
     function eyeball(event) {
         pupilles.forEach(pupille => {
