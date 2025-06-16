@@ -8,7 +8,7 @@ Vercel permet de mettre en production un projet importé à partir de son compte
 J'utilise Gulp comme task manager pour générer des fichiers minifiés et bundlés.
 
 Le projet archivé sur github comprend les fichiers sources avant l'execution des tasks Gulp qui permettent d'obtenir les fichiers finaux à mettre en ligne.  
-Il faut donc lors de la mise en production, pouvoir builder le projet en executant la commande "gulp", et dire à Vercel de mettre en ligne le répertoire de fichiers buildés seulement (répertoire "dist" dans ce projet et pas "src").  
+Il faut donc lors de la mise en prod., pouvoir builder le projet en executant la commande "gulp", et dire à Vercel de mettre en ligne le répertoire de fichiers buildés seulement (répertoire "dist" dans ce projet et pas "src").  
 
 Voici la procédure :
 
