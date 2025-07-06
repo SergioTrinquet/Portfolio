@@ -1086,7 +1086,7 @@ body.noscroll {
   align-self: flex-start; /* Pour être aligné en haut de spn conteneur flex */
   /* font-size: clamp(23px, 4.5vmax, 55px); */  /* Version non IOS compatible */
   font-size: max(23px, min(4.5vmax, 55px)); /* Version IOS compatible */
-  line-height: 4.2vmax;
+  line-height: min(4.2vmax, 4rem);
   text-align: right;
   display: none;
   flex-direction: column;
