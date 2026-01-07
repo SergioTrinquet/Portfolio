@@ -805,6 +805,10 @@ body.noscroll {
   /* margin-bottom: clamp(4px, 0.5vh, 7px); */  /* Version non IOS compatible */
   margin-bottom: max(4px, min(0.5vh, 7px)); /* Version IOS compatible */
 }
+.no-wrap {
+  white-space: nowrap;
+  font-weight: inherit;
+}
 /*#endregion - Rubrique "Mes compétences" */
 
 
