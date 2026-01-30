@@ -930,7 +930,7 @@ body.noscroll {
   background-position-y: 82%;
   background-size: 210%;
  }
- #projects .img[data-project="unlock-pattern-app"] {
+ /* #projects .img[data-project="unlock-pattern-app"] {
   background-image: url("../imgs/projet_unlock_pattern_app.png");
   background-position-x: 35%;
   background-position-y: 66%;
@@ -940,7 +940,7 @@ body.noscroll {
     background-position-y: 86%;
     background-size: 210%;
   }
- }
+ } */
  #projects .img[data-project="jQuery-modal"] {
   background-image: url("../imgs/projet_widget_modal_jquery.png");
   background-position-x: 50%;
