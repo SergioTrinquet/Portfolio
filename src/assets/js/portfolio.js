@@ -235,7 +235,11 @@
 
     // Pour se déplacer d'un label à un autre qd scroll, 
     // avec méthode '.scrollTo()' (different de prop. 'snap' dans config du ScrollTrigger)
-    const dureeEntreLabels = [1.7, 2.6, 2.7, 0.8, 0.8, 6, 1.5];
+    const nbProjectCards = document.querySelectorAll("#projects .project-card").length;
+    const dureeEntreLabelsProjets = 0.8;
+    const arrayDureeEntreLabelsProjets = new Array(nbProjectCards - 1).fill(dureeEntreLabelsProjets);
+    const dureeEntreLabels = [1.7, 2.6, 2.7, ...arrayDureeEntreLabelsProjets, 6, 1.5];
+    
     function goToLabel() {
         //console.log(tl_scrollTriggerBody.labels); //TEST
         const direction = scrolltriggerOnUpdate.direction;
@@ -574,7 +578,6 @@
 
 
     // Ajout dynamique des projets dans la timeline
-    const nbProjectCards = document.querySelectorAll("#projects .project-card").length;
     function setProjectCards(intituleMenu) {
         let units = 100;
         let coordX = 0;

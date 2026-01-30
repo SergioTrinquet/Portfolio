@@ -13,7 +13,7 @@
   --deg-bg1: -8;
   --inclinaison-bg1: calc(var(--deg-bg1) * 1deg);
   --color-gradient-1-ruban: #ffb3cc;
-  --color-green: #27f43d;   /* --color-green: #ffe300; */
+  --color-green: #27f43d;
   --font-color-screen2: #505388;
   --color-degr-1-screen4: rgb(103, 108, 198);
   --color-degr-2-screen4: rgb(232, 70, 255);
@@ -851,22 +851,22 @@ body.noscroll {
 @media screen and (max-width: 480px) {
   #projects { 
     transform-origin: 0% 0%; 
-    /* margin: 30vh 0 0 0; */ margin: calc(var(--vh, 1vh) * 30) 0 0 0;  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
+    margin: calc(var(--vh, 1vh) * 30) 0 0 0;  /* "--vh" calculé coté .js */
   }
   #projects .project-card { 
     width: 74vw; 
     margin: 0 13vw;
-    /* height: 48vh; */ height: calc(var(--vh, 1vh) * 48);  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
+    height: calc(var(--vh, 1vh) * 48);  /* "--vh" calculé coté .js */
   }
 }
 @media screen and (max-width: 300px) {
   #projects {
-    /* margin: 34vh 0 0 0; */  margin: calc(var(--vh, 1vh) * 34) 0 0 0; /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
+    margin: calc(var(--vh, 1vh) * 34) 0 0 0; /* "--vh" calculé coté .js */
   }
   #projects .project-card { 
     width: 80vw; 
     margin: 0 10vw;
-    /* height: 50vh; */  height: calc(var(--vh, 1vh) * 50);  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
+    height: calc(var(--vh, 1vh) * 50);  /* "--vh" calculé coté .js */
   }
 }
 
@@ -879,7 +879,6 @@ body.noscroll {
 #projects .technos > span {
   border-radius: 5px;
   background-color: var(--color-green);
-  /* font-size: clamp(14px, 2vmax, 16px); */  /* Version non IOS compatible */
   font-size: max(14px, min(2vmax, 16px)); /* Version IOS compatible */
   color: #fff;
   padding: 2px 5px;
@@ -907,30 +906,45 @@ body.noscroll {
   margin: 0 0 0 -10%;
   top: 65%; top: 50%;
 }
-#projects .img[data-project="citiesSample"] {
- background-image: url("../imgs/projet_liste_villes.png");
- background-repeat: no-repeat;
- background-position-x: 30%;
- background-position-y: 10%;
- background-size: 260%;
- background-position-y: 30%;
- background-size: 180%;
-}
-#projects .img[data-project="shoppingApp"] {
-  background-image: url("../imgs/projet_shopping_app.png");
+
+#projects .img[data-project] {
   background-repeat: no-repeat;
-  background-position-x: 30%;
-  background-position-y: 10%;
-  background-size: 260%;
-  background-position-y: 30%;
   background-size: 180%;
+}
+
+#projects .img[data-project="cities-sample"] {
+ background-image: url("../imgs/projet_liste_villes.png");
+ background-position-x: 30%;
+ background-position-y: 30%;
+ background-size: 260%;
+}
+#projects .img[data-project="shopping-app"] {
+  background-image: url("../imgs/projet_shopping_app.png");
+  background-position-x: 30%;
+  background-position-y: 30%;
+  background-size: 260%;
  }
- #projects .img[data-project="jQueryModal"] {
+ #projects .img[data-project="todolist-app"] {
+  background-image: url("../imgs/projet_todolist_MVC.png");
+  background-position-x: 57%;
+  background-position-y: 82%;
+  background-size: 210%;
+ }
+ #projects .img[data-project="unlock-pattern-app"] {
+  background-image: url("../imgs/projet_unlock_pattern_app.png");
+  background-position-x: 35%;
+  background-position-y: 66%;
+  background-size: 160%;
+  @media (width < 425px) {
+    background-position-x: 45%;
+    background-position-y: 86%;
+    background-size: 210%;
+  }
+ }
+ #projects .img[data-project="jQuery-modal"] {
   background-image: url("../imgs/projet_widget_modal_jquery.png");
-  background-repeat: no-repeat;
   background-position-x: 50%;
   background-position-y: 30%;
-  background-size: 180%;
  }
 
 #projects .title {
@@ -944,7 +958,8 @@ body.noscroll {
       margin: -15px 0 0 -10px;
     }
 }
-#projects .project-card ul li { margin: 0 0 0 12px; }
+
+#projects .project-card ul { padding: 0 0 0 20px; }
 #projects .details {
   overflow-y: auto;
   margin: 1vmax 2vmax 3vmax 2vmax;
@@ -975,13 +990,11 @@ body.noscroll {
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
   #projects a.project-link {  
-    /* font-size: clamp(16px, 3vmin, 18px); */ /* Version non IOS compatible */
     font-size: max(16px, min(3vmin, 18px)); /* Version IOS compatible */
   }
 }
 @media screen and (max-width: 480px) {
   #projects a.project-link { 
-    /* font-size: clamp(16px, 4vmin, 18px); */ /* Version non IOS compatible */
     font-size: max(16px, min(4vmin, 18px)); /* Version IOS compatible */
   }
 }
@@ -1529,6 +1542,7 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   justify-content: center;
   align-items: center;
   transition: all 0.3s ease;
+  user-select: none;
 } 
 .project-card .navigation i.hidden {
   visibility: hidden;
