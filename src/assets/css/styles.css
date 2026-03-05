@@ -935,13 +935,20 @@ body.noscroll {
   background-position-x: 35%;
   background-position-y: 66%;
   background-size: 160%;
-  /* @media (width < 425px) { */
-  @media (max-width: 424px) {
+  /* @media (width < 425px) {
+    background-position-x: 45%;
+    background-position-y: 86%;
+    background-size: 210%;
+  } */
+ }
+ @media (max-width: 424px) {
+  #projects .img[data-project="unlock-pattern-app"] {
     background-position-x: 45%;
     background-position-y: 86%;
     background-size: 210%;
   }
  }
+
  #projects .img[data-project="jQuery-modal"] {
   background-image: url("../imgs/projet_widget_modal_jquery.png");
   background-position-x: 50%;
