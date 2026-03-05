@@ -935,7 +935,8 @@ body.noscroll {
   background-position-x: 35%;
   background-position-y: 66%;
   background-size: 160%;
-  @media (width < 425px) {
+  /* @media (width < 425px) { */
+  @media (max-width: 424px) {
     background-position-x: 45%;
     background-position-y: 86%;
     background-size: 210%;
