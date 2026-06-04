@@ -909,44 +909,55 @@ body.noscroll {
 
 #projects .img[data-project] {
   background-repeat: no-repeat;
-  background-size: 180%;
+  background-size: var(--project-img-size);
 }
-
+#projects .img[data-project="memory-game-app"] {
+ background-image: url("../imgs/projet_memory_game.png");
+ background-position-x: 50%;
+ background-position-y: 50%;
+ --project-img-size: 250%;
+}
+ @media (max-width: 424px) {
+  #projects .img[data-project="memory-game-app"] {
+  background-position-y: 63%;
+  }
+}
 #projects .img[data-project="cities-sample"] {
  background-image: url("../imgs/projet_liste_villes.png");
  background-position-x: 30%;
  background-position-y: 30%;
- background-size: 260%;
+ --project-img-size: 260%;
 }
 #projects .img[data-project="shopping-app"] {
   background-image: url("../imgs/projet_shopping_app.png");
   background-position-x: 30%;
   background-position-y: 30%;
-  background-size: 260%;
+  --project-img-size: 260%;
  }
  #projects .img[data-project="todolist-app"] {
   background-image: url("../imgs/projet_todolist_MVC.png");
   background-position-x: 57%;
   background-position-y: 82%;
-  background-size: 210%;
+  --project-img-size: 210%;
  }
  #projects .img[data-project="unlock-pattern-app"] {
   background-image: url("../imgs/projet_unlock_pattern_app.png");
   background-position-x: 35%;
   background-position-y: 66%;
-  background-size: 160%;
+  --project-img-size: 160%;
  }
  @media (max-width: 424px) {
   #projects .img[data-project="unlock-pattern-app"] {
     background-position-x: 45%;
     background-position-y: 86%;
-    background-size: 210%;
+    --project-img-size: 210%;
   }
  }
  #projects .img[data-project="jQuery-modal"] {
   background-image: url("../imgs/projet_widget_modal_jquery.png");
   background-position-x: 50%;
   background-position-y: 30%;
+  --project-img-size: 180%;
  }
 
 #projects .title {
@@ -1035,7 +1046,7 @@ body.noscroll {
   background-color: rgb(79, 66, 109);
 }
 #projects a.project-link:hover + .img {
-  background-size: 290%;
+  background-size: calc(var(--project-img-size) * 1.2);
 }
 /*#endregion - Rubrique "Projets perso" */
 
