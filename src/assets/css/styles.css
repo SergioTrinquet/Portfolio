@@ -912,7 +912,7 @@ body.noscroll {
   background-size: var(--project-img-size);
 }
 #projects .img[data-project="memory-game-app"] {
- background-image: url("../imgs/projet_memory_game.png");
+ background-image: url("../imgs/projets/projet_memory_game.png");
  background-position-x: 50%;
  background-position-y: 50%;
  --project-img-size: 250%;
@@ -923,25 +923,25 @@ body.noscroll {
   }
 }
 #projects .img[data-project="cities-sample"] {
- background-image: url("../imgs/projet_liste_villes.png");
+ background-image: url("../imgs/projets/projet_liste_villes.png");
  background-position-x: 30%;
  background-position-y: 30%;
  --project-img-size: 260%;
 }
 #projects .img[data-project="shopping-app"] {
-  background-image: url("../imgs/projet_shopping_app.png");
+  background-image: url("../imgs/projets/projet_shopping_app.png");
   background-position-x: 30%;
   background-position-y: 30%;
   --project-img-size: 260%;
  }
  #projects .img[data-project="todolist-app"] {
-  background-image: url("../imgs/projet_todolist_MVC.png");
+  background-image: url("../imgs/projets/projet_todolist_MVC.png");
   background-position-x: 57%;
   background-position-y: 82%;
   --project-img-size: 210%;
  }
  #projects .img[data-project="unlock-pattern-app"] {
-  background-image: url("../imgs/projet_unlock_pattern_app.png");
+  background-image: url("../imgs/projets/projet_unlock_pattern_app.png");
   background-position-x: 35%;
   background-position-y: 66%;
   --project-img-size: 160%;
@@ -954,7 +954,7 @@ body.noscroll {
   }
  }
  #projects .img[data-project="jQuery-modal"] {
-  background-image: url("../imgs/projet_widget_modal_jquery.png");
+  background-image: url("../imgs/projets/projet_widget_modal_jquery.png");
   background-position-x: 50%;
   background-position-y: 30%;
   --project-img-size: 180%;

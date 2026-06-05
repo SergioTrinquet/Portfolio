@@ -4,10 +4,10 @@
 (async function () {
 
     // Chargement des SVG externalisés
-    async function loadAllSVGs() {
+    async function loadSVGfiles() {
         const svgs = [
-            { url: 'assets/imgs/svg/portfolio-assets.svg', id: '#SVGs' },
-            { url: 'assets/imgs/svg/face-drawing.svg', id: '#SVG-face-drawing' }
+            { url: 'assets/imgs/svg-animations/portfolio-assets.svg', id: '#SVGs' },
+            { url: 'assets/imgs/svg-animations/face-drawing.svg', id: '#SVG-face-drawing' }
         ];
 
         try {
@@ -25,7 +25,7 @@
         }
     }
 
-    await loadAllSVGs();
+    await loadSVGfiles();
 
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);    // 'ScrollToPlugin' pour le "scrollTo"
 
