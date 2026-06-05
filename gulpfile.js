@@ -14,11 +14,11 @@ const paths = {
         dest: 'dist/'
     },
     imgs: {
-        src: 'src/assets/imgs/*.*',
+        src: 'src/assets/imgs/**/*',
         dest: 'dist/assets/imgs/'
     },
     docs: {
-        src: 'src/assets/docs/*.*',
+        src: 'src/assets/docs/**/*',
         dest: 'dist/assets/docs/'
     }
 };
