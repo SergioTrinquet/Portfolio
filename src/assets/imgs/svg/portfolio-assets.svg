@@ -78,7 +78,7 @@
          id="roue_2B" class="roue" style="fill:#6f6f6f;"
          r="14.914671" cx="-38.74102" cy="1158.9254" />
       <ellipse
-         id="roue_1B" class="roue" style="fill:#6f6f6f;"
+         id="roue_1B" class="roue" style="fill:#6f6f6f;""
          ry="14.973147" rx="10.830183" cx="-42.331589" cy="1097.6096" />
       <ellipse
          ry="14.973147" rx="10.830183" cx="-50.607784" cy="1098.4479"
