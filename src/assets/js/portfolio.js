@@ -1,8 +1,31 @@
 ///
 // Encapsulation code (au cas ou l'on ajouterait librairie externe ou code maison 
 // dans un autre fichier, qui pourrait générer des conflits - même noms de variables, fonctions par exemple- )
-(function () {
-///
+(async function () {
+
+    // Chargement des SVG externalisés
+    async function loadAllSVGs() {
+        const svgs = [
+            { url: 'assets/imgs/svg/portfolio-assets.svg', id: '#SVGs' },
+            { url: 'assets/imgs/svg/face-drawing.svg', id: '#SVG-face-drawing' }
+        ];
+
+        try {
+            await Promise.all(svgs.map(async (svg) => {
+                const response = await fetch(svg.url);
+                if (!response.ok) throw new Error(`Failed to load ${svg.url}`);
+                const text = await response.text();
+                const container = document.querySelector(svg.id);
+                if (container) {
+                    container.outerHTML = text;
+                }
+            }));
+        } catch (error) {
+            console.error("Erreur lors du chargement des SVG :", error);
+        }
+    }
+
+    await loadAllSVGs();
 
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);    // 'ScrollToPlugin' pour le "scrollTo"
 
