@@ -241,9 +241,9 @@ body.noscroll {
   width: 100vw;
   top: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  justify-content: flex-start; 
+  align-items: center;
 }
 
 #bg-screen-5 {
@@ -818,14 +818,20 @@ body.noscroll {
   display: flex;
   transform-origin: 5% 0%;
   align-self: flex-start;
-  /* margin: 28vh 0 0 0; */   margin: calc(var(--vh, 1vh) * 28) 0 0 0;  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
+  /* margin: calc(var(--vh, 1vh) * 28) 0 0 0; */  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
+  
+  /* EN COURS DE DEV */
+  /* box-shadow: inset 0 0 0 4px red; */
+  flex-direction: column;
+  margin: calc(var(--vh, 1vh) * 41.5) 0 0 0;  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
+  gap: calc(var(--vh, 1vh) * 55);
 }
 #projects .project-card {
   display: flex;
   flex-direction: column;
   position: relative;
   background-color: #fff;
-  /* height: 45vh; */   height: calc(var(--vh, 1vh) * 45);  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
+  height: calc(var(--vh, 1vh) * 45);  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
   font-size: 1.9vmax;   
   /* font-size: clamp(15px, 3vmin, 18px); */  /* Version non IOS compatible */
   font-size: max(15px, min(3vmin, 18px)); /* Version IOS compatible */
@@ -837,7 +843,7 @@ body.noscroll {
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   #projects .project-card { 
     width: 50vw; 
-    margin: 0 25vw; 
+    margin: 0 25vw;
   }
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
@@ -846,12 +852,17 @@ body.noscroll {
   }
   #projects .project-card { 
     width: 70vw; 
-    margin: 0 15vw; }
+    margin: 0 15vw; 
+  }
 }
 @media screen and (max-width: 480px) {
   #projects { 
     transform-origin: 0% 0%; 
     margin: calc(var(--vh, 1vh) * 30) 0 0 0;  /* "--vh" calculé coté .js */
+    
+    /* EN COURS DE DEV */
+    margin: calc(var(--vh, 1vh) * 40.8) 0 0 0;  /* "--vh" calculé coté .js */
+    gap: calc(var(--vh, 1vh) * 52);
   }
   #projects .project-card { 
     width: 74vw; 
@@ -862,6 +873,10 @@ body.noscroll {
 @media screen and (max-width: 300px) {
   #projects {
     margin: calc(var(--vh, 1vh) * 34) 0 0 0; /* "--vh" calculé coté .js */
+    
+    /* EN COURS DE DEV */
+    margin: calc(var(--vh, 1vh) * 40.5) 0 0 0; /* "--vh" calculé coté .js */
+    gap: calc(var(--vh, 1vh) * 50);
   }
   #projects .project-card { 
     width: 80vw; 

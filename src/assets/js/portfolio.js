@@ -259,7 +259,7 @@
     // Pour se déplacer d'un label à un autre qd scroll, 
     // avec méthode '.scrollTo()' (different de prop. 'snap' dans config du ScrollTrigger)
     const nbProjectCards = document.querySelectorAll("#projects .project-card").length;
-    const dureeEntreLabelsProjets = 0.8;
+    const dureeEntreLabelsProjets = 0.6;
     const arrayDureeEntreLabelsProjets = new Array(nbProjectCards - 1).fill(dureeEntreLabelsProjets);
     const dureeEntreLabels = [1.7, 2.6, 2.7, ...arrayDureeEntreLabelsProjets, 6, 1.5];
     
@@ -325,6 +325,11 @@
             #bg-screen-5, #SVG-chaise, #SVG-table-sans-pied-BG, #SVG-table-pied-BG, #SVG-corps, #SVG-bras,#SVG-laptop, #SVG-lampe, #SVG-tasse, #SVG-ombre, .msg-remerciements, .msg-remerciements > *, #marge-right,
             #bg-screen-end, #bg-screen-end #mot span, #bg-screen-end .mot-trait, .bg-transitional, .SVGs-and-annexes
             `, {clearProps: "all"});
+            /* .set(`.wrapper-SVGs-and-texts, .rayons, .text-presentation, #bg-screen-1-and-2 > .ray, 
+            #content-screen-3, .pre-screen-3, #content-screen-3 #shadows > div, .halo, .half-screen-bg, #skills .domain, .domain .title, #SVGs, #intitule-job, #content-screen-4, #section-titles .section-title, #skills, 
+            #bg-screen-5, #SVG-chaise, #SVG-table-sans-pied-BG, #SVG-table-pied-BG, #SVG-corps, #SVG-bras,#SVG-laptop, #SVG-lampe, #SVG-tasse, #SVG-ombre, .msg-remerciements, .msg-remerciements > *, #marge-right,
+            #bg-screen-end, #bg-screen-end #mot span, #bg-screen-end .mot-trait, .bg-transitional, .SVGs-and-annexes, .project-card
+            `, {clearProps: "all"}); */
                 
         if(isIPadOrIPhone) tl_scrollTriggerBody.set(".SVGs-and-annexes", { width: "70vmin" }); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
 
@@ -431,9 +436,9 @@
             , "<")
             .to("#intitule-job", { color: "rgb(114, 122, 167)" }, "<")
             .fromTo(".project-card", 
-                { x: "100vw" }, 
-                { x: "0vw", duration:40, stagger: 10 }
-            ); // Arrivée encarts projets venant de la droite
+                { y: "100vh", autoAlpha: 1, scale: 1 }, 
+                { y: "0vh", autoAlpha: 1, scale: 1, duration: 40, stagger: 10 }
+            ); // Arrivée encarts projets venant du bas
             
         // Ajout projets
         setProjectCards(intitulesMenu[3]);
@@ -588,7 +593,6 @@
         } else if(window.matchMedia("(max-width: 380px)").matches) {
             kindOfmedia = "xs";
         }
-
         return kindOfmedia;
     }
 
@@ -602,15 +606,25 @@
 
     // Ajout dynamique des projets dans la timeline
     function setProjectCards(intituleMenu) {
+        const cards = document.querySelectorAll("#projects .project-card");
         let units = 100;
-        let coordX = 0;
         for(var i = 1; i <= nbProjectCards; i++) {
-            coordX -= units;
+            let coordY = -(i * units);
+            // On ne cible que les cards qui ne sont pas encore "fixées" (stackées)
+            // La card 1 reste à 0vh, la card 2 à -100vh, etc.
+            const targets = Array.from(cards).slice(i);
+            
             tl_scrollTriggerBody
                 .to(".project-card", { duration: 25 })
                 .addLabel(`${prefixNomLabelProjets}_${i}|${intituleMenu}`, ">") 
-                .to(".project-card", { x: `${coordX}vw`, duration: 80, stagger: 10 })
-                .to(".project-card", { duration: 25 }) // Pour que l'on reste sur un projet qd on scroll, sinon effet d'inertie et passe au label suivant
+                .to(targets, { y: `${coordY}vh`, duration: 80, stagger: 10 });
+
+            // Effet de fading et scale sur la carte qui va être recouverte
+            if (i < nbProjectCards) {
+                tl_scrollTriggerBody.to(cards[i-1], { autoAlpha: 0, scale: 0.8, duration: 40 }, "<");
+            }
+
+            tl_scrollTriggerBody.to(".project-card", { duration: 25 }) // Pour que l'on reste sur un projet qd on scroll, sinon effet d'inertie et passe au label suivant
         }
         return tl_scrollTriggerBody;
     }
