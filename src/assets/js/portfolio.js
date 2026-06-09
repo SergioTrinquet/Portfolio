@@ -668,7 +668,7 @@
         menu.classList.toggle("display", !force);
 
         generateMenu(menuTag, force);  // Création navigation générale
-        generateProjectsNavigation(); // Création navigation entre projets perso
+        // generateProjectsNavigation(); // Création navigation entre projets perso
     }
 
 
@@ -718,7 +718,7 @@
 
 
     // Génération des flèches pour naviguer d'un projet à un autre dans la rubrique "Projets perso"
-    function generateProjectsNavigation() {
+    /* function generateProjectsNavigation() {
         let navigation_projects = [];
 
         for (const key in tl_scrollTriggerBody.labels) {
@@ -734,7 +734,7 @@
         
         const index = (`${prefixNomLabelProjets}_`).length;
         const duree = 1;
-        const easing = "power1"; /* "linear" */;
+        const easing = "power1"; // "linear"
         let i = 0;
         document.querySelectorAll(".project-card").forEach(p => {
             const leftArrow = p.querySelector(".navigation [data-direction='left']");
@@ -778,7 +778,7 @@
             
             i++;
         })
-    }
+    } */
 
 
     // Mise en valeur du menu sur lequel on est
