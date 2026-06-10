@@ -830,6 +830,8 @@ body.noscroll {
   flex-direction: column;
   margin: calc(var(--vh, 1vh) * 41.5) 0 0 0;  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
   gap: calc(var(--vh, 1vh) * 55);
+
+  margin: 41.5vh 0 0 0;
 }
 /* @supports (height: 100svh) {
   #projects {
