@@ -827,14 +827,18 @@ body.noscroll {
   flex-direction: column;
   position: relative;
   background-color: #fff;
-  height: calc(var(--vh, 1vh) * 45);  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */ 
+  border-radius: 10px;
+  color: rgb(73, 77, 140);
   /* font-size: clamp(15px, 3vmin, 18px); */  /* Version non IOS compatible */
   font-size: max(15px, min(3vmin, 18px)); /* Version IOS compatible */
-  color: rgb(73, 77, 140);
-  border-radius: 10px;
   --project-card-width: 40;
   width: calc(var(--project-card-width) * 1vw); 
   margin: 0 calc(((100 - var(--project-card-width)) / 2) * 1vw);
+
+  height: calc(var(--vh, 1vh) * 45);  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */ 
+
+  /* On utilise calc pour que la position reste synchronisée avec --vh */
+  translate: 0 calc(var(--vh, 1vh) * var(--y-coord, 0));
 }
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   #projects .project-card { 
@@ -1628,3 +1632,14 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   line-height: 23px;
   color: #b90404;
 }
+
+
+
+
+
+/* TEST */
+/* "#projects {...}" => On devra retirer out ce qui est 'display: flex' pour ce sélecteur sauf "align-self: flex-start" => Je ne sais pas pourquoi ???*/
+/* #projects .project-card {
+  position: absolute;
+  z-index: 10001;
+} */

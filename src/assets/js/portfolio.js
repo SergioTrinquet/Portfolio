@@ -329,7 +329,7 @@
             #content-screen-3, .pre-screen-3, #content-screen-3 #shadows > div, .halo, .half-screen-bg, #skills .domain, .domain .title, #SVGs, #intitule-job, #content-screen-4, #section-titles .section-title, #skills, 
             #bg-screen-5, #SVG-chaise, #SVG-table-sans-pied-BG, #SVG-table-pied-BG, #SVG-corps, #SVG-bras,#SVG-laptop, #SVG-lampe, #SVG-tasse, #SVG-ombre, .msg-remerciements, .msg-remerciements > *, #marge-right,
             #bg-screen-end, #bg-screen-end #mot span, #bg-screen-end .mot-trait, .bg-transitional, .SVGs-and-annexes
-            `, {clearProps: "all"});
+            `, {clearProps: "all", "--y-coord": 0});
                 
         if(isIPadOrIPhone) tl_scrollTriggerBody.set(".SVGs-and-annexes", { width: "70vmin" }); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
                 
@@ -438,8 +438,8 @@
             , "<")
             .to("#intitule-job", { color: "rgb(114, 122, 167)" }, "<")
             .fromTo(".project-card", 
-                { y: "100vh", autoAlpha: 1, scale: 1 }, 
-                { y: "0vh", autoAlpha: 1, scale: 1, duration: 40, stagger: 10 }
+                { "--y-coord": 100, autoAlpha: 1, scale: 1 }, 
+                { "--y-coord": 0, autoAlpha: 1, scale: 1, duration: 40, stagger: 10 }
             ); // Arrivée encarts projets venant du bas
 
         // Ajout projets
@@ -623,7 +623,7 @@
             
             tl_scrollTriggerBody
                 // Transition vers le projet suivant
-                .to(targets, { y: `${coordY}vh`, duration: 80, stagger: 10 })
+                .to(targets, { "--y-coord": coordY, duration: 80, stagger: 10 })
                 .to(cards[i-1], { autoAlpha: 0, scale: 0.8, duration: 40 }, "<")
                 
                 // Etat stable (Le projet i+1 est maintenant en place)
