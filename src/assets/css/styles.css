@@ -821,6 +821,11 @@ body.noscroll {
   flex-direction: column;
   margin: calc(var(--vh, 1vh) * 41.5) 0 0 0;  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
   gap: calc(var(--vh, 1vh) * 55);
+
+  @supports (height: 100svh) {
+    margin: 41.5svh 0 0 0;
+    gap: 55svh;
+  }
 }
 #projects .project-card {
   display: flex;
@@ -837,8 +842,12 @@ body.noscroll {
 
   height: calc(var(--vh, 1vh) * 45);  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */ 
 
-  /* On utilise calc pour que la position reste synchronisée avec --vh */
+  /* valeur de  la custom property"--y-coord" affecté dans le JS => On utilise calc pour que la position reste synchronisée avec --vh */
   translate: 0 calc(var(--vh, 1vh) * var(--y-coord, 0));
+  @supports (height: 100svh) {
+    translate: 0 calc(1svh * var(--y-coord, 0));
+  }
+
 }
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   #projects .project-card { 
