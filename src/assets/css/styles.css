@@ -824,26 +824,20 @@ body.noscroll {
 
 /*#region - Rubrique "Projets perso" */
 #projects {
-  display: flex;
-  transform-origin: 5% 0%;
   align-self: flex-start;
-  flex-direction: column;
+  transform-origin: 5% 0%;
   margin: calc(var(--vh, 1vh) * 41.5) 0 0 0;  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
-  gap: calc(var(--vh, 1vh) * 55);
-
-  margin: 41.5vh 0 0 0;
 }
 /* @supports (height: 100svh) {
   #projects {
-  margin: 41.5svh 0 0 0;
-  gap: 55svh;
+    margin: 41.5svh 0 0 0;
   }
 } */
 
 #projects .project-card {
   display: flex;
   flex-direction: column;
-  position: relative;
+  position: absolute;
   background-color: #fff;
   border-radius: 10px;
   color: rgb(73, 77, 140);
@@ -858,11 +852,10 @@ body.noscroll {
   translate: 0 calc(var(--vh, 1vh) * var(--y-coord, 0));
 }
 /* @supports (height: 100svh) {
-  #projects .project-card {
-    translate: 0 calc(1svh * var(--y-coord, 0));
-
-    height: 45svh;
-  }
+    #projects .project-card {
+      translate: 0 calc(1svh * var(--y-coord, 0));
+      height: 45svh;
+    }
 } */
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
@@ -882,7 +875,6 @@ body.noscroll {
   #projects { 
     transform-origin: 0% 0%; 
     margin: calc(var(--vh, 1vh) * 40.8) 0 0 0;  /* "--vh" calculé coté .js */
-    gap: calc(var(--vh, 1vh) * 52);
   }
   #projects .project-card { 
     --project-card-width: 80;
@@ -892,7 +884,6 @@ body.noscroll {
 @media screen and (max-width: 300px) {
   #projects {
     margin: calc(var(--vh, 1vh) * 40.5) 0 0 0; /* "--vh" calculé coté .js */
-    gap: calc(var(--vh, 1vh) * 50);
   }
   #projects .project-card { 
     height: calc(var(--vh, 1vh) * 50);  /* "--vh" calculé coté .js */
@@ -1656,16 +1647,4 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   font-size: 20px;
   line-height: 23px;
   color: #b90404;
-}
-
-
-
-
-
-/* TEST */
-/* "#projects {...}" => On devra retirer out ce qui est 'display: flex' pour ce sélecteur sauf "align-self: flex-start" => Je ne sais pas pourquoi ???*/
-#projects .project-card {
-  position: absolute;
-  z-index: 10001;
-  /* --y-coord: 100; */
 }
