@@ -225,15 +225,24 @@ body.noscroll {
 .half-screen-bg {
   position: absolute;
   z-index: 2;
-  width: 140vw;
+  opacity: 0.7;
   background-color: #d5d7f9;  
   background: linear-gradient(-1deg, #dcddf9 0%, #fff 100%); 
+  width: 140vw;
   left: -20vw; /* 140vw pour la largeur de cette élément - 100vw pour la largeur de l'écran  / 2 pour centrer l'élément */
   transform-origin: 50% 50%;
   transform: rotate(-8deg) skew(-8deg, 0) translateX(-150vw);
-  top: 45vh;
   height: 36vh;
-  opacity: 0.7;
+
+  /* top: 45vh; */
+  --top-half-screen-bg: 45;
+  --height-unit: 1vh;
+  top: calc(var(--top-half-screen-bg) * var(--height-unit));
+}
+@supports (height: 1svh) {
+  .half-screen-bg {
+    --height-unit: 1svh;
+  }
 }
 
 #content-screen-4 {
@@ -821,12 +830,14 @@ body.noscroll {
   flex-direction: column;
   margin: calc(var(--vh, 1vh) * 41.5) 0 0 0;  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
   gap: calc(var(--vh, 1vh) * 55);
-
-  @supports (height: 100svh) {
-    margin: 41.5svh 0 0 0;
-    gap: 55svh;
+}
+@supports (height: 100svh) {
+  #projects {
+  margin: 41.5svh 0 0 0;
+  gap: 55svh;
   }
 }
+
 #projects .project-card {
   display: flex;
   flex-direction: column;
@@ -841,14 +852,15 @@ body.noscroll {
   margin: 0 calc(((100 - var(--project-card-width)) / 2) * 1vw);
 
   height: calc(var(--vh, 1vh) * 45);  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */ 
-
   /* valeur de  la custom property"--y-coord" affecté dans le JS => On utilise calc pour que la position reste synchronisée avec --vh */
   translate: 0 calc(var(--vh, 1vh) * var(--y-coord, 0));
-  @supports (height: 100svh) {
+}
+@supports (height: 100svh) {
+  #projects .project-card {
     translate: 0 calc(1svh * var(--y-coord, 0));
   }
-
 }
+
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   #projects .project-card { 
     --project-card-width: 50;

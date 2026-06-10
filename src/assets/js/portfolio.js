@@ -329,7 +329,7 @@
             #content-screen-3, .pre-screen-3, #content-screen-3 #shadows > div, .halo, .half-screen-bg, #skills .domain, .domain .title, #SVGs, #intitule-job, #content-screen-4, #section-titles .section-title, #skills, 
             #bg-screen-5, #SVG-chaise, #SVG-table-sans-pied-BG, #SVG-table-pied-BG, #SVG-corps, #SVG-bras,#SVG-laptop, #SVG-lampe, #SVG-tasse, #SVG-ombre, .msg-remerciements, .msg-remerciements > *, #marge-right,
             #bg-screen-end, #bg-screen-end #mot span, #bg-screen-end .mot-trait, .bg-transitional, .SVGs-and-annexes
-            `, {clearProps: "all", "--y-coord": 0});
+            `, {clearProps: "all", "--y-coord": 0, "--top-half-screen-bg": 45}); // Ajout propriétés CSS personnalisées utilisées pour les animations
                 
         if(isIPadOrIPhone) tl_scrollTriggerBody.set(".SVGs-and-annexes", { width: "70vmin" }); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
                 
@@ -427,7 +427,7 @@
             })   // Animation retrait titre "Mes compétences"
             .to("#content-screen-4", { top:"0vh", duration: 80 })    // Apparition contenu section 3
             .to(".half-screen-bg", { zIndex: 3 })
-            .to(".half-screen-bg", { transform: `rotate(${inclinaison_desc}deg) translateY(0vh)`, top: "52vh", height: "80vh", duration: 30 }) // Changement inclinaison/extension partie médiane du background clair
+            .to(".half-screen-bg", { transform: `rotate(${inclinaison_desc}deg) translateY(0vh)`, "--top-half-screen-bg": 52, height: "80vh", duration: 30 }) // Changement inclinaison/extension partie médiane du background clair
             .fromTo(".section-title#my-projects", 
                 { transform: `skew(0deg, ${deg_inclinaison_asc}deg) translateX(100vw)`, autoAlpha: 1 }, 
                 { transform: `skew(0deg, ${deg_inclinaison_asc}deg) translateX(0vw)`, autoAlpha: 1, display: "inline-block", duration: 15}
