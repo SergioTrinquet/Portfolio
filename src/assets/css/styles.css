@@ -858,6 +858,8 @@ body.noscroll {
 @supports (height: 100svh) {
   #projects .project-card {
     translate: 0 calc(1svh * var(--y-coord, 0));
+
+    height: 45svh;
   }
 }
 
