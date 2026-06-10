@@ -827,6 +827,8 @@ body.noscroll {
   align-self: flex-start;
   transform-origin: 5% 0%;
   margin: calc(var(--vh, 1vh) * 41.5) 0 0 0;  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
+  
+  margin: 41.5vh 0 0 0; /* TEST */
 }
 /* @supports (height: 100svh) {
   #projects {
@@ -875,6 +877,8 @@ body.noscroll {
   #projects { 
     transform-origin: 0% 0%; 
     margin: calc(var(--vh, 1vh) * 40.8) 0 0 0;  /* "--vh" calculé coté .js */
+
+    margin: 40.8vh 0 0 0; /* TEST */
   }
   #projects .project-card { 
     --project-card-width: 80;
@@ -884,6 +888,8 @@ body.noscroll {
 @media screen and (max-width: 300px) {
   #projects {
     margin: calc(var(--vh, 1vh) * 40.5) 0 0 0; /* "--vh" calculé coté .js */
+
+    margin: 40.5vh 0 0 0; /* TEST */
   }
   #projects .project-card { 
     height: calc(var(--vh, 1vh) * 50);  /* "--vh" calculé coté .js */
