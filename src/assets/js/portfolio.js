@@ -329,7 +329,7 @@
             #content-screen-3, .pre-screen-3, #content-screen-3 #shadows > div, .halo, .half-screen-bg, #skills .domain, .domain .title, #SVGs, #intitule-job, #content-screen-4, #section-titles .section-title, #skills, 
             #bg-screen-5, #SVG-chaise, #SVG-table-sans-pied-BG, #SVG-table-pied-BG, #SVG-corps, #SVG-bras,#SVG-laptop, #SVG-lampe, #SVG-tasse, #SVG-ombre, .msg-remerciements, .msg-remerciements > *, #marge-right,
             #bg-screen-end, #bg-screen-end #mot span, #bg-screen-end .mot-trait, .bg-transitional, .SVGs-and-annexes
-            `, {clearProps: "all", "--y-coord": 0, "--top-half-screen-bg": 45}); // Ajout propriétés CSS personnalisées utilisées pour les animations
+            `, {clearProps: "all", /* "--y-coord": 0 */"--y-coord": 100, "--top-half-screen-bg": 45}); // Ajout propriétés CSS personnalisées utilisées pour les animations
                 
         if(isIPadOrIPhone) tl_scrollTriggerBody.set(".SVGs-and-annexes", { width: "70vmin" }); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
                 
@@ -437,13 +437,18 @@
                 { background: "linear-gradient(-29deg, rgb(122, 221, 212) 0%, rgb(111, 85, 151) 100%)", duration: 80 }
             , "<")
             .to("#intitule-job", { color: "rgb(114, 122, 167)" }, "<")
-            .fromTo(".project-card", 
+            /* .fromTo(".project-card", 
                 { "--y-coord": 100, autoAlpha: 1, scale: 1 }, 
                 { "--y-coord": 0, autoAlpha: 1, scale: 1, duration: 40, stagger: 10 }
             ); // Arrivée encarts projets venant du bas
 
         // Ajout projets
-        setProjectCards(intitulesMenu[3]);
+        // setProjectCards(intitulesMenu[3]); */
+        .fromTo(".project-card", 
+                { "--y-coord": 100, autoAlpha: 1, scale: 1 }, 
+                { "--y-coord": 100, autoAlpha: 1, scale: 1, duration: 40, stagger: 10 }
+            )
+        setProjectCards_V2(intitulesMenu[3]);
 
         tl_scrollTriggerBody
             .to(".bg-transitional", { keyframes: [
@@ -633,6 +638,35 @@
         }
         return tl_scrollTriggerBody;
     }
+
+
+    /* TEST */
+    function setProjectCards_V2(intituleMenu) {
+        const cards = document.querySelectorAll("#projects .project-card");
+
+        // Etat initial (Projet 1 déjà centré)
+        tl_scrollTriggerBody
+            .to(cards[0], { "--y-coord": 0, duration: 80, stagger: 10 })
+            .to(cards[0], { duration: 50 })
+            .addLabel(`${prefixNomLabelProjets}_1|${intituleMenu}`, ">")
+            .to(cards[0], { duration: 50 });
+
+        for(var i = 1; i < nbProjectCards; i++) {
+            const target = cards[i];
+            
+            tl_scrollTriggerBody
+                // Transition vers le projet suivant
+                .to(target, { "--y-coord": 0, duration: 80, stagger: 10 })
+                .to(cards[i-1], { autoAlpha: 0, scale: 0.8, duration: 40 }, "<")
+                
+                // Etat stable (Le projet i+1 est maintenant en place)
+                .to(".project-card", { duration: 50 })
+                .addLabel(`${prefixNomLabelProjets}_${i+1}|${intituleMenu}`, ">") 
+                .to(".project-card", { duration: 50 });
+        }
+        return tl_scrollTriggerBody;
+    }
+    /* FIN TEST */
 
 
 

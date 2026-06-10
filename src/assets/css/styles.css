@@ -1662,7 +1662,8 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
 
 /* TEST */
 /* "#projects {...}" => On devra retirer out ce qui est 'display: flex' pour ce sélecteur sauf "align-self: flex-start" => Je ne sais pas pourquoi ???*/
-/* #projects .project-card {
+#projects .project-card {
   position: absolute;
   z-index: 10001;
-} */
+  /* --y-coord: 100; */
+}
