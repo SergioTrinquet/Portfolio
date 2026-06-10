@@ -233,17 +233,17 @@ body.noscroll {
   transform-origin: 50% 50%;
   transform: rotate(-8deg) skew(-8deg, 0) translateX(-150vw);
   height: 36vh;
+  top: 45vh;
 
-  /* top: 45vh; */
   --top-half-screen-bg: 45;
   --height-unit: 1vh;
   top: calc(var(--top-half-screen-bg) * var(--height-unit));
 }
-@supports (height: 1svh) {
+/* @supports (height: 1svh) {
   .half-screen-bg {
     --height-unit: 1svh;
   }
-}
+} */
 
 #content-screen-4 {
   z-index: 2;
@@ -831,12 +831,12 @@ body.noscroll {
   margin: calc(var(--vh, 1vh) * 41.5) 0 0 0;  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
   gap: calc(var(--vh, 1vh) * 55);
 }
-@supports (height: 100svh) {
+/* @supports (height: 100svh) {
   #projects {
   margin: 41.5svh 0 0 0;
   gap: 55svh;
   }
-}
+} */
 
 #projects .project-card {
   display: flex;
@@ -855,13 +855,13 @@ body.noscroll {
   /* valeur de  la custom property"--y-coord" affecté dans le JS => On utilise calc pour que la position reste synchronisée avec --vh */
   translate: 0 calc(var(--vh, 1vh) * var(--y-coord, 0));
 }
-@supports (height: 100svh) {
+/* @supports (height: 100svh) {
   #projects .project-card {
     translate: 0 calc(1svh * var(--y-coord, 0));
 
     height: 45svh;
   }
-}
+} */
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   #projects .project-card { 
