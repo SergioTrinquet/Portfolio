@@ -261,6 +261,7 @@
     // avec méthode '.scrollTo()' (different de prop. 'snap' dans config du ScrollTrigger)
     const nbProjectCards = document.querySelectorAll("#projects .project-card").length;
     const dureeEntreLabelsProjets = 0.6;
+    // const dureeEntreLabelsProjets = 1; /* TEST qd project-cards en position: absolutes; pour fix pour Android le fait que ne stop pas automatiqueent aux labels */
     const arrayDureeEntreLabelsProjets = new Array(nbProjectCards - 1).fill(dureeEntreLabelsProjets);
     const dureeEntreLabels = [1.7, 2.6, 2.7, ...arrayDureeEntreLabelsProjets, 6, 1.5];
     
@@ -438,18 +439,22 @@
                 { background: "linear-gradient(-29deg, rgb(122, 221, 212) 0%, rgb(111, 85, 151) 100%)", duration: 80 }
             , "<")
             .to("#intitule-job", { color: "rgb(114, 122, 167)" }, "<")
-            /* .fromTo(".project-card", 
+
+            .fromTo(".project-card", 
                 { "--y-coord": 100, autoAlpha: 1, scale: 1 }, 
                 { "--y-coord": 0, autoAlpha: 1, scale: 1, duration: 40, stagger: 10 }
             ); // Arrivée encarts projets venant du bas
 
         // Ajout projets
-        // setProjectCards(intitulesMenu[3]); */
-        .fromTo(".project-card", 
+        setProjectCards(intitulesMenu[3]);
+
+        /* TEST avec les cards en position: absolute; : Fonctionne ! */
+        /* .fromTo(".project-card", 
                 { "--y-coord": 100, autoAlpha: 1, scale: 1 }, 
                 { "--y-coord": 100, autoAlpha: 1, scale: 1, duration: 40, stagger: 10 }
             )
-        setProjectCards_V2(intitulesMenu[3]);
+        setProjectCards_V2(intitulesMenu[3]); */
+        /* Fin TEST */
 
         tl_scrollTriggerBody
             .to(".bg-transitional", { keyframes: [
@@ -641,14 +646,20 @@
     }
 
 
-    /* TEST */
+    /* TEST avec les cards en position: absolute : Fonctionne ! */
     function setProjectCards_V2(intituleMenu) {
         const cards = document.querySelectorAll("#projects .project-card");
-        const durationPause = 50; // Durée de la pause à chaque étape (état stable)
-        
+        const durationPause = 50; // Durée de la pause autour du label (zone de stabilité)
+        const durationTransition = 80; // Distance de scroll pour l'animation
+
+        //// TEST qd project-cards en 'position: absolute;' pour fix pour Android le fait que ne stop pas automatiqueent aux labels
+        // const durationPause = 100; 
+        // const durationTransition = 200;
+        //// Fin TEST
+
         // Etat initial (Projet 1 déjà centré)
         tl_scrollTriggerBody
-            .to(cards[0], { "--y-coord": 0, duration: 80, stagger: 10 })
+            .to(cards[0], { "--y-coord": 0, duration: durationTransition, stagger: 10 })
             .to(cards[0], { duration: durationPause })
             .addLabel(`${prefixNomLabelProjets}_1|${intituleMenu}`, ">")
             .to(cards[0], { duration: durationPause });
@@ -656,8 +667,8 @@
         for(var i = 1; i < nbProjectCards; i++) {
             tl_scrollTriggerBody
                 // Transition vers le projet suivant
-                .to(cards[i], { "--y-coord": 0, duration: 80, stagger: 10 })
-                .to(cards[i-1], { autoAlpha: 0, scale: 0.8, duration: 40 }, "<")
+                .to(cards[i], { "--y-coord": 0, duration: durationTransition, stagger: 10 })
+                .to(cards[i-1], { autoAlpha: 0, scale: 0.8, duration: (durationTransition / 2) }, "<")
                 
                 // Etat stable (Le projet i+1 est maintenant en place)
                 .to(".project-card", { duration: durationPause })

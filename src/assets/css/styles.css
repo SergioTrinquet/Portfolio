@@ -794,7 +794,7 @@ body.noscroll {
 
 /*#region - Rubrique "Projets perso" */
 #projects {
-  --projects-wrapper-top-margin: 41.4;
+  --projects-wrapper-top-margin: 41.2;
   align-self: flex-start;
   margin: calc(var(--projects-wrapper-top-margin) * var(--small-vh-unit)) 0 0 0;
 
@@ -831,6 +831,17 @@ body.noscroll {
   margin: auto;
 } */
 /*** FIN TEST pour centre cards sans avoir à faire des margin gauche et droite ***/
+
+/*** TEST de disposition des project-cards comme avant : ***/
+#projects {
+  display: flex;
+  flex-direction: column;
+  gap: calc(54 * var(--small-vh-unit));
+}
+#projects .project-card { 
+  position: relative;
+}
+/*** FIN : TEST de disposition des project-cards comme avant : ***/
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   #projects .project-card { 
