@@ -796,8 +796,12 @@ body.noscroll {
 #projects {
   align-self: flex-start;
   margin: calc(41.5 * var(--small-vh-unit)) 0 0 0;
+
+  pointer-events: none; /* Permet au scroll de traverser le conteneur */
 }
 #projects .project-card {
+  pointer-events: auto; /* Mais on veut cliquer sur les cartes et liens */
+  
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -811,7 +815,7 @@ body.noscroll {
   margin: 0 calc(((100 - var(--project-card-width)) / 2) * 1vw);
   /* valeur de  la custom property"--y-coord" affecté dans le JS => On utilise calc pour que la position reste synchronisée avec --vh */
   translate: 0 calc(var(--vh, 1vh) * var(--y-coord, 0));
-  height: calc(45 * var(--small-vh-unit)); /* TEST */
+  height: calc(45 * var(--small-vh-unit));
 }
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
@@ -966,8 +970,9 @@ body.noscroll {
   border-radius: 50px;
   background-color: rgb(118, 133, 219);
   background: linear-gradient(270deg, rgb(118, 133, 219) 0%, #7c65c1 100%);
+  background: linear-gradient(270deg, rgb(118, 133, 219) 0%, #6955a3 100%);
   color: #fff;
-  padding: 7px var(--padding-x);
+  padding: clamp(7px, 1.25vh, 14px) var(--padding-x);
   cursor: pointer;
   transition: all 0.4s ease;
   overflow: hidden;
@@ -978,7 +983,8 @@ body.noscroll {
   transform: translate(-50%, 50%);
   text-decoration: none;
   font-size: max(12px, 2.5vmin);
-  border-bottom: solid 1px rgb(100, 82, 138);
+  /* border-bottom: solid 1px rgb(100, 82, 138); */
+  border-bottom: solid 1px hsl(259 25% 38% / 1);
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
   #projects a.project-link {  
