@@ -852,6 +852,8 @@ body.noscroll {
   height: calc(var(--vh, 1vh) * 45);  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */ 
   /* valeur de  la custom property"--y-coord" affecté dans le JS => On utilise calc pour que la position reste synchronisée avec --vh */
   translate: 0 calc(var(--vh, 1vh) * var(--y-coord, 0));
+
+  height: 45vh; /* TEST */
 }
 /* @supports (height: 100svh) {
     #projects .project-card {
@@ -883,6 +885,8 @@ body.noscroll {
   #projects .project-card { 
     --project-card-width: 80;
     height: calc(var(--vh, 1vh) * 48);  /* "--vh" calculé coté .js */
+
+    height: 48vh; /* TEST */
   }
 }
 @media screen and (max-width: 300px) {
@@ -893,6 +897,8 @@ body.noscroll {
   }
   #projects .project-card { 
     height: calc(var(--vh, 1vh) * 50);  /* "--vh" calculé coté .js */
+    
+    height: 50vh; /* TEST */
   }
 }
 

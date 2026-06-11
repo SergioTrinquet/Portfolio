@@ -80,7 +80,8 @@
             document.documentElement.style.setProperty('--vh', `${h/100}px`);
             document.documentElement.style.setProperty('--vmax', `${max/100}px`);
             document.documentElement.style.setProperty('--vmin', `${min/100}px`);
-            //document.querySelector("#hauteurOneVh").innerText = `${h/100}px`; // JUSTE POUR PHASE DE TEST
+            
+            document.querySelector("#hauteurOneVh").innerText = `${h/100}px`; // JUSTE POUR PHASE DE TEST
         };
         window.addEventListener('resize', setCSSunits);
         //window.addEventListener('orientationchange', setCSSunits); // obsolète
@@ -643,26 +644,25 @@
     /* TEST */
     function setProjectCards_V2(intituleMenu) {
         const cards = document.querySelectorAll("#projects .project-card");
-
+        const durationPause = 50; // Durée de la pause à chaque étape (état stable)
+        
         // Etat initial (Projet 1 déjà centré)
         tl_scrollTriggerBody
             .to(cards[0], { "--y-coord": 0, duration: 80, stagger: 10 })
-            .to(cards[0], { duration: 50 })
+            .to(cards[0], { duration: durationPause })
             .addLabel(`${prefixNomLabelProjets}_1|${intituleMenu}`, ">")
-            .to(cards[0], { duration: 50 });
+            .to(cards[0], { duration: durationPause });
 
         for(var i = 1; i < nbProjectCards; i++) {
-            const target = cards[i];
-            
             tl_scrollTriggerBody
                 // Transition vers le projet suivant
-                .to(target, { "--y-coord": 0, duration: 80, stagger: 10 })
+                .to(cards[i], { "--y-coord": 0, duration: 80, stagger: 10 })
                 .to(cards[i-1], { autoAlpha: 0, scale: 0.8, duration: 40 }, "<")
                 
                 // Etat stable (Le projet i+1 est maintenant en place)
-                .to(".project-card", { duration: 50 })
+                .to(".project-card", { duration: durationPause })
                 .addLabel(`${prefixNomLabelProjets}_${i+1}|${intituleMenu}`, ">") 
-                .to(".project-card", { duration: 50 });
+                .to(".project-card", { duration: durationPause });
         }
         return tl_scrollTriggerBody;
     }
