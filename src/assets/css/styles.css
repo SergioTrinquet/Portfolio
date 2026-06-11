@@ -221,6 +221,14 @@ body.noscroll {
   opacity: 0.15;
 }
 
+:root {
+  --small-vh-unit: 1vh;
+}
+@supports (height: 1svh) {
+  :root {
+    --small-vh-unit: 1svh;
+  }
+}
 
 .half-screen-bg {
   position: absolute;
@@ -236,14 +244,10 @@ body.noscroll {
   top: 45vh;
 
   --top-half-screen-bg: 45;
-  --height-unit: 1vh;
-  top: calc(var(--top-half-screen-bg) * var(--height-unit));
+  /* --height-unit: 1vh;
+  top: calc(var(--top-half-screen-bg) * var(--height-unit)); */
+  top: calc(var(--top-half-screen-bg) * var(--small-vh-unit));
 }
-/* @supports (height: 1svh) {
-  .half-screen-bg {
-    --height-unit: 1svh;
-  }
-} */
 
 #content-screen-4 {
   z-index: 2;
@@ -825,17 +829,11 @@ body.noscroll {
 /*#region - Rubrique "Projets perso" */
 #projects {
   align-self: flex-start;
-  transform-origin: 5% 0%;
-  margin: calc(var(--vh, 1vh) * 41.5) 0 0 0;  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
-  
-  margin: 41.5vh 0 0 0; /* TEST */
-}
-/* @supports (height: 100svh) {
-  #projects {
-    margin: 41.5svh 0 0 0;
-  }
-} */
+  /* transform-origin: 5% 0%; */
 
+  /* margin: 41.5vh 0 0 0; */
+  margin: calc(41.5 * var(--small-vh-unit)) 0 0 0;
+}
 #projects .project-card {
   display: flex;
   flex-direction: column;
@@ -854,6 +852,7 @@ body.noscroll {
   translate: 0 calc(var(--vh, 1vh) * var(--y-coord, 0));
 
   height: 45vh; /* TEST */
+  height: calc(45 * var(--small-vh-unit)); /* TEST */
 }
 /* @supports (height: 100svh) {
     #projects .project-card {
@@ -868,37 +867,37 @@ body.noscroll {
   }
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
-  #projects { 
+  /* #projects { 
     transform-origin: 0% 0%; 
-  }
+  } */
   #projects .project-card { 
     --project-card-width: 72;
   }
 }
 @media screen and (max-width: 480px) {
   #projects { 
-    transform-origin: 0% 0%; 
-    margin: calc(var(--vh, 1vh) * 40.8) 0 0 0;  /* "--vh" calculé coté .js */
-
-    margin: 40.8vh 0 0 0; /* TEST */
+    /* transform-origin: 0% 0%;  */
+    /* margin: 40.8vh 0 0 0; */
+    margin: calc(40.8 * var(--small-vh-unit)) 0 0 0;
   }
   #projects .project-card { 
     --project-card-width: 80;
     height: calc(var(--vh, 1vh) * 48);  /* "--vh" calculé coté .js */
 
     height: 48vh; /* TEST */
+    height: calc(48 * var(--small-vh-unit)); /* TEST */
   }
 }
 @media screen and (max-width: 300px) {
   #projects {
-    margin: calc(var(--vh, 1vh) * 40.5) 0 0 0; /* "--vh" calculé coté .js */
-
-    margin: 40.5vh 0 0 0; /* TEST */
+    /* margin: 40.5vh 0 0 0; */
+    margin: calc(40.5 * var(--small-vh-unit)) 0 0 0;
   }
   #projects .project-card { 
     height: calc(var(--vh, 1vh) * 50);  /* "--vh" calculé coté .js */
     
     height: 50vh; /* TEST */
+    height: calc(50 * var(--small-vh-unit)); /* TEST */
   }
 }
 
