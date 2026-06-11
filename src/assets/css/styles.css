@@ -237,8 +237,7 @@ body.noscroll {
   transform-origin: 50% 50%;
   transform: rotate(-8deg) skew(-8deg, 0) translateX(-150vw);
   height: 36vh;
-  top: 45vh;
-
+ 
   --top-half-screen-bg: 45;
   top: calc(var(--top-half-screen-bg) * var(--small-vh-unit));
 }
@@ -798,10 +797,10 @@ body.noscroll {
   align-self: flex-start;
   margin: calc(var(--projects-wrapper-top-margin) * var(--small-vh-unit)) 0 0 0;
 
-  pointer-events: none; /* Permet au scroll de traverser le conteneur */
+  /* pointer-events: none; */ /* Permet au scroll de traverser le conteneur */
 }
 #projects .project-card {
-  pointer-events: auto; /* Mais on veut cliquer sur les cartes et liens */
+  /* pointer-events: auto; */ /* Mais on veut cliquer sur les cartes et liens */
 
   --project-card-width: 40;
   --project-card-height: 46;
