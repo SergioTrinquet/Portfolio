@@ -794,14 +794,17 @@ body.noscroll {
 
 /*#region - Rubrique "Projets perso" */
 #projects {
+  --projects-wrapper-top-margin: 41.2;
   align-self: flex-start;
-  margin: calc(41.5 * var(--small-vh-unit)) 0 0 0;
+  margin: calc(var(--projects-wrapper-top-margin) * var(--small-vh-unit)) 0 0 0;
 
   pointer-events: none; /* Permet au scroll de traverser le conteneur */
 }
 #projects .project-card {
   pointer-events: auto; /* Mais on veut cliquer sur les cartes et liens */
-  
+
+  --project-card-width: 40;
+  --project-card-height: 46;
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -810,13 +813,24 @@ body.noscroll {
   color: rgb(73, 77, 140);
   /* font-size: clamp(15px, 3vmin, 18px); */  /* Version non IOS compatible */
   font-size: max(15px, min(3vmin, 18px)); /* Version IOS compatible */
-  --project-card-width: 40;
-  width: calc(var(--project-card-width) * 1vw); 
   margin: 0 calc(((100 - var(--project-card-width)) / 2) * 1vw);
+  width: calc(var(--project-card-width) * 1vw); 
+  height: calc(var(--project-card-height) * var(--small-vh-unit));
   /* valeur de  la custom property"--y-coord" affecté dans le JS => On utilise calc pour que la position reste synchronisée avec --vh */
   translate: 0 calc(var(--vh, 1vh) * var(--y-coord, 0));
-  height: calc(45 * var(--small-vh-unit));
 }
+
+/*** TEST pour centre cards sans avoir à faire des margin gauche et droite ***/
+/* Ci-dessous on peut aussi retirer la prop. 'align-self' de #projects */
+/* #projects {
+  align-self: center;  
+}
+#projects .project-card {
+  width: min(calc(var(--project-card-width) * 1vw), 650px);
+  translate: -50% calc(var(--vh, 1vh) * var(--y-coord, 0));
+  margin: auto;
+} */
+/*** FIN TEST pour centre cards sans avoir à faire des margin gauche et droite ***/
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   #projects .project-card { 
@@ -830,19 +844,19 @@ body.noscroll {
 }
 @media screen and (max-width: 480px) {
   #projects { 
-    margin: calc(40.8 * var(--small-vh-unit)) 0 0 0;
+    --projects-wrapper-top-margin: 40.8;
   }
   #projects .project-card { 
     --project-card-width: 80;
-    height: calc(48 * var(--small-vh-unit));
+    --project-card-height: 48;
   }
 }
 @media screen and (max-width: 300px) {
   #projects {
-    margin: calc(40.5 * var(--small-vh-unit)) 0 0 0;
+    --projects-wrapper-top-margin: 40.3;
   }
   #projects .project-card { 
-    height: calc(50 * var(--small-vh-unit));
+    --project-card-height: 50;
   }
 }
 
