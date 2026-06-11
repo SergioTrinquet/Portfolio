@@ -840,6 +840,7 @@ body.noscroll {
 }
 #projects .project-card { 
   position: relative;
+  translate: 0 calc(var(--small-vh-unit) * var(--y-coord, 0));
 }
 /*** FIN : TEST de disposition des project-cards comme avant : ***/
 
