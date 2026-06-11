@@ -832,17 +832,24 @@ body.noscroll {
 } */
 /*** FIN TEST pour centre cards sans avoir à faire des margin gauche et droite ***/
 
-/*** TEST de disposition des project-cards comme avant : ***/
+/****** TEST de disposition des project-cards comme avant : ******/
 #projects {
   display: flex;
   flex-direction: column;
-  gap: calc(54 * var(--small-vh-unit));
+  --project-card-height: 46;
+  gap: calc((100 - var(--project-card-height)) * var(--small-vh-unit));  /* 54 ici car height card à 46, mais changer cette valeur qd height card change aussi */
+}
+@media screen and (max-width: 480px) {
+  #projects { --project-card-height: 48; }
+}
+@media screen and (max-width: 300px) {
+  #projects { --project-card-height: 50; }
 }
 #projects .project-card { 
   position: relative;
   translate: 0 calc(var(--small-vh-unit) * var(--y-coord, 0));
 }
-/*** FIN : TEST de disposition des project-cards comme avant : ***/
+/****** FIN : TEST de disposition des project-cards comme avant : ******/
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   #projects .project-card { 
