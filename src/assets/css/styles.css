@@ -794,7 +794,7 @@ body.noscroll {
 
 /*#region - Rubrique "Projets perso" */
 #projects {
-  --projects-wrapper-top-margin: 41.2;
+  --projects-wrapper-top-margin: 41.4;
   align-self: flex-start;
   margin: calc(var(--projects-wrapper-top-margin) * var(--small-vh-unit)) 0 0 0;
 
@@ -844,7 +844,7 @@ body.noscroll {
 }
 @media screen and (max-width: 480px) {
   #projects { 
-    --projects-wrapper-top-margin: 40.8;
+    --projects-wrapper-top-margin: 41;
   }
   #projects .project-card { 
     --project-card-width: 80;
@@ -853,7 +853,7 @@ body.noscroll {
 }
 @media screen and (max-width: 300px) {
   #projects {
-    --projects-wrapper-top-margin: 40.3;
+    --projects-wrapper-top-margin: 40.4;
   }
   #projects .project-card { 
     --project-card-height: 50;
