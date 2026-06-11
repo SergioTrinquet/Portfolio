@@ -19,8 +19,13 @@
   --color-degr-2-screen4: rgb(232, 70, 255);
   --bgcolor-screenEnd: #2b2b2b;
   --color-bt-modal: rgba(0, 118, 166,1);
+  --small-vh-unit: 1vh;
 }
-
+@supports (height: 1svh) {
+  :root {
+    --small-vh-unit: 1svh;
+  }
+}
 
 /* Ajouté pour corriger le bug des 100vh sur Chrome pour mobile */
 html {
@@ -221,15 +226,6 @@ body.noscroll {
   opacity: 0.15;
 }
 
-:root {
-  --small-vh-unit: 1vh;
-}
-@supports (height: 1svh) {
-  :root {
-    --small-vh-unit: 1svh;
-  }
-}
-
 .half-screen-bg {
   position: absolute;
   z-index: 2;
@@ -244,8 +240,6 @@ body.noscroll {
   top: 45vh;
 
   --top-half-screen-bg: 45;
-  /* --height-unit: 1vh;
-  top: calc(var(--top-half-screen-bg) * var(--height-unit)); */
   top: calc(var(--top-half-screen-bg) * var(--small-vh-unit));
 }
 
@@ -427,7 +421,7 @@ body.noscroll {
 /*#endregion - Bouton pour skipper l'anim d'intro */
 
 
-/*#region - Texte "Serge Trinquet - Développeur Javascript" */
+/*#region - Texte "Serge Trinquet - Développeur Front-end" */
 #intitule-job {
   position: absolute;
   z-index: 2;
@@ -449,7 +443,7 @@ body.noscroll {
   font-size: 2vh;
   font-family: 'Ubuntu Mono', monospace;
 }
-/*#endregion - Texte "Serge Trinquet - Développeur Javascript" */
+/*#endregion - Texte "Serge Trinquet - Développeur Front-end" */
 
 
 /*#region - Texte "Descendez pour le savoir" */
@@ -703,34 +697,6 @@ body.noscroll {
 }
 #skills .domain:first-child {  width: 40%; }
 
-/* ESSAI */
-/* #skills .domain::before {
-  font-family: "Font Awesome 5 Free";
-  content: "\f121";
-  background-color: #f45783;
-  width: 5vw;
-  height: 5vw;
-  position: absolute;
-  display: flex;
-  z-index: 1;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  font-size: 2vw;
-  text-shadow: -5px 4px rgba(2, 2, 2, 0.22);
-  border-radius: 50%;
-  top: -45px;
-  left: calc(50% - 2.5vw);
-  box-shadow: -2px 1px 1px rgba(0,0,0,0.3);
-}
-#skills .domain:nth-child(2)::before { 
-  content: "\f1c0";
-}
-#skills .domain:nth-child(3)::before { 
-  content: "\f55b";
-} */
-/* FIN ESSAI */
-
 
 @media screen and (max-width: 768px) and (orientation:portrait) { 
   :root {
@@ -829,9 +795,6 @@ body.noscroll {
 /*#region - Rubrique "Projets perso" */
 #projects {
   align-self: flex-start;
-  /* transform-origin: 5% 0%; */
-
-  /* margin: 41.5vh 0 0 0; */
   margin: calc(41.5 * var(--small-vh-unit)) 0 0 0;
 }
 #projects .project-card {
@@ -846,20 +809,10 @@ body.noscroll {
   --project-card-width: 40;
   width: calc(var(--project-card-width) * 1vw); 
   margin: 0 calc(((100 - var(--project-card-width)) / 2) * 1vw);
-
-  height: calc(var(--vh, 1vh) * 45);  /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */ 
   /* valeur de  la custom property"--y-coord" affecté dans le JS => On utilise calc pour que la position reste synchronisée avec --vh */
   translate: 0 calc(var(--vh, 1vh) * var(--y-coord, 0));
-
-  height: 45vh; /* TEST */
   height: calc(45 * var(--small-vh-unit)); /* TEST */
 }
-/* @supports (height: 100svh) {
-    #projects .project-card {
-      translate: 0 calc(1svh * var(--y-coord, 0));
-      height: 45svh;
-    }
-} */
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   #projects .project-card { 
@@ -867,37 +820,25 @@ body.noscroll {
   }
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
-  /* #projects { 
-    transform-origin: 0% 0%; 
-  } */
   #projects .project-card { 
     --project-card-width: 72;
   }
 }
 @media screen and (max-width: 480px) {
   #projects { 
-    /* transform-origin: 0% 0%;  */
-    /* margin: 40.8vh 0 0 0; */
     margin: calc(40.8 * var(--small-vh-unit)) 0 0 0;
   }
   #projects .project-card { 
     --project-card-width: 80;
-    height: calc(var(--vh, 1vh) * 48);  /* "--vh" calculé coté .js */
-
-    height: 48vh; /* TEST */
-    height: calc(48 * var(--small-vh-unit)); /* TEST */
+    height: calc(48 * var(--small-vh-unit));
   }
 }
 @media screen and (max-width: 300px) {
   #projects {
-    /* margin: 40.5vh 0 0 0; */
     margin: calc(40.5 * var(--small-vh-unit)) 0 0 0;
   }
   #projects .project-card { 
-    height: calc(var(--vh, 1vh) * 50);  /* "--vh" calculé coté .js */
-    
-    height: 50vh; /* TEST */
-    height: calc(50 * var(--small-vh-unit)); /* TEST */
+    height: calc(50 * var(--small-vh-unit));
   }
 }
 
