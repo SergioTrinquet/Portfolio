@@ -64,8 +64,8 @@
     const isAndroid = isMobileOrTablette && !isIPadOrIPhone;
 
     /* A NE PAS METTRE EN PROD */ 
-    document.querySelector("#iOSdevices").innerText = isIPadOrIPhone ? "iPhone/iPad" : "pas iPhone/iPad !"; // JUSTE POUR PHASE DE TEST
-    document.querySelector("#AndroidDevices").innerText = isAndroid ? "android" : "pas Android !"; // JUSTE POUR PHASE DE TEST
+    // document.querySelector("#iOSdevices").innerText = isIPadOrIPhone ? "iPhone/iPad" : "pas iPhone/iPad !"; // JUSTE POUR PHASE DE TEST
+    // document.querySelector("#AndroidDevices").innerText = isAndroid ? "android" : "pas Android !"; // JUSTE POUR PHASE DE TEST
     /* FIN - A NE PAS METTRE EN PROD */
 
 
@@ -85,7 +85,7 @@
             document.documentElement.style.setProperty('--vmax', `${max/100}px`);
             document.documentElement.style.setProperty('--vmin', `${min/100}px`);
             
-            document.querySelector("#hauteurOneVh").innerText = `${h/100}px`; // JUSTE POUR PHASE DE TEST
+            // document.querySelector("#hauteurOneVh").innerText = `${h/100}px`; // JUSTE POUR PHASE DE TEST
         };
         window.addEventListener('resize', setCSSunits);
         //window.addEventListener('orientationchange', setCSSunits); // obsolète
@@ -314,8 +314,6 @@
 
 
 
-
-
     // Fonction d'"alimentation" de l'objet timeline. Est appelée au chargement de la page 
     // mais aussi qd redimensionnement (sur event 'refreshInit') pour recalculer les positions de tous les éléments (sinon décalages potentiels)
     const deg_inclinaison_asc = "-8",
@@ -325,11 +323,6 @@
 
         // Suppression du CSS dans les balises styles ajouté par GSAP
         tl_scrollTriggerBody
-            /* .set(`.wrapper-SVGs-and-texts, .rayons, .text-presentation, #bg-screen-1-and-2 > .ray, 
-            #content-screen-3, .pre-screen-3, #content-screen-3 #shadows > div, .halo, .half-screen-bg, #skills .domain, .domain .title, #SVGs, #intitule-job, #content-screen-4, #section-titles .section-title, #skills, 
-            #bg-screen-5, #SVG-chaise, #SVG-table-sans-pied-BG, #SVG-table-pied-BG, #SVG-corps, #SVG-bras,#SVG-laptop, #SVG-lampe, #SVG-tasse, #SVG-ombre, .msg-remerciements, .msg-remerciements > *, #marge-right,
-            #bg-screen-end, #bg-screen-end #mot span, #bg-screen-end .mot-trait, .bg-transitional, .SVGs-and-annexes, .project-card
-            `, {clearProps: "all"}); */
             .set(`.wrapper-SVGs-and-texts, .rayons, .text-presentation, #bg-screen-1-and-2 > .ray, 
             #content-screen-3, .pre-screen-3, #content-screen-3 #shadows > div, .halo, .half-screen-bg, #skills .domain, .domain .title, #SVGs, #intitule-job, #content-screen-4, #section-titles .section-title, #skills, 
             #bg-screen-5, #SVG-chaise, #SVG-table-sans-pied-BG, #SVG-table-pied-BG, #SVG-corps, #SVG-bras,#SVG-laptop, #SVG-lampe, #SVG-tasse, #SVG-ombre, .msg-remerciements, .msg-remerciements > *, #marge-right,
@@ -649,9 +642,8 @@
         return tl_scrollTriggerBody;
     }
 
-
     /* TEST avec les cards en position: absolute : Fonctionne ! */
-    function setProjectCards_V2(intituleMenu) {
+    /* function setProjectCards_V2(intituleMenu) {
         const cards = document.querySelectorAll("#projects .project-card");
         const durationPause = 50; // Durée de la pause autour du label (zone de stabilité)
         const durationTransition = 80; // Distance de scroll pour l'animation
@@ -680,7 +672,7 @@
                 .to(".project-card", { duration: durationPause });
         }
         return tl_scrollTriggerBody;
-    }
+    } */
     /* FIN TEST */
 
 
