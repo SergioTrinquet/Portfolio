@@ -73,7 +73,6 @@
     createModalPortraitIsBetter("st_dont-show-modal");
 
 
-
     // Code juste pour mobile : Correct° du bug sur mobile et tablettes => unité du type vh, vmax, vmin,... sont faussées à cause de la barre d'adresse qui coulisse qd scroll et qui couvre une partie de l'écran.
     // Il faut donc recalculer la valeur d'un vh/vmax/vmin à chaque évènement (resize', chgmt d'orientat°) qui fait varier cette unité.
     if (isMobileOrTablette) {
@@ -265,7 +264,6 @@
     // Pour se déplacer d'un label à un autre qd scroll, 
     // avec méthode '.scrollTo()' (different de prop. 'snap' dans config du ScrollTrigger)
     const nbProjectCards = document.querySelectorAll("#projects .project-card").length;
-    // const dureeEntreLabelsProjets = 0.6;
     const dureeEntreLabelsProjets = isAndroid ? 1.2 : 0.6; /* TEST qd project-cards en position: absolutes; pour fix pour Android le fait que ne stop pas automatiqueent aux labels */
     const arrayDureeEntreLabelsProjets = new Array(nbProjectCards - 1).fill(dureeEntreLabelsProjets);
     const dureeEntreLabels = [1.7, 2.6, 2.7, ...arrayDureeEntreLabelsProjets, 6, 1.5];
@@ -393,7 +391,8 @@
             .to("#SVGs", { filter: "drop-shadow( 1px 0px 0px rgba(77, 81, 120, 0.7)" }, "<")   // Ajout ombre sur visage
             .to(".wrapper-SVGs-and-texts", { keyframes: [
                 { position: "absolute", duration: 0 },
-                { height: "20vh", marginTop: isIPadOrIPhone ? "-35vh" : "-70vh", duration: 50 }
+                // { height: "20vh", marginTop: isIPadOrIPhone ? "-35vh" : "-70vh", duration: 50 }
+                { height: "20vh", marginTop: "-70vh", duration: 50 }
             ] }, "<");
 
         if(isIPadOrIPhone) tl_scrollTriggerBody.to(".SVGs-and-annexes", { width: "20vh", duration: 50 }, "<"); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
