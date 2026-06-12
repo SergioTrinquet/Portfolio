@@ -443,7 +443,7 @@
 
             .fromTo(".project-card", 
                 { "--y-coord": 100, autoAlpha: 1, scale: 1 }, 
-                { "--y-coord": 0, autoAlpha: 1, scale: 1, duration: 40/* , stagger: 10 */ }
+                { "--y-coord": 0, autoAlpha: 1, scale: 1, duration: 40 }
             ); // Arrivée encarts projets venant du bas
 
         // Ajout projets
@@ -638,7 +638,7 @@
             
             tl_scrollTriggerBody
                 // Transition vers le projet suivant
-                .to(targets, { "--y-coord": coordY, duration: durationTransition/* , stagger: 10 */ })
+                .to(targets, { "--y-coord": coordY, duration: durationTransition })
                 .to(cards[i-1], { autoAlpha: 0, scale: 0.8, duration: (durationTransition / 2) }, "<")
                 
                 // Etat stable (Le projet i+1 est maintenant en place)
@@ -663,7 +663,7 @@
 
         // Etat initial (Projet 1 déjà centré)
         tl_scrollTriggerBody
-            .to(cards[0], { "--y-coord": 0, duration: durationTransition/* , stagger: 10 */ })
+            .to(cards[0], { "--y-coord": 0, duration: durationTransition })
             .to(cards[0], { duration: durationPause })
             .addLabel(`${prefixNomLabelProjets}_1|${intituleMenu}`, ">")
             .to(cards[0], { duration: durationPause });
@@ -671,7 +671,7 @@
         for(var i = 1; i < nbProjectCards; i++) {
             tl_scrollTriggerBody
                 // Transition vers le projet suivant
-                .to(cards[i], { "--y-coord": 0, duration: durationTransition/* , stagger: 10 */ })
+                .to(cards[i], { "--y-coord": 0, duration: durationTransition })
                 .to(cards[i-1], { autoAlpha: 0, scale: 0.8, duration: (durationTransition / 2) }, "<")
                 
                 // Etat stable (Le projet i+1 est maintenant en place)
