@@ -821,14 +821,14 @@ body.noscroll {
 
 /*** TEST pour centre cards sans avoir à faire des margin gauche et droite ***/
 /* Ci-dessous on peut aussi retirer la prop. 'align-self' de #projects */
-/* #projects {
+#projects {
   align-self: center;  
 }
 #projects .project-card {
   width: min(calc(var(--project-card-width) * 1vw), 650px);
   translate: -50% calc(var(--vh, 1vh) * var(--y-coord, 0));
   margin: auto;
-} */
+}
 /*** FIN TEST pour centre cards sans avoir à faire des margin gauche et droite ***/
 
 /****** TEST de disposition des project-cards comme avant : ******/
