@@ -391,7 +391,6 @@
             .to("#SVGs", { filter: "drop-shadow( 1px 0px 0px rgba(77, 81, 120, 0.7)" }, "<")   // Ajout ombre sur visage
             .to(".wrapper-SVGs-and-texts", { keyframes: [
                 { position: "absolute", duration: 0 },
-                // { height: "20vh", marginTop: isIPadOrIPhone ? "-35vh" : "-70vh", duration: 50 }
                 { height: "20vh", marginTop: "-70vh", duration: 50 }
             ] }, "<");
 
@@ -444,7 +443,7 @@
 
             .fromTo(".project-card", 
                 { "--y-coord": 100, autoAlpha: 1, scale: 1 }, 
-                { "--y-coord": 0, autoAlpha: 1, scale: 1, duration: 40, stagger: 10 }
+                { "--y-coord": 0, autoAlpha: 1, scale: 1, duration: 40/* , stagger: 10 */ }
             ); // Arrivée encarts projets venant du bas
 
         // Ajout projets
@@ -453,7 +452,7 @@
         /* TEST avec les cards en position: absolute; : Fonctionne ! */
         /* .fromTo(".project-card", 
                 { "--y-coord": 100, autoAlpha: 1, scale: 1 }, 
-                { "--y-coord": 100, autoAlpha: 1, scale: 1, duration: 40, stagger: 10 }
+                { "--y-coord": 100, autoAlpha: 1, scale: 1, duration: 40 }
             )
         setProjectCards_V2(intitulesMenu[3]); */
         /* Fin TEST */
@@ -639,7 +638,7 @@
             
             tl_scrollTriggerBody
                 // Transition vers le projet suivant
-                .to(targets, { "--y-coord": coordY, duration: durationTransition, stagger: 10 })
+                .to(targets, { "--y-coord": coordY, duration: durationTransition/* , stagger: 10 */ })
                 .to(cards[i-1], { autoAlpha: 0, scale: 0.8, duration: (durationTransition / 2) }, "<")
                 
                 // Etat stable (Le projet i+1 est maintenant en place)
@@ -664,7 +663,7 @@
 
         // Etat initial (Projet 1 déjà centré)
         tl_scrollTriggerBody
-            .to(cards[0], { "--y-coord": 0, duration: durationTransition, stagger: 10 })
+            .to(cards[0], { "--y-coord": 0, duration: durationTransition/* , stagger: 10 */ })
             .to(cards[0], { duration: durationPause })
             .addLabel(`${prefixNomLabelProjets}_1|${intituleMenu}`, ">")
             .to(cards[0], { duration: durationPause });
@@ -672,7 +671,7 @@
         for(var i = 1; i < nbProjectCards; i++) {
             tl_scrollTriggerBody
                 // Transition vers le projet suivant
-                .to(cards[i], { "--y-coord": 0, duration: durationTransition, stagger: 10 })
+                .to(cards[i], { "--y-coord": 0, duration: durationTransition/* , stagger: 10 */ })
                 .to(cards[i-1], { autoAlpha: 0, scale: 0.8, duration: (durationTransition / 2) }, "<")
                 
                 // Etat stable (Le projet i+1 est maintenant en place)
