@@ -831,7 +831,7 @@ body.noscroll {
 }
 /*** FIN TEST pour centre cards sans avoir à faire des margin gauche et droite ***/
 
-/****** TEST de disposition des project-cards comme avant : ******/
+/****** TEST de disposition des project-cards comme avant c-à-d. avec cards sans position: absolute; ******/
 #projects {
   display: flex;
   flex-direction: column;
@@ -848,7 +848,7 @@ body.noscroll {
   position: relative;
   translate: 0 calc(var(--small-vh-unit) * var(--y-coord, 0));
 }
-/****** FIN : TEST de disposition des project-cards comme avant : ******/
+/****** FIN : TEST de disposition des project-cards comme avant c-à-d. avec cards sans position: absolute; ******/
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   #projects .project-card { 

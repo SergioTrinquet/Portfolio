@@ -264,7 +264,7 @@
     // Pour se déplacer d'un label à un autre qd scroll, 
     // avec méthode '.scrollTo()' (different de prop. 'snap' dans config du ScrollTrigger)
     const nbProjectCards = document.querySelectorAll("#projects .project-card").length;
-    const dureeEntreLabelsProjets = isAndroid ? 1.2 : 0.6; /* TEST qd project-cards en position: absolutes; pour fix pour Android le fait que ne stop pas automatiqueent aux labels */
+    const dureeEntreLabelsProjets = isAndroid ? 1.2 : 0.6;
     const arrayDureeEntreLabelsProjets = new Array(nbProjectCards - 1).fill(dureeEntreLabelsProjets);
     const dureeEntreLabels = [1.7, 2.6, 2.7, ...arrayDureeEntreLabelsProjets, 6, 1.5];
     
