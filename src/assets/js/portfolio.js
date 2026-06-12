@@ -61,7 +61,12 @@
         return isIOS || (isAppleDevice && (isTouchScreen || iOS1to12quirk()));
     }
 
-    /* TEST */ //document.querySelector("#iOSdevices").innerText = isIPadOrIPhone ? "iPhone/iPad" : "Autre"; //TEST
+    const isAndroid = isMobileOrTablette && !isIPadOrIPhone;
+
+    /* A NE PAS METTRE EN PROD */ 
+    document.querySelector("#iOSdevices").innerText = isIPadOrIPhone ? "iPhone/iPad" : "pas iPhone/iPad !"; // JUSTE POUR PHASE DE TEST
+    document.querySelector("#AndroidDevices").innerText = isAndroid ? "android" : "pas Android !"; // JUSTE POUR PHASE DE TEST
+    /* FIN - A NE PAS METTRE EN PROD */
 
 
     // Gestion modal avec msg d'incitat° de consultation en mode portrait qd mobile
@@ -620,9 +625,7 @@
         const cards = document.querySelectorAll("#projects .project-card");
         const durationPause = 50; // Durée de la pause autour du label (zone de stabilité)
         const durationTransition = 80; // Distance de scroll pour l'animatio
-        // const durationPause = 100; // Durée de la pause autour du label (zone de stabilité)
-        // const durationTransition = 150; // Distance de scroll pour l'animatio
-        
+
         let units = 100;
 
         // Etat initial (Projet 1 déjà centré)
