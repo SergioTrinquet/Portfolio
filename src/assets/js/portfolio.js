@@ -618,10 +618,10 @@
     // Ajout dynamique des projets dans la timeline
     function setProjectCards(intituleMenu) {
         const cards = document.querySelectorAll("#projects .project-card");
-        // const durationPause = 50; // Durée de la pause autour du label (zone de stabilité)
-        // const durationTransition = 80; // Distance de scroll pour l'animatio
-        const durationPause = 100; // Durée de la pause autour du label (zone de stabilité)
-        const durationTransition = 150; // Distance de scroll pour l'animatio
+        const durationPause = 50; // Durée de la pause autour du label (zone de stabilité)
+        const durationTransition = 80; // Distance de scroll pour l'animatio
+        // const durationPause = 100; // Durée de la pause autour du label (zone de stabilité)
+        // const durationTransition = 150; // Distance de scroll pour l'animatio
         
         let units = 100;
 
