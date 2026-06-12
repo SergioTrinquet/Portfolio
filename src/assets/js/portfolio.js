@@ -618,13 +618,17 @@
     // Ajout dynamique des projets dans la timeline
     function setProjectCards(intituleMenu) {
         const cards = document.querySelectorAll("#projects .project-card");
+        // const durationPause = 50; // Durée de la pause autour du label (zone de stabilité)
+        // const durationTransition = 80; // Distance de scroll pour l'animatio
+        const durationPause = 100; // Durée de la pause autour du label (zone de stabilité)
+        const durationTransition = 150; // Distance de scroll pour l'animatio
         let units = 100;
 
         // Etat initial (Projet 1 déjà centré)
         tl_scrollTriggerBody
-            .to(".project-card", { duration: 50 })
+            .to(".project-card", { duration: durationPause })
             .addLabel(`${prefixNomLabelProjets}_1|${intituleMenu}`, ">")
-            .to(".project-card", { duration: 50 });
+            .to(".project-card", { duration: durationPause });
 
         for(var i = 1; i < nbProjectCards; i++) {
             let coordY = -(i * units);
@@ -632,13 +636,13 @@
             
             tl_scrollTriggerBody
                 // Transition vers le projet suivant
-                .to(targets, { "--y-coord": coordY, duration: 80, stagger: 10 })
-                .to(cards[i-1], { autoAlpha: 0, scale: 0.8, duration: 40 }, "<")
+                .to(targets, { "--y-coord": coordY, duration: durationTransition, stagger: 10 })
+                .to(cards[i-1], { autoAlpha: 0, scale: 0.8, duration: (durationTransition / 2) }, "<")
                 
                 // Etat stable (Le projet i+1 est maintenant en place)
-                .to(".project-card", { duration: 50 })
+                .to(".project-card", { duration: durationPause })
                 .addLabel(`${prefixNomLabelProjets}_${i+1}|${intituleMenu}`, ">") 
-                .to(".project-card", { duration: 50 });
+                .to(".project-card", { duration: durationPause });
         }
         return tl_scrollTriggerBody;
     }
