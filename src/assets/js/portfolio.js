@@ -370,8 +370,7 @@
         }
 
         tl_scrollTriggerBody 
-            .set(".halo", { clearProps: "all" }) // Pour supprimer le style "background" écrit en dur ds la propriété style quand on a passé le tween juste après celui-ci et que l'on revient en arrière
-            .to(".halo", { autoAlpha:0, background: "linear-gradient(29deg, rgb(255, 255, 255) 100%, rgb(255, 255, 255) 100%)" })
+            .to(".halo", { background: "linear-gradient(29deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)", width: "1%", paddingTop: "1%" }) // Le halo se cache quand il est recouvert
             .set(".wrapper-SVGs-and-texts", { flexDirection: "unset", textAlign: "unset" }); // Retrait style qui permet affichage en colonne pour small devices/small screens
 
         // Gestion de la transition seulement qd écran plus large que 4/3
@@ -380,7 +379,7 @@
         }
 
         tl_scrollTriggerBody  
-            .to(".halo", { zIndex: 2, width: "115%", paddingTop: "115%", boxShadow: "-3px 2px 1px #4d4d4d91", autoAlpha:1, duration: 20 })    // Halo rendu à nouveau visible + chgmt css
+            .to(".halo", { zIndex: 2, autoAlpha: 1, width: "115%", paddingTop: "115%", boxShadow: "-3px 2px 1px #4d4d4d91", duration: 40 })    // Halo reparaît, change de couleur et s'agrandit
             .to("#SVGs", { filter: "drop-shadow( 1px 0px 0px rgba(77, 81, 120, 0.7)" }, "<")   // Ajout ombre sur visage
             .to(".wrapper-SVGs-and-texts", { keyframes: [
                 { position: "absolute", duration: 0 },

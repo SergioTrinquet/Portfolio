@@ -540,7 +540,6 @@ body.noscroll {
   position: absolute;
   z-index: 1;
   border-radius: 50%;
-  transition: all 0.5s ease;
   width: 90%;
   padding-top: 90%;
   opacity: 0.5;
