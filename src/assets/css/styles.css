@@ -706,8 +706,7 @@ body.noscroll {
   min-height: 40vh;
   border-radius: 7px;
   position: relative;
-
-  transition: margin 0.3s ease-in-out;
+  transition: margin 0.3s ease-in-out, padding  0.3s ease-in-out;
 }
 #skills .domain:first-child {  width: 40%; }
 
@@ -796,8 +795,14 @@ body.noscroll {
   font-weight: normal;
 }
 .domain-content > div {
-  /* margin-bottom: clamp(4px, 0.5vh, 7px); */  /* Version non IOS compatible */
-  margin-bottom: max(4px, min(0.5vh, 7px)); /* Version IOS compatible */
+  --domain-content-min-mb: 4px;
+  /* margin-bottom: clamp(var(--domain-content-min-mb), 0.5vh, 7px); */  /* Version non IOS compatible */
+  margin-bottom: max(var(--domain-content-min-mb), min(0.5vh, 7px)); /* Version IOS compatible */
+}
+@media screen and (max-width: 768px) and (orientation:portrait) { 
+  .domain-content > div {
+    --domain-content-min-mb: 2px;
+  }
 }
 .no-wrap {
   white-space: nowrap;
