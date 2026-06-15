@@ -706,6 +706,8 @@ body.noscroll {
   min-height: 40vh;
   border-radius: 7px;
   position: relative;
+
+  transition: margin 0.3s ease-in-out;
 }
 #skills .domain:first-child {  width: 40%; }
 
