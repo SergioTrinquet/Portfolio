@@ -404,7 +404,7 @@
         let screen3_tween = { zIndex: 3, autoAlpha: 1 };
         // Si petit écran ET en portrait...
         if( (mm == "xs" || mm == "s" || mm == "m") && !isLandscapeDisplay) {
-            screen3_tween = {...screen3_tween, ...{ flexDirection:"column", "--skills-margin-top": 30 }};
+            screen3_tween = {...screen3_tween, ...{ flexDirection:"column", "--skills-margin-top": 28 }};
         }
         tl_scrollTriggerBody.to("#skills", screen3_tween);
 
