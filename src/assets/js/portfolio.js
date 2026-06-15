@@ -327,7 +327,7 @@
             #content-screen-3, .pre-screen-3, #content-screen-3 #shadows > div, .halo, .half-screen-bg, #skills .domain, .domain .title, #SVGs, #intitule-job, #content-screen-4, #section-titles .section-title, #skills, 
             #bg-screen-5, #SVG-chaise, #SVG-table-sans-pied-BG, #SVG-table-pied-BG, #SVG-corps, #SVG-bras,#SVG-laptop, #SVG-lampe, #SVG-tasse, #SVG-ombre, .msg-remerciements, .msg-remerciements > *, #marge-right,
             #bg-screen-end, #bg-screen-end #mot span, #bg-screen-end .mot-trait, .bg-transitional, .SVGs-and-annexes
-            `, {clearProps: "all", /* "--y-coord": 0 */"--y-coord": 100, "--top-half-screen-bg": 45}); // Ajout propriétés CSS personnalisées utilisées pour les animations
+            `, {clearProps: "all", /* "--y-coord": 0 */"--y-coord": 100, "--top-half-screen-bg": 45, "--skills-margin-top": 0 }); // Ajout propriétés CSS personnalisées utilisées pour les animations
                       
         if(isIPadOrIPhone) tl_scrollTriggerBody.set(".SVGs-and-annexes", { width: "70vmin" }); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
 
@@ -405,7 +405,8 @@
         let screen3_tween = { zIndex: 3, autoAlpha: 1 };
         // Si petit écran ET en portrait...
         if( (mm == "xs" || mm == "s" || mm == "m") && !isLandscapeDisplay) {
-            screen3_tween = {...screen3_tween, ...{ flexDirection:"column", marginTop: "calc(var(--vh, 1vh) * 30)" }};
+            // screen3_tween = {...screen3_tween, ...{ flexDirection:"column", marginTop: "calc(var(--vh, 1vh) * 30)" }};
+            screen3_tween = {...screen3_tween, ...{ flexDirection:"column", "--skills-margin-top": 30 }};
         }
         tl_scrollTriggerBody.to("#skills", screen3_tween);
 
