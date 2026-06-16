@@ -327,7 +327,7 @@
             #content-screen-3, .pre-screen-3, #content-screen-3 #shadows > div, .halo, .half-screen-bg, #skills .domain, .domain .title, #SVGs, #intitule-job, #content-screen-4, #section-titles .section-title, #skills, 
             #bg-screen-5, #SVG-chaise, #SVG-table-sans-pied-BG, #SVG-table-pied-BG, #SVG-corps, #SVG-bras,#SVG-laptop, #SVG-lampe, #SVG-tasse, #SVG-ombre, .msg-remerciements, .msg-remerciements > *, #marge-right,
             #bg-screen-end, #bg-screen-end #mot span, #bg-screen-end .mot-trait, .bg-transitional, .SVGs-and-annexes
-            `, {clearProps: "all", /* "--y-coord": 0 */"--y-coord": 100, "--top-half-screen-bg": 45, "--skills-margin-top": 0 }); // Ajout propriétés CSS personnalisées utilisées pour les animations
+            `, {clearProps: "all", "--y-coord": 100, "--top-half-screen-bg": 45/* , "--skills-margin-top": 0, "--intitule-job-to": 10 */ }); // Ajout propriétés CSS personnalisées utilisées pour les animations
                       
         if(isIPadOrIPhone) tl_scrollTriggerBody.set(".SVGs-and-annexes", { width: "70vmin" }); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
 
@@ -378,15 +378,22 @@
             tl_scrollTriggerBody.to(".text-presentation", { width:"0vw", margin: 0, duration: 20 }); // SVG du visage qui va vers le centre de la page car text-presentation se réduit progressivement
         }
 
+        const isViewportMaxHeight600px = window.matchMedia("(max-height: 600px)").matches;
+        const sizeHeadOnScreenThree = isViewportMaxHeight600px ? 17 : 20;
+        const svgHeadOnScreenThree = () => (isViewportMaxHeight600px) 
+                                        ? { marginTop: "-75vh", "--intitule-job-to": 8.5 } 
+                                        : { marginTop: "-70vh", "--intitule-job-to": 10 };
+
         tl_scrollTriggerBody  
             .to(".halo", { zIndex: 2, autoAlpha: 1, width: "115%", paddingTop: "115%", boxShadow: "-3px 2px 1px #4d4d4d91", duration: 40 })    // Halo reparaît, change de couleur et s'agrandit
             .to("#SVGs", { filter: "drop-shadow( 1px 0px 0px rgba(77, 81, 120, 0.7)" }, "<")   // Ajout ombre sur visage
             .to(".wrapper-SVGs-and-texts", { keyframes: [
                 { position: "absolute", duration: 0 },
-                { height: "20vh", marginTop: "-70vh", duration: 50 }
+                { height: `${sizeHeadOnScreenThree}vh`, ...svgHeadOnScreenThree(), duration: 50 }
             ] }, "<");
 
-        if(isIPadOrIPhone) tl_scrollTriggerBody.to(".SVGs-and-annexes", { width: "20vh", duration: 50 }, "<"); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
+        // if(isIPadOrIPhone) tl_scrollTriggerBody.to(".SVGs-and-annexes", { width: "20vh", duration: 50 }, "<"); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
+        if(isIPadOrIPhone) tl_scrollTriggerBody.to(".SVGs-and-annexes", { width: `${sizeHeadOnScreenThree}vh`, duration: 50 }, "<"); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
 
         tl_scrollTriggerBody
             .to("#intitule-job", { display: "unset" }) // Pour activer l'animation
@@ -404,7 +411,7 @@
         let screen3_tween = { zIndex: 3, autoAlpha: 1 };
         // Si petit écran ET en portrait...
         if( (mm == "xs" || mm == "s" || mm == "m") && !isLandscapeDisplay) {
-            screen3_tween = {...screen3_tween, ...{ flexDirection:"column", "--skills-margin-top": 28 }};
+            screen3_tween = {...screen3_tween, ...{ flexDirection:"column", "--skills-margin-top": isViewportMaxHeight600px ? 26 : 28 }};
         }
         tl_scrollTriggerBody.to("#skills", screen3_tween);
 
@@ -582,7 +589,8 @@
     // Appelé pour connaitre taille de l'écran et adapter en fonction l'affichage
     function getMedia() {
         /*
-        320px — 480px: Mobile devices => s
+        <= 380px: Old mobiles => xs
+        381px — 480px: Mobile devices => s
         481px — 768px: iPads, Tablets => m
         769px — 1024px: Small screens, laptops  => l
         1025px — 1200px: Desktops, large screens    => xl

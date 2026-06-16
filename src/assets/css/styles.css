@@ -313,7 +313,6 @@ body.noscroll {
   align-items: center;
   position: relative; /* Pour que SVG-face-drawing en position:absolute ne déborde pas de son conteneur */
 }
-/* TEST */ /* #test::before { content: "---nada---"; } */
 
   @media screen and (max-aspect-ratio: 4/3) { /* De ratio 1/x à 4/3 => écran bcp plus haut que large à écran un peu plus large que haut */
     .wrapper-SVGs-and-texts {
@@ -446,7 +445,7 @@ body.noscroll {
 }
 #intitule-job > span {
   position: absolute;
-  transform-origin: 0 10vh;
+  transform-origin: 0 calc(var(--intitule-job-to) * 1vh);
   font-size: 2vh;
   font-family: 'Ubuntu Mono', monospace;
 }
@@ -678,7 +677,6 @@ body.noscroll {
   width: 80vw;
   max-width: 900px;
   transform: translateX(-200px); /* Car est centré dans un conteneur (#content-screen-3) qui fait plus que 100vw de large (100vw + 400px) */
-  /* margin-top: calc(var(--vh, 1vh) * 25); */ /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
   --skills-margin-top: 25;
   margin-top: calc(var(--vh, 1vh) * var(--skills-margin-top)); /* Calcul dynamique en fct° de la var. "--vh" calculée du coté .js */
 }
