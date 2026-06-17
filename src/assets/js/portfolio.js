@@ -64,8 +64,8 @@
     const isAndroid = isMobileOrTablette && !isIPadOrIPhone;
 
     /* A NE PAS METTRE EN PROD */ 
-    // document.querySelector("#iOSdevices").innerText = isIPadOrIPhone ? "iPhone/iPad" : "pas iPhone/iPad !"; // JUSTE POUR PHASE DE TEST
-    // document.querySelector("#AndroidDevices").innerText = isAndroid ? "android" : "pas Android !"; // JUSTE POUR PHASE DE TEST
+    document.querySelector("#iOSdevices").innerText = isIPadOrIPhone ? "iPhone/iPad" : "pas iPhone/iPad !"; // JUSTE POUR PHASE DE TEST
+    document.querySelector("#AndroidDevices").innerText = isAndroid ? "android" : "pas Android !"; // JUSTE POUR PHASE DE TEST
     /* FIN - A NE PAS METTRE EN PROD */
 
 
@@ -85,7 +85,7 @@
             document.documentElement.style.setProperty('--vmax', `${max/100}px`);
             document.documentElement.style.setProperty('--vmin', `${min/100}px`);
             
-            // document.querySelector("#hauteurOneVh").innerText = `${h/100}px`; // JUSTE POUR PHASE DE TEST
+            document.querySelector("#hauteurOneVh").innerText = `${h/100}px`; // JUSTE POUR PHASE DE TEST
         };
         window.addEventListener('resize', setCSSunits);
         //window.addEventListener('orientationchange', setCSSunits); // obsolète
@@ -507,14 +507,16 @@
 
         if(mm == "s" || mm == "xs") {  
             tl_scrollTriggerBody      
-                .to(".wrapper-SVGs-and-texts", { marginTop: (mm == "s" ? "10vmin" : "30vmin"), duration: 150, delay: 100 }) // SVG visage qui descend en bas de l'écran
+                // .to(".wrapper-SVGs-and-texts", { marginTop: (mm == "s" ? "10vmin" : "30vmin"), duration: 150, delay: 100 }) // SVG visage qui descend en bas de l'écran
+                .to(".wrapper-SVGs-and-texts", { marginTop: (mm == "s" ? "-10vmin" : "10vmin"), duration: 150, delay: 100 }) // SVG visage qui descend en bas de l'écran
                 .to(".bg-transitional", { x:"-55%", rotation: 80, duration: 80 }, "<+=80") // Décalage fond oblique bleu/violet
                 .to(".msg-remerciements", { keyframes: [
                     { display: "flex"}, 
                     { autoAlpha:0, flexGrow: "1", width: "auto", duration: 25 },
                     { autoAlpha:1, duration: 25, delay: 80 }
                 ] }, "<") // Apparition message "A bientôt" 
-                .to("#marge-right", { keyframes: [ {display: "initial", rotation: 80}, { x: "-10vw", y:0 , left: 0, duration: 80 } ] });
+                // .to("#marge-right", { keyframes: [ {display: "initial", rotation: 80}, { x: "-10vw", y:0 , left: 0, duration: 80 } ] });
+                .to("#marge-right", { keyframes: [ {display: "initial", x: "-10vw", y: "10dvh", left: 0, rotation: 80, duration: 0}, { x: "-10vw", y: "-8dvh" , duration: 80 } ] });
         } else {
             tl_scrollTriggerBody
                 .to(".bg-transitional", { x:"-45%", duration: 100, delay: 100 }) // Décalage fond oblique bleu/violet
@@ -526,7 +528,7 @@
                     { autoAlpha:0, flexGrow: "1", width: "auto", duration: 25 },
                     { autoAlpha:1, duration: 25, delay:80 }
                 ] }, "<") // Apparition message "A bientôt"  
-                .to("#marge-right", { display: "initial", transform: "rotate(30deg) translateX(0vw)", duration: 80 });   
+                .to("#marge-right", { display: "initial", transform: "rotate(30deg) translateX(0vw)", duration: 80 });  
         }
 
         
@@ -555,6 +557,7 @@
     // dimensions relatives (en vw, vh, %,...) sont interprétées une seule fois à l'initialisation de la timeline avec GSAP
     ScrollTrigger.addEventListener("refreshInit", () => {
         mm = getMedia();
+                document.querySelector("#sizeMedia").innerText = mm; // TEST
         if(tl !== null) tl.clear(); // Prise en compte 1er déclenchement de l'evenement 'refreshInit' au chargement de la pg ou tl est = à null
         tl = generate_timeline();
         if(!flagAnimationIntro) setNavigation(); setSelectedMenu(); // Ici ajouté car qd redimension de la fenêtre, les valeurs des labels utilisés dans cette fonction changent, donc fonction rappelée ici pour avoir les valeurs à jour, sinon décalage entre vrais positions des labels et positions calculées
