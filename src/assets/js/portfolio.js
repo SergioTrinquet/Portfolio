@@ -266,7 +266,8 @@
     const nbProjectCards = document.querySelectorAll("#projects .project-card").length;
     const dureeEntreLabelsProjets = isAndroid ? 1.2 : 0.6;
     const arrayDureeEntreLabelsProjets = new Array(nbProjectCards - 1).fill(dureeEntreLabelsProjets);
-    const dureeEntreLabels = [1.7, 2.6, 2.7, ...arrayDureeEntreLabelsProjets, 6, 1.5];
+    // const dureeEntreLabels = [1.7, 2.6, 2.7, ...arrayDureeEntreLabelsProjets, 6, 1.5];
+    const dureeEntreLabels = [1.7, 2.6, 2.7, ...arrayDureeEntreLabelsProjets, 5, 1.5];
     
     function goToLabel() {
         //console.log(tl_scrollTriggerBody.labels); //TEST
@@ -334,7 +335,7 @@
         tl_scrollTriggerBody
             .addLabel(`step_1_1|${intitulesMenu[0]}`, ">")
             // Agrandissement wrapper contenant svgs + texte présentation
-            .to(".wrapper-SVGs-and-texts", { width: "70vw", height: "40vh", duration: 40 });
+            .to(".wrapper-SVGs-and-texts", { width: "min(70vw, 900px)", height: "40vh", duration: 40 });
 
         if(isIPadOrIPhone) tl_scrollTriggerBody.to(".SVGs-and-annexes", { width: "40vh", duration: 40 }, "<"); // Pour iOS, contairement à Android et nav. PC, on doit donner une largeur a cet élément pour qu'il y ait animation, sinon change de dimension "par à-coups"
     
@@ -385,6 +386,8 @@
                                         : { marginTop: "-70vh", "--intitule-job-to": 10 };
 
         tl_scrollTriggerBody  
+            // .set(".text-presentation", { display: "none" })
+            .set(".text-presentation", { display: "none", clearProps: "width,margin" })
             .to(".halo", { zIndex: 2, autoAlpha: 1, width: "115%", paddingTop: "115%", boxShadow: "-3px 2px 1px #4d4d4d91", duration: 40 })    // Halo reparaît, change de couleur et s'agrandit
             .to("#SVGs", { filter: "drop-shadow( 1px 0px 0px rgba(77, 81, 120, 0.7)" }, "<")   // Ajout ombre sur visage
             .to(".wrapper-SVGs-and-texts", { keyframes: [
@@ -398,7 +401,6 @@
         tl_scrollTriggerBody
             .to("#intitule-job", { display: "unset" }) // Pour activer l'animation
             .fromTo("#intitule-job", { zIndex: 3, scale: 0.5, autoAlpha:0 }, { zIndex: 3, scale: 1, autoAlpha: 1, duration: 10})   // Apparition "intitulé job"
-            .to(".text-presentation", { width:"0vw", duration: 0 })  // On réduit à 0 la largeur du texte de présentation (même s'il n'est plus visible grâce au background) pour que '#skills' s'affiche au même endroit
             .fromTo(".section-title#my-skills", 
                 { skewX: "0deg", skewY: `${deg_inclinaison_asc}deg`, y: "-100px", display: "inline-block" },
                 { skewX: "0deg", skewY: `${deg_inclinaison_asc}deg`, y: "0px", autoAlpha: 1, display: "inline-block", duration: 10 }
@@ -459,7 +461,7 @@
         tl_scrollTriggerBody
             .to(".bg-transitional", { keyframes: [
                 { autoAlpha: 1 }, 
-                { boxShadow: isIPadOrIPhone ? "none" : "-100vw 0 0 rgba(255,255,255,0.5)", duration: 60 },
+                { boxShadow: isIPadOrIPhone ? "none" : "-100vw 100vw 0 rgba(255,255,255,0.5)", duration: 60 },
                 { x:"0%", duration: 80 }] 
             })
             .to("#intitule-job", { keyframes: [
@@ -474,12 +476,13 @@
         if(mm == "s" || mm == "xs") {
             tl_scrollTriggerBody
                 .to(".wrapper-SVGs-and-texts", { height: "17vmin", marginTop: "-40vmin", duration: 150 }) // SVG visage qui remonte en haut de l'écran qd pas petit écran
-                .to(".text-presentation", { margin: "0 0 0 13vw", duration: 150 }, "<") // Pour décaler les SVG vers la gauche afin qu'ils soient centrés sur la page
+                .to(".SVGs-and-annexes", { marginRight: "13vw", duration: 150 }, "<") // Pour décaler les SVG vers la gauche afin qu'ils soient centrés sur la page
         } else {
             tl_scrollTriggerBody
                 .to(".wrapper-SVGs-and-texts", 
                 { 
                     height: (mm == "xl" ? "16vmin" : (mm == "l" || mm == "m" ? "14vmin" : "16vmin")), // 16vmin pour xl et xs, sinon 14vmin
+                    width: "min(80vw, 1200px)",
                     marginTop: isIPadOrIPhone ? "-14vmin" : "-40vmin",
                     duration: 150 
                 })
@@ -507,25 +510,22 @@
 
         if(mm == "s" || mm == "xs") {  
             tl_scrollTriggerBody      
-                // .to(".wrapper-SVGs-and-texts", { marginTop: (mm == "s" ? "10vmin" : "30vmin"), duration: 150, delay: 100 }) // SVG visage qui descend en bas de l'écran
-                .to(".wrapper-SVGs-and-texts", { marginTop: (mm == "s" ? "-10vmin" : "10vmin"), duration: 150, delay: 100 }) // SVG visage qui descend en bas de l'écran
+                .to(".wrapper-SVGs-and-texts", { marginTop: "10vmin", duration: 150, delay: 100 }) // SVG visage qui descend en bas de l'écran
                 .to(".bg-transitional", { x:"-55%", rotation: 80, duration: 80 }, "<+=80") // Décalage fond oblique bleu/violet
                 .to(".msg-remerciements", { keyframes: [
                     { display: "flex"}, 
-                    { autoAlpha:0, flexGrow: "1", width: "auto", duration: 25 },
+                    { autoAlpha:0, width: "auto", marginTop: "-3dvh" , duration: 25 },
                     { autoAlpha:1, duration: 25, delay: 80 }
                 ] }, "<") // Apparition message "A bientôt" 
-                // .to("#marge-right", { keyframes: [ {display: "initial", rotation: 80}, { x: "-10vw", y:0 , left: 0, duration: 80 } ] });
-                .to("#marge-right", { keyframes: [ {display: "initial", x: "-10vw", y: "10dvh", left: 0, rotation: 80, duration: 0}, { x: "-10vw", y: "-8dvh" , duration: 80 } ] });
+                .to("#marge-right", { keyframes: [ {display: "initial", x: "-10vw", y: "10dvh", left: 0, rotation: 80, duration: 0}, { y: "-8dvh" , duration: 80 } ] });
         } else {
             tl_scrollTriggerBody
                 .to(".bg-transitional", { x:"-45%", duration: 100, delay: 100 }) // Décalage fond oblique bleu/violet
                 .set(".SVGs-and-annexes", { clearProps: "margin" }) // Pour supprimer le style en dur qui reste qd retour en arrière après avoir passé le tween suivant, car fausse la position
-                .to(".SVGs-and-annexes", { margin: "0 0 0 7vw", duration: 80 }) // Décalage SVGs vers la droite
-                .to(".text-presentation", { margin: "0 0 0 20vw", duration: 80 }, "<") // Pour décaler les SVG vers la gauche afin qu'ils soient centrés sur la page
+                .to(".SVGs-and-annexes", { margin: "0 20vw 0 7vw", duration: 80 }) // Décalage SVGs vers la droite
                 .to(".msg-remerciements", { keyframes: [
                     { display: "flex"}, 
-                    { autoAlpha:0, flexGrow: "1", width: "auto", duration: 25 },
+                    { autoAlpha:0, width: "auto", duration: 25 },
                     { autoAlpha:1, duration: 25, delay:80 }
                 ] }, "<") // Apparition message "A bientôt"  
                 .to("#marge-right", { display: "initial", transform: "rotate(30deg) translateX(0vw)", duration: 80 });  
@@ -541,7 +541,10 @@
         
             
         tl_scrollTriggerBody 
-            .to(".msg-remerciements > *", { autoAlpha:1, y: 0, duration: 50, stagger: 25 })
+            .to(".msg-remerciements > *", { keyframes: [
+                { y: "5vh" },
+                { autoAlpha:1, y: "0vh", duration: 50, stagger: 25 }
+            ]}, "<+=20")
             .addLabel(`step_4|${intitulesMenu[4]}`, ">")  
             .to("#bg-screen-end", { clipPath: "circle(100vmax)", duration: 120 })
             .to("#bg-screen-end #mot span", { autoAlpha:1, scale:1, duration: 20, stagger: 20 }, "<+=20")
