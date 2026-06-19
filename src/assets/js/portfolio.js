@@ -64,8 +64,8 @@
     const isAndroid = isMobileOrTablette && !isIPadOrIPhone;
 
     /* A NE PAS METTRE EN PROD */ 
-    document.querySelector("#iOSdevices").innerText = isIPadOrIPhone ? "iPhone/iPad" : "pas iPhone/iPad !"; // JUSTE POUR PHASE DE TEST
-    document.querySelector("#AndroidDevices").innerText = isAndroid ? "android" : "pas Android !"; // JUSTE POUR PHASE DE TEST
+    // document.querySelector("#iOSdevices").innerText = isIPadOrIPhone ? "iPhone/iPad" : "pas iPhone/iPad !"; // JUSTE POUR PHASE DE TEST
+    // document.querySelector("#AndroidDevices").innerText = isAndroid ? "android" : "pas Android !"; // JUSTE POUR PHASE DE TEST
     /* FIN - A NE PAS METTRE EN PROD */
 
 
@@ -85,7 +85,7 @@
             document.documentElement.style.setProperty('--vmax', `${max/100}px`);
             document.documentElement.style.setProperty('--vmin', `${min/100}px`);
             
-            document.querySelector("#hauteurOneVh").innerText = `${h/100}px`; // JUSTE POUR PHASE DE TEST
+            // document.querySelector("#hauteurOneVh").innerText = `${h/100}px`; // JUSTE POUR PHASE DE TEST
         };
         window.addEventListener('resize', setCSSunits);
         //window.addEventListener('orientationchange', setCSSunits); // obsolète
@@ -545,13 +545,9 @@
                 { y: "5vh" },
                 { autoAlpha:1, y: "0vh", duration: 50, stagger: 25 }
             ]}, "<+=20")
-            
-    .to(".SVGs-and-annexes", { duration: 25 })    // Pour faire une pause dans l'animation
-            
+            .to(".SVGs-and-annexes", { duration: 25 })    // Pour faire une pause dans l'animation
             .addLabel(`step_4|${intitulesMenu[4]}`, ">")  
-
-    .to(".SVGs-and-annexes", { duration: 25 })    // Pour faire une pause dans l'animation
-            
+            .to(".SVGs-and-annexes", { duration: 25 })    // Pour faire une pause dans l'animation  
             .to("#bg-screen-end", { clipPath: "circle(100vmax)", duration: 120 })
             .to("#bg-screen-end #mot span", { autoAlpha:1, scale:1, duration: 20, stagger: 20 }, "<+=20")
             .to("#bg-screen-end .mot-trait", { width: "clamp(135px, 30vmin, 220px)", duration: 20 })
@@ -566,7 +562,7 @@
     // dimensions relatives (en vw, vh, %,...) sont interprétées une seule fois à l'initialisation de la timeline avec GSAP
     ScrollTrigger.addEventListener("refreshInit", () => {
         mm = getMedia();
-                document.querySelector("#sizeMedia").innerText = mm; // TEST
+                // document.querySelector("#sizeMedia").innerText = mm; // TEST
         if(tl !== null) tl.clear(); // Prise en compte 1er déclenchement de l'evenement 'refreshInit' au chargement de la pg ou tl est = à null
         tl = generate_timeline();
         if(!flagAnimationIntro) setNavigation(); setSelectedMenu(); // Ici ajouté car qd redimension de la fenêtre, les valeurs des labels utilisés dans cette fonction changent, donc fonction rappelée ici pour avoir les valeurs à jour, sinon décalage entre vrais positions des labels et positions calculées

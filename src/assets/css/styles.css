@@ -274,7 +274,6 @@ body.noscroll {
   position: absolute;
   z-index: 2;
   background: linear-gradient(20deg, var(--color-degr-1-screen4) 10%, var(--color-degr-2-screen4) 40%);
-  /* width: 16vmax; */
   width: 24vmax;
   height: 150vmax;
   right: 0;
