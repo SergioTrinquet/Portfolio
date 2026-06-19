@@ -64,8 +64,8 @@
     const isAndroid = isMobileOrTablette && !isIPadOrIPhone;
 
     /* A NE PAS METTRE EN PROD */ 
-    // document.querySelector("#iOSdevices").innerText = isIPadOrIPhone ? "iPhone/iPad" : "pas iPhone/iPad !"; // JUSTE POUR PHASE DE TEST
-    // document.querySelector("#AndroidDevices").innerText = isAndroid ? "android" : "pas Android !"; // JUSTE POUR PHASE DE TEST
+    document.querySelector("#iOSdevices").innerText = isIPadOrIPhone ? "iPhone/iPad" : "pas iPhone/iPad !"; // JUSTE POUR PHASE DE TEST
+    document.querySelector("#AndroidDevices").innerText = isAndroid ? "android" : "pas Android !"; // JUSTE POUR PHASE DE TEST
     /* FIN - A NE PAS METTRE EN PROD */
 
 
@@ -85,7 +85,7 @@
             document.documentElement.style.setProperty('--vmax', `${max/100}px`);
             document.documentElement.style.setProperty('--vmin', `${min/100}px`);
             
-            // document.querySelector("#hauteurOneVh").innerText = `${h/100}px`; // JUSTE POUR PHASE DE TEST
+            document.querySelector("#hauteurOneVh").innerText = `${h/100}px`; // JUSTE POUR PHASE DE TEST
         };
         window.addEventListener('resize', setCSSunits);
         //window.addEventListener('orientationchange', setCSSunits); // obsolète
