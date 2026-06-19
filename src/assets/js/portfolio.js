@@ -545,7 +545,13 @@
                 { y: "5vh" },
                 { autoAlpha:1, y: "0vh", duration: 50, stagger: 25 }
             ]}, "<+=20")
+            
+    .to(".SVGs-and-annexes", { duration: 25 })    // Pour faire une pause dans l'animation
+            
             .addLabel(`step_4|${intitulesMenu[4]}`, ">")  
+
+    .to(".SVGs-and-annexes", { duration: 25 })    // Pour faire une pause dans l'animation
+            
             .to("#bg-screen-end", { clipPath: "circle(100vmax)", duration: 120 })
             .to("#bg-screen-end #mot span", { autoAlpha:1, scale:1, duration: 20, stagger: 20 }, "<+=20")
             .to("#bg-screen-end .mot-trait", { width: "clamp(135px, 30vmin, 220px)", duration: 20 })
