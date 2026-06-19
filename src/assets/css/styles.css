@@ -1082,7 +1082,7 @@ body.noscroll {
   height: 10px;
   width: 0vw;
   overflow: hidden;
-  border-top: solid 1px #a6a6a6;
+  border-top: solid 1px #d8d8d8;
 }
 #progress-bar > div {
   height: 10px;
@@ -1192,6 +1192,7 @@ body.noscroll {
   box-shadow: 0 0 0 #ffa09c;
   position: relative;
   transition: box-shadow 0.2s ease-out, transform 0.2s ease-out;
+  max-width: 300px;
 }
 .msg-remerciements a:before {
   content: "";
