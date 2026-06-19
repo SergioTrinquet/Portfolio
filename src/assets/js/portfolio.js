@@ -572,6 +572,9 @@
         if(!flagAnimationIntro) setNavigation(); setSelectedMenu(); // Ici ajouté car qd redimension de la fenêtre, les valeurs des labels utilisés dans cette fonction changent, donc fonction rappelée ici pour avoir les valeurs à jour, sinon décalage entre vrais positions des labels et positions calculées
     });
 
+    // Code spécial pour fix bug Firefox : Force la 1ere initialisation pour Firefox et donc le passage dans "refreshInit".
+    // Problème: Provoque du coup un 2eme appel à l'evenement "refreshInit" pour les autres navigateurs
+    ScrollTrigger.refresh();
 
 
     // Affichage et animation sur un tracé circulaire de l'intitulé du job
@@ -607,19 +610,17 @@
         769px — 1024px: Small screens, laptops  => l
         1025px — 1200px: Desktops, large screens    => xl
         */
-        let kindOfmedia = null;
         if(window.matchMedia("(min-width: 1025px)").matches) {
-            kindOfmedia = "xl";
-        } else if(window.matchMedia("(min-width: 769px) and (max-width: 1024px)").matches) {
-            kindOfmedia = "l";
-        } else if(window.matchMedia("(min-width: 481px) and (max-width: 768px)").matches) {
-            kindOfmedia = "m";
-        } else if(window.matchMedia("(min-width: 381px) and (max-width: 480px)").matches) {
-            kindOfmedia = "s";
-        } else if(window.matchMedia("(max-width: 380px)").matches) {
-            kindOfmedia = "xs";
+            return "xl";
+        } else if(window.matchMedia("(min-width: 769px)").matches) {
+            return "l";
+        } else if(window.matchMedia("(min-width: 481px)").matches) {
+            return "m";
+        } else if(window.matchMedia("(min-width: 381px)").matches) {
+            return "s";
+        } else {
+            return "xs";
         }
-        return kindOfmedia;
     }
 
 
@@ -710,7 +711,7 @@
 
 
     // Création bon menu de navigation selon la taille de l'écran
-    function setNavigation() {              
+    function setNavigation() {         
         //console.log("tl_scrollTriggerBody.labels", tl_scrollTriggerBody.labels); //TEST
         if(ratio == null) ratio = getRatio(); // Calcul juste 1 fois au chargement, pas besoin d'être appelé plus
         
@@ -721,7 +722,7 @@
         if(mm == "xs" || mm == "s" || window.matchMedia("only screen and (hover: none) and (pointer: coarse)").matches) { 
             force = !force;
             menuTag = smallMenuSections;
-        } else if(mm == "m" || mm == "l" || mm == "xl") { // Tailles m et <m pour PC seulement
+        } else { // Tailles m, l, xl ou fallback pour PC seulement
             menuTag = menu;
         }
         smallMenu.classList.toggle("display", force);
