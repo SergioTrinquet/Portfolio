@@ -169,11 +169,12 @@ body.noscroll {
 
 #content-screen-3,
 .pre-screen-3 {
+  --screen-3-oblique: 400px;
   z-index: 2;
-  width: calc(100vw + 400px);
-  left: calc(-100vw - 400px);
-  -webkit-clip-path: polygon(0 0, 100% 0, calc(100% - 400px) 100%, 0% 100%);
-  clip-path: polygon(0 0, 100% 0, calc(100% - 400px) 100%, 0% 100%);
+  width: calc(100vw + var(--screen-3-oblique));
+  left: calc(-100vw - var(--screen-3-oblique));
+  -webkit-clip-path: polygon(0 0, 100% 0, calc(100% - var(--screen-3-oblique)) 100%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0, calc(100% - var(--screen-3-oblique)) 100%, 0% 100%);
 }
 #content-screen-3 {
   display: flex;
@@ -269,24 +270,27 @@ body.noscroll {
   background: linear-gradient(29deg, rgb(202, 202, 202) 0%, #fff 70%);
 }
 
-
 #bg-screen-5 > #marge-right {
   position: absolute;
   z-index: 2;
   background: linear-gradient(20deg, var(--color-degr-1-screen4) 10%, var(--color-degr-2-screen4) 40%);
-  width: 16vmax;
-  height: 100vmax;
+  /* width: 16vmax; */
+  width: 24vmax;
+  height: 150vmax;
   right: 0;
   bottom: 0;
-  transform: rotate(30deg) translateX(25vw); 
+  transform: rotate(30deg) translateX(25vw);
   transform-origin: 0% 100%;
   display: none;
 }
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   #bg-screen-5 > #marge-right { width: 20vmax; }
 }
-@media screen and (min-width: 481px) and (max-width: 768px) {
-  #bg-screen-5 > #marge-right { width: 24vmax; }
+
+@media screen and (min-aspect-ratio: 2/1) {
+  #bg-screen-5 > #marge-right { 
+    width: 20vmax; 
+  }
 }
 /* Gestion très petit écran (taille 's' coté js) */
 @media screen and (max-width: 480px) {
@@ -305,9 +309,8 @@ body.noscroll {
 }
 
 .wrapper-SVGs-and-texts { 
-  width: 50%;
-  /* height: 70vmin; */   height: calc(var(--vmin, 1vmin) * 70);
-  max-width: 900px;
+  width: min(50%, 900px);
+  height: calc(var(--vmin, 1vmin) * 70);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1079,7 +1082,7 @@ body.noscroll {
   height: 10px;
   width: 0vw;
   overflow: hidden;
-  border-top: solid 1px #a6a6a6;
+  border-top: solid 1px #d8d8d8;
 }
 #progress-bar > div {
   height: 10px;
@@ -1130,16 +1133,27 @@ body.noscroll {
 
 /*#region - Dernier écran avant celui de fin: Texte à droite */
 .msg-remerciements {
+  --msg-remerciements-relative-font-size: 4.5vmax;
   z-index: 4;
   opacity: 0;
   width: 0;
   align-self: flex-start; /* Pour être aligné en haut de spn conteneur flex */
-  /* font-size: clamp(23px, 4.5vmax, 55px); */  /* Version non IOS compatible */
-  font-size: max(23px, min(4.5vmax, 55px)); /* Version IOS compatible */
+  /* font-size: clamp(23px, var(--msg-remerciements-relative-font-size), 55px); */  /* Version non IOS compatible */
+  font-size: max(23px, min(var(--msg-remerciements-relative-font-size), 55px)); /* Version IOS compatible */
   line-height: min(4.2vmax, 4rem);
   text-align: right;
   display: none;
   flex-direction: column;
+}
+@media screen and (min-aspect-ratio: 2/1) {
+  .msg-remerciements {
+    --msg-remerciements-relative-font-size: 4vmax;
+  }
+}
+@media screen and (min-aspect-ratio: 7/2) {
+  .msg-remerciements {
+    --msg-remerciements-relative-font-size: 3.5vmax;
+  }
 }
 
 .msg-remerciements > span {
@@ -1151,7 +1165,7 @@ body.noscroll {
   -webkit-text-fill-color: transparent;
 
   opacity: 0;
-  transform: translateY(5vh);
+  text-wrap: balance;
 }
 
 .msg-remerciements a {
@@ -1162,15 +1176,14 @@ body.noscroll {
   margin-right: 0px;
   margin-bottom: 0px;
   margin-left: auto;
-  /* font-size: clamp(16px, 1.8vmax, 21px); */  /* Version non IOS compatible */
+  /* font-size: clamp(16px, 1.8vmax, 21px); */  /* Version non IOS compatible pour anciennes version IOS */
   font-size: max(16px, min(1.8vmax, 21px)); /* Version IOS compatible */
   background: none;
   opacity: 0;
-  transform: translateY(5vh);
   background: linear-gradient(129deg, #fe6652 0%, #fe529a 100%);
   color: #fff;
-  line-height: 5.2vh;
-  min-height: 32px !important;
+  /* line-height: clamp(34px, 8.2vh, 50px); */ /* Version non IOS compatible pour anciennes version IOS */
+  line-height: max(34px, min(8.2vh, 50px)); /* Version IOS compatible */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1178,6 +1191,8 @@ body.noscroll {
   overflow: hidden;
   box-shadow: 0 0 0 #ffa09c;
   position: relative;
+  transition: box-shadow 0.2s ease-out, transform 0.2s ease-out;
+  max-width: 300px;
 }
 .msg-remerciements a:before {
   content: "";
@@ -1193,13 +1208,14 @@ body.noscroll {
   left: 110%;
 }
 
-.msg-remerciements a > i { opacity: 0.6; }
-.msg-remerciements a,
 .msg-remerciements a > i {
-  transition: all 0.2s ease-out;
+  opacity: 0.6;
+  transition: opacity 0.2s ease-out;
+  --pos-max-icon: 18px;
+  margin: 0 max(-8%, calc(var(--pos-max-icon) * -1)) 0 min(8%, var(--pos-max-icon));
 }
-.msg-remerciements #button-CV > i { margin: 0 -12px 0 12px; }
-.msg-remerciements #button-github > i { margin: 0 -10px 0 10px; }
+.msg-remerciements #button-github > i { --pos-max-icon: 15px; }
+
 .msg-remerciements a > span {
   flex-grow: 1;
   text-align: center;
@@ -1247,12 +1263,10 @@ body.noscroll {
   z-index: 2;
   width: 200vmax;
   height: 500vmax;
-  transform: translate(110%, 0%) rotate(30deg);
+  transform: translate3d(130%, 0%, 0) rotate(30deg);
   transform-origin: 100% 50%;
   opacity: 0;
   box-shadow: 0 0 0 rgba(255, 255, 255, 0.5);
-
-  transform: translate3d(110%, 0%, 0) rotate(30deg);
 }
 /* Gestion très petit écran (taille 's' coté js) */
 @media screen and (max-width: 480px) {
