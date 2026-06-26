@@ -1655,3 +1655,56 @@ Permet de déterminer l'épaisseur du trait pour l'animation au trait du visage 
   line-height: 23px;
   color: #b90404;
 }
+
+/* Boutons de nav par étape qd mobile */
+#mobile-nav-buttons {
+  position: fixed;
+  z-index: 6;
+  left: 5px;
+  top: 50dvh;
+  translate: 0 -50%;
+  width: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  /* Position 2 */
+  --gap-nav-buttons: 14px;
+  --diametre-nav-buttons: 40px;
+  top: auto;
+  bottom: 18px;
+  left: 50dvw;
+  translate: -50% 0;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: var(--diametre-nav-buttons);
+  width: calc((var(--diametre-nav-buttons) * 2) + var(--gap-nav-buttons));
+}
+#mobile-nav-buttons button {
+  position: absolute;
+  cursor: pointer;
+  background-color: #000;
+  color: #fff;
+  border-radius: 100px;
+  border: none;
+  aspect-ratio: 1;
+  width: var(--diametre-nav-buttons);
+  transition: translate 0.3s ease, opacity  0.3s ease;
+}
+#mobile-nav-buttons button.inactive {
+  opacity: 0;
+  pointer-events: none;
+}
+#mobile-nav-buttons:has(button.inactive) button {
+  translate: 0;
+}
+#mobile-nav-buttons button:first-child {
+  translate: calc(-50% - (var(--gap-nav-buttons) / 2));
+}
+#mobile-nav-buttons button:last-child {
+  translate: calc(50% + (var(--gap-nav-buttons) / 2));
+}
+#mobile-nav-buttons button[disabled] {
+  background-color: red;
+}

@@ -203,6 +203,8 @@
 
             // Calcul largeur progress bar
             animateProgressBar(scrolltriggerOnUpdate.progress);
+
+            displayGoodStepsButton(self.progress, self.direction);
         },
         onScrubComplete: () => { 
             setSelectedMenu(); // Mise en valeur du menu sur lequel on est
@@ -266,12 +268,11 @@
     const nbProjectCards = document.querySelectorAll("#projects .project-card").length;
     const dureeEntreLabelsProjets = isAndroid ? 1.2 : 0.6;
     const arrayDureeEntreLabelsProjets = new Array(nbProjectCards - 1).fill(dureeEntreLabelsProjets);
-    // const dureeEntreLabels = [1.7, 2.6, 2.7, ...arrayDureeEntreLabelsProjets, 6, 1.5];
     const dureeEntreLabels = [1.7, 2.6, 2.7, ...arrayDureeEntreLabelsProjets, 5, 1.5];
     
-    function goToLabel() {
+    function goToLabel(buttonDirection = null) {
         //console.log(tl_scrollTriggerBody.labels); //TEST
-        const direction = scrolltriggerOnUpdate.direction;
+        const direction = buttonDirection ? buttonDirection : scrolltriggerOnUpdate.direction; console.warn("DIRECTION : ", direction)
         const totalDuration = tl_scrollTriggerBody.totalDuration();
         let instantDuration = totalDuration * scrolltriggerOnUpdate.progress; // Pour savoir ou on en est qd on commence à toucher au scroll
         // Ajout marge de sécurité pour le test car ne s'arrete pas exactement au niveau du label : Manque de précision pris en compte de cette façon pour le test qui suit 
@@ -297,14 +298,14 @@
         }
         
         //const labelToGoTo = (direction == 1) ? valueJustAfter : valueJustBefore;
-        const nomLabelToGo = (direction == 1) ? nomLabelAfter : nomLabelBefore; //console.log("nomLabelToGo", nomLabelToGo, "Position  Label: ", tl_scrollTriggerBody.scrollTrigger.labelToScroll(nomLabelToGo)) //TEST
+        const nomLabelToGo = (direction == 1) ? nomLabelAfter : nomLabelBefore;     console.log("nomLabelToGo", nomLabelToGo, " | Position  Label: ", tl_scrollTriggerBody.scrollTrigger.labelToScroll(nomLabelToGo)) //TEST
         
         tweenScrollToLabelOnComplete = false;
         // Smooth scrolling vers le label précédent ou suivant
         gsap.to(window, {
             duration: durationBetweenLabels, 
             //scrollTo: { y: (ratio * parseFloat(labelToGoTo)), autokill: false },
-            scrollTo: { y: tl_scrollTriggerBody.scrollTrigger.labelToScroll(nomLabelToGo), autokill: false }, // Autokill à 'false' pour empecher interrupt° du scroll vers le label en court de scroll en cas d'intervent° de l'utilisateur  // ATTENTION: ".labelToScroll()" Ne fctionne qu'à partir de la version 3.9 de GSAP !!
+            scrollTo: { y: tl_scrollTriggerBody.scrollTrigger.labelToScroll(nomLabelToGo), autokill: false }, // Autokill à 'false' pour empecher interrupt° du scroll vers le label en court de scroll en cas d'intervent° de l'utilisateur
             ease: "slow",
             onComplete:  () => { 
                 tweenScrollToLabelOnComplete = true; 
@@ -312,6 +313,67 @@
             }
         });             
     }
+
+
+
+    //////////////////////// EN COURS DE DEV : Navigation boutons Next/Previous Label ////////////////////////
+   const buttonsMoveSteps = document.querySelectorAll("#mobile-nav-buttons button");
+   const stepButtonsActivated = [false, true];
+//    const stepButtonsActivated = [
+//         !buttonsMoveSteps[0].classList.contains("inactive"), 
+//         !buttonsMoveSteps[1].classList.contains("inactive")
+//     ];
+   function displayGoodStepsButton(progress, direction) {
+        const result = Math.round((progress + Number.EPSILON) * 100) / 100; // 2 chiffres après la virgule
+        const marge = 0.02;
+        // Bouton Up
+        if(result <= marge) {
+            if(!stepButtonsActivated[0] && direction === 1) { 
+                console.log("Activation bouton Up"); //TEST
+                buttonsMoveSteps[0].classList.remove("inactive");
+                stepButtonsActivated[0] = true;
+            } else if(stepButtonsActivated[0] && direction === -1) {
+                console.log("!!! bouton Up désactivé !!!"); // TEST
+                buttonsMoveSteps[0].classList.add("inactive");
+                stepButtonsActivated[0] = false;
+
+                 // Cas spécifique ou quand dans dernière Step, on clique sur lien 'Retour au début'
+                buttonsMoveSteps[1].classList.remove("inactive");
+                stepButtonsActivated[1] = true;
+            }
+        }
+        // Bouton Down
+        if(result >= (1 - marge)) {
+            if(stepButtonsActivated[1] && direction === 1) { 
+                console.log("Désactivation bouton Down"); //TEST
+                buttonsMoveSteps[1].classList.add("inactive");
+                stepButtonsActivated[1] = false;
+            } else if(!stepButtonsActivated[1] && direction === -1) {
+                console.log("Activation bouton Down"); //TEST
+                buttonsMoveSteps[1].classList.remove("inactive");
+                stepButtonsActivated[1] = true;
+            }
+        }
+    }
+    function handleButtonStepsNavigation() {    
+        buttonsMoveSteps.forEach(button => {
+            button.addEventListener('click', e => {
+                console.log("scrolltriggerOnUpdate.progress: ", scrolltriggerOnUpdate.progress)
+                const buttonDirection = (e.target.id === "up") ? -1 : 1;
+                // Appel fct° pour aller au label suivant/précédent qd : 
+                // 1. Tween précédent dû au scroll pour se rendre vers un label, est terminé
+                // 2. Scroll n'est pas dû à utilisat° du menu ou des fleches de nav. ds sect° 'Projets perso'
+                if(
+                    tweenScrollToLabelOnComplete == true && 
+                    menuOrArrowClicked == false
+                ) goToLabel(buttonDirection);
+
+                if(tweenScrollToLabelOnComplete == true) e.target.toggleAttribute('disabled');
+            })
+        })
+    }
+    handleButtonStepsNavigation();
+    ///////////////////// FIN : EN COURS DE DEV : Navigation boutons Next/Previous Label /////////////////////
 
 
 
