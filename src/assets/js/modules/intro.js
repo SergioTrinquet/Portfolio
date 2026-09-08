@@ -1,3 +1,5 @@
+// Cinématique d'intro
+
 import { dom, state } from './state.js';
 import { setNavigation, setSelectedMenu } from './navigation.js';
 

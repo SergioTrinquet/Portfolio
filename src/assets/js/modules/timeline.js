@@ -1,3 +1,5 @@
+// Timeline GSAP principale
+
 import { dom, state, config, device } from './state.js';
 import { getMedia, setNavigation, setSelectedMenu } from './navigation.js';
 

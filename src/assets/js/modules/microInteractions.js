@@ -1,3 +1,5 @@
+// Petites animations
+
 import { dom } from './state.js';
 
 export function initJobTitleAnimation() {

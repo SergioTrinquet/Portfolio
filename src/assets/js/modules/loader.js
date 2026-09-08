@@ -1,3 +1,5 @@
+// Chargement des ressources
+
 export async function loadSVGfiles() {
     const svgs = [
         { url: 'assets/imgs/svg-animations/portfolio-assets.svg', id: '#SVGs' },

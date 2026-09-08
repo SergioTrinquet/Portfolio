@@ -1,3 +1,5 @@
+// Configuration et État global
+
 export const config = {
     deg_inclinaison_asc: "-8",
     inclinaison_desc: 8, // parsed from parseInt("-8") * -1

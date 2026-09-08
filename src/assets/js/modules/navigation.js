@@ -1,3 +1,5 @@
+// Navigation générale
+
 import { dom, state, config, device } from './state.js';
 import { getScrollTop, postIntroduction } from './intro.js';
 

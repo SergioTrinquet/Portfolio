@@ -1,3 +1,5 @@
+// Détection d'appareils et correctifs
+
 import { device } from './state.js';
 
 export function detectDevice() {

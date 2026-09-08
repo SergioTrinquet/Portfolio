@@ -1,3 +1,5 @@
+// Boîtes de dialogue
+
 export function createModalPortraitIsBetter(cookieName) {
     const modal = document.querySelector("#msg-portrait-is-better");
     if (!modal) return;
