@@ -1,4 +1,3 @@
-// import '../css/styles.css';
 import { initDOM } from './modules/state.js';
 import { detectDevice, initCSSUnits } from './modules/device.js';
 import { loadSVGfiles } from './modules/loader.js';
