@@ -8,13 +8,15 @@ import { initScrollTriggerTimeline } from './modules/timeline.js';
 import { initNavigationEvents } from './modules/navigation.js';
 
 (async function () {
-    // 1. Initialiser le cache DOM et détecter l'appareil
-    initDOM();
+    // 1. Détecter l'appareil et initialiser les unités CSS
     detectDevice();
     initCSSUnits();
 
     // 2. Charger les SVG externalisés
     await loadSVGfiles();
+
+    // 3. Initialiser le cache DOM (une fois les SVG injectés dans le DOM)
+    initDOM();
 
     // 3. Lancer les modals d'avertissement
     createModalPortraitIsBetter("st_dont-show-modal");

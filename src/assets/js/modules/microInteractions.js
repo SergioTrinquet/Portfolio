@@ -11,6 +11,10 @@ export function initJobTitleAnimation() {
 
 export function initEyeballTracking() {
     if (!dom.eyesMovingZone) return;
+
+    /* if (!dom.pupilles || dom.pupilles.length === 0) {
+        dom.pupilles = document.querySelectorAll(".pupille");
+    } */
     
     dom.eyesMovingZone.addEventListener("mousemove", (e) => eyeball(e));
 
